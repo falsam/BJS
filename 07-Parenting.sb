@@ -1,0 +1,46 @@
+﻿;;Babylon.js for SpiderBasic - Parenting.
+
+;Another Babylon feature is attaching an object, relatively to another, by creating a parent-child link between two meshes.
+;This link implies that all parent transformations (position/rotation/scaling) will also be applied To the child’s transformations.
+
+EnableExplicit
+
+IncludeFile "babylon/babylon.sbi"
+
+Global Camera, Light, Cube, Sphere, Ground
+
+Declare LoadGame()
+Declare RenderGame()
+
+UseModule BJS
+
+InitEngine(@LoadGame())
+
+Procedure LoadGame()    
+  If CreateScene()
+    Camera = CreateCamera("camera", 0, 20, 30, #ArcRotate)
+    Light  = CreateLight("Light", 20, 20, 100)
+    
+    Cube = CreateBox("cube", 2)
+        
+    Ground = CreateGround("Ground", 20, 20)
+    Attach(Ground, Cube, 0, 2, 0)   
+    
+    Sphere = CreateSphere("Sphere", 3)
+    Attach(Ground, Sphere, 10, 1.5, 10)   
+        
+    RenderLoop(@RenderGame())
+  EndIf
+EndProcedure
+
+Procedure RenderGame()
+  Rotate(Ground, 0, 0.01, 0, #PB_Relative)
+  RenderWorld() 
+EndProcedure
+; IDE Options = SpiderBasic 2.00 (Windows - x86)
+; CursorPosition = 38
+; Folding = -
+; iOSAppOrientation = 0
+; AndroidAppOrientation = 0
+; EnableXP
+; CompileSourceDirectory
