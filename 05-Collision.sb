@@ -1,0 +1,62 @@
+﻿;Babylon.sbi - Collision
+
+EnableExplicit
+
+IncludeFile "babylon/babylon.sbi"
+
+Global n, Camera, Light, Ground, Sphere0, Sphere1, Sphere2, Sphere3
+
+Declare LoadGame()
+Declare RenderGame()
+
+UseModule BJS
+
+InitEngine(@LoadGame())
+
+Procedure LoadGame()    
+  If CreateScene()
+    EnablePhysics()
+    
+    CreateCamera("camera", 0, 20, 30, #ArcRotate)
+    Light = CreateLight("light", 5, 10, 0, 1, #Point)
+    
+    Sphere0 = CreateSphere("Sphere", 1)
+    Move(Sphere0, 0, 30, 0)
+    
+    Sphere1 = CreateSphere("Sphere", 2)
+    Move(Sphere1, 0.5, 32, 0)
+        
+    Sphere2 = CreateSphere("Sphere", 1.5)
+    Move(Sphere2, 2, 30, 2)
+    
+    Sphere3 = CreateSphere("Sphere", 3)
+    Move(Sphere3, 4, 30, -4)
+    
+    Ground = CreateGround("Ground", 30, 30) 
+     
+    CreateBody(Sphere0, #SphereBody, 1, 0.5, 0.5)
+    CreateBody(Sphere1, #SphereBody, 1, 0.5, 0.6)
+    CreateBody(Sphere2, #SphereBody, 1, 0.5, 0.7)    
+    CreateBody(Sphere3, #SphereBody, 1, 0.5, 0.8)    
+    CreateBody(Ground,  #BoxBody, 0, 1, 1)
+           
+    RenderLoop(@RenderGame())
+  EndIf
+EndProcedure
+
+Procedure RenderGame()
+  RenderWorld() 
+EndProcedure
+
+
+; IDE Options = SpiderBasic 2.00 (Windows - x86)
+; CursorPosition = 19
+; Folding = -
+; WebAppName = Collision
+; HtmlFilename = collision.html
+; JavaScriptFilename = collision.js
+; JavaScriptPath = sb
+; iOSAppOrientation = 0
+; AndroidAppOrientation = 0
+; EnableXP
+; CompileSourceDirectory
