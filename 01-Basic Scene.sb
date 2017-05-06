@@ -1,0 +1,55 @@
+﻿;Babylon.sbi - Basic Scene
+EnableExplicit
+
+IncludeFile "babylon/babylon.sbi"
+
+Global Camera, Light, Plane, Sphere, Cylinder, Cube, Torus
+
+Declare LoadGame()
+Declare RenderGame()
+
+UseModule BJS
+
+InitEngine(@LoadGame())
+
+Procedure LoadGame()    
+  If CreateScene()
+    
+    ;Camera & Light
+    Camera  = CreateCamera("camera", 0, 5, 7, #ArcRotate)
+    Light   = CreateLight("light", 0, 10, 0)
+    
+    ;Objects (Plane, Sphere, ....)
+    Plane   = CreateGround("plane", 10, 10)
+    Sphere  = CreateSphere("sphere", 2)
+    Move(Sphere, 0, 2, 0)
+    
+    Cylinder= CreateCylinder("cylinder", 2, 2, 2)
+    Move(Cylinder, 3, 1, -2)
+    
+    Cube = CreateBox("cube", 2)
+    Move(Cube, -3, 1, -2)
+    
+    Torus = CreateTorus("torus", 2, 1)
+    Move(Torus, -2, 0.5, 2)
+    
+    RenderLoop(@RenderGame())
+  EndIf
+EndProcedure
+
+Procedure RenderGame()
+  RenderWorld() 
+EndProcedure
+; IDE Options = SpiderBasic 2.00 (Windows - x86)
+; CursorPosition = 18
+; Folding = -
+; WebAppName = Basic Scene
+; HtmlFilename = basicscene.html
+; JavaScriptFilename = basicscene.js
+; JavaScriptPath = sb
+; CopyJavaScriptLibrary
+; iOSAppOrientation = 0
+; AndroidAppOrientation = 0
+; EnableXP
+; DisableDebugger
+; CompileSourceDirectory
