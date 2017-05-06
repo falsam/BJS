@@ -18,12 +18,14 @@ Procedure InitEngine(Callback, CanvasGadget = #PB_Ignore)
   !         v_bjscanvas = document.getElementById('renderCanvas');
   !         v_bjsengine = new BABYLON.Engine(v_bjscanvas, true);  
   !         window.addEventListener('resize', function(){v_bjsengine.resize(); });  
+  !         v_callback()
   
-  !         require(["sbbjs/babylon.objFileLoader.js"], 
-  !           function() {
-  !             v_objimport = true
-  !             v_callback() }
-  !         )
+  ;!         require(["sbbjs/babylon.objFileLoader.js"], 
+  ;!           function() {
+  ;!             v_objimport = true
+  ;!             v_callback() }
+  ;!         )
+  
   !       }
   !     );    
 EndProcedure  
@@ -99,8 +101,7 @@ Procedure Rotate(Object, x.f, y.f, z.f, Mode = #PB_Absolute)
   EndIf
 EndProcedure
 ; IDE Options = SpiderBasic 2.00 (Windows - x86)
-; CursorPosition = 46
-; FirstLine = 41
+; CursorPosition = 21
 ; Folding = ---
 ; iOSAppOrientation = 0
 ; AndroidAppOrientation = 0
