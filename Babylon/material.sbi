@@ -1,0 +1,46 @@
+﻿;Babylon.js for SpiderBasic : Material 
+
+Procedure CreateMaterial(Name.s, Image.s, BackFaceCulling = #False)
+  !var material = new BABYLON.StandardMaterial(v_name, v_bjscurrentscene);
+  !material.diffuseTexture = new BABYLON.Texture(v_image, v_bjscurrentscene);
+  !material.backFaceCulling = v_backfaceculling;  //Show (or not) the front and the back of an element
+  If LCase(GetExtensionPart(image)) = "png"
+    !material.diffuseTexture.hasAlpha = true
+  EndIf
+  !return material  
+EndProcedure
+
+Procedure ScaleMaterial(Material, UScale.f, VScale.f)
+  !v_material.diffuseTexture.uScale = v_uscale;     //Repeat x times on the Vertical Axes
+  !v_material.diffuseTexture.vScale = v_vscale;     //Repeat x times on the Horizontal Axes    
+EndProcedure
+
+Procedure ScrollMaterial(Material, UOffset.f, VOffset.f)
+  !v_material.diffuseTexture.uOffset = v_uoffset;
+  !v_material.diffuseTexture.vOffset = v_voffset;
+EndProcedure
+
+Procedure SetMaterial(Mesh, Material)
+  !v_mesh.material = v_material;
+EndProcedure
+
+Procedure SetMaterialColor(Material, Type, Color)
+  Protected r = Red(Color)/255
+  Protected g = Green(Color)/255
+  Protected b = Blue(Color)/255
+  
+  Select Type
+    Case #SpecularColor 
+      !v_material.specularColor = new BABYLON.Color3(v_r, v_g, v_r);
+  EndSelect
+  
+  !v_material.Type
+EndProcedure
+
+; IDE Options = SpiderBasic 2.00 (Windows - x86)
+; CursorPosition = 4
+; Folding = -
+; iOSAppOrientation = 0
+; AndroidAppOrientation = 0
+; EnableXP
+; CompileSourceDirectory

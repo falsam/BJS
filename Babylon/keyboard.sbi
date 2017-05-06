@@ -1,0 +1,48 @@
+﻿;Babylon.js for SpiderBasic : Keyboard 
+
+Global  key.s
+
+Procedure InitKey()
+  !key = {
+  !	_released: {},
+  !	_pressed: {},
+  
+  !	isDown: function(keyCode) { return this._pressed[keyCode]; },
+  
+  !	isReleased: function(keyCode) { return this._released[keyCode]; },
+  
+  !	onKeydown: function(event) {
+  !   console.log("Key " + event.keyCode)
+  !		this._pressed[event.keyCode] = true;
+  !		delete this._released[event.keyCode];
+  !	},
+  
+  !	onKeyup: function(event) {
+  !		this._released[event.keyCode] = true;
+  !		delete this._pressed[event.keyCode];
+  !	}
+  !};
+  
+  !window.addEventListener('keyup', function(event) { key.onKeyup(event); }, false);
+  !window.addEventListener('keydown', function(event) { key.onKeydown(event); }, false);  
+EndProcedure
+
+Procedure KeyPushed(key)
+  !if ( key.isDown(v_key) == true) return true;
+EndProcedure
+
+Procedure KeyReleased(key)
+  !if ( key.isReleased(v_key) ) {
+  !	delete key._released[v_key];
+  !	return true
+  !};	
+EndProcedure
+
+
+; IDE Options = SpiderBasic 2.00 (Windows - x86)
+; CursorPosition = 35
+; Folding = -
+; iOSAppOrientation = 0
+; AndroidAppOrientation = 0
+; EnableXP
+; CompileSourceDirectory

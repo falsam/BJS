@@ -1,0 +1,67 @@
+﻿;Babylon.js for SpiderBasic : constant.sbi 
+
+#All = 0
+#KeyBoard = 1
+#Mouse = 2
+#Absolute = #False
+#Relative = #True
+
+;Camera
+#Free = 0
+#ArcRotate = 1
+#Follow = 2
+
+;Light
+#Point = 1
+#Directional = 2
+#Spot = 3
+#Hemispheric = 4
+
+;Body
+#PlaneBody = 0
+#BoxBody = 1
+#SphereBody = 2
+
+#SpecularColor = 0
+
+;Parent : Engine.sbi
+;Chile  : Camera.sbi
+Global BJSCanvas    
+
+;Parent : Engine.sbi
+;Child  : Scene.sbi
+Global BJSEngine          
+Global BJScreenSpace2D 
+
+;Parent : Engine.sbi 
+;Child  : Guid2d.sbi
+Global BJScurrentParent   
+
+;Parent : Scene.sbi
+;Child  : Engine.sbi, Environment.sbi, Camera.sbi, Mesh.sbi, Material.sbi
+Global BJSCurrentScene       
+
+Structure NewPoint
+  x.f
+  y.f
+  z.f
+EndStructure
+
+;Pick
+Structure NewPick
+  hit.b
+  bu.f
+  bv.f
+  faceId.i
+  distance.f
+  mesh.i
+  uniqueId.i
+  point.NewPoint
+EndStructure
+Global Pick.NewPick
+; IDE Options = SpiderBasic 2.00 (Windows - x86)
+; CursorPosition = 27
+; iOSAppOrientation = 0
+; AndroidAppOrientation = 0
+; EnableXP
+; CompileSourceDirectory

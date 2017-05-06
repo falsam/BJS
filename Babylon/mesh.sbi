@@ -1,0 +1,178 @@
+﻿;Babylon.js for SpiderBasic : Mesh
+
+;Basic Object
+Procedure CreateSphere(Name.s, Size.f, Subdivs = 16)
+  !var mesh = BABYLON.Mesh.CreateSphere(v_name, v_subdivs, v_size, v_bjscurrentscene);
+  !mesh.checkCollisions = true
+  !return mesh
+EndProcedure
+
+Procedure CreateGround(Name.s, Width.f, Depth.f, Subdivs=2)
+  !var mesh = BABYLON.Mesh.CreateGround(v_name, v_width, v_depth, v_subdivs, v_bjscurrentscene);
+  !mesh.checkCollisions = true
+  !return mesh
+EndProcedure
+
+Procedure CreatePlane(Name.s, Size.f)
+  !var mesh = BABYLON.Mesh.CreatePlane(v_name, v_size, v_bjscurrentscene);
+  !mesh.checkCollisions = true
+  !return mesh
+EndProcedure
+
+Procedure CreateBox(Name.s, Size.f)
+  !var mesh = BABYLON.Mesh.CreateBox(v_name, v_size, v_bjscurrentscene);
+  !mesh.checkCollisions = true
+  !return mesh
+EndProcedure
+
+Procedure CreateCylinder(Name.s, Height.f, DiamTop.f, DiamBottom.f, Tessellation.i = 30, HeightSubdivs.i = 1)
+  !var mesh = BABYLON.Mesh.CreateCylinder(v_name, v_height, v_diamtop, v_diambottom, v_tessellation, v_heightsubdivs, v_bjscurrentscene);
+  !mesh.checkCollisions = true
+  !return mesh
+EndProcedure
+
+Procedure CreateTorus(Name.s, Diameter, Thickness, Tesselation = 32)
+  !var mesh = BABYLON.Mesh.CreateTorus(v_name, v_diameter, v_thickness, v_tesselation, v_bjscurrentscene);
+  !mesh.checkCollisions = true
+  !return mesh
+EndProcedure
+
+Procedure CreateTerrain(Name.s, HeightmapPath.s, Width.f, Depth.f, Subdivs.i, MinHeight.f, MaxHeight.f)
+  !var mesh = BABYLON.Mesh.CreateGroundFromHeightMap(v_name, v_heightmappath, v_width, v_depth, v_subdivs, v_minheight, v_maxheight, v_bjscurrentscene, false);
+  !mesh.checkCollisions = true
+  !return mesh
+EndProcedure
+
+Procedure.s GetMeshName(Mesh)
+  !return v_mesh.name  
+EndProcedure
+
+;Physics
+Procedure CreateBody(Mesh, Type, Mass.f = 1.0, Restitution.f = 1.0, Friction = 0.1)
+  Select type 
+    Case #PlaneBody 
+      !v_mesh.physicsImpostor = new BABYLON.PhysicsImpostor(v_mesh, 
+      !  BABYLON.PhysicsImpostor.PlaneImpostor, {
+      !     mass        : v_mass, 
+      !     restitution : v_restitution,
+      !     friction    : v_friction
+      !  }, 
+      !v_bjscurrentscene); 
+      
+    Case #SphereBody 
+      !v_mesh.physicsImpostor = new BABYLON.PhysicsImpostor(v_mesh, 
+      !  BABYLON.PhysicsImpostor.SphereImpostor, {
+      !     mass        : v_mass, 
+      !     restitution : v_restitution,
+      !     friction    : v_friction
+      !  }, 
+      !v_bjscurrentscene); 
+      
+    Case #BoxBody
+      !v_mesh.physicsImpostor = new BABYLON.PhysicsImpostor(v_mesh, 
+      !  BABYLON.PhysicsImpostor.BoxImpostor, {
+      !     mass        : v_mass, 
+      !     restitution : v_restitution,
+      !     friction    : v_friction
+      !  }, 
+      !v_bjscurrentscene); 
+  EndSelect
+  
+  If Mass <> 0 ;Apply Impulse
+        !v_mesh.physicsImpostor.applyImpulse(new BABYLON.Vector3(0.01, 0.01, 0.01), v_mesh.getAbsolutePosition());
+  EndIf
+EndProcedure
+
+Procedure ScaleMesh(Mesh, x.f, y.f, z.f, Mode = #PB_Absolute)
+  If mode = #PB_Absolute
+    !v_mesh.scaling.x = v_x; 
+    !v_mesh.scaling.y = v_y;
+    !v_mesh.scaling.z = v_z;
+  Else
+    !v_mesh.scaling.x += v_x;
+    !v_mesh.scaling.y += v_y;
+    !v_mesh.scaling.z += v_z;
+  EndIf
+EndProcedure
+
+Procedure CloneMesh(Mesh)
+  !return v_mesh.clone()  
+EndProcedure
+
+Procedure Attach(Parent, Child, x.f, y.f, z.f)
+  !v_child.parent = v_parent,
+  !v_child.position.x = v_x;
+  !v_child.position.y = v_y;
+  !v_child.position.z = v_z;
+EndProcedure
+
+;Picking
+Procedure PickEnable()  
+  !BABYLON.Tools.Log("Picking is active")
+  !v_bjscurrentscene.onPointerDown = function (evt, pickResult) {
+  ! if (pickResult.hit) {
+  !  console.log(pickResult);
+  !  bjs$v_pick._hit      = pickResult.hit
+  !  bjs$v_pick._point._x = pickResult.pickedPoint.x;  
+  !  bjs$v_pick._point._y = pickResult.pickedPoint.y;
+  !  bjs$v_pick._point._z = pickResult.pickedPoint.z;  
+  !  bjs$v_pick._distance = pickResult.distance;
+  !  bjs$v_pick._mesh     = pickResult.pickedMesh;
+  !  bjs$v_pick._uniqueid = pickResult.pickedMesh.uniqueId;  
+  ! }
+  !};  
+EndProcedure
+
+Procedure IsPick()
+  If Pick\hit = #True
+    Pick\hit = #False
+    ProcedureReturn Pick\mesh
+  Else
+    ProcedureReturn #False
+  EndIf  
+EndProcedure
+
+Procedure.f PickX()
+  ProcedureReturn Pick\point\x
+EndProcedure
+
+Procedure.f PickY()
+  ProcedureReturn Pick\point\y
+EndProcedure
+
+Procedure.f PickZ()
+ ProcedureReturn Pick\point\Z
+EndProcedure
+
+Procedure.f PickDistance()
+  ProcedureReturn Pick\distance
+EndProcedure
+
+Procedure PicMesh()
+  ProcedureReturn Pick\mesh
+EndProcedure
+
+Procedure MeshId(Mesh)
+  !return v_mesh.pickedMesh.uniqueId
+EndProcedure
+
+Procedure Translate(Mesh, Value.f)
+  !v_mesh.translate(new BABYLON.Vector3(v_value, 0, 0), 0.1, BABYLON.Space.LOCAL);
+EndProcedure
+
+;Import obj
+Procedure ImportObj(Path.s, FileName.s)
+  !BABYLON.SceneLoader.Load("/obj/", "test.obj", v_engine, function (newScene) { 
+  !});
+EndProcedure
+
+
+
+
+; IDE Options = SpiderBasic 2.00 (Windows - x86)
+; CursorPosition = 38
+; Folding = ----
+; iOSAppOrientation = 0
+; AndroidAppOrientation = 0
+; EnableXP
+; CompileSourceDirectory

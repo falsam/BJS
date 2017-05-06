@@ -1,0 +1,99 @@
+﻿;Babylon.js for SpiderBasic : Camera 
+
+Procedure CreateCamera(Name.s, x.f, y.f, z.f, Type = #Free)
+  Select Type
+    Case #Free
+      !var camera = new BABYLON.FreeCamera(v_name, new BABYLON.Vector3(v_x, v_y, v_z), v_bjscurrentscene);
+      
+    Case #ArcRotate
+      !var camera = new BABYLON.ArcRotateCamera(v_name, 0, 0, 0, BABYLON.Vector3.Zero(), v_bjscurrentscene);
+      !camera.setPosition(new BABYLON.Vector3(v_x, v_y, v_z));
+      
+    Case #Follow
+      !var camera = new BABYLON.FollowCamera(v_name, new BABYLON.Vector3(v_x, v_y, v_z), v_bjscurrentscene);
+      !camera.rotationOffset = -90;
+      !camera.heightOffset = 5
+      !camera.radius = 10;
+      !camera.cameraAcceleration = 0.05
+      !camera.maxCameraSpeed = 20
+  EndSelect
+  
+  !camera.attachControl(v_bjscanvas, true);
+  !camera.setTarget(BABYLON.Vector3.Zero());
+  !camera.checkCollisions = true
+  !camera.applyGravity = true
+  !return camera
+EndProcedure
+
+Procedure CameraLookAt(Camera, MeshObject)
+  !v_camera.lockedTarget = v_meshobject
+EndProcedure
+
+Procedure DisableControlCamera(Camera, Value.b = #All)
+  Select Value
+    Case #All
+      !v_camera.inputs.clear();
+    Case #KeyBoard 
+      !v_camera.inputs.removeByType("FreeCameraKeyboardMoveInput");  
+    Case #Mouse
+        !v_camera.inputs.removeByType("FreeCameraMouseInput"); 
+    EndSelect
+EndProcedure
+
+Procedure CameraFollow(Camera, MeshObject, radius.f, rotationOffset, heightOffset.f, cameraAcceleration.f,  maxCameraSpeed.f)  
+  !v_camera.lockedTarget        = v_meshobject;
+  !v_camera.radius              = v_radius;             // how far from the object to follow
+  !v_camera.heightOffset        = v_heightoffset;       // how high above the object to place the camera
+  !v_camera.rotationOffset      = v_rotationoffset;     // the viewing angle
+  !v_camera.cameraAcceleration  = v_cameraacceleration; // how fast To move
+  !v_camera.maxCameraSpeed      = v_maxCameraSpeed;     // speed limit
+EndProcedure
+
+Procedure ActiveCamera(Camera)
+  !v_bjscurrentscene.activeCamera = v_camera;
+EndProcedure 
+
+Procedure CameraCollision(Camera, Value = #True)
+  !v_camera.checkCollisions = v_value;
+EndProcedure
+
+Procedure CameraGravity(Camera, Value = #True)
+  !v_camera.applyGravity = true;
+EndProcedure
+
+Procedure CameraBodySize(Camera, x.f = 1, y.f = 1, z.f = 1)
+  !v_camera.ellipsoid = new BABYLON.Vector3(v_x, v_y, v_z);  
+EndProcedure
+
+Procedure GetCameraBeta(Camera)
+  !return v_camera.beta  
+EndProcedure
+
+Procedure GetCameraAlpha(Camera)
+  !return v_camera.alpha  
+EndProcedure
+
+Procedure GetCameraRadius(Camera)
+  !return v_camera.radius  
+EndProcedure
+
+Procedure SetCameraBeta(Camera, Value.f)
+  !return v_camera.beta = v_value
+EndProcedure
+
+Procedure SetCameraAlpha(Camera, Value.f)
+  !return v_camera.alpha = v_value
+EndProcedure
+
+
+Procedure SetCameraRadius(Camera, Value.f)
+  !return v_camera.radius = v_value  
+EndProcedure
+; IDE Options = SpiderBasic 2.00 (Windows - x86)
+; CursorPosition = 20
+; FirstLine = 17
+; Folding = ---
+; iOSAppOrientation = 0
+; AndroidAppOrientation = 0
+; EnableXP
+; CompileSourceDirectory

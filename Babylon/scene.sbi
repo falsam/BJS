@@ -1,0 +1,72 @@
+﻿;Babylon.js for SpiderBasic : Scene 
+
+Procedure CreateScene()  
+  !v_bjscurrentscene  = new BABYLON.Scene(v_bjsengine);
+  !v_bjscurrentscene.collisionsEnabled = true;
+  !v_bjscurrentscene.enablePhysics(); 
+  !v_bjscurrentscene.gravity = new BABYLON.Vector3(0, -0.9, 0)
+  !return v_bjscurrentscene;
+EndProcedure
+
+Procedure SceneGravity(x.f = 0, y.f = -0.9, z.f = 0)
+  !v_bjscurrentscene.gravity = new BABYLON.Vector3(v_x, v_y, v_z);
+EndProcedure
+
+Procedure ClearScene(color)
+  Protected r.f = Red(color)/255
+  Protected g.f = Green(color)/255
+  Protected b.f = Blue(Color)/255
+  
+  !v_bjscurrentscene.clearColor = new BABYLON.Color3(v_r, v_g, v_b);
+EndProcedure
+
+Procedure BeforeRender(CallBack)
+  !v_bjscurrentscene.registerBeforeRender(v_callback);
+EndProcedure
+
+Procedure EnableOffLineSupport(Value = #True) 
+  !v_bjsengine.enableOfflineSupport = v_value;
+EndProcedure
+
+Procedure CurrentScene(Scene, Camera)
+  !v_bjscurrentscene = v_scene;
+  !v_bjscurrentscene.activeCamera = v_camera;
+EndProcedure
+
+Procedure ImportScene(Name.s, Path.s, Mesh.s, Callback) 
+  !var mesh
+  !BABYLON.SceneLoader.ImportMesh("", v_path, v_mesh + '?' + (new Date()).getTime(), v_bjscurrentscene, function (meshes, particleSystems, skeletons) {
+  !  mesh = meshes[0];
+  !  mesh.name = v_name
+  !  mesh.isVisible = true;
+  !  mesh.updatable = false;
+  !  mesh.checkCollisions = true
+  !  v_callback(mesh);
+  !});
+EndProcedure
+
+Procedure SaveScene(Scene, Name.s)
+  Protected StrScene.s
+  
+  !var serializedScene = BABYLON.SceneSerializer.Serialize(v_scene)
+  !v_strscene = JSON.stringify(serializedScene);
+  
+  If CreateFile(0, Name, 0)
+    WriteStringN(0, strScene)    
+    ExportFile(0, "application/json")
+    CloseFile(0)
+  EndIf
+EndProcedure
+
+Procedure SceneDebug()
+  !v_bjscurrentscene.debugLayer.show();
+EndProcedure
+
+; IDE Options = SpiderBasic 2.00 (Windows - x86)
+; CursorPosition = 61
+; FirstLine = 3
+; Folding = --
+; iOSAppOrientation = 0
+; AndroidAppOrientation = 0
+; EnableXP
+; CompileSourceDirectory

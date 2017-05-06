@@ -1,0 +1,108 @@
+﻿;Babylon.js for SpiderBasic : Engine 
+
+Procedure InitEngine(Callback, CanvasGadget = #PB_Ignore)    
+  !     require(["sbbjs/babylon.custom.js"], 
+  !       function(t) {
+  
+            If CanvasGadget = #PB_Ignore    
+              !$('<canvas>').attr('id', 'renderCanvas')
+              ! .css({ width : '100%', height : '100%' })
+              ! .appendTo('body');
+            Else
+              !var selector = $(spider_GadgetID(v_bjscanvasgadget))[0].gadget
+              !selector.id = "renderCanvas"
+              !selector.style.width = '100%'
+              !selector.style.height = '100%'
+            EndIf
+
+  !         v_bjscanvas = document.getElementById('renderCanvas');
+  !         v_bjsengine = new BABYLON.Engine(v_bjscanvas, true);  
+  !         window.addEventListener('resize', function(){v_bjsengine.resize(); });  
+  
+  !         require(["sbbjs/babylon.objFileLoader.js"], 
+  !           function() {
+  !             v_objimport = true
+  !             v_callback() }
+  !         )
+  !       }
+  !     );    
+EndProcedure  
+
+Procedure CreateSpace2D(scene)
+  !bjs$v_bjscreenspace2d = new BABYLON.ScreenSpaceCanvas2D(v_scene, {
+  !  id: "ScreenCanvas", cachingStrategy: BABYLON.Canvas2D.CACHESTRATEGY_DONTCACHE,
+  !});		  
+  BJScurrentParent = BJScreenSpace2D
+  !return bjs$v_bjscreenspace2d
+EndProcedure
+
+Procedure RenderLoop(Callback)
+  !v_bjsengine.runRenderLoop(v_callback)
+EndProcedure
+
+Procedure RenderWorld()
+  !v_bjscurrentscene.render();
+EndProcedure
+
+Procedure EnablePhysics()
+  !v_bjscurrentscene.enablePhysics();  
+EndProcedure
+
+;Asset Manager
+Procedure UseAssetManager()
+  !return new BABYLON.AssetsManager(v_bjscurrentscene); 
+EndProcedure
+
+Procedure AssetManagerAdd(AssetManager, Name.s, Path.s, Object.s, SuccessCallback, FinishCallback)
+  !var meshtask = v_assetmanager.addMeshTask(v_name, "", v_path, v_object);  
+  !meshtask.onSuccess = v_successcallback(loadedMeshes[0]);
+  !v_assetmanager.onFinish = v_finishcallback();
+EndProcedure
+
+Procedure AssetManagerLoad(AssetManager)
+  !v_assetmanager.load()  
+EndProcedure
+
+Procedure.f PositionX(Object)
+  !return v_object.position.x  
+EndProcedure
+
+Procedure.f PositionY(Object)
+  !return v_object.position.y  
+EndProcedure
+
+Procedure.f PositionZ(Object)
+  !return v_object.position.z  
+EndProcedure
+
+Procedure Move(Object, x.f, y.f, z.f, Mode = #PB_Absolute)
+  If mode = #PB_Absolute
+    !v_object.position.x = v_x;
+    !v_object.position.y = v_y;
+    !v_object.position.z = v_z;
+  Else
+    !v_object.position.x += v_x;
+    !v_object.position.y += v_y;
+    !v_object.position.z += v_z;
+  EndIf
+EndProcedure
+
+Procedure Rotate(Object, x.f, y.f, z.f, Mode = #PB_Absolute)
+  If mode = #PB_Absolute
+    !v_object.rotation.x = v_x;
+    !v_object.rotation.y = v_y;
+    !v_object.rotation.z = v_z;
+  Else
+    !v_object.rotation.x += v_x;
+    !v_object.rotation.y += v_y;
+    !v_object.rotation.z += v_z;
+  EndIf
+EndProcedure
+; IDE Options = SpiderBasic 2.00 (Windows - x86)
+; CursorPosition = 46
+; FirstLine = 41
+; Folding = ---
+; iOSAppOrientation = 0
+; AndroidAppOrientation = 0
+; EnableXP
+; CompileSourceDirectory

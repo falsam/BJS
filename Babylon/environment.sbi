@@ -1,0 +1,148 @@
+﻿;Babylon.js for SpiderBasic 
+
+;In that /skybox directory, we must find 6 sky textures, one for each face of our box.
+;Each image must be named per the corresponding face: “skybox_nx.png”, “skybox_ny.png”, “skybox_nz.png”, “skybox_px.png”, “skybox_py.png”, “skybox_pz.png”.
+
+Procedure SkyBox(name.s, sky.s, size.i=200)
+  !var skybox = BABYLON.Mesh.CreateBox(v_name, v_size, v_bjscurrentscene);
+  !var skyboxMaterial = new BABYLON.StandardMaterial(v_name, v_bjscurrentscene);
+  
+  !skyboxMaterial.backFaceCulling = false;
+  !skyboxMaterial.disableLighting = true;
+  !skybox.material = skyboxMaterial;
+  !skyboxMaterial.diffuseColor = new BABYLON.Color3(0, 0, 0);
+  !skyboxMaterial.specularColor = new BABYLON.Color3(0, 0, 0);
+  !skyboxMaterial.reflectionTexture = new BABYLON.CubeTexture(v_sky, v_bjscurrentscene);
+  !skyboxMaterial.reflectionTexture.coordinatesMode = BABYLON.Texture.SKYBOX_MODE;
+  !skybox.infiniteDistance = true;
+  !return skybox;
+EndProcedure
+
+Procedure Sun(Material.i, x.f = 0, y.f = 0, z.f = 0)
+  !v_material.useSunPosition = true;
+  !v_material.sunPosition = new BABYLON.Vector3(v_x, v_y, v_z); 
+EndProcedure
+
+
+Procedure CreateWater(Name.s, Texture.s, Width.f, Depth.f, SubDivs.i)
+  !var watermesh = BABYLON.Mesh.CreateGround(v_name, v_width, v_depth, v_subdivs, v_bjscurrentscene, false);
+  !var watermat  = new BABYLON.WaterMaterial(v_name, v_bjscurrentscene, new BABYLON.Vector2(512, 512));
+  
+  !watermesh.material = watermat;
+  !watermat.backFaceCulling = true;
+  !watermat.bumpTexture = new BABYLON.Texture(v_texture, v_bjscurrentscene);
+  
+  !watermat.windForce = 5;
+  !watermat.waveHeight = 0.3;
+  !watermat.bumpHeight = 0.3;
+  !watermat.waterColor = new BABYLON.Color4(0, 0, 1, 0.3)
+  !watermat.colorBlendFactor = 0;
+  
+  !return watermat;
+EndProcedure
+
+Procedure WaterRenderList(Water, Mesh)
+  !v_water.addToRenderList(v_mesh)
+EndProcedure
+
+Procedure SetWater(mesh, WindForce.f = -5, WaveHeight.f = 0.05, BumpHeight.f = 0.05, Color = 0, ColorBlendFactor.f = 0.1)
+  Protected r.f = Red(color)/255
+  Protected g.f = Green(Color)/255
+  Protected b.f = Blue(Color)/255
+  Protected a.f = Alpha(Color)/255
+  
+  !v_mesh.windForce = v_windforce;
+  !v_mesh.waveHeight = v_waveheight;
+  !v_mesh.bumpHeight = v_bumpheight;
+  !v_mesh.waterColor = new BABYLON.Color4(v_r, v_g, v_b, v_a);
+  !v_mesh.colorBlendFactor = v_colorblendfactor;
+EndProcedure
+	
+Procedure CreateLight(Name.s, x.f, y.f, z.f, intensity.f=1, mode.i = #Hemispheric)
+  Select mode
+    Case 1 ; 1 Point
+      !var light = new BABYLON.PointLight(v_name, new BABYLON.Vector3(v_x, v_y, v_z), v_bjscurrentscene);
+      
+    Case 2 ; 2 Directional
+      !var light = new BABYLON.DirectionalLight(v_name, new BABYLON.Vector3(v_x, v_y, v_z), v_bjscurrentscene);
+      
+    Case 3 ; 3 Spot
+      !var light = new BABYLON.SpotLight(v_name, new BABYLON.Vector3(v_x, v_y, v_z), new BABYLON.Vector3(0, -1, 0), 0.8, 2.00, v_bjscurrentscene);
+      
+    Case 4
+      !var light = new BABYLON.HemisphericLight(v_name, new BABYLON.Vector3(v_x, v_y, v_z), v_bjscurrentscene);
+  EndSelect
+  
+  !light.intensity = v_intensity;
+  !return light
+EndProcedure
+
+Procedure SpotLightRange(Light, InnerAngle.f, OuterAngle.f)
+  !v_light.angle = v_innerangle;
+  !v_light.exponent = v_outerangle;
+EndProcedure
+
+Procedure MoveLight(Light.i, x.f, y.f, z.f, Mode = #PB_Relative)
+  !v_light.position = new BABYLON.Vector3(v_x, v_y, v_z);
+EndProcedure
+
+Procedure EnableLight(Light, Value.b)
+  !v_light.setEnabled(v_value)
+EndProcedure
+
+Procedure SetLightColor(Light, Type, Color)
+  Protected r.f = Red(color)/255
+  Protected g.f = Green(Color)/255
+  Protected b.f = Blue(Color)/255
+  
+  Select Type
+    Case 0 ; Diffuse color
+      !v_light.diffuse = new BABYLON.Color3(v_r, v_g, v_b);
+    Case 1
+      !v_light.specular = new BABYLON.Color3(v_r, v_g, v_b);
+  EndSelect
+EndProcedure
+
+Procedure AmbientColor(Color.i)
+  Protected r.f = Red(color)/255
+  Protected g.f = Green(Color)/255
+  Protected b.f = Blue(Color)/255
+  
+  !v_bjscurrentscene.ambientColor = new BABYLON.Color3(v_r, v_g, v_b);    
+EndProcedure
+
+Procedure Fog(Color.i, Intensity.f = 0.01 , StartDistance.f = 20.0, EndDistance.f = 60.0)
+  Protected r.f = Red(color)/255
+  Protected g.f = Green(Color)/255
+  Protected b.f = Blue(Color)/255
+  
+  !v_bjscurrentscene.fogMode = BABYLON.Scene.FOGMODE_EXP
+  !v_bjscurrentscene.fogDensity = v_intensity;
+  !v_bjscurrentscene.fogStart = v_startdistance;
+  !v_bjscurrentscene.fogEnd = v_enddistance;
+  !v_bjscurrentscene.fogColor = new BABYLON.Color3(v_r, v_g, v_b)
+EndProcedure
+
+Procedure InitShadow(Light, RenderSize = 1024)
+  !var shadowGenerator = new BABYLON.ShadowGenerator(v_rendersize, v_light);
+  !shadowGenerator.usePoissonSampling = true;
+  !shadowGenerator.useBlurExponentialShadowMap = true;
+  !return shadowGenerator
+EndProcedure
+
+Procedure ShadowAddEmitter(Generator, Mesh) 
+  !v_generator.getShadowMap().renderList.push(v_mesh);
+EndProcedure    
+
+Procedure RenderShadows(Mesh, Value.b = #True) 
+  !v_mesh.receiveShadows = v_value;
+EndProcedure
+
+; IDE Options = SpiderBasic 2.00 (Windows - x86)
+; CursorPosition = 36
+; FirstLine = 17
+; Folding = ---
+; iOSAppOrientation = 0
+; AndroidAppOrientation = 0
+; EnableXP
+; CompileSourceDirectory
