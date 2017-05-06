@@ -1,0 +1,63 @@
+﻿;Babylon.sbi - Shadows
+
+EnableExplicit
+
+IncludeFile "babylon/babylon.sbi"
+
+Global Camera, Light0, Light1, Plane, Sphere, MatPlane, MatSphere, ShadowGenerator
+
+Declare LoadGame()
+Declare RenderGame()
+
+UseModule BJS
+
+InitEngine(@LoadGame())
+
+Procedure LoadGame()    
+  If CreateScene()
+    
+    ;Camera & Light
+    Camera  = CreateCamera("camera", 0, 5, 7, #ArcRotate)
+    Light0  = CreateLight("light", 5, 10, 0, 1, #Point)
+    Light1  = CreateLight("light", 0, 10, 0, 0.5, #Hemispheric)
+    
+    ;Object
+    Plane   = CreateGround("plane", 10, 10)
+    
+    Sphere  = CreateSphere("sphere", 2)
+    Move(Sphere, 0, 2, 0)  
+    
+    ;Material
+    MatPlane = CreateMaterial("MatPlane", "data/textures/grass.jpg")
+    ScaleMaterial(MatPlane, 5, 5)
+    
+    MatSphere = CreateMaterial("MatPlane", "data/textures/tree.png")
+    
+    ;Apply material
+    SetMaterial(Plane, MatPlane)
+    SetMaterial(Sphere, MatSphere)
+    
+    ;Shadows (Create Shadow Generator)
+    ShadowGenerator = InitShadow(Light0)
+    ShadowAddEmitter(ShadowGenerator, Sphere)
+    RenderShadows(Plane)
+    
+    RenderLoop(@RenderGame())
+  EndIf
+EndProcedure
+
+Procedure RenderGame()
+  Rotate(Sphere, 0, 0.01, 0, #PB_Relative)
+  RenderWorld() 
+EndProcedure
+; IDE Options = SpiderBasic 2.00 (Windows - x86)
+; CursorPosition = 41
+; Folding = -
+; WebAppName = Shadow
+; HtmlFilename = shadow.html
+; JavaScriptFilename = shadow.js
+; JavaScriptPath = sb
+; iOSAppOrientation = 0
+; AndroidAppOrientation = 0
+; EnableXP
+; CompileSourceDirectory
