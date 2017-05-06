@@ -1,0 +1,76 @@
+﻿;Babylon.sbi - Skybox
+
+EnableExplicit
+
+IncludeFile "babylon/babylon.sbi"
+
+Global Camera, Light0, Light1, Sky, Ground, MatGround, Torus0, Torus1, ShadowGenerator
+
+Declare LoadGame()
+Declare RenderGame()
+
+UseModule BJS
+
+InitEngine(@LoadGame())
+
+Procedure LoadGame()   
+  If CreateScene()
+    Camera = CreateCamera("camera", 0, 20, -80, #ArcRotate)
+    
+    Light0 = CreateLight("light0", 0, 30, 0, 0.6, #Point)
+    Light1 = CreateLight("light1", 0, 30, 0, 0.2, #Hemispheric)
+    
+    ;SkyBox
+    Sky = SkyBox("Night", "data/textures/sky/night", 1000)
+    
+    ;Ground
+    Ground = CreateGround("Ground", 1000, 1000)
+    MatGround = CreateMaterial("Grass", "data/textures/grass1.jpg")
+    ScaleMaterial(MatGround, 40, 40)
+    SetMaterial(Ground, MatGround)
+    
+    ;Torus
+    Torus0 = CreateTorus("torus0", 8, 2, 32)
+    Move(Torus0, 0, 8, 0)
+    
+    Torus1 = CreateTorus("torus1", 4, 1, 32)
+    Move(Torus1, 0, 8, 0)
+    
+    ;Shadow
+    ShadowGenerator = InitShadow(Light0)
+    ShadowAddEmitter(ShadowGenerator, Torus0)
+    ShadowAddEmitter(ShadowGenerator, Torus1)
+    RenderShadows(Ground, #True)
+       
+    RenderLoop(@RenderGame())
+  EndIf
+EndProcedure
+
+Procedure RenderGame()
+  Rotate(Torus0, 0.01, 0.00, 0.02, #PB_Relative)
+  Rotate(Torus1, 0.02, 0.01, 0.00, #PB_Relative)
+  
+  If GetCameraBeta(Camera) > 1.50
+    SetCameraBeta(Camera, 1.50)
+  EndIf            
+  
+  If GetCameraRadius(Camera) < 30
+    SetCameraRadius(Camera, 30)
+  EndIf
+  
+  RenderWorld() 
+EndProcedure
+
+
+; IDE Options = SpiderBasic 2.00 (Windows - x86)
+; CursorPosition = 41
+; FirstLine = 5
+; Folding = -
+; WebAppName = Skybox
+; HtmlFilename = skybox.html
+; JavaScriptFilename = skybox.js
+; JavaScriptPath = sb
+; iOSAppOrientation = 0
+; AndroidAppOrientation = 0
+; EnableXP
+; CompileSourceDirectory
