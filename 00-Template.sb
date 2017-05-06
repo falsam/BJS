@@ -1,0 +1,34 @@
+﻿;Babylon.sbi - Template minimum
+
+EnableExplicit
+
+IncludeFile "babylon/babylon.sbi"
+
+Global Scene, Camera
+
+Declare LoadGame()
+Declare RenderGame()
+
+InitEngine(@LoadGame())
+
+Procedure LoadGame()    
+  Scene = CreateScene()
+  If Scene
+    Camera = CreateCamera("camera", 0, 10, 0, #ArcRotate)
+    
+    RenderLoop(@RenderGame())
+  EndIf
+EndProcedure
+
+Procedure RenderGame()
+  RenderWorld() 
+EndProcedure
+
+
+; IDE Options = SpiderBasic 2.00 (Windows - x86)
+; CursorPosition = 16
+; Folding = -
+; iOSAppOrientation = 0
+; AndroidAppOrientation = 0
+; EnableXP
+; CompileSourceDirectory
