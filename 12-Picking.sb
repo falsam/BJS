@@ -1,0 +1,64 @@
+﻿;Babylon.sbi - Picking
+
+EnableExplicit
+
+IncludeFile "babylon/babylon.sbi"
+
+Declare LoadGame()
+Declare RenderGame()
+
+UseModule BJS
+
+InitEngine(@LoadGame())
+
+Procedure LoadGame()
+  Protected Mesh
+  
+  If CreateScene()
+    CreateCamera("camera", 5, 5, 10, #ArcRotate)
+    
+    CreateLight("Light", 0, 10, 0, 0.8, #Hemispheric)
+    
+    CreateGround("Sweet Ground", 10, 10)
+    Mesh = CreateBox("My Box", 1)
+    Move(Mesh, 0, 1, 0)
+    
+    Mesh = CreateSphere("Sphere", 0.5)    
+    Move(Mesh, -2, 1, 1)
+    
+    Mesh = CreateCylinder("My Cylinder", 2, 1, 2)  
+    Move(Mesh, 2, 1, -1)
+    
+    ;Active le systeme de picking
+    PickEnable()
+    
+    RenderLoop(@RenderGame())
+  EndIf
+EndProcedure
+
+Procedure RenderGame()
+  Protected Mesh = IsPick() 
+  
+  If Mesh
+    Debug "Name " + GetMeshName(Pick\mesh)
+    Debug "Distance from camera " + PickDistance()  
+    Debug "x/y/z " + StrD(PickX(), 3) + " / " + StrD(PickY(), 3) + " / " + StrD(PickZ(), 3) + #CRLF$
+    
+  EndIf  
+  
+  RenderWorld() 
+EndProcedure
+
+
+; IDE Options = SpiderBasic 2.00 (Windows - x86)
+; CursorPosition = 14
+; Folding = -
+; WebAppName = Picking
+; HtmlFilename = picking.html
+; JavaScriptFilename = picking.js
+; JavaScriptPath = sb
+; WebAppEnableDebugger
+; iOSAppOrientation = 0
+; AndroidAppOrientation = 0
+; EnableXP
+; CompileSourceDirectory
