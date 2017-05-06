@@ -1,0 +1,61 @@
+﻿;Babylon.sbi - Water
+
+EnableExplicit
+
+IncludeFile "babylon/babylon.sbi"
+
+Global Camera, Light, Sky, Ground, GroundMat, Water
+
+Declare LoadGame()
+Declare RenderGame()
+
+UseModule BJS
+
+InitEngine(@LoadGame())
+
+Procedure LoadGame()  
+  If CreateScene()
+    
+    ;Camera & Light
+    Camera = CreateCamera("camera", 0, 20, 80, #Free)
+    CameraBodySize(Camera, 1, 10, 1)
+    
+    Light = CreateLight("Light", 0, 100, 100, 0.8, #Hemispheric)
+        
+    ;SkyBox
+    Sky = SkyBox("Santa", "data/textures/sky/cloud", 1000)
+    
+    ;Ground
+    Ground = CreateGround("grass", 1000, 1000)
+    GroundMat = CreateMaterial("grass", "data/textures/grass.jpg")
+    ScaleMaterial(GroundMat, 64, 64)
+    SetMaterial(Ground, GroundMat)
+    Move(Ground, 0, -2, 0)
+    
+    ;Water
+    Water = CreateWater("water", "data/textures/waterbump.png", 1000, 1000, 64)
+        
+    WaterRenderList(Water, Ground)
+    WaterRenderList(Water, Sky)
+    
+    RenderLoop(@RenderGame())
+  EndIf
+EndProcedure
+
+Procedure RenderGame()   
+  RenderWorld() 
+EndProcedure
+
+
+; IDE Options = SpiderBasic 2.00 (Windows - x86)
+; CursorPosition = 38
+; Folding = -
+; WebAppName = water
+; HtmlFilename = water.html
+; JavaScriptFilename = water.js
+; JavaScriptPath = sb
+; CopyJavaScriptLibrary
+; iOSAppOrientation = 0
+; AndroidAppOrientation = 0
+; EnableXP
+; CompileSourceDirectory
