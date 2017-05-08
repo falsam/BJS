@@ -30,15 +30,17 @@ Procedure SetMaterialColor(Material, Type, Color)
   Protected b = Blue(Color)/255
   
   Select Type
-    Case #SpecularColor 
+    Case #Specular
       !v_material.specularColor = new BABYLON.Color3(v_r, v_g, v_r);
-  EndSelect
-  
-  !v_material.Type
+      
+    Case #Diffuse
+      !v_material.diffuseColor = new BABYLON.Color3(v_r, v_g, v_r);
+      
+  EndSelect  
 EndProcedure
 
 ; IDE Options = SpiderBasic 2.00 (Windows - x86)
-; CursorPosition = 4
+; CursorPosition = 38
 ; Folding = -
 ; iOSAppOrientation = 0
 ; AndroidAppOrientation = 0
