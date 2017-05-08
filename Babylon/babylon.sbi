@@ -61,6 +61,7 @@ DeclareModule BJS
   Declare   CreateLight(id.s, x.f, y.f, z.f, intensity.f = 1, mode.i = #Hemispheric)
   Declare   EnableLight(Light, Value.b)
   Declare   SpotLightRange(Light, InnerAngle.f, OuterAngle.f)
+  Declare   LightDirection(Light, x.f, y.f, z.f)
   Declare   SetLightColor(Light, Type, Color)
   
   Declare   GetCameraBeta(Camera)
@@ -136,8 +137,8 @@ EndModule
 UseModule BJS
   
 ; IDE Options = SpiderBasic 2.00 (Windows - x86)
-; CursorPosition = 136
-; FirstLine = 78
+; CursorPosition = 60
+; FirstLine = 39
 ; Folding = -
 ; iOSAppOrientation = 0
 ; AndroidAppOrientation = 0
