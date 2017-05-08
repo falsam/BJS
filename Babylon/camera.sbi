@@ -33,6 +33,18 @@ Procedure CameraLookAt(Camera, x.f, y.f, z.f)
     !v_camera.setTarget(new BABYLON.Vector3(v_x, v_y, v_z))       
 EndProcedure
 
+Procedure RotateCamera(Camera, x.f, y.f, z.f, Mode = #PB_Absolute)
+  If Mode = #PB_Relative
+    !v_camera.rotation.x += v_x;
+    !v_camera.rotation.y += v_y;
+    !v_camera.rotation.z += v_z;
+  ElseIf Mode = #PB_Absolute
+    !v_camera.rotation.x = v_x;
+    !v_camera.rotation.y = v_y;
+    !v_camera.rotation.z = v_z;
+  Else
+  EndIf
+EndProcedure
 
 Procedure DisableControlCamera(Camera, Value.b = #All)
   Select Value
@@ -95,8 +107,8 @@ Procedure SetCameraRadius(Camera, Value.f)
   !return v_camera.radius = v_value  
 EndProcedure
 ; IDE Options = SpiderBasic 2.00 (Windows - x86)
-; CursorPosition = 31
-; FirstLine = 15
+; CursorPosition = 35
+; FirstLine = 3
 ; Folding = ---
 ; iOSAppOrientation = 0
 ; AndroidAppOrientation = 0
