@@ -14,7 +14,7 @@ InitEngine(@LoadGame())
 Procedure LoadGame()    
   Scene = CreateScene()
   If Scene
-    Camera = CreateCamera("camera", 0, 10, 0, #ArcRotate)
+    Camera = CreateCamera("camera", 0, 10, 20, #ArcRotate)
     
     RenderLoop(@RenderGame())
   EndIf
