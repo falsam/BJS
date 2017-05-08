@@ -1,4 +1,4 @@
-﻿;Babylon.js for SpiderBasic 
+;Babylon.js for SpiderBasic 
 
 DeclareModule BJS
   ;-Constants.sbi
@@ -49,8 +49,10 @@ DeclareModule BJS
  
   ;-Camera.sbi 
   Declare   CreateCamera(id.s, x.f, y.f, z.f, Type = #Free)
-  Declare   CameraLookAt(Camera, MeshObject)
-;  Declare   MoveCamera(Camera, x.f, y.f, z.f, Mode = #PB_Relative)
+  Declare   CameraLookAtMesh(Camera, MeshObject)
+  Declare   CameraLookAt(Camera, x.f, y.f, z.f)
+  Declare   ActiveCamera(Camera)
+  Declare   RotateCamera(Camera, x.f, y.f, z.f, Mode = #PB_Absolute)  
   Declare   DisableControlCamera(Camera, Value.b = #All)
   Declare   CameraCollision(Camera, Value = #True)
   Declare   CameraGravity(Camera, Value = #True)
@@ -132,10 +134,10 @@ Module BJS
 EndModule
 
 UseModule BJS
-
+  
 ; IDE Options = SpiderBasic 2.00 (Windows - x86)
-; CursorPosition = 40
-; FirstLine = 36
+; CursorPosition = 136
+; FirstLine = 78
 ; Folding = -
 ; iOSAppOrientation = 0
 ; AndroidAppOrientation = 0
