@@ -81,7 +81,7 @@ Procedure CreateLight(Name.s, x.f, y.f, z.f, intensity.f=1, mode.i = #Hemispheri
       !var light = new BABYLON.DirectionalLight(v_name, new BABYLON.Vector3(v_x, v_y, v_z), v_bjscurrentscene);
       
     Case #Spot ; 3 Spot
-      !var light = new BABYLON.SpotLight(v_name, new BABYLON.Vector3(v_x, v_y, v_z), new BABYLON.Vector3(0, -1, 0), 0, 2.00, v_bjscurrentscene);
+      !var light = new BABYLON.SpotLight(v_name, new BABYLON.Vector3(v_x, v_y, v_z), new BABYLON.Vector3(0, -1, 0), 0.8, 2.00, v_bjscurrentscene);
       
     Case #Hemispheric
       !var light = new BABYLON.HemisphericLight(v_name, new BABYLON.Vector3(v_x, v_y, v_z), v_bjscurrentscene);
@@ -94,6 +94,10 @@ EndProcedure
 Procedure SpotLightRange(Light, InnerAngle.f, OuterAngle.f)
   !v_light.angle = v_innerangle;
   !v_light.exponent = v_outerangle;
+EndProcedure
+
+Procedure LightDirection(Light, x.f, y.f, z.f)
+  !v_light.direction = new BABYLON.Vecrtor3(v_x, v_y, v_z)  
 EndProcedure
 
 Procedure MoveLight(Light.i, x.f, y.f, z.f, Mode = #PB_Relative)
@@ -143,7 +147,7 @@ Procedure RenderShadows(Mesh, Value.b = #True)
 EndProcedure
 
 ; IDE Options = SpiderBasic 2.00 (Windows - x86)
-; CursorPosition = 83
+; CursorPosition = 98
 ; FirstLine = 67
 ; Folding = ---
 ; iOSAppOrientation = 0
