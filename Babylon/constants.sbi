@@ -1,5 +1,7 @@
 ﻿;Babylon.js for SpiderBasic : constant.sbi 
 
+;Last update : 08 May 2017
+
 #All = 0
 #KeyBoard = 1
 #Mouse = 2
@@ -22,7 +24,8 @@
 #BoxBody = 1
 #SphereBody = 2
 
-#SpecularColor = 0
+#Specular = 0
+#Diffuse = 1
 
 ;Parent : Engine.sbi
 ;Chile  : Camera.sbi
@@ -60,7 +63,7 @@ Structure NewPick
 EndStructure
 Global Pick.NewPick
 ; IDE Options = SpiderBasic 2.00 (Windows - x86)
-; CursorPosition = 27
+; CursorPosition = 28
 ; iOSAppOrientation = 0
 ; AndroidAppOrientation = 0
 ; EnableXP

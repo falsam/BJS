@@ -97,7 +97,7 @@ Procedure SpotLightRange(Light, InnerAngle.f, OuterAngle.f)
 EndProcedure
 
 Procedure LightDirection(Light, x.f, y.f, z.f)
-  !v_light.direction = new BABYLON.Vecrtor3(v_x, v_y, v_z)  
+  !v_light.direction = new BABYLON.Vector3(v_x, v_y, v_z)  
 EndProcedure
 
 Procedure MoveLight(Light.i, x.f, y.f, z.f, Mode = #PB_Relative)
@@ -147,7 +147,7 @@ Procedure RenderShadows(Mesh, Value.b = #True)
 EndProcedure
 
 ; IDE Options = SpiderBasic 2.00 (Windows - x86)
-; CursorPosition = 98
+; CursorPosition = 99
 ; FirstLine = 67
 ; Folding = ---
 ; iOSAppOrientation = 0
