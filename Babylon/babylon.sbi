@@ -16,12 +16,7 @@ DeclareModule BJS
   Declare   UseAssetManager()
   Declare   AssetManagerAdd(AssetManager, Name.s, Path.s, Object.s, SuccessCallback, FinishCallback)
   Declare   AssetManagerLoad(AssetManager)
-  
-  ;Position & rotation camera or object
-  Declare.f PositionX(Object)
-  Declare.f PositionY(Object)
-  Declare.f PositionZ(Object)
-  
+    
   ;-Scene.sbi
   Declare   CreateScene()
   Declare   SceneGravity(x.f = 0, y.f = -0.9, z.f = 0)
@@ -95,6 +90,10 @@ DeclareModule BJS
   Declare   MoveMesh(Mesh, x.f, y.f, z.f, Mode = #PB_Absolute)
   Declare   RotateMesh(Mesh, x.f, y.f, z.f, Mode = #PB_Absolute)
   Declare   ScaleMesh(Mesh, x.f, y.f, z.f, Mode = #PB_Absolute)
+  Declare.f MeshX(Mesh)
+  Declare.f MeshY(Mesh)
+  Declare.f MeshZ(Mesh)
+  
   Declare   CloneMesh(Mesh)
   Declare   Attach(Parent, Child, x.f, y.f, z.f)
     
@@ -141,8 +140,8 @@ EndModule
 UseModule BJS
   
 ; IDE Options = SpiderBasic 2.00 (Windows - x86)
-; CursorPosition = 36
-; FirstLine = 36
+; CursorPosition = 94
+; FirstLine = 41
 ; Folding = -
 ; iOSAppOrientation = 0
 ; AndroidAppOrientation = 0
