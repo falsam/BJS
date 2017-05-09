@@ -38,8 +38,8 @@ Procedure LoadGame()
     SetMaterial(Sphere, MatSphere)
     
     ;Shadows (Create Shadow Generator)
-    ShadowGenerator = InitShadow(Light0)
-    ShadowAddEmitter(ShadowGenerator, Sphere)
+    InitShadow(Light0)
+    ShadowEmitter(Sphere)
     RenderShadows(Plane)
     
     RenderLoop(@RenderGame())
@@ -51,7 +51,7 @@ Procedure RenderGame()
   RenderWorld() 
 EndProcedure
 ; IDE Options = SpiderBasic 2.00 (Windows - x86)
-; CursorPosition = 49
+; CursorPosition = 41
 ; Folding = -
 ; WebAppName = Shadow
 ; HtmlFilename = shadow.html
