@@ -25,7 +25,7 @@ Procedure LoadGame()
     Plane   = CreateGround("plane", 10, 10)
     
     Sphere  = CreateSphere("sphere", 2)
-    Move(Sphere, 0, 2, 0)  
+    MoveMesh(Sphere, 0, 2, 0)  
     
     ;Material
     MatPlane = CreateMaterial("MatPlane", "data/textures/grass.jpg")
@@ -47,11 +47,11 @@ Procedure LoadGame()
 EndProcedure
 
 Procedure RenderGame()
-  Rotate(Sphere, 0, 0.01, 0, #PB_Relative)
+  RotateMesh(Sphere, 0, 0.01, 0, #PB_Relative)
   RenderWorld() 
 EndProcedure
 ; IDE Options = SpiderBasic 2.00 (Windows - x86)
-; CursorPosition = 41
+; CursorPosition = 49
 ; Folding = -
 ; WebAppName = Shadow
 ; HtmlFilename = shadow.html

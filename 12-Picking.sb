@@ -21,13 +21,13 @@ Procedure LoadGame()
     
     CreateGround("Sweet Ground", 10, 10)
     Mesh = CreateBox("My Box", 1)
-    Move(Mesh, 0, 1, 0)
+    MoveMesh(Mesh, 0, 1, 0)
     
     Mesh = CreateSphere("Sphere", 0.5)    
-    Move(Mesh, -2, 1, 1)
+    MoveMesh(Mesh, -2, 1, 1)
     
     Mesh = CreateCylinder("My Cylinder", 2, 1, 2)  
-    Move(Mesh, 2, 1, -1)
+    MoveMesh(Mesh, 2, 1, -1)
     
     ;Active le systeme de picking
     PickEnable()
@@ -51,7 +51,7 @@ EndProcedure
 
 
 ; IDE Options = SpiderBasic 2.00 (Windows - x86)
-; CursorPosition = 14
+; CursorPosition = 29
 ; Folding = -
 ; WebAppName = Picking
 ; HtmlFilename = picking.html

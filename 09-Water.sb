@@ -30,7 +30,7 @@ Procedure LoadGame()
     GroundMat = CreateMaterial("grass", "data/textures/grass.jpg")
     ScaleMaterial(GroundMat, 64, 64)
     SetMaterial(Ground, GroundMat)
-    Move(Ground, 0, -2, 0)
+    MoveMesh(Ground, 0, -2, 0)
     
     ;Water
     Water = CreateWater("water", "data/textures/waterbump.png", 1000, 1000, 64)
@@ -48,7 +48,7 @@ EndProcedure
 
 
 ; IDE Options = SpiderBasic 2.00 (Windows - x86)
-; CursorPosition = 38
+; CursorPosition = 32
 ; Folding = -
 ; WebAppName = water
 ; HtmlFilename = water.html

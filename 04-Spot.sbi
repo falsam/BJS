@@ -1,4 +1,4 @@
-﻿;Babylon.sbi - PointLight
+﻿;Babylon.sbi - SpotLight
 
 EnableExplicit
 
@@ -17,7 +17,7 @@ Procedure LoadGame()
     Camera = CreateCamera("camera", 0, 8, 20, #ArcRotate)
         
     ;Lights 
-    Light = CreateLight("Light", 0, 10, 0, 1, #Directional)
+    Light = CreateLight("Light", 0, 10, 0, 1, #Spot)
     SetLightColor(Light, #Diffuse, RGB(255, 0, 0))
     SetLightColor(Light, #Specular, RGB(0, 255, 0))
         
@@ -41,7 +41,7 @@ EndProcedure
 
 
 ; IDE Options = SpiderBasic 2.00 (Windows - x86)
-; CursorPosition = 34
+; CursorPosition = 25
 ; Folding = -
 ; WebAppName = Light
 ; HtmlFilename = light.html

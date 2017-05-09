@@ -21,16 +21,16 @@ Procedure LoadGame()
     Light = CreateLight("light", 5, 10, 0, 1, #Point)
     
     Sphere0 = CreateSphere("Sphere", 1)
-    Move(Sphere0, 0, 30, 0)
+    MoveMesh(Sphere0, 0, 30, 0)
     
     Sphere1 = CreateSphere("Sphere", 2)
-    Move(Sphere1, 0.5, 32, 0)
+    MoveMesh(Sphere1, 0.5, 32, 0)
         
     Sphere2 = CreateSphere("Sphere", 1.5)
-    Move(Sphere2, 2, 30, 2)
+    MoveMesh(Sphere2, 2, 30, 2)
     
     Sphere3 = CreateSphere("Sphere", 3)
-    Move(Sphere3, 4, 30, -4)
+    MoveMesh(Sphere3, 4, 30, -4)
     
     Ground = CreateGround("Ground", 30, 30) 
      
@@ -50,7 +50,7 @@ EndProcedure
 
 
 ; IDE Options = SpiderBasic 2.00 (Windows - x86)
-; CursorPosition = 19
+; CursorPosition = 23
 ; Folding = -
 ; WebAppName = Collision
 ; HtmlFilename = collision.html

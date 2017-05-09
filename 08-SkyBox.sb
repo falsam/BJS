@@ -31,10 +31,10 @@ Procedure LoadGame()
     
     ;Torus
     Torus0 = CreateTorus("torus0", 8, 2, 32)
-    Move(Torus0, 0, 8, 0)
+    MoveMesh(Torus0, 0, 8, 0)
     
     Torus1 = CreateTorus("torus1", 4, 1, 32)
-    Move(Torus1, 0, 8, 0)
+    MoveMesh(Torus1, 0, 8, 0)
     
     ;Shadow
     ShadowGenerator = InitShadow(Light0)
@@ -47,8 +47,8 @@ Procedure LoadGame()
 EndProcedure
 
 Procedure RenderGame()
-  Rotate(Torus0, 0.01, 0.00, 0.02, #PB_Relative)
-  Rotate(Torus1, 0.02, 0.01, 0.00, #PB_Relative)
+  RotateMesh(Torus0, 0.01, 0.00, 0.02, #PB_Relative)
+  RotateMesh(Torus1, 0.02, 0.01, 0.00, #PB_Relative)
   
   If GetCameraBeta(Camera) > 1.50
     SetCameraBeta(Camera, 1.50)
@@ -63,7 +63,7 @@ EndProcedure
 
 
 ; IDE Options = SpiderBasic 2.00 (Windows - x86)
-; CursorPosition = 41
+; CursorPosition = 50
 ; FirstLine = 5
 ; Folding = -
 ; WebAppName = Skybox

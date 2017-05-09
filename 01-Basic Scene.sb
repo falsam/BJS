@@ -22,16 +22,16 @@ Procedure LoadGame()
     ;Objects (Plane, Sphere, ....)
     Plane   = CreateGround("plane", 10, 10)
     Sphere  = CreateSphere("sphere", 2)
-    Move(Sphere, 0, 2, 0)
+    MoveMesh(Sphere, 0, 2, 0)
     
     Cylinder= CreateCylinder("cylinder", 2, 2, 2)
-    Move(Cylinder, 3, 1, -2)
+    MoveMesh(Cylinder, 3, 1, -2)
     
     Cube = CreateBox("cube", 2)
-    Move(Cube, -3, 1, -2)
+    MoveMesh(Cube, -3, 1, -2)
     
     Torus = CreateTorus("torus", 2, 1)
-    Move(Torus, -2, 0.5, 2)
+    MoveMesh(Torus, -2, 0.5, 2)
     
     RenderLoop(@RenderGame())
   EndIf
@@ -41,7 +41,7 @@ Procedure RenderGame()
   RenderWorld() 
 EndProcedure
 ; IDE Options = SpiderBasic 2.00 (Windows - x86)
-; CursorPosition = 18
+; CursorPosition = 33
 ; Folding = -
 ; WebAppName = Basic Scene
 ; HtmlFilename = basicscene.html

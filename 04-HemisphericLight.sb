@@ -23,7 +23,7 @@ Procedure LoadGame()
         
     ;Sphere & Ground
     Sphere = CreateSphere("Sphere", 4)
-    Move(Sphere, 0, 3, 0)
+    MoveMesh(Sphere, 0, 3, 0)
     
     Ground = CreateGround("Ground", 20, 20)
        
@@ -37,7 +37,7 @@ EndProcedure
 
 
 ; IDE Options = SpiderBasic 2.00 (Windows - x86)
-; CursorPosition = 6
+; CursorPosition = 25
 ; Folding = -
 ; WebAppName = Light
 ; HtmlFilename = light.html
