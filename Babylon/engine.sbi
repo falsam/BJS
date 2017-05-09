@@ -1,5 +1,7 @@
 ﻿;Babylon.js for SpiderBasic : Engine 
 
+;Last update : 08 May 2017
+
 Procedure InitEngine(Callback, CanvasGadget = #PB_Ignore)    
   !     require(["sbbjs/babylon.custom.js"], 
   !       function(t) {
@@ -76,33 +78,10 @@ EndProcedure
 Procedure.f PositionZ(Object)
   !return v_object.position.z  
 EndProcedure
-
-Procedure Move(Object, x.f, y.f, z.f, Mode = #PB_Absolute)
-  If mode = #PB_Absolute
-    !v_object.position.x = v_x;
-    !v_object.position.y = v_y;
-    !v_object.position.z = v_z;
-  Else
-    !v_object.position.x += v_x;
-    !v_object.position.y += v_y;
-    !v_object.position.z += v_z;
-  EndIf
-EndProcedure
-
-Procedure Rotate(Object, x.f, y.f, z.f, Mode = #PB_Absolute)
-  If mode = #PB_Absolute
-    !v_object.rotation.x = v_x;
-    !v_object.rotation.y = v_y;
-    !v_object.rotation.z = v_z;
-  Else
-    !v_object.rotation.x += v_x;
-    !v_object.rotation.y += v_y;
-    !v_object.rotation.z += v_z;
-  EndIf
-EndProcedure
 ; IDE Options = SpiderBasic 2.00 (Windows - x86)
-; CursorPosition = 21
-; Folding = ---
+; CursorPosition = 79
+; FirstLine = 21
+; Folding = --
 ; iOSAppOrientation = 0
 ; AndroidAppOrientation = 0
 ; EnableXP

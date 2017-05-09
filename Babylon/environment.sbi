@@ -1,5 +1,7 @@
 ﻿;Babylon.js for SpiderBasic 
 
+;Last update : 08 May 2017
+
 ;In that /skybox directory, we must find 6 sky textures, one for each face of our box.
 ;Each image must be named per the corresponding face: “skybox_nx.png”, “skybox_ny.png”, “skybox_nz.png”, “skybox_px.png”, “skybox_py.png”, “skybox_pz.png”.
 
@@ -147,8 +149,7 @@ Procedure RenderShadows(Mesh, Value.b = #True)
 EndProcedure
 
 ; IDE Options = SpiderBasic 2.00 (Windows - x86)
-; CursorPosition = 83
-; FirstLine = 51
+; CursorPosition = 2
 ; Folding = ---
 ; iOSAppOrientation = 0
 ; AndroidAppOrientation = 0

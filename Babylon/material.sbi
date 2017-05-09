@@ -1,5 +1,7 @@
 ﻿;Babylon.js for SpiderBasic : Material 
 
+;Last update : 08 May 2017
+
 Procedure CreateMaterial(Name.s, Image.s, BackFaceCulling = #False)
   !var material = new BABYLON.StandardMaterial(v_name, v_bjscurrentscene);
   !material.diffuseTexture = new BABYLON.Texture(v_image, v_bjscurrentscene);
@@ -40,7 +42,7 @@ Procedure SetMaterialColor(Material, Type, Color)
 EndProcedure
 
 ; IDE Options = SpiderBasic 2.00 (Windows - x86)
-; CursorPosition = 38
+; CursorPosition = 41
 ; Folding = -
 ; iOSAppOrientation = 0
 ; AndroidAppOrientation = 0
