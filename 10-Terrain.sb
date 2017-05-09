@@ -1,0 +1,99 @@
+﻿;Babylon.sbi - Create Terrain
+
+EnableExplicit
+
+IncludeFile "babylon/babylon.sbi"
+
+Global Camera, Light, Sky, Ground, GroundMat, Water, Box, Mesh, Material
+Global Box0, Box1, Box2
+Global ShadowGenerator
+
+Declare LoadGame()
+Declare RenderGame()
+
+UseModule BJS
+
+InitEngine(@LoadGame())
+
+Procedure LoadGame()  
+  If CreateScene()
+    InitKey()
+    
+    ;Camera & Light
+    Camera = CreateCamera("camera", 0, 65, 100, #Free)
+    CameraBodySize(Camera, 1, 15, 1)
+    CameraLookAt(Camera, 0, 30, 0)
+    
+    ;Redefine the camera keys
+    CameraMapKey(Camera, #PB_Key_Left, #PB_Key_A)
+    CameraMapKey(Camera, #PB_Key_Right, #PB_Key_Z)   
+        
+    Light = CreateLight("Light", 0, 200, -100, 0.8, #Point)
+        
+    ;SkyBox
+    Sky = SkyBox("Clouds", "data/textures/sky/cloud", 2000)
+    
+    ;Ground
+    Ground = CreateTerrain("island", "data/textures/heightMap.png", 1000, 1000, 210, 0, 70)
+    GroundMat = CreateMaterial("sand", "data/textures/Ground.jpg")
+    ScaleMaterial(GroundMat, 16, 16)
+    SetMaterial(Ground, GroundMat)
+    SetMaterialColor(GroundMat, #Specular, RGBA(0, 0, 0, 255))
+    MoveMesh(Ground, 0, -12, 0)
+    
+    ;Box
+    Box0 = CreateBox("box", 10)
+    Material = CreateMaterial("box", "data/textures/crate.png")
+    SetMaterial(Box0, Material)
+    MoveMesh(Box0, -4, 22, -70)
+    Box1 = CloneMesh(Box0)
+    MoveMesh(Box1, 7, 22, -70)
+    Box2 = CloneMesh(Box0)
+    MoveMesh(Box2, 0, 32, -70)
+    RotateMesh(Box2, 0, 45, 0)
+    
+    ;Water
+    Water = CreateWater("water", "data/textures/waterbump.png", 2000, 2000, 128) 
+    WaterRenderList(Water, Ground)
+    WaterRenderList(Water, Sky)
+    
+    ;Shadow
+    ShadowGenerator = InitShadow(Light)
+    ShadowAddEmitter(ShadowGenerator, Box0)
+    ShadowAddEmitter(ShadowGenerator, Box1)
+    ShadowAddEmitter(ShadowGenerator, Box2)
+    RenderShadows(Ground)
+    
+    RenderLoop(@RenderGame())
+
+    
+  EndIf
+EndProcedure
+
+Procedure RenderGame()   
+ ; Debug Str(PositionX(Camera)) + " - " + Str(PositionY(Camera)) + " - " +  Str(PositionZ(Camera)) 
+  
+  If KeyPushed(#PB_Key_Left)
+    RotateCamera(Camera, 0, -0.05, 0, #PB_Relative)
+  EndIf
+  
+  If KeyPushed(#PB_Key_Right)
+    RotateCamera(Camera, 0, 0.05, 0, #PB_Relative)
+  EndIf
+    
+  RenderWorld() 
+EndProcedure
+
+
+; IDE Options = SpiderBasic 2.00 (Windows - x86)
+; CursorPosition = 67
+; FirstLine = 15
+; Folding = -
+; WebAppName = Terrain
+; HtmlFilename = terrain.html
+; JavaScriptFilename = terrain.js
+; JavaScriptPath = sb
+; iOSAppOrientation = 0
+; AndroidAppOrientation = 0
+; EnableXP
+; CompileSourceDirectory
