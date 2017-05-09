@@ -44,6 +44,9 @@ Global BJScurrentParent
 ;Child  : Engine.sbi, Environment.sbi, Camera.sbi, Mesh.sbi, Material.sbi
 Global BJSCurrentScene       
 
+;Parent : Scene.sbi
+Global BJSShadowGenerator
+
 Structure NewPoint
   x.f
   y.f
@@ -63,7 +66,8 @@ Structure NewPick
 EndStructure
 Global Pick.NewPick
 ; IDE Options = SpiderBasic 2.00 (Windows - x86)
-; CursorPosition = 28
+; CursorPosition = 47
+; FirstLine = 5
 ; iOSAppOrientation = 0
 ; AndroidAppOrientation = 0
 ; EnableXP

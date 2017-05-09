@@ -48,6 +48,26 @@ Procedure RotateCamera(Camera, x.f, y.f, z.f, Mode = #PB_Absolute)
   EndIf
 EndProcedure
 
+Procedure CameraMapKey(Camera, Key, Value = #PB_Ignore)
+  Select Key
+    Case #PB_Key_Left
+      !v_camera.keysLeft[0] = v_value
+      
+    Case #PB_Key_Right
+      !v_camera.keysRight[0] = v_value
+      
+    Case #PB_Key_Up
+      !v_camera.keysUp[0] = v_value
+      
+    Case #PB_Key_Down
+      !v_camera.keysDown[0] = v_value
+      
+    Default
+        
+  EndSelect
+EndProcedure
+
+
 Procedure DisableControlCamera(Camera, Value.b = #All)
   Select Value
     Case #All
@@ -122,9 +142,9 @@ Procedure SetCameraRadius(Camera, Value.f)
   !return v_camera.radius = v_value  
 EndProcedure
 ; IDE Options = SpiderBasic 2.00 (Windows - x86)
-; CursorPosition = 90
-; FirstLine = 50
-; Folding = ---
+; CursorPosition = 62
+; FirstLine = 46
+; Folding = ----
 ; iOSAppOrientation = 0
 ; AndroidAppOrientation = 0
 ; EnableXP

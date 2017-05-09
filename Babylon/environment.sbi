@@ -134,14 +134,15 @@ EndProcedure
 ;-
 ;- Shadow
 Procedure InitShadow(Light, RenderSize = 1024)
-  !var shadowGenerator = new BABYLON.ShadowGenerator(v_rendersize, v_light);
-  !shadowGenerator.usePoissonSampling = true;
-  !shadowGenerator.useBlurExponentialShadowMap = true;
-  !return shadowGenerator
+  ;!var shadowGenerator = new BABYLON.ShadowGenerator(v_rendersize, v_light);
+  !v_bjsshadowgenerator = new BABYLON.ShadowGenerator(v_rendersize, v_light);
+  !v_bjsshadowgenerator.usePoissonSampling = true;
+  !v_bjsshadowgenerator.useBlurExponentialShadowMap = true;
+  !return v_bjsshadowgenerator
 EndProcedure
 
-Procedure ShadowAddEmitter(Generator, Mesh) 
-  !v_generator.getShadowMap().renderList.push(v_mesh);
+Procedure ShadowEmitter(Mesh) 
+  !v_bjsshadowgenerator.getShadowMap().renderList.push(v_mesh);
 EndProcedure    
 
 Procedure RenderShadows(Mesh, Value.b = #True) 
@@ -149,7 +150,8 @@ Procedure RenderShadows(Mesh, Value.b = #True)
 EndProcedure
 
 ; IDE Options = SpiderBasic 2.00 (Windows - x86)
-; CursorPosition = 2
+; CursorPosition = 143
+; FirstLine = 92
 ; Folding = ---
 ; iOSAppOrientation = 0
 ; AndroidAppOrientation = 0

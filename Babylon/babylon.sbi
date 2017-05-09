@@ -44,7 +44,7 @@ DeclareModule BJS
   Declare   AmbientColor(Color.i)
     
   Declare   InitShadow(Light, RenderSize = 1024)
-  Declare   ShadowAddEmitter(Generator, Mesh)
+  Declare   ShadowEmitter(Mesh)
   Declare   RenderShadows(Mesh, Value.b = #True) 
  
   ;-Camera.sbi 
@@ -54,6 +54,7 @@ DeclareModule BJS
   Declare   ActiveCamera(Camera)
   Declare   MoveCamera(Camera, x.f, y.f, z.f, Mode = #PB_Absolute)
   Declare   RotateCamera(Camera, x.f, y.f, z.f, Mode = #PB_Absolute)  
+  Declare   CameraMapKey(Camera, Key, Value = #PB_Ignore)
   Declare   DisableControlCamera(Camera, Value.b = #All)
   Declare   CameraCollision(Camera, Value = #True)
   Declare   CameraGravity(Camera, Value = #True)
@@ -140,8 +141,8 @@ EndModule
 UseModule BJS
   
 ; IDE Options = SpiderBasic 2.00 (Windows - x86)
-; CursorPosition = 23
-; FirstLine = 5
+; CursorPosition = 36
+; FirstLine = 36
 ; Folding = -
 ; iOSAppOrientation = 0
 ; AndroidAppOrientation = 0
