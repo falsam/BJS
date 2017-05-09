@@ -1,5 +1,7 @@
 ﻿;Babylon.js for SpiderBasic : Camera 
 
+;Last update : 08 May 2017
+
 Procedure CreateCamera(Name.s, x.f, y.f, z.f, Type = #Free)
   Select Type
     Case #Free
@@ -86,6 +88,20 @@ Procedure GetCameraBeta(Camera)
   !return v_camera.beta  
 EndProcedure
 
+Procedure MoveCamera(Camera, x.f, y.f, z.f, Mode = #PB_Absolute)
+  If mode = #PB_Absolute
+    !v_camera.position.x = v_x;
+    !v_camera.position.y = v_y;
+    !v_camera.position.z = v_z;
+  Else
+    !v_camera.position.x += v_x;
+    !v_camera.position.y += v_y;
+    !v_camera.position.z += v_z;
+  EndIf
+EndProcedure
+
+
+
 Procedure GetCameraAlpha(Camera)
   !return v_camera.alpha  
 EndProcedure
@@ -102,13 +118,12 @@ Procedure SetCameraAlpha(Camera, Value.f)
   !return v_camera.alpha = v_value
 EndProcedure
 
-
 Procedure SetCameraRadius(Camera, Value.f)
   !return v_camera.radius = v_value  
 EndProcedure
 ; IDE Options = SpiderBasic 2.00 (Windows - x86)
-; CursorPosition = 35
-; FirstLine = 3
+; CursorPosition = 90
+; FirstLine = 50
 ; Folding = ---
 ; iOSAppOrientation = 0
 ; AndroidAppOrientation = 0

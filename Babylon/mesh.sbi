@@ -1,5 +1,7 @@
 ﻿;Babylon.js for SpiderBasic : Mesh
 
+;Last update : 08 May 2017
+
 ;Basic Object
 Procedure CreateSphere(Name.s, Size.f, Subdivs = 16)
   !var mesh = BABYLON.Mesh.CreateSphere(v_name, v_subdivs, v_size, v_bjscurrentscene);
@@ -80,6 +82,31 @@ Procedure CreateBody(Mesh, Type, Mass.f = 1.0, Restitution.f = 1.0, Friction = 0
   
   If Mass <> 0 ;Apply Impulse
         !v_mesh.physicsImpostor.applyImpulse(new BABYLON.Vector3(0.01, 0.01, 0.01), v_mesh.getAbsolutePosition());
+  EndIf
+EndProcedure
+
+
+Procedure MoveMesh(Mesh, x.f, y.f, z.f, Mode = #PB_Absolute)
+  If mode = #PB_Absolute
+    !v_mesh.position.x = v_x;
+    !v_mesh.position.y = v_y;
+    !v_mesh.position.z = v_z;
+  Else
+    !v_mesh.position.x += v_x;
+    !v_mesh.position.y += v_y;
+    !v_mesh.position.z += v_z;
+  EndIf
+EndProcedure
+
+Procedure RotateMesh(Mesh, x.f, y.f, z.f, Mode = #PB_Absolute)
+  If mode = #PB_Absolute
+    !v_mesh.rotation.x = v_x;
+    !v_mesh.rotation.y = v_y;
+    !v_mesh.rotation.z = v_z;
+  Else
+    !v_mesh.rotation.x += v_x;
+    !v_mesh.rotation.y += v_y;
+    !v_mesh.rotation.z += v_z;
   EndIf
 EndProcedure
 
@@ -170,9 +197,9 @@ EndProcedure
 
 
 ; IDE Options = SpiderBasic 2.00 (Windows - x86)
-; CursorPosition = 158
-; FirstLine = 112
-; Folding = ----
+; CursorPosition = 100
+; FirstLine = 57
+; Folding = -----
 ; iOSAppOrientation = 0
 ; AndroidAppOrientation = 0
 ; EnableXP
