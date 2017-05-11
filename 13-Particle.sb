@@ -9,6 +9,8 @@ Global Scene, Camera, Box, Emitter, Material
 Declare LoadGame()
 Declare RenderGame()
 
+UseModule BJS
+
 InitEngine(@LoadGame())
 
 Procedure LoadGame()    
@@ -68,8 +70,7 @@ EndProcedure
 
 
 ; IDE Options = SpiderBasic 2.00 (Windows - x86)
-; CursorPosition = 15
-; FirstLine = 9
+; CursorPosition = 12
 ; Folding = -
 ; WebAppName = particle
 ; HtmlFilename = particle.html

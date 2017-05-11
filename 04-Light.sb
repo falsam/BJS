@@ -3,6 +3,7 @@
 EnableExplicit
 
 IncludeFile "babylon/babylon.sbi"
+UseModule BJS
 
 Global Scene, Camera, Light0, Light1, Light2, Ligh3, Mesh, Material
 
@@ -57,7 +58,7 @@ EndProcedure
 
 
 ; IDE Options = SpiderBasic 2.00 (Windows - x86)
-; CursorPosition = 45
+; CursorPosition = 6
 ; Folding = -
 ; WebAppName = Light
 ; HtmlFilename = light.html
