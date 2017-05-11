@@ -66,21 +66,9 @@ EndProcedure
 Procedure AssetManagerLoad(AssetManager)
   !v_assetmanager.load()  
 EndProcedure
-
-Procedure.f PositionX(Object)
-  !return v_object.position.x  
-EndProcedure
-
-Procedure.f PositionY(Object)
-  !return v_object.position.y  
-EndProcedure
-
-Procedure.f PositionZ(Object)
-  !return v_object.position.z  
-EndProcedure
 ; IDE Options = SpiderBasic 2.00 (Windows - x86)
-; CursorPosition = 79
-; FirstLine = 21
+; CursorPosition = 20
+; FirstLine = 9
 ; Folding = --
 ; iOSAppOrientation = 0
 ; AndroidAppOrientation = 0

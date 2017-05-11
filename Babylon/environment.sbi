@@ -141,7 +141,7 @@ Procedure InitShadow(Light, RenderSize = 1024)
   !return v_bjsshadowgenerator
 EndProcedure
 
-Procedure ShadowEmitter(Mesh) 
+ Procedure ShadowEmitter(Mesh) 
   !v_bjsshadowgenerator.getShadowMap().renderList.push(v_mesh);
 EndProcedure    
 
@@ -150,8 +150,8 @@ Procedure RenderShadows(Mesh, Value.b = #True)
 EndProcedure
 
 ; IDE Options = SpiderBasic 2.00 (Windows - x86)
-; CursorPosition = 143
-; FirstLine = 92
+; CursorPosition = 92
+; FirstLine = 85
 ; Folding = ---
 ; iOSAppOrientation = 0
 ; AndroidAppOrientation = 0

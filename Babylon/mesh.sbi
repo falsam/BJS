@@ -2,7 +2,8 @@
 
 ;Last update : 08 May 2017
 
-;Basic Object
+;-
+;-Basic Object
 Procedure CreateSphere(Name.s, Size.f, Subdivs = 16)
   !var mesh = BABYLON.Mesh.CreateSphere(v_name, v_subdivs, v_size, v_bjscurrentscene);
   !mesh.checkCollisions = true
@@ -85,7 +86,8 @@ Procedure CreateBody(Mesh, Type, Mass.f = 1.0, Restitution.f = 1.0, Friction = 0
   EndIf
 EndProcedure
 
-
+;-
+;- Move, Rotate, Scale, Position
 Procedure MoveMesh(Mesh, x.f, y.f, z.f, Mode = #PB_Absolute)
   If mode = #PB_Absolute
     !v_mesh.position.x = v_x;
@@ -122,6 +124,18 @@ Procedure ScaleMesh(Mesh, x.f, y.f, z.f, Mode = #PB_Absolute)
   EndIf
 EndProcedure
 
+Procedure.f MeshX(Mesh)
+  !return v_mesh.position.x  
+EndProcedure
+
+Procedure.f MeshY(Mesh)
+  !return v_mesh.position.y  
+EndProcedure
+
+Procedure.f MeshZ(Mesh)
+  !return v_mesh.position.z  
+EndProcedure
+
 Procedure CloneMesh(Mesh)
   !return v_mesh.clone()  
 EndProcedure
@@ -133,7 +147,8 @@ Procedure Attach(Parent, Child, x.f, y.f, z.f)
   !v_child.position.z = v_z;
 EndProcedure
 
-;Picking
+;-
+;-Picking
 Procedure PickEnable()  
   !BABYLON.Tools.Log("Picking is active")
   !v_bjscurrentscene.onPointerDown = function (evt, pickResult) {
@@ -197,8 +212,8 @@ EndProcedure
 
 
 ; IDE Options = SpiderBasic 2.00 (Windows - x86)
-; CursorPosition = 100
-; FirstLine = 57
+; CursorPosition = 187
+; FirstLine = 129
 ; Folding = -----
 ; iOSAppOrientation = 0
 ; AndroidAppOrientation = 0
