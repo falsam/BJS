@@ -25,7 +25,7 @@ DeclareModule BJS
   Declare   SceneDebug()
   Declare   EnableOffLineSupport(Value = #True) 
   Declare   CurrentScene(Scene, Camera)
-  Declare   ImportScene(Name.s, Path.s, Mesh.s, Callback)
+  Declare   ImportScene(Name.s, Path.s, FileName.s, Callback)
   Declare   SaveScene(Scene, Name.s)
   Declare   SceneDebug()
    
@@ -109,6 +109,22 @@ DeclareModule BJS
   ;Move mesh local
   Declare   Translate(Mesh, Value.f)
   
+  ;-particle.sbi
+  Declare   CreateParticleEmitter(Name.s, Mesh, MaxNumberParticles = 2000) 
+  Declare   ParticleTexture(Emitter, FileName.s)
+  Declare   ParticleEmitBox(Emitter, x0.f, y0.f, z0.f, x1.f, y1.f, z1.f)
+  Declare   ParticleColor(Emitter, Color1, Color2)
+  Declare   ParticleColorDead(Emitter, Color)
+  Declare   ParticleSizeRange(Emitter, Min.f, Max.f)
+  Declare   ParticleTimeToLive(Emitter, Min.f, Max.f)
+  Declare   ParticleGravity(Emitter, x.f, y.f, z.f)
+  Declare   ParticleDirection(Emitter, x1.f, y1.f, z1.f, x2.f, y2.f, z2.f)
+  Declare   ParticleAngularSpeed(Emitter, Min.f, Max.f)
+  Declare   ParticleSpeed(Emitter, Min.f, Max.f, Update.f)
+  
+  Declare   StartParticle(Emitter)
+  Declare   StopParticle(Emitter)
+  
   ;-gui2d.sbi
   Declare   UseParent(CurrentParent = #False)
   Declare   Text2D(x, y, w, h, Text.s, CallBack = #False, Font.s = "25pt Arial", Color = $FF000000) 	
@@ -133,6 +149,7 @@ Module BJS
   IncludeFile "environment.sbi"
   IncludeFile "material.sbi"
   IncludeFile "mesh.sbi"
+  IncludeFile "particle.sbi"
   IncludeFile "gui2d.sbi"
   IncludeFile "keyboard.sbi"
 EndModule
@@ -140,9 +157,10 @@ EndModule
 UseModule BJS
   
 ; IDE Options = SpiderBasic 2.00 (Windows - x86)
-; CursorPosition = 94
-; FirstLine = 41
+; CursorPosition = 122
+; FirstLine = 90
 ; Folding = -
+; Markers = 113
 ; iOSAppOrientation = 0
 ; AndroidAppOrientation = 0
 ; EnableXP
