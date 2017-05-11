@@ -33,11 +33,20 @@ DeclareModule BJS
   Declare   SkyBox(name.s, sky.s, size.i = 200)
   Declare   CreateWater(Name.s, Texture.s, Width.f, Depth.f, SubDivs.i)
   Declare   WaterRenderList(Water, Mesh)
-  Declare   SetWater(mesh, WindForce.f = -5, WaveHeight.f = 0.05, BumpHeight.f = 0.05, Color = 0, ColorBlendFactor.f = 0.1)
+  Declare   SetWater(Mesh, WindForce.f = -5, WaveHeight.f = 0.05, BumpHeight.f = 0.05, Color = 0, ColorBlendFactor.f = 0.1)
   
   Declare   Fog(Color, Intensity.f = 0.01 , StartDistance.f = 20.0, EndDistance.f = 60.0)
   Declare   AmbientColor(Color.i)
-    
+  
+  ;Light
+  Declare   CreateLight(id.s, x.f, y.f, z.f, intensity.f = 1, mode.i = #Hemispheric)
+  Declare   SpotLightRange(Light, InnerAngle.f, OuterAngle.f)
+  Declare   LightDirection(Light, x.f, y.f, z.f)
+  Declare   MoveLight(Light.i, x.f, y.f, z.f, Mode = #PB_Relative)
+  Declare   EnableLight(Light, Value.b)
+  Declare   SetLightColor(Light, Type, Color)
+  
+  ;Shadow
   Declare   InitShadow(Light, RenderSize = 1024)
   Declare   ShadowEmitter(Mesh)
   Declare   RenderShadows(Mesh, Value.b = #True) 
@@ -54,12 +63,6 @@ DeclareModule BJS
   Declare   CameraCollision(Camera, Value = #True)
   Declare   CameraGravity(Camera, Value = #True)
   Declare   CameraBodySize(Camera, x.f = 1, y.f = 1, z.f = 1)
-  
-  Declare   CreateLight(id.s, x.f, y.f, z.f, intensity.f = 1, mode.i = #Hemispheric)
-  Declare   EnableLight(Light, Value.b)
-  Declare   SpotLightRange(Light, InnerAngle.f, OuterAngle.f)
-  Declare   LightDirection(Light, x.f, y.f, z.f)
-  Declare   SetLightColor(Light, Type, Color)
   
   Declare   GetCameraBeta(Camera)
   Declare   GetCameraAlpha(Camera)
@@ -153,14 +156,12 @@ Module BJS
   IncludeFile "gui2d.sbi"
   IncludeFile "keyboard.sbi"
 EndModule
-
-UseModule BJS
   
 ; IDE Options = SpiderBasic 2.00 (Windows - x86)
-; CursorPosition = 122
-; FirstLine = 90
+; CursorPosition = 157
+; FirstLine = 100
 ; Folding = -
-; Markers = 113
+; Markers = 116
 ; iOSAppOrientation = 0
 ; AndroidAppOrientation = 0
 ; EnableXP
