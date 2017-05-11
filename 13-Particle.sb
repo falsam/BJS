@@ -62,6 +62,7 @@ Procedure LoadGame()
 EndProcedure
 
 Procedure RenderGame()
+  RotateMesh(Box, 0.01, 0.01, 0, #PB_Relative)
   RenderWorld() 
 EndProcedure
 
@@ -70,6 +71,10 @@ EndProcedure
 ; CursorPosition = 15
 ; FirstLine = 9
 ; Folding = -
+; WebAppName = particle
+; HtmlFilename = particle.html
+; JavaScriptFilename = particle.js
+; JavaScriptPath = sb
 ; iOSAppOrientation = 0
 ; AndroidAppOrientation = 0
 ; EnableXP
