@@ -38,11 +38,13 @@ Procedure SetMaterialColor(Material, Type, Color)
     Case #Diffuse
       !v_material.diffuseColor = new BABYLON.Color3(v_r, v_g, v_r);
       
+    Case #Ambient
+      !v_material.ambientColor = new BABYLON.Color3(v_r, v_g, v_r);
   EndSelect  
 EndProcedure
 
 ; IDE Options = SpiderBasic 2.00 (Windows - x86)
-; CursorPosition = 41
+; CursorPosition = 40
 ; Folding = -
 ; iOSAppOrientation = 0
 ; AndroidAppOrientation = 0
