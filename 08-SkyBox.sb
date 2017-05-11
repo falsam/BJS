@@ -38,8 +38,8 @@ Procedure LoadGame()
     
     ;Shadow
     ShadowGenerator = InitShadow(Light0)
-    ShadowAddEmitter(ShadowGenerator, Torus0)
-    ShadowAddEmitter(ShadowGenerator, Torus1)
+    ShadowEmitter(Torus0)
+    ShadowEmitter(Torus1)
     RenderShadows(Ground, #True)
        
     RenderLoop(@RenderGame())
@@ -63,7 +63,7 @@ EndProcedure
 
 
 ; IDE Options = SpiderBasic 2.00 (Windows - x86)
-; CursorPosition = 50
+; CursorPosition = 40
 ; FirstLine = 5
 ; Folding = -
 ; WebAppName = Skybox
