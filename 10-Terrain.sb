@@ -6,7 +6,6 @@ IncludeFile "babylon/babylon.sbi"
 
 Global Camera, Light, Sky, Ground, GroundMat, Water, Box, Mesh, Material
 Global Box0, Box1, Box2
-Global ShadowGenerator
 
 Declare LoadGame()
 Declare RenderGame()
@@ -33,7 +32,7 @@ Procedure LoadGame()
     ;SkyBox
     Sky = SkyBox("Clouds", "data/textures/sky/cloud", 2000)
     
-    ;Ground
+    ;Terrain
     Ground = CreateTerrain("island", "data/textures/heightMap.png", 1000, 1000, 210, 0, 70)
     GroundMat = CreateMaterial("sand", "data/textures/Ground.jpg")
     ScaleMaterial(GroundMat, 16, 16)
@@ -58,15 +57,13 @@ Procedure LoadGame()
     WaterRenderList(Water, Sky)
     
     ;Shadow
-    ShadowGenerator = InitShadow(Light)
-    ShadowAddEmitter(ShadowGenerator, Box0)
-    ShadowAddEmitter(ShadowGenerator, Box1)
-    ShadowAddEmitter(ShadowGenerator, Box2)
+    InitShadow(Light)
+    ShadowEmitter(Box0)
+    ShadowEmitter(Box1)
+    ShadowEmitter(Box2)
     RenderShadows(Ground)
     
     RenderLoop(@RenderGame())
-
-    
   EndIf
 EndProcedure
 
@@ -86,8 +83,8 @@ EndProcedure
 
 
 ; IDE Options = SpiderBasic 2.00 (Windows - x86)
-; CursorPosition = 67
-; FirstLine = 15
+; CursorPosition = 40
+; FirstLine = 16
 ; Folding = -
 ; WebAppName = Terrain
 ; HtmlFilename = terrain.html
