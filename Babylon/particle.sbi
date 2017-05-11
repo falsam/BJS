@@ -1,0 +1,92 @@
+﻿;Babylon.js for SpiderBasic : Particle 
+
+;Last update : 11 May 2017
+
+
+Procedure CreateParticleEmitter(Name.s, Mesh, MaxNumberParticles = 2000) 
+  !var particleSystem =  new BABYLON.ParticleSystem(v_name, v_maxnumberparticles, v_scene);
+  !particleSystem.emitter = v_mesh; // the starting object, the emitter
+  !return particleSystem
+EndProcedure
+
+Procedure ParticleTexture(Emitter, FileName.s)
+  !v_emitter.particleTexture = new BABYLON.Texture(v_filename, v_scene);
+EndProcedure
+
+Procedure ParticleEmitBox(Emitter, x0.f, y0.f, z0.f, x1.f, y1.f, z1.f)
+  !v_emitter.minEmitBox = new BABYLON.Vector3(v_x0, v_y0, v_z0); // Starting all from
+  !v_emitter.maxEmitBox = new BABYLON.Vector3(v_x1, v_y1, v_z1); // To...
+EndProcedure
+
+Procedure ParticleColor(Emitter, Color1, Color2)
+  Protected r1.f = Red(Color1)/255
+  Protected g1.f = Green(Color1)/255
+  Protected b1.f = Blue(Color1)/255
+  Protected a1.f = Alpha(Color1)/255
+  Protected r2.f = Red(Color2)/255
+  Protected g2.f = Green(Color2)/255
+  Protected b2.f = Blue(Color2)/255
+  Protected a2.f = Alpha(Color2)/255
+   
+  !v_emitter.color1 = new BABYLON.Color4(v_r1, v_g1, v_b1, v_a1);
+  !v_emitter.color2 = new BABYLON.Color4(v_r2, v_g2, v_b2, v_a2);  
+EndProcedure
+
+Procedure ParticleColorDead(Emitter, Color)
+  Protected r.f = Red(Color1)/255
+  Protected g.f = Green(Color1)/255
+  Protected b.f = Blue(Color1)/255
+  Protected a.f = Alpha(Color1)/255
+  
+  !v_emitter.colorDead = new BABYLON.Color4(v_r, v_g, v_b, v_a);  
+EndProcedure
+
+Procedure ParticleSizeRange(Emitter, Min.f, Max.f)
+  !v_emitter.minSize = v_min;
+  !v_emitter.maxSize = v_max; 
+EndProcedure
+
+Procedure ParticleTimeToLive(Emitter, Min.f, Max.f)
+  !v_emitter.minLifeTime = v_min;
+  !v_emitter.maxLifeTime = v_max;
+EndProcedure 
+
+Procedure ParticleGravity(Emitter, x.f, y.f, z.f)
+  !v_emitter.gravity = new BABYLON.Vector3(v_x, v_y, v_z);
+EndProcedure
+
+Procedure ParticleDirection(Emitter, x1.f, y1.f, z1.f, x2.f, y2.f, z2.f)
+  !v_emitter.direction1 = new BABYLON.Vector3(v_x1, v_y1, v_z1);
+  !v_emitter.direction2 = new BABYLON.Vector3(v_x2, v_y2, v_z2);  
+EndProcedure
+
+Procedure ParticleAngularSpeed(Emitter, Min.f, Max.f)
+  Min = Radian(Min)
+  Max = Radian(Max)
+  !v_emitter.minAngularSpeed = v_min;
+  !v_emitter.maxAngularSpeed = v_max;
+EndProcedure
+
+Procedure ParticleSpeed(Emitter, Min.f, Max.f, Update.f)
+  !v_emitter.minEmitPower = v_min;
+  !v_emitter.maxEmitPower = v_max;
+  !v_emitter.updateSpeed = v_update;
+EndProcedure
+
+Procedure StartParticle(Emitter)
+  !v_emitter.start();  
+EndProcedure
+
+Procedure StopParticle(Emitter)
+  !v_emitter.stop()
+EndProcedure
+
+
+; IDE Options = SpiderBasic 2.00 (Windows - x86)
+; CursorPosition = 69
+; FirstLine = 20
+; Folding = ---
+; iOSAppOrientation = 0
+; AndroidAppOrientation = 0
+; EnableXP
+; CompileSourceDirectory
