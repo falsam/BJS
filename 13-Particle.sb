@@ -1,0 +1,76 @@
+﻿;Babylon.sbi - Particle System
+
+EnableExplicit
+
+IncludeFile "babylon/babylon.sbi"
+
+Global Scene, Camera, Box, Emitter, Material
+
+Declare LoadGame()
+Declare RenderGame()
+
+InitEngine(@LoadGame())
+
+Procedure LoadGame()    
+  Scene = CreateScene()
+  If Scene
+    CreateCamera("camera", 0, 10, 30, #ArcRotate)
+    CreateLight("light", 0, 10, 20)
+    
+    ;The particle system will be attached to a mesh
+    Box = CreateBox("box", 2)
+    
+    ;Create a particle system and attach it to a mesh.
+    Emitter = CreateParticleEmitter("particles", Box, 2000)
+    
+    ;Texture of each particle    
+    ParticleTexture(Emitter, "data/textures/flare.png")
+    
+    ;Where the particles come from
+    ParticleEmitBox(Emitter, -1,1,1, 1,1,-1)    
+    
+    ;Colors of all particles
+    ParticleColor(Emitter, RGBA(255, 0, 0, 255), RGBA(0, 0, 255, 255))     
+    ParticleColorDead(Emitter, RGBA(0, 0, 55, 0))
+
+    ;Size of each particle (random between...)
+    ParticleSizeRange(Emitter, 0.1, 0.5)
+
+    ;Life time of each particle (random between...
+    ParticleTimeToLive(Emitter, 0.3, 1.5)
+
+    ;Emission rate
+    !v_emitter.emitRate = 1000;
+
+    ;Set the gravity of all particles
+    ParticleGravity(Emitter, 0, -9.81, 0)
+
+    ;Direction of each particle after it has been emitted
+    ParticleDirection(Emitter, -7, 8, 7, 7, 8, -7)
+    
+    ;Angular speed
+    ParticleAngularSpeed(Emitter, 0, 360) 
+
+    ;Speed
+    ParticleSpeed(Emitter, 1, 3, 0.005)
+
+    ;Start the particle system
+    StartParticle(Emitter)
+        
+    RenderLoop(@RenderGame())
+  EndIf
+EndProcedure
+
+Procedure RenderGame()
+  RenderWorld() 
+EndProcedure
+
+
+; IDE Options = SpiderBasic 2.00 (Windows - x86)
+; CursorPosition = 15
+; FirstLine = 9
+; Folding = -
+; iOSAppOrientation = 0
+; AndroidAppOrientation = 0
+; EnableXP
+; CompileSourceDirectory
