@@ -45,17 +45,3 @@ EndProcedure
 Procedure RenderGame()   
   RenderWorld() 
 EndProcedure
-
-
-; IDE Options = SpiderBasic 2.00 (Windows - x86)
-; CursorPosition = 32
-; Folding = -
-; WebAppName = water
-; HtmlFilename = water.html
-; JavaScriptFilename = water.js
-; JavaScriptPath = sb
-; CopyJavaScriptLibrary
-; iOSAppOrientation = 0
-; AndroidAppOrientation = 0
-; EnableXP
-; CompileSourceDirectory
