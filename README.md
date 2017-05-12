@@ -7,6 +7,7 @@ Babylon.sbi for SpiderBasic
 * RenderLoop(Callback)  
 * RenderWorld()  
 * EnablePhysics()  
+* MeshCollide(Mesh1, Mesh2)
   
 **Scene**
 * CreateScene()  
@@ -109,7 +110,11 @@ Babylon.sbi for SpiderBasic
 * ParticleSpeed(Emitter, Min.f, Max.f, Update.f)
 * StartParticle(Emitter)
 * StopParticle(Emitter)
-  
+
+**Music**
+* MusicLoad(Name.s, FileName.s, Loop = #False, Autoplay = #False, CallBack = #False)
+* MusicPlay(Music)
+
 **GUI**
 * Text2D(x, y, w, h, Text.s, CallBack = #False, Font.s = "25pt Arial", Color = $FF000000) 	
 * Rectangle2D(Name.s, x, y, w, h, Radius = 6, BorderSize = 4, CallBack = #False, FillColor = $FFFFFFFF, BorderColor = $FF000000) 
