@@ -68,13 +68,3 @@ Procedure RenderGame()
      
   RenderWorld() 
 EndProcedure
-; IDE Options = SpiderBasic 2.00 (Windows - x86)
-; Folding = -
-; WebAppName = Music
-; HtmlFilename = music.html
-; JavaScriptFilename = music.js
-; JavaScriptPath = sb
-; iOSAppOrientation = 0
-; AndroidAppOrientation = 0
-; EnableXP
-; CompileSourceDirectory
