@@ -143,6 +143,7 @@ DeclareModule BJS
   Declare   Rectangle2D(Name.s, x, y, w, h, Radius = 6, BorderSize = 4, CallBack = #False, FillColor = $FFFFFFFF, BorderColor = $FF000000) 
   Declare   Button2D(Name.s, x.f, y.f, w.f, h.f, Text.s = "", CallBack = #False, Font.s = "25pt Arial", FillColor = $FFFFFFFF, FrontColor = $FF000000, BorderColor = $FF000000)
   Declare   Image2D(Name.s, x.f, y.f, Image.s);
+  Declare   SetText(Element, Text.s)
   
   ;- Keyboard.sbi
   Declare   InitKey()
@@ -168,7 +169,7 @@ Module BJS
 EndModule
   
 ; IDE Options = SpiderBasic 2.00 (Windows - x86)
-; CursorPosition = 108
+; CursorPosition = 146
 ; FirstLine = 106
 ; Folding = -
 ; Markers = 116

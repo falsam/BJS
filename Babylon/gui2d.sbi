@@ -87,12 +87,12 @@ Procedure Image2D(Name.s, x.f, y.f, Image.s)
 EndProcedure
 
 Procedure SetText(Element, Text.s)
-  ;!if (v_element == 'undefined') {
+  !v_element.text = v_text;  
 EndProcedure    
 
 ; IDE Options = SpiderBasic 2.00 (Windows - x86)
-; CursorPosition = 83
-; FirstLine = 33
+; CursorPosition = 89
+; FirstLine = 32
 ; Folding = --
 ; iOSAppOrientation = 0
 ; AndroidAppOrientation = 0
