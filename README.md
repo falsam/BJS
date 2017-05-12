@@ -19,11 +19,10 @@ Babylon.sbi for SpiderBasic
 * SceneDebug()  
    
 **Environment**
-* SkyBox(name.s, sky.s, size.i = 200)
-* CreateWater(Name.s, Texture.s, Width.f, Depth.f, SubDivs.i)
-* WaterRenderList(Water, Mesh)
+* SkyBox(name.s, sky.s, size.i = 200)  
+* CreateWater(Name.s, Texture.s, Width.f, Depth.f, SubDivs.i)  
+* WaterRenderList(Water, Mesh)  
 * SetWater(Mesh, WindForce.f = -5, WaveHeight.f = 0.05, BumpHeight.f = 0.05, Color = 0, ColorBlendFactor.f = 0.1)
-  
 * Fog(Color, Intensity.f = 0.01 , StartDistance.f = 20.0, EndDistance.f = 60.0)
 * AmbientColor(Color.i)
   
