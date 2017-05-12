@@ -42,7 +42,7 @@ Procedure LoadGame()
     ParticleTimeToLive(Emitter, 0.3, 1.5)
 
     ;Emission rate
-    !v_emitter.emitRate = 1000;
+    ParticleEmissionRate(Emitter, 1000)
 
     ;Set the gravity of all particles
     ParticleGravity(Emitter, 0, -9.81, 0)
@@ -70,7 +70,8 @@ EndProcedure
 
 
 ; IDE Options = SpiderBasic 2.00 (Windows - x86)
-; CursorPosition = 12
+; CursorPosition = 44
+; FirstLine = 12
 ; Folding = -
 ; WebAppName = particle
 ; HtmlFilename = particle.html
