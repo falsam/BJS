@@ -1,6 +1,6 @@
 ﻿;Babylon.js for SpiderBasic : Camera 
 
-;Last update : 08 May 2017
+;Last update : 12 May 2017
 
 Procedure CreateCamera(Name.s, x.f, y.f, z.f, Type = #Free)
   Select Type
@@ -19,7 +19,7 @@ Procedure CreateCamera(Name.s, x.f, y.f, z.f, Type = #Free)
       !camera.cameraAcceleration = 0.05
       !camera.maxCameraSpeed = 20
   EndSelect
-  
+  !v_scene.collisionsEnabled = true;
   !camera.attachControl(v_bjscanvas, true);
   !camera.setTarget(BABYLON.Vector3.Zero());
   !camera.checkCollisions = true
@@ -142,8 +142,7 @@ Procedure SetCameraRadius(Camera, Value.f)
   !return v_camera.radius = v_value  
 EndProcedure
 ; IDE Options = SpiderBasic 2.00 (Windows - x86)
-; CursorPosition = 62
-; FirstLine = 46
+; CursorPosition = 2
 ; Folding = ----
 ; iOSAppOrientation = 0
 ; AndroidAppOrientation = 0

@@ -1,0 +1,25 @@
+﻿;Babylon.js for SpiderBasic : Music 
+
+;Last update : 12 May 2017
+
+
+Procedure MusicLoad(Name.s, FileName.s, Loop = #False, Autoplay = #False, CallBack = #False)
+  If CallBack = #False
+    !v_callback = null
+  EndIf  
+  !return new BABYLON.Sound(v_name, v_filename, v_scene, v_callback, { loop: v_loop, autoplay: v_autoplay });
+EndProcedure
+
+Procedure MusicPlay(Music)
+  !v_music.play()
+EndProcedure
+
+
+
+; IDE Options = SpiderBasic 2.00 (Windows - x86)
+; CursorPosition = 12
+; Folding = -
+; iOSAppOrientation = 0
+; AndroidAppOrientation = 0
+; EnableXP
+; CompileSourceDirectory

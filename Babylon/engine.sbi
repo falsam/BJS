@@ -52,6 +52,10 @@ Procedure EnablePhysics()
   !v_bjscurrentscene.enablePhysics();  
 EndProcedure
 
+Procedure MeshCollide(Mesh1, Mesh2)
+  !return (v_mesh1.intersectsMesh(v_mesh2, true))  
+EndProcedure
+
 ;Asset Manager
 Procedure UseAssetManager()
   !return new BABYLON.AssetsManager(v_bjscurrentscene); 
@@ -67,7 +71,7 @@ Procedure AssetManagerLoad(AssetManager)
   !v_assetmanager.load()  
 EndProcedure
 ; IDE Options = SpiderBasic 2.00 (Windows - x86)
-; CursorPosition = 20
+; CursorPosition = 54
 ; FirstLine = 9
 ; Folding = --
 ; iOSAppOrientation = 0

@@ -1,6 +1,6 @@
 ;Babylon.js for SpiderBasic 
 
-;Last update : 08 May 2017
+;Last update : 12 May 2017
 
 DeclareModule BJS
   ;-Constants.sbi
@@ -12,6 +12,7 @@ DeclareModule BJS
   Declare   RenderLoop(Callback)
   Declare   RenderWorld()  
   Declare   EnablePhysics();
+  Declare   MeshCollide(Mesh1, Mesh2)
   
   Declare   UseAssetManager()
   Declare   AssetManagerAdd(AssetManager, Name.s, Path.s, Object.s, SuccessCallback, FinishCallback)
@@ -128,6 +129,10 @@ DeclareModule BJS
   Declare   StartParticle(Emitter)
   Declare   StopParticle(Emitter)
   
+  ;-music.sbi
+  Declare MusicLoad(Name.s, FileName.s, Loop = #False, Autoplay = #False, CallBack = #False)
+  Declare MusicPlay(Music)
+  
   ;-gui2d.sbi
   Declare   UseParent(CurrentParent = #False)
   Declare   Text2D(x, y, w, h, Text.s, CallBack = #False, Font.s = "25pt Arial", Color = $FF000000) 	
@@ -153,15 +158,15 @@ Module BJS
   IncludeFile "material.sbi"
   IncludeFile "mesh.sbi"
   IncludeFile "particle.sbi"
+  IncludeFile "music.sbi"
   IncludeFile "gui2d.sbi"
   IncludeFile "keyboard.sbi"
 EndModule
   
 ; IDE Options = SpiderBasic 2.00 (Windows - x86)
-; CursorPosition = 29
-; FirstLine = 14
+; CursorPosition = 15
 ; Folding = -
-; Markers = 115
+; Markers = 116
 ; iOSAppOrientation = 0
 ; AndroidAppOrientation = 0
 ; EnableXP
