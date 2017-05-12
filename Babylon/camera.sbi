@@ -120,6 +120,17 @@ Procedure MoveCamera(Camera, x.f, y.f, z.f, Mode = #PB_Absolute)
   EndIf
 EndProcedure
 
+Procedure CameraX(Camera)
+   !return v_camera.position.x    
+EndProcedure
+
+Procedure CameraY(Camera)
+   !return v_camera.position.y    
+EndProcedure
+
+Procedure CameraZ(Camera)
+   !return v_camera.position.z    
+EndProcedure
 
 
 Procedure GetCameraAlpha(Camera)
@@ -142,7 +153,8 @@ Procedure SetCameraRadius(Camera, Value.f)
   !return v_camera.radius = v_value  
 EndProcedure
 ; IDE Options = SpiderBasic 2.00 (Windows - x86)
-; CursorPosition = 2
+; CursorPosition = 122
+; FirstLine = 84
 ; Folding = ----
 ; iOSAppOrientation = 0
 ; AndroidAppOrientation = 0

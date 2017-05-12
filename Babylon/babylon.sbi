@@ -57,6 +57,9 @@ DeclareModule BJS
   Declare   CameraLookAt(Camera, x.f, y.f, z.f)
   Declare   ActiveCamera(Camera)
   Declare   MoveCamera(Camera, x.f, y.f, z.f, Mode = #PB_Absolute)
+  Declare   CameraX(Camera)
+  Declare   CameraY(Camera)
+  Declare   CameraZ(Camera)
   Declare   RotateCamera(Camera, x.f, y.f, z.f, Mode = #PB_Absolute)  
   Declare   CameraMapKey(Camera, Key, Value = #PB_Ignore)
   Declare   DisableControlCamera(Camera, Value.b = #All)
@@ -169,10 +172,10 @@ Module BJS
 EndModule
   
 ; IDE Options = SpiderBasic 2.00 (Windows - x86)
-; CursorPosition = 146
-; FirstLine = 106
+; CursorPosition = 61
+; FirstLine = 43
 ; Folding = -
-; Markers = 116
+; Markers = 119
 ; iOSAppOrientation = 0
 ; AndroidAppOrientation = 0
 ; EnableXP
