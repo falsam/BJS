@@ -113,7 +113,11 @@ Babylon.sbi for SpiderBasic
 
 **Music**
 * MusicLoad(Name.s, FileName.s, Loop = #False, Autoplay = #False, CallBack = #False)
+* MusicVolume(Music, Value.f)
 * MusicPlay(Music)
+* MusicStop(Music)
+* MusicPosition(Music, x.f, y.f, z.f)
+* MusicAttachToMesh(Music, Mesh)
 
 **GUI**
 * Text2D(x, y, w, h, Text.s, CallBack = #False, Font.s = "25pt Arial", Color = $FF000000) 	
