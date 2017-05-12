@@ -46,6 +46,9 @@ Babylon.sbi for SpiderBasic
 * CameraLookAt(Camera, x.f, y.f, z.f)
 * ActiveCamera(Camera)
 * MoveCamera(Camera, x.f, y.f, z.f, Mode = #PB_Absolute)
+* CameraX(Camera)
+* CameraY(Camera)
+* CameraZ(Camera)
 * RotateCamera(Camera, x.f, y.f, z.f, Mode = #PB_Absolute)  
 * CameraMapKey(Camera, Key, Value = #PB_Ignore)
 * DisableControlCamera(Camera, Value.b = #All)
@@ -124,7 +127,8 @@ Babylon.sbi for SpiderBasic
 * Rectangle2D(Name.s, x, y, w, h, Radius = 6, BorderSize = 4, CallBack = #False, FillColor = $FFFFFFFF, BorderColor = $FF000000) 
 * Button2D(Name.s, x.f, y.f, w.f, h.f, Text.s = "", CallBack = #False, Font.s = "25pt Arial", FillColor = $FFFFFFFF, FrontColor = $FF000000, BorderColor = $FF000000)
 * Image2D(Name.s, x.f, y.f, Image.s);
-  
+* SetText(Element, Text.s)
+
 **Keyboard**
 * InitKey()
 * KeyPushed(Key)
