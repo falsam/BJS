@@ -60,17 +60,3 @@ Procedure RenderGame()
   
   RenderWorld() 
 EndProcedure
-
-
-; IDE Options = SpiderBasic 2.00 (Windows - x86)
-; CursorPosition = 40
-; FirstLine = 5
-; Folding = -
-; WebAppName = Skybox
-; HtmlFilename = skybox.html
-; JavaScriptFilename = skybox.js
-; JavaScriptPath = sb
-; iOSAppOrientation = 0
-; AndroidAppOrientation = 0
-; EnableXP
-; CompileSourceDirectory
