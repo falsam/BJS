@@ -1,0 +1,63 @@
+﻿;Babylon.sbi - Music Spatial
+
+EnableExplicit
+
+IncludeFile "babylon/babylon.sbi"
+UseModule BJS
+
+Global Scene, Camera, Light, Sound1, Sound2, Ground, GroundMat, Pole1, Pole2
+ 
+Declare LoadGame()
+Declare RenderGame()
+
+InitEngine(@LoadGame())
+
+Procedure LoadGame()    
+  Scene = CreateScene()
+  If Scene
+    
+    ;Load Music
+    MusicLoad("Loop", "data/sounds/loop.mp3", #True, #True)
+    Sound1 = MusicLoad("Sound1", "data/sounds/calm.wav", #True, #True)
+    Sound2 = MusicLoad("Sound2", "data/sounds/ambience.wav", #True, #True)
+    
+    ;Camera
+    Camera = CreateCamera("camera", 0, 40, 20, #Free)
+    CameraBodySize(Camera, 2, 20, 2)
+    CameraLookAt(Camera, 0, 10, 1000)
+    ClearScene(RGB(0, 0, 0))
+    Light = CreateLight("Light", 0, 100, 0, 1, #Point)
+    
+    ;Ground
+    Ground = CreateGround("Ground", 5000, 5000, 4)
+    GroundMat = CreateMaterial("Ground", "data/textures/Beton1.png")
+    ScaleMaterial(GroundMat, 40, 40)
+    SetMaterial(Ground, GroundMat)    
+    
+    ;Music Pole
+    Pole1 = CreateSphere("Sound1", 10)
+    MoveMesh(Pole1, -100, 30, 200)
+    MusicAttachToMesh(Sound1, Pole1)
+     
+    Pole2 = CreateSphere("Sound2", 10)
+    MoveMesh(Pole2, 100, 30, 200)
+    MusicAttachToMesh(Sound2, Pole2)
+       
+    RenderLoop(@RenderGame())
+  EndIf
+EndProcedure
+
+Procedure RenderGame()     
+  RenderWorld() 
+EndProcedure
+; IDE Options = SpiderBasic 2.00 (Windows - x86)
+; CursorPosition = 16
+; Folding = -
+; WebAppName = MusicSpatial
+; HtmlFilename = musicspatial.html
+; JavaScriptFilename = musicspacial.js
+; JavaScriptPath = sb
+; iOSAppOrientation = 0
+; AndroidAppOrientation = 0
+; EnableXP
+; CompileSourceDirectory
