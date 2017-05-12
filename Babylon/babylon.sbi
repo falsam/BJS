@@ -22,7 +22,6 @@ DeclareModule BJS
   Declare   SceneGravity(x.f = 0, y.f = -0.9, z.f = 0)
   Declare   ClearScene(color)
   Declare   BeforeRender(CallBack)
-  Declare   SceneDebug()
   Declare   EnableOffLineSupport(Value = #True) 
   Declare   CurrentScene(Scene, Camera)
   Declare   ImportScene(Name.s, Path.s, FileName.s, Callback)
@@ -159,10 +158,10 @@ Module BJS
 EndModule
   
 ; IDE Options = SpiderBasic 2.00 (Windows - x86)
-; CursorPosition = 122
-; FirstLine = 100
+; CursorPosition = 29
+; FirstLine = 14
 ; Folding = -
-; Markers = 116
+; Markers = 115
 ; iOSAppOrientation = 0
 ; AndroidAppOrientation = 0
 ; EnableXP
