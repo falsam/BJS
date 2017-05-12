@@ -2,8 +2,8 @@
 Babylon.sbi for SpiderBasic
 
 ■ **Engine**
-InitEngine(Callback, CanvasOutput = #PB_Ignore) 
-CreateSpace2D(Scene)
+InitEngine(Callback, CanvasOutput = #PB_Ignore)\\
+CreateSpace2D(Scene)\\
 RenderLoop(Callback)
 RenderWorld()  
 EnablePhysics();
