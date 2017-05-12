@@ -40,8 +40,8 @@ Babylon.sbi for SpiderBasic
 * RenderShadows(Mesh, Value.b = #True) 
  
 **Camera** 
-* CreateCamera(id.s, x.f, y.f, z.f, Type = #Free)
-* CameraLookAtMesh(Camera, MeshObject)
+* CreateCamera(id.s, x.f, y.f, z.f, Type = #Free)  
+* CameraLookAtMesh(Camera, MeshObject)  
 * CameraLookAt(Camera, x.f, y.f, z.f)
 * ActiveCamera(Camera)
 * MoveCamera(Camera, x.f, y.f, z.f, Mode = #PB_Absolute)
@@ -51,7 +51,6 @@ Babylon.sbi for SpiderBasic
 * CameraCollision(Camera, Value = #True)
 * CameraGravity(Camera, Value = #True)
 * CameraBodySize(Camera, x.f = 1, y.f = 1, z.f = 1)
-  
 * GetCameraBeta(Camera)
 * GetCameraAlpha(Camera)
 * GetCameraRadius(Camera)
@@ -74,19 +73,14 @@ Babylon.sbi for SpiderBasic
 * CreateCylinder(Name.s, Height.f, DiamTop.f, DiamBottom.f, Tessellation.i = 30, HeightSubdivs.i = 1)
 * CreateTorus(Name.s, Diameter, Thickness, Tesselation = 32)
 * CreateTerrain(Name.s, HeightmapPath.s, Width.f, Depth.f, Subdivs.i, MinHeight.f, MaxHeight.f)
-
 * CreateBody(Mesh, Type, Mass.f = 1.0, Restitution.f = 1.0, Friction = 0.1)
-
 * GetMeshName(Mesh)
-  
 * MoveMesh(Mesh, x.f, y.f, z.f, Mode = #PB_Absolute)
 * RotateMesh(Mesh, x.f, y.f, z.f, Mode = #PB_Absolute)
 * ScaleMesh(Mesh, x.f, y.f, z.f, Mode = #PB_Absolute)
-
 * MeshX(Mesh)
 * MeshY(Mesh)
 * MeshZ(Mesh)
-  
 * CloneMesh(Mesh)
 * Attach(Parent, Child, x.f, y.f, z.f)
     
@@ -98,7 +92,6 @@ Babylon.sbi for SpiderBasic
 * PickZ()
 * PickDistance()
 * MeshId(Mesh)
-  
 * Translate(Mesh, Value.f) Move mesh local
   
 **particle**
@@ -114,7 +107,6 @@ Babylon.sbi for SpiderBasic
 * ParticleDirection(Emitter, x1.f, y1.f, z1.f, x2.f, y2.f, z2.f)
 * ParticleAngularSpeed(Emitter, Min.f, Max.f)
 * ParticleSpeed(Emitter, Min.f, Max.f, Update.f)
-  
 * StartParticle(Emitter)
 * StopParticle(Emitter)
   
