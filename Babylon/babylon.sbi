@@ -130,8 +130,12 @@ DeclareModule BJS
   Declare   StopParticle(Emitter)
   
   ;-music.sbi
-  Declare MusicLoad(Name.s, FileName.s, Loop = #False, Autoplay = #False, CallBack = #False)
-  Declare MusicPlay(Music)
+  Declare   MusicLoad(Name.s, FileName.s, Loop = #False, Autoplay = #False, CallBack = #False)
+  Declare   MusicVolume(Music, Value.f)
+  Declare   MusicPlay(Music)
+  Declare   MusicStop(Music)
+  Declare   MusicPosition(Music, x.f, y.f, z.f)
+  Declare   MusicAttachToMesh(Music, Mesh)
   
   ;-gui2d.sbi
   Declare   UseParent(CurrentParent = #False)
@@ -164,7 +168,8 @@ Module BJS
 EndModule
   
 ; IDE Options = SpiderBasic 2.00 (Windows - x86)
-; CursorPosition = 15
+; CursorPosition = 108
+; FirstLine = 106
 ; Folding = -
 ; Markers = 116
 ; iOSAppOrientation = 0

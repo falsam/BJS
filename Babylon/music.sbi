@@ -7,18 +7,38 @@ Procedure MusicLoad(Name.s, FileName.s, Loop = #False, Autoplay = #False, CallBa
   If CallBack = #False
     !v_callback = null
   EndIf  
+  
   !return new BABYLON.Sound(v_name, v_filename, v_scene, v_callback, { loop: v_loop, autoplay: v_autoplay });
+EndProcedure
+
+Procedure MusicVolume(Music, Value.f)
+  !v_music.setVolume(v_value);
 EndProcedure
 
 Procedure MusicPlay(Music)
   !v_music.play()
 EndProcedure
 
+Procedure MusicStop(Music)
+  !v_music.stop()
+EndProcedure
+
+Procedure MusicPosition(Music, x.f, y.f, z.f)
+  !v_music.setPosition(new BABYLON.Vector3(v_x, v_y, v_z));  
+EndProcedure
+
+Procedure MusicAttachToMesh(Music, Mesh)
+  !v_music.attachToMesh(v_mesh);
+EndProcedure
+
+
+  
+
 
 
 ; IDE Options = SpiderBasic 2.00 (Windows - x86)
-; CursorPosition = 12
-; Folding = -
+; CursorPosition = 13
+; Folding = --
 ; iOSAppOrientation = 0
 ; AndroidAppOrientation = 0
 ; EnableXP
