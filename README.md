@@ -94,7 +94,7 @@ Babylon.sbi for SpiderBasic
 * MeshId(Mesh)
 * Translate(Mesh, Value.f) Move mesh local
   
-**particle**
+**Particle**
 * CreateParticleEmitter(Name.s, Mesh, MaxNumberParticles = 2000) 
 * ParticleTexture(Emitter, FileName.s)
 * ParticleEmitBox(Emitter, x0.f, y0.f, z0.f, x1.f, y1.f, z1.f)
