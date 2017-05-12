@@ -51,6 +51,11 @@ Procedure ParticleTimeToLive(Emitter, Min.f, Max.f)
   !v_emitter.maxLifeTime = v_max;
 EndProcedure 
 
+Procedure ParticleEmissionRate(Emitter, Value.i)
+  !v_emitter.emitRate = v_value;  
+EndProcedure
+
+
 Procedure ParticleGravity(Emitter, x.f, y.f, z.f)
   !v_emitter.gravity = new BABYLON.Vector3(v_x, v_y, v_z);
 EndProcedure
@@ -83,8 +88,8 @@ EndProcedure
 
 
 ; IDE Options = SpiderBasic 2.00 (Windows - x86)
-; CursorPosition = 69
-; FirstLine = 20
+; CursorPosition = 53
+; FirstLine = 25
 ; Folding = ---
 ; iOSAppOrientation = 0
 ; AndroidAppOrientation = 0
