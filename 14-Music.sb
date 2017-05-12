@@ -75,9 +75,13 @@ EndProcedure
 
 
 ; IDE Options = SpiderBasic 2.00 (Windows - x86)
-; CursorPosition = 62
+; CursorPosition = 64
 ; FirstLine = 17
 ; Folding = -
+; WebAppName = Music
+; HtmlFilename = music.html
+; JavaScriptFilename = music.js
+; JavaScriptPath = sb
 ; iOSAppOrientation = 0
 ; AndroidAppOrientation = 0
 ; EnableXP
