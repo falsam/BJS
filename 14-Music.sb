@@ -7,8 +7,6 @@ UseModule BJS
 
 Global Scene, Camera, Light, Pop, Ground, GroundMat, Mesh
  
-Global Dim Objects(0)
-
 Declare LoadGame()
 Declare RenderGame()
 
@@ -45,9 +43,7 @@ Procedure LoadGame()
   EndIf
 EndProcedure
 
-Procedure RenderGame()
-  Protected i, n = ArraySize(Objects())
-  
+Procedure RenderGame()  
   Select Random(1000, 1)
     Case 5, 25, 35
       
@@ -72,10 +68,8 @@ Procedure RenderGame()
      
   RenderWorld() 
 EndProcedure
-
-
 ; IDE Options = SpiderBasic 2.00 (Windows - x86)
-; CursorPosition = 64
+; CursorPosition = 50
 ; FirstLine = 17
 ; Folding = -
 ; WebAppName = Music
