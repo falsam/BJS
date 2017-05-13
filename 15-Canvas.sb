@@ -121,17 +121,3 @@ EndProcedure
 Procedure RenderGame()  
   RenderWorld() 
 EndProcedure
-
-
-; IDE Options = SpiderBasic 2.00 (Windows - x86)
-; CursorPosition = 74
-; FirstLine = 43
-; Folding = -
-; WebAppName = Canvas
-; HtmlFilename = canvas.html
-; JavaScriptFilename = canvas.js
-; JavaScriptPath = sb
-; iOSAppOrientation = 0
-; AndroidAppOrientation = 0
-; EnableXP
-; CompileSourceDirectory
