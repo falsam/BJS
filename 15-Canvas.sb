@@ -1,0 +1,137 @@
+﻿;Babylon.sbi - CarShop
+
+EnableExplicit
+
+IncludeFile "babylon/babylon.sbi"
+
+Enumeration
+  #Font
+  
+  #mf
+  #mfListCars
+  #mfRender
+  #mfWait
+EndEnumeration
+
+Global Scene0, Scene1, Camera
+
+;Ground
+Global Ground, GroundMat
+
+Declare LoadGame()
+Declare OnChange()
+Declare OnLoad(Mesh)
+Declare OnFinish()
+Declare RenderGame()
+
+LoadFont(#Font, "Arial", 30)
+
+OpenWindow(#mf, 0, 0, 800, 400, "Paradise Cars", #PB_Window_ScreenCentered)
+
+;List cars
+FrameGadget(#PB_Any, 20, 20, 230, 70, "Select a car")
+ComboBoxGadget(#mfListCars, 30, 40, 200, 24)
+DisableGadget(#mfListCars, #True)
+
+;Babylon Rendering (OPTION #PB_Canvas_Transparent)
+CanvasGadget(#mfRender, 260, 25, 400, 300, #PB_Canvas_Transparent)
+
+;Wait
+TextGadget(#mfWait, 280, 280, 360, 30, "Wait...")
+SetGadgetFont(#mfWait, FontID(#Font))
+SetGadgetColor(#mfWait, #PB_Gadget_FrontColor, RGB(255, 255, 255))
+
+;Trigger
+BindGadgetEvent(#mfListCars, @OnChange(), #PB_EventType_Change)
+
+UseModule BJS
+
+;Initengine with your canvas
+InitEngine(@LoadGame(), #mfRender)
+
+Procedure LoadGame()    
+  
+  ;-Scene Ferrari
+  Scene0 = CreateScene()
+  If Scene0
+    AddGadgetItem(#mfListCars, -1, "Ferrari")
+    
+    ;Skybox & Camera
+    CreateLight("ambience", 0, 10, 0, 0.8, #Hemispheric)
+    Camera = CreateCamera("camera", 0, 8, 20, #ArcRotate)
+    
+    ;Ground
+    Ground = CreateGround("ground", 50, 50)
+    GroundMat = CreateMaterial("ground", "data/textures/Beton1.png")
+    SetMaterialColor(GroundMat, #Specular, RGB(0, 0, 0))
+    ScaleMaterial(GroundMat, 5, 5)
+    SetMaterial(Ground, GroundMat)
+    ImportScene("car", "data/Ferrari/", "ferrari.obj", @OnLoad())
+  EndIf
+  
+  ;-Scene Ford Mustang
+  Scene1 = CreateScene()
+  If Scene1
+    AddGadgetItem(#mfListCars, -1, "Ford Mustang")
+    
+    ;Skybox & Camera
+    CreateLight("ambience", 0, 10, 0, 0.8, #Hemispheric)
+    Camera = CreateCamera("camera", 0, 8, 20, #ArcRotate)
+    
+    ;Ground
+    Ground = CreateGround("ground", 50, 50)
+    GroundMat = CreateMaterial("ground", "data/textures/Beton1.png")
+    SetMaterialColor(GroundMat, #Specular, RGB(0, 0, 0))
+    ScaleMaterial(GroundMat, 5, 5)
+    SetMaterial(Ground, GroundMat)
+    ImportScene("fordmustang", "data/FordMustang/", "1967-shelby-ford-mustang.babylon", @OnLoad())
+  EndIf
+  
+  CurrentScene(Scene0, Camera)
+  
+  RenderLoop(@RenderGame())
+EndProcedure
+
+Procedure OnChange()
+  Select GetGadgetState(#mfListCars)
+    Case 0 
+      CurrentScene(Scene0, Camera)
+      
+    Case 1 
+      CurrentScene(Scene1, Camera)
+  EndSelect
+EndProcedure
+
+Procedure OnLoad(Mesh)  
+  Static CountLoad
+  CountLoad + 1
+  
+  Select CountLoad 
+    Case 1
+      SetGadgetText(#mfWait, "Load cars progress ...")
+      
+    Case 2 
+      FreeGadget(#mfWait)
+      DisableGadget(#mfListCars, #False)
+      SetGadgetState(#mfListCars, 0)
+      SetActiveGadget(#mfListCars)
+  EndSelect  
+EndProcedure
+
+Procedure RenderGame()  
+  RenderWorld() 
+EndProcedure
+
+
+; IDE Options = SpiderBasic 2.00 (Windows - x86)
+; CursorPosition = 74
+; FirstLine = 43
+; Folding = -
+; WebAppName = Canvas
+; HtmlFilename = canvas.html
+; JavaScriptFilename = canvas.js
+; JavaScriptPath = sb
+; iOSAppOrientation = 0
+; AndroidAppOrientation = 0
+; EnableXP
+; CompileSourceDirectory
