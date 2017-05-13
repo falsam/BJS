@@ -1,6 +1,6 @@
 ﻿;Babylon.js for SpiderBasic : Engine 
 
-;Last update : 08 May 2017
+;Last update : 13 May 2017
 
 Procedure InitEngine(Callback, CanvasGadget = #PB_Ignore)    
   !     require(["sbbjs/babylon.custom.js"], 
@@ -11,7 +11,7 @@ Procedure InitEngine(Callback, CanvasGadget = #PB_Ignore)
               ! .css({ width : '100%', height : '100%' })
               ! .appendTo('body');
             Else
-              !var selector = $(spider_GadgetID(v_bjscanvasgadget))[0].gadget
+              !var selector = $(spider_GadgetID(v_canvasgadget))[0].gadget
               !selector.id = "renderCanvas"
               !selector.style.width = '100%'
               !selector.style.height = '100%'
@@ -71,8 +71,7 @@ Procedure AssetManagerLoad(AssetManager)
   !v_assetmanager.load()  
 EndProcedure
 ; IDE Options = SpiderBasic 2.00 (Windows - x86)
-; CursorPosition = 54
-; FirstLine = 9
+; CursorPosition = 16
 ; Folding = --
 ; iOSAppOrientation = 0
 ; AndroidAppOrientation = 0
