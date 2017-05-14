@@ -79,6 +79,7 @@ Babylon.sbi for SpiderBasic
 * CreateTerrain(Name.s, HeightmapPath.s, Width.f, Depth.f, Subdivs.i, MinHeight.f, MaxHeight.f)
 * CreateBody(Mesh, Type, Mass.f = 1.0, Restitution.f = 1.0, Friction = 0.1)
 * GetMeshName(Mesh)
+* FreeMesh(Mesh)
 * MoveMesh(Mesh, x.f, y.f, z.f, Mode = #PB_Absolute)
 * RotateMesh(Mesh, x.f, y.f, z.f, Mode = #PB_Absolute)
 * ScaleMesh(Mesh, x.f, y.f, z.f, Mode = #PB_Absolute)
@@ -89,8 +90,9 @@ Babylon.sbi for SpiderBasic
 * Attach(Parent, Child, x.f, y.f, z.f)
     
 **Picking**
-* PickEnable()
+* PickEnable() 
 * IsPick()
+* PickMesh()
 * PickX()
 * PickY()
 * PickZ()
