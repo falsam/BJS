@@ -92,7 +92,7 @@ DeclareModule BJS
 
   Declare   CreateBody(Mesh, Type, Mass.f = 1.0, Restitution.f = 1.0, Friction = 0.1)
   Declare.s GetMeshName(Mesh)
-  
+  Declare   FreeMesh(Mesh)
   Declare   MoveMesh(Mesh, x.f, y.f, z.f, Mode = #PB_Absolute)
   Declare   RotateMesh(Mesh, x.f, y.f, z.f, Mode = #PB_Absolute)
   Declare   ScaleMesh(Mesh, x.f, y.f, z.f, Mode = #PB_Absolute)
@@ -172,8 +172,8 @@ Module BJS
 EndModule
   
 ; IDE Options = SpiderBasic 2.00 (Windows - x86)
-; CursorPosition = 61
-; FirstLine = 43
+; CursorPosition = 94
+; FirstLine = 60
 ; Folding = -
 ; Markers = 119
 ; iOSAppOrientation = 0

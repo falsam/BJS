@@ -1,6 +1,6 @@
 ﻿;Babylon.js for SpiderBasic : Mesh
 
-;Last update : 08 May 2017
+;Last update : 15 May 2017
 
 ;-
 ;-Basic Object
@@ -49,6 +49,11 @@ EndProcedure
 Procedure.s GetMeshName(Mesh)
   !return v_mesh.name  
 EndProcedure
+
+Procedure FreeMesh(Mesh)
+  !v_mesh.dispose()  
+EndProcedure
+
 
 ;Physics
 Procedure CreateBody(Mesh, Type, Mass.f = 1.0, Restitution.f = 1.0, Friction = 0.1)
@@ -153,7 +158,6 @@ Procedure PickEnable()
   !BABYLON.Tools.Log("Picking is active")
   !v_bjscurrentscene.onPointerDown = function (evt, pickResult) {
   ! if (pickResult.hit) {
-  !  console.log(pickResult);
   !  bjs$v_pick._hit      = pickResult.hit
   !  bjs$v_pick._point._x = pickResult.pickedPoint.x;  
   !  bjs$v_pick._point._y = pickResult.pickedPoint.y;
@@ -202,8 +206,8 @@ Procedure Translate(Mesh, Value.f)
   !v_mesh.translate(new BABYLON.Vector3(v_value, 0, 0), 0.1, BABYLON.Space.LOCAL);
 EndProcedure
 ; IDE Options = SpiderBasic 2.00 (Windows - x86)
-; CursorPosition = 202
-; FirstLine = 144
+; CursorPosition = 160
+; FirstLine = 148
 ; Folding = -----
 ; iOSAppOrientation = 0
 ; AndroidAppOrientation = 0
