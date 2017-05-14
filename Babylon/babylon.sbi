@@ -106,6 +106,7 @@ DeclareModule BJS
   ;Picking
   Declare   PickEnable()
   Declare   IsPick()
+  Declare   PickMesh()
   Declare.f PickX()
   Declare.f PickY()
   Declare.f PickZ()
@@ -172,10 +173,10 @@ Module BJS
 EndModule
   
 ; IDE Options = SpiderBasic 2.00 (Windows - x86)
-; CursorPosition = 94
-; FirstLine = 60
+; CursorPosition = 108
+; FirstLine = 63
 ; Folding = -
-; Markers = 119
+; Markers = 120
 ; iOSAppOrientation = 0
 ; AndroidAppOrientation = 0
 ; EnableXP
