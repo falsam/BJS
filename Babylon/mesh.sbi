@@ -1,6 +1,6 @@
 ﻿;Babylon.js for SpiderBasic : Mesh
 
-;Last update : 14 May 2017
+;Last update : 15 May 2017
 
 ;-
 ;-Basic Object
@@ -178,10 +178,6 @@ Procedure IsPick()
   EndIf  
 EndProcedure
 
-Procedure Mesh()
-  ProcedureReturn Pick\mesh  
-EndProcedure
-
 Procedure.f PickX()
   ProcedureReturn Pick\point\x
 EndProcedure
@@ -210,8 +206,7 @@ Procedure Translate(Mesh, Value.f)
   !v_mesh.translate(new BABYLON.Vector3(v_value, 0, 0), 0.1, BABYLON.Space.LOCAL);
 EndProcedure
 ; IDE Options = SpiderBasic 2.00 (Windows - x86)
-; CursorPosition = 200
-; FirstLine = 152
+; CursorPosition = 2
 ; Folding = -----
 ; iOSAppOrientation = 0
 ; AndroidAppOrientation = 0
