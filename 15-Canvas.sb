@@ -21,7 +21,6 @@ Global Ground, GroundMat
 Declare LoadGame()
 Declare OnChange()
 Declare OnLoad(Mesh)
-Declare OnFinish()
 Declare RenderGame()
 
 LoadFont(#Font, "Arial", 30)
@@ -121,3 +120,17 @@ EndProcedure
 Procedure RenderGame()  
   RenderWorld() 
 EndProcedure
+
+
+; IDE Options = SpiderBasic 2.00 (Windows - x86)
+; CursorPosition = 22
+; FirstLine = 4
+; Folding = -
+; WebAppName = Canvas
+; HtmlFilename = canvas.html
+; JavaScriptFilename = canvas.js
+; JavaScriptPath = sb
+; iOSAppOrientation = 0
+; AndroidAppOrientation = 0
+; EnableXP
+; CompileSourceDirectory
