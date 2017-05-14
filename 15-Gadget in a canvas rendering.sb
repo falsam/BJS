@@ -1,0 +1,240 @@
+﻿;Babylon.sbi - Gadgets in a canvas rendering
+
+EnableExplicit
+
+IncludeFile "babylon/babylon.sbi"
+
+Enumeration  
+  ;Mainform & Menu Popup
+  #mf
+  #mfPopup
+  
+  ;SideBar
+  #mfSideBar 
+  
+  ;Select Sky
+  #mfSky
+ 
+  ;Picking
+  #mfName
+  #mfPx
+  #mfPy
+  #mfPz
+  
+  ;Babylon Rendering
+  #mfRender
+  
+  ;New Scene
+  #mfNewScene
+EndEnumeration
+
+;Scene 
+Global Scene0, Camera, Sky, LightPoint, Dim Meshs(0)
+
+;Ground
+Global Ground, GroundMat
+
+;Gadget
+Global Gadget
+
+;Picking
+Global x.f, y.f, z.f
+
+;Summary
+Declare Start()
+Declare LoadGame()
+Declare SelectSky()
+Declare ShowMenu()
+Declare NewScene()
+Declare CreateMesh()
+Declare RenderGame()
+Declare ResizeGame()
+
+Start()
+
+Procedure Start()
+  OpenWindow(#mf, 0, 0, 900,600, "Gadgets in a canvas rendering. What do you expect ? This is a demo.", #PB_Window_SystemMenu | #PB_Window_ScreenCentered | #PB_Window_SizeGadget)
+  
+  If CreatePopupMenu(#mfPopup)
+    MenuItem(1, "Insert Box")
+    MenuItem(2, "Insert Sphere")
+    MenuItem(3, "Insert Torus")
+    MenuItem(4, "Insert Cylinder")
+  EndIf
+  
+  ;Babylon Rendering (OPTION #PB_Canvas_Transparent)
+  CanvasGadget(#mfRender, 0, 0, WindowWidth(#mf), WindowHeight(#mf), #PB_Canvas_Transparent)
+  
+  ;Sidebar
+  If ContainerGadget(#mfSideBar, 0, 0, 270, WindowHeight(#mf))
+    SetGadgetColor(#mfSideBar, #PB_Gadget_BackColor, RGBA(255, 255, 255, 100))
+    
+    ;SkyBox
+    Gadget = TextGadget(#PB_Any, 20, 20, 200, 22, "■ Select Sky")
+    SetGadgetColor(Gadget, #PB_Gadget_FrontColor, RGB(255, 255, 255))
+    
+    ComboBoxGadget(#mfSky, 20, 43, 200, 24)
+    AddGadgetItem(#mfSky, -1, "None")
+    AddGadgetItem(#mfSky, -1, "Night")
+    AddGadgetItem(#mfSky, -1, "Cloud")
+    AddGadgetItem(#mfSky, -1, "Snow")
+    AddGadgetItem(#mfSky, -1, "TropicalSunnyDay")
+    SetGadgetState(#mfSky, 0)
+    
+    Gadget = TextGadget(#PB_Any, 20, 80, 200, 22, "■ Picking")
+    SetGadgetColor(Gadget, #PB_Gadget_FrontColor, RGB(255, 255, 255))
+    
+    Gadget = TextGadget(#PB_Any, 20, 103, 50, 22, "Name")
+    SetGadgetColor(Gadget, #PB_Gadget_FrontColor, RGB(255, 255, 255))
+    StringGadget(#mfName, 100, 102, 150, 24, "", #PB_String_ReadOnly)
+    
+    Gadget = TextGadget(#PB_Any, 20, 128, 50, 22, "X")
+    SetGadgetColor(Gadget, #PB_Gadget_FrontColor, RGB(255, 255, 255))
+    StringGadget(#mfPx, 100, 128, 150, 24, "0.0", #PB_String_ReadOnly)
+    
+    Gadget = TextGadget(#PB_Any, 20, 155, 50, 22, "Y")
+    SetGadgetColor(Gadget, #PB_Gadget_FrontColor, RGB(255, 255, 255))
+    StringGadget(#mfPy, 100, 155, 150, 24, "0.0", #PB_String_ReadOnly)
+    
+    Gadget = TextGadget(#PB_Any, 20, 182, 50, 22, "Z")
+    SetGadgetColor(Gadget, #PB_Gadget_FrontColor, RGB(255, 255, 255))
+    StringGadget(#mfPz, 100, 182, 150, 24, "0.0", #PB_String_ReadOnly)
+    
+    CloseGadgetList()
+  EndIf 
+  
+  ;NewScene
+  ButtonGadget(#mfNewScene, 20, WindowHeight(#mf) - 50, 230, 24, "New Scene")
+  
+  ;Trigger
+  BindGadgetEvent(#mfSky, @SelectSky(), #PB_EventType_Change)
+  BindGadgetEvent(#mfRender, @ShowMenu(), #PB_EventType_RightClick)
+  BindGadgetEvent(#mfNewScene, @NewScene())
+  
+  BindEvent(#PB_Event_Menu, @CreateMesh())
+  BindEvent(#PB_Event_SizeWindow, @ResizeGame())
+  
+  ;Initengine with your canvas
+  UseModule BJS
+  InitEngine(@LoadGame(), #mfRender)
+EndProcedure
+
+Procedure LoadGame()      
+  Scene0 = CreateScene()
+  If Scene0
+    ClearScene(RGB(0, 0, 0))
+    
+    ;Light & Camera
+    CreateLight("ambience", 0, 100, 0, 0.6, #HemiSpheric)
+    LightPoint = CreateLight("ambience", 0, 100, 0, 0.8, #Point)
+    
+    Camera = CreateCamera("camera", 0, 20, 20, #Free)
+    CameraBodySize(Camera, 2, 10, 2)
+    CameraLookAt(Camera, 0, 20, 0)
+    
+    ;Ground
+    Ground = CreateGround("ground", 1000, 1000, 100)
+    GroundMat = CreateMaterial("ground", "data/textures/Beton1.png")
+    SetMaterialColor(GroundMat, #Specular, RGB(0, 0, 0))
+    ScaleMaterial(GroundMat, 20, 20)
+    SetMaterial(Ground, GroundMat)
+    
+    ;Picking enable
+    PickEnable()   
+    RenderLoop(@RenderGame())
+  EndIf
+EndProcedure
+
+Procedure SelectSky()
+  Protected Position = GetGadgetState(#mfSky)
+  Protected NewSky.s = GetGadgetItemText(#mfSky, Position)
+  
+  If Sky 
+    FreeMesh(Sky)
+  EndIf
+  
+  If Position <> 0
+    Sky = SkyBox(NewSky, "data/textures/sky/" + NewSky, 1000)
+  Else
+    ClearScene(RGB(0, 0, 0))
+  EndIf 
+EndProcedure
+
+Procedure ShowMenu()
+  DisplayPopupMenu(#mfPopup, WindowID(#mf))
+EndProcedure
+
+Procedure CreateMesh()
+  Protected Item = EventMenu() 
+  Protected NewMesh
+  Protected Name.s
+  Static CountMesh
+  
+  Select Item
+    Case 1 
+      Name = "Box_" + Str(CountMesh)
+      NewMesh = CreateBox(Name, 6)
+      
+    Case 2 
+      Name = "Sphere_" + Str(CountMesh)
+      NewMesh = CreateSphere(Name, 6)
+      
+    Case 3 
+      Name = "Torus_" + Str(CountMesh)
+      NewMesh = CreateTorus(Name, 10, 6)
+      
+    Case 4
+      Name = "Cylinder_" + Str(CountMesh)
+      NewMesh = CreateCylinder(Name, 6, 6, 6)
+      
+  EndSelect
+  
+  SetGadgetText(#mfName, Name)
+  MoveMesh(NewMesh, x, y + 3, z)
+  Meshs(CountMesh) = NewMesh
+  CountMesh + 1
+  ReDim Meshs(CountMesh)  
+EndProcedure
+
+Procedure NewScene()
+  Protected n
+  
+  For n = 0 To ArraySize(Meshs()) - 1 
+    FreeMesh(Meshs(n))
+  Next
+EndProcedure
+
+Procedure RenderGame()  
+  If IsPick()
+    x = PickX()
+    y = PickY()
+    z = PickZ()
+    
+    SetGadgetText(#mfName, GetMeshName(PickMesh()))
+    SetGadgetText(#mfPx, StrF(x, 6))
+    SetGadgetText(#mfPy, StrF(y, 6))
+    SetGadgetText(#mfPz, StrF(z, 6))     
+  EndIf
+  RenderWorld() 
+EndProcedure
+
+Procedure ResizeGame()
+  Protected Width = WindowWidth(#mf)
+  Protected Height = WindowHeight(#mf)
+  
+  ResizeGadget(#mfRender, #PB_Ignore, #PB_Ignore, Width, Height)
+  ResizeGadget(#mfSideBar, #PB_Ignore, #PB_Ignore, #PB_Ignore, Height)
+  ResizeGadget(#mfNewScene, #PB_Ignore, Height - 50, #PB_Ignore, #PB_Ignore)
+EndProcedure
+; IDE Options = SpiderBasic 2.00 (Windows - x86)
+; CursorPosition = 181
+; FirstLine = 169
+; Folding = --
+; WebAppName = Gadget in a canvas rendering
+; HtmlFilename = canvasgui.html
+; JavaScriptFilename = canvasgui.js
+; JavaScriptPath = sb
+; iOSAppOrientation = 0
+; AndroidAppOrientation = 0
+; EnableXP
+; CompileSourceDirectory
