@@ -22,10 +22,6 @@ Procedure ScrollMaterial(Material, UOffset.f, VOffset.f)
   !v_material.diffuseTexture.vOffset = v_voffset;
 EndProcedure
 
-Procedure SetMaterial(Mesh, Material)
-  !v_mesh.material = v_material;
-EndProcedure
-
 Procedure SetMaterialColor(Material, Type, Color)
   Protected r = Red(Color)/255
   Protected g = Green(Color)/255
@@ -43,9 +39,34 @@ Procedure SetMaterialColor(Material, Type, Color)
   EndSelect  
 EndProcedure
 
+Procedure SetMaterialTexture(Material, Type, FileName.s)
+  Select Type
+    Case #Specular
+      !v_material.specular.Texture = new BABYLON.Texture(v_filename);
+      
+    Case #Diffuse
+      !v_material.diffuse.Texture = new BABYLON.Texture(v_filename);
+      
+    Case #Ambient
+      !v_material.ambient.Texture = new BABYLON.Texture(v_filename);
+      
+    Case #Emissive
+      !v_material.emissive.Texture = new BABYLON.Texture(v_filename);
+      
+    Case #Bump
+      !v_material.bumpTexture = new BABYLON.Texture(v_filename);
+      
+  EndSelect
+EndProcedure
+
+Procedure SetMaterial(Mesh, Material)
+  !v_mesh.material = v_material;
+EndProcedure
+
 ; IDE Options = SpiderBasic 2.00 (Windows - x86)
-; CursorPosition = 40
-; Folding = -
+; CursorPosition = 64
+; FirstLine = 6
+; Folding = --
 ; iOSAppOrientation = 0
 ; AndroidAppOrientation = 0
 ; EnableXP
