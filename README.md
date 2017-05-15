@@ -78,6 +78,7 @@ Babylon.sbi for SpiderBasic
 * CreateTorus(Name.s, Diameter, Thickness, Tesselation = 32)
 * CreateTerrain(Name.s, HeightmapPath.s, Width.f, Depth.f, Subdivs.i, MinHeight.f, MaxHeight.f)
 * CreateBody(Mesh, Type, Mass.f = 1.0, Restitution.f = 1.0, Friction = 0.1)
+* ApplyMeshImpulse(Mesh, x.f, y.f, z.f)
 * GetMeshName(Mesh)
 * FreeMesh(Mesh)
 * MoveMesh(Mesh, x.f, y.f, z.f, Mode = #PB_Absolute)
