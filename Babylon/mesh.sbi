@@ -87,9 +87,15 @@ Procedure CreateBody(Mesh, Type, Mass.f = 1.0, Restitution.f = 1.0, Friction = 0
   EndSelect
   
   If Mass <> 0 ;Apply Impulse
-        !v_mesh.physicsImpostor.applyImpulse(new BABYLON.Vector3(0.01, 0.01, 0.01), v_mesh.getAbsolutePosition());
+      !v_mesh.physicsImpostor.applyImpulse(new BABYLON.Vector3(0.01, 0.01, 0.01), v_mesh.getAbsolutePosition());
   EndIf
 EndProcedure
+
+
+Procedure ApplyMeshImpulse(Mesh, x.f, y.f, z.f)
+  !v_mesh.physicsImpostor.applyImpulse(new BABYLON.Vector3(v_x, v_y, v_z), v_mesh.getAbsolutePosition());
+EndProcedure
+
 
 ;-
 ;- Move, Rotate, Scale, Position
@@ -206,7 +212,8 @@ Procedure Translate(Mesh, Value.f)
   !v_mesh.translate(new BABYLON.Vector3(v_value, 0, 0), 0.1, BABYLON.Space.LOCAL);
 EndProcedure
 ; IDE Options = SpiderBasic 2.00 (Windows - x86)
-; CursorPosition = 2
+; CursorPosition = 94
+; FirstLine = 52
 ; Folding = -----
 ; iOSAppOrientation = 0
 ; AndroidAppOrientation = 0

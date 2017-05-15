@@ -91,6 +91,7 @@ DeclareModule BJS
   Declare   CreateTerrain(Name.s, HeightmapPath.s, Width.f, Depth.f, Subdivs.i, MinHeight.f, MaxHeight.f)
 
   Declare   CreateBody(Mesh, Type, Mass.f = 1.0, Restitution.f = 1.0, Friction = 0.1)
+  Declare   ApplyMeshImpulse(Mesh, x.f, y.f, z.f)
   Declare.s GetMeshName(Mesh)
   Declare   FreeMesh(Mesh)
   Declare   MoveMesh(Mesh, x.f, y.f, z.f, Mode = #PB_Absolute)
@@ -173,10 +174,10 @@ Module BJS
 EndModule
   
 ; IDE Options = SpiderBasic 2.00 (Windows - x86)
-; CursorPosition = 108
-; FirstLine = 63
+; CursorPosition = 102
+; FirstLine = 83
 ; Folding = -
-; Markers = 120
+; Markers = 121
 ; iOSAppOrientation = 0
 ; AndroidAppOrientation = 0
 ; EnableXP
