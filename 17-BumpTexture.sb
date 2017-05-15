@@ -1,0 +1,41 @@
+﻿;Babylon.sbi - Bump Texture
+EnableExplicit
+
+IncludeFile "babylon/babylon.sbi"
+UseModule BJS
+
+Global Scene, Camera, Sphere, MatSphere, MatBump
+
+Declare LoadGame()
+Declare RenderGame()
+
+InitEngine(@LoadGame())
+
+Procedure LoadGame()    
+  Scene = CreateScene()
+  If Scene
+    Camera = CreateCamera("camera", 0, 10, 20, #ArcRotate)
+    ClearScene(RGB(128, 128, 128))
+    CreateLight("light", 0, 20, 0, 0.8)
+    
+    Sphere = CreateSphere("sphere", 8)
+    MatSphere = CreateMaterial("empty")
+    SetMaterialColor(MatSphere, #Diffuse, RGB(0, 0, 255))
+    SetMaterialTexture(MatSphere, #Bump, "data/textures/floor_bump.PNG")
+    SetMaterial(Sphere, MatSphere)
+    
+    RenderLoop(@RenderGame())
+  EndIf
+EndProcedure
+
+Procedure RenderGame()
+  RotateMesh(Sphere, 0.01, 0.01, 0.01, #PB_Relative)
+  RenderWorld() 
+EndProcedure
+; IDE Options = SpiderBasic 2.00 (Windows - x86)
+; CursorPosition = 20
+; Folding = -
+; iOSAppOrientation = 0
+; AndroidAppOrientation = 0
+; EnableXP
+; CompileSourceDirectory
