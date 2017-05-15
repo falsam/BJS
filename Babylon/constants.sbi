@@ -23,6 +23,7 @@
 #PlaneBody = 0
 #BoxBody = 1
 #SphereBody = 2
+#CylinderBody = 3
 
 ;Material Color
 #Specular = 0
@@ -68,8 +69,8 @@ Structure NewPick
 EndStructure
 Global Pick.NewPick
 ; IDE Options = SpiderBasic 2.00 (Windows - x86)
-; CursorPosition = 26
-; FirstLine = 5
+; CursorPosition = 25
+; FirstLine = 10
 ; iOSAppOrientation = 0
 ; AndroidAppOrientation = 0
 ; EnableXP
