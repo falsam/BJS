@@ -1,0 +1,81 @@
+﻿;Babylon.sbi - Apply Mesh Impulse
+EnableExplicit
+
+IncludeFile "babylon/babylon.sbi"
+UseModule BJS
+
+Enumeration
+  #Font
+  #mf
+  #mfRender
+EndEnumeration
+
+Global Scene, Camera, Ground, MatGround, Dim Boxs(9), MatBox
+
+Declare LoadGame()
+Declare RenderGame()
+Declare Resize()
+
+LoadFont(#Font, "Arial", 22)
+OpenWindow(#mf, 0, 0, 0, 0, "", #PB_Window_Background)
+CanvasGadget(#mfRender, 0, 0, WindowWidth(#mf), WindowHeight(#mf), #PB_Canvas_Transparent)
+BindEvent(#PB_Event_SizeWindow, @Resize())
+
+InitEngine(@LoadGame(), #mfRender)
+InitKey()
+
+Procedure LoadGame()
+  Protected n, Help
+  
+  Scene = CreateScene()
+  If Scene   
+    ClearScene(RGB(178, 34, 34))
+    Camera = CreateCamera("camera", 0, 10, 30, #ArcRotate)
+    CreateLight("light", 0, 20, 0, 0.8)  
+    
+    ;Create static ground (Mass = 0) 
+    Ground = CreateGround("ground", 100, 100)
+    CreateBody(Ground, #BoxBody, 0, 0.5, 0.5)
+    MatGround = CreateMaterial("beton", "data/textures/Beton1.png")
+    ScaleMaterial(MatGround, 5, 5)
+    SetMaterial(Ground, MatGround)
+    
+    ;Create 10 Box (Physic)
+    MatBox = CreateMaterial("crate", "data/textures/crate.png")
+    
+    For n = 0 To 9
+      Boxs(n) = CreateBox("box", 3)
+      MoveMesh(Boxs(n), (n * 4) - 18, 1.5, -30)
+      SetMaterial(Boxs(n), MatBox)
+      CreateBody(Boxs(n), #BoxBody, 1, 1, 1)
+    Next
+    
+    Help = TextGadget(-1, 20, WindowHeight(#mf) - 50, 400, 22, "Press the space key to send a pulse.")
+    SetGadgetColor(Help, #PB_Gadget_FrontColor, RGB(255, 255, 255))
+    SetGadgetFont(Help, FontID(#Font))
+    RenderLoop(@RenderGame())    
+  EndIf
+EndProcedure
+
+Procedure RenderGame()
+  Protected n
+  
+  If KeyReleased(#PB_Key_Space)
+    For n = 0 To 9
+      ApplyMeshImpulse(Boxs(n), 0, Random(20, 10), Random(5, 2))
+    Next
+  EndIf
+  RenderWorld() 
+EndProcedure
+
+Procedure Resize()
+  ResizeGadget(#mfRender, #PB_Ignore, #PB_Ignore, WindowWidth(#mf), WindowHeight(#mf))
+EndProcedure
+
+; IDE Options = SpiderBasic 2.00 (Windows - x86)
+; CursorPosition = 54
+; Folding = -
+; iOSAppOrientation = 0
+; AndroidAppOrientation = 0
+; EnableXP
+; CompileSourceDirectory
