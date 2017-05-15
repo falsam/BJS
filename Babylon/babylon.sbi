@@ -74,11 +74,12 @@ DeclareModule BJS
   Declare   SetCameraRadius(Camera, Value.f)
   
   ;-Material.sbi
-  Declare   CreateMaterial(Name.s, Image.s, BackFaceCulling = #False)
+  Declare   CreateMaterial(Name.s, Image.s = "" , BackFaceCulling = #False)
   Declare   ScaleMaterial(Material, UScale.f, VScale.f)
   Declare   ScrollMaterial(Material, UOffset.f, VOffset.f)
   Declare   SetMaterial(Mesh, Material)
   Declare   SetMaterialColor(Material, Type, Color)
+  Declare   SetMaterialTexture(Material, Type, FileName.s)
   
   ;-Mesh.sbi
   Declare   CreateSphere(Name.s, Size.f, Subdivs.i = 16)  
@@ -182,10 +183,10 @@ Module BJS
 EndModule
   
 ; IDE Options = SpiderBasic 2.00 (Windows - x86)
-; CursorPosition = 137
-; FirstLine = 120
+; CursorPosition = 76
+; FirstLine = 57
 ; Folding = -
-; Markers = 125
+; Markers = 126
 ; iOSAppOrientation = 0
 ; AndroidAppOrientation = 0
 ; EnableXP

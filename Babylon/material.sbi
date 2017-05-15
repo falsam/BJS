@@ -2,10 +2,15 @@
 
 ;Last update : 08 May 2017
 
-Procedure CreateMaterial(Name.s, Image.s, BackFaceCulling = #False)
+Procedure CreateMaterial(Name.s, Image.s = "" , BackFaceCulling = #False)
   !var material = new BABYLON.StandardMaterial(v_name, v_bjscurrentscene);
-  !material.diffuseTexture = new BABYLON.Texture(v_image, v_bjscurrentscene);
+  
+  If Image.s <> ""
+    !material.diffuseTexture = new BABYLON.Texture(v_image, v_bjscurrentscene);
+  EndIf
+  
   !material.backFaceCulling = v_backfaceculling;  //Show (or not) the front and the back of an element
+  
   If LCase(GetExtensionPart(image)) = "png"
     !material.diffuseTexture.hasAlpha = true
   EndIf
@@ -23,38 +28,38 @@ Procedure ScrollMaterial(Material, UOffset.f, VOffset.f)
 EndProcedure
 
 Procedure SetMaterialColor(Material, Type, Color)
-  Protected r = Red(Color)/255
-  Protected g = Green(Color)/255
-  Protected b = Blue(Color)/255
+  Protected r.f = Red(Color)/255
+  Protected g.f = Green(Color)/255
+  Protected b.f = Blue(Color)/255
   
   Select Type
     Case #Specular
-      !v_material.specularColor = new BABYLON.Color3(v_r, v_g, v_r);
+      !v_material.specularColor = new BABYLON.Color3(v_r, v_g, v_b);
       
     Case #Diffuse
-      !v_material.diffuseColor = new BABYLON.Color3(v_r, v_g, v_r);
+      !v_material.diffuseColor = new BABYLON.Color3(v_r, v_g, v_b);
       
     Case #Ambient
-      !v_material.ambientColor = new BABYLON.Color3(v_r, v_g, v_r);
+      !v_material.ambientColor = new BABYLON.Color3(v_r, v_g, v_b);
   EndSelect  
 EndProcedure
 
 Procedure SetMaterialTexture(Material, Type, FileName.s)
   Select Type
     Case #Specular
-      !v_material.specular.Texture = new BABYLON.Texture(v_filename);
+      !v_material.specular.Texture = new BABYLON.Texture(v_filename, v_bjscurrentscene);
       
     Case #Diffuse
-      !v_material.diffuse.Texture = new BABYLON.Texture(v_filename);
+      !v_material.diffuse.Texture = new BABYLON.Texture(v_filename, v_bjscurrentscene);
       
     Case #Ambient
-      !v_material.ambient.Texture = new BABYLON.Texture(v_filename);
+      !v_material.ambient.Texture = new BABYLON.Texture(v_filename, v_bjscurrentscene);
       
     Case #Emissive
-      !v_material.emissive.Texture = new BABYLON.Texture(v_filename);
+      !v_material.emissive.Texture = new BABYLON.Texture(v_filename, v_bjscurrentscene);
       
     Case #Bump
-      !v_material.bumpTexture = new BABYLON.Texture(v_filename);
+      !v_material.bumpTexture = new BABYLON.Texture(v_filename, v_bjscurrentscene);
       
   EndSelect
 EndProcedure
@@ -64,8 +69,8 @@ Procedure SetMaterial(Mesh, Material)
 EndProcedure
 
 ; IDE Options = SpiderBasic 2.00 (Windows - x86)
-; CursorPosition = 64
-; FirstLine = 6
+; CursorPosition = 42
+; FirstLine = 11
 ; Folding = --
 ; iOSAppOrientation = 0
 ; AndroidAppOrientation = 0

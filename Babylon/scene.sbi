@@ -65,8 +65,7 @@ Procedure SceneDebug()
 EndProcedure
 
 ; IDE Options = SpiderBasic 2.00 (Windows - x86)
-; CursorPosition = 37
-; FirstLine = 7
+; CursorPosition = 7
 ; Folding = --
 ; iOSAppOrientation = 0
 ; AndroidAppOrientation = 0

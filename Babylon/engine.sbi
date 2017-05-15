@@ -21,13 +21,7 @@ Procedure InitEngine(Callback, CanvasGadget = #PB_Ignore)
   !         v_bjsengine = new BABYLON.Engine(v_bjscanvas, true);  
   !         window.addEventListener('resize', function(){v_bjsengine.resize(); });  
   !         v_callback()
-  
-  ;!         require(["sbbjs/babylon.objFileLoader.js"], 
-  ;!           function() {
-  ;!             v_objimport = true
-  ;!             v_callback() }
-  ;!         )
-  
+    
   !       }
   !     );    
 EndProcedure  
@@ -48,15 +42,11 @@ Procedure RenderWorld()
   !v_bjscurrentscene.render();
 EndProcedure
 
-Procedure EnablePhysics()
-  !v_bjscurrentscene.enablePhysics();  
-EndProcedure
-
 Procedure MeshCollide(Mesh1, Mesh2)
   !return (v_mesh1.intersectsMesh(v_mesh2, true))  
 EndProcedure
 
-;Asset Manager
+;Asset Manager (not operationel)
 Procedure UseAssetManager()
   !return new BABYLON.AssetsManager(v_bjscurrentscene); 
 EndProcedure
@@ -71,7 +61,7 @@ Procedure AssetManagerLoad(AssetManager)
   !v_assetmanager.load()  
 EndProcedure
 ; IDE Options = SpiderBasic 2.00 (Windows - x86)
-; CursorPosition = 16
+; CursorPosition = 43
 ; Folding = --
 ; iOSAppOrientation = 0
 ; AndroidAppOrientation = 0

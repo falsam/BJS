@@ -1,6 +1,6 @@
 ﻿;Babylon.js for SpiderBasic : Camera 
 
-;Last update : 13 May 2017
+;Last update : 15 May 2017
 
 Procedure CreateCamera(Name.s, x.f, y.f, z.f, Type = #Free)
   Select Type
@@ -19,7 +19,7 @@ Procedure CreateCamera(Name.s, x.f, y.f, z.f, Type = #Free)
       !camera.cameraAcceleration = 0.05
       !camera.maxCameraSpeed = 20
   EndSelect
-  !v_bjscurrentscene.collisionsEnabled = true;
+  
   !camera.attachControl(v_bjscanvas, true);
   !camera.setTarget(BABYLON.Vector3.Zero());
   !camera.checkCollisions = true
@@ -104,10 +104,6 @@ Procedure CameraBodySize(Camera, x.f = 1, y.f = 1, z.f = 1)
   !v_camera.ellipsoid = new BABYLON.Vector3(v_x, v_y, v_z);  
 EndProcedure
 
-Procedure GetCameraBeta(Camera)
-  !return v_camera.beta  
-EndProcedure
-
 Procedure MoveCamera(Camera, x.f, y.f, z.f, Mode = #PB_Absolute)
   If mode = #PB_Absolute
     !v_camera.position.x = v_x;
@@ -132,9 +128,13 @@ Procedure CameraZ(Camera)
    !return v_camera.position.z    
 EndProcedure
 
-
+;Camera ArcRotate
 Procedure GetCameraAlpha(Camera)
   !return v_camera.alpha  
+EndProcedure
+
+Procedure GetCameraBeta(Camera)
+  !return v_camera.beta  
 EndProcedure
 
 Procedure GetCameraRadius(Camera)
@@ -153,7 +153,7 @@ Procedure SetCameraRadius(Camera, Value.f)
   !return v_camera.radius = v_value  
 EndProcedure
 ; IDE Options = SpiderBasic 2.00 (Windows - x86)
-; CursorPosition = 2
+; CursorPosition = 64
 ; Folding = ----
 ; iOSAppOrientation = 0
 ; AndroidAppOrientation = 0
