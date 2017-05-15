@@ -25,10 +25,12 @@
 #SphereBody = 2
 #CylinderBody = 3
 
-;Material Color
+;Material Color & Texture
 #Specular = 0
 #Diffuse = 1
 #Ambient = 2
+#Emissive = 3
+#Bump = 4
 
 ;Parent : Engine.sbi
 ;Chile  : Camera.sbi
@@ -69,7 +71,7 @@ Structure NewPick
 EndStructure
 Global Pick.NewPick
 ; IDE Options = SpiderBasic 2.00 (Windows - x86)
-; CursorPosition = 25
+; CursorPosition = 27
 ; FirstLine = 10
 ; iOSAppOrientation = 0
 ; AndroidAppOrientation = 0
