@@ -25,6 +25,7 @@ EndProcedure
 
 Procedure IsMusicPlay(Music)
   !return v_music.isPlaying()
+EndProcedure
 
 Procedure MusicPause(Music)
   !v_music.pause()
@@ -52,7 +53,7 @@ EndProcedure
 
 
 ; IDE Options = SpiderBasic 2.00 (Windows - x86)
-; CursorPosition = 25
+; CursorPosition = 28
 ; Folding = --
 ; iOSAppOrientation = 0
 ; AndroidAppOrientation = 0
