@@ -12,11 +12,26 @@ Procedure MusicLoad(Name.s, FileName.s, Loop = #False, Autoplay = #False, CallBa
 EndProcedure
 
 Procedure MusicVolume(Music, Value.f)
-  !v_music.setVolume(v_value);
+  !v_music.setVolume(v_value); 
+EndProcedure
+
+Procedure GetMusicVolume(Music)
+  !return v_music.getVolume()
 EndProcedure
 
 Procedure MusicPlay(Music)
   !v_music.play()
+EndProcedure
+
+Procedure IsMusicPlay(Music)
+  !return v_music.isPlaying()
+
+Procedure MusicPause(Music)
+  !v_music.pause()
+EndProcedure
+
+Procedure IsMusicPause(Music)
+  !return v_music.isPaused  
 EndProcedure
 
 Procedure MusicStop(Music)
@@ -37,7 +52,7 @@ EndProcedure
 
 
 ; IDE Options = SpiderBasic 2.00 (Windows - x86)
-; CursorPosition = 10
+; CursorPosition = 25
 ; Folding = --
 ; iOSAppOrientation = 0
 ; AndroidAppOrientation = 0

@@ -11,7 +11,6 @@ DeclareModule BJS
   Declare   CreateSpace2D(Scene)
   Declare   RenderLoop(Callback)
   Declare   RenderWorld()  
-  Declare   EnablePhysics();
   Declare   MeshCollide(Mesh1, Mesh2)
   
   Declare   UseAssetManager()
@@ -89,14 +88,19 @@ DeclareModule BJS
   Declare   CreateCylinder(Name.s, Height.f, DiamTop.f, DiamBottom.f, Tessellation.i = 30, HeightSubdivs.i = 1)
   Declare   CreateTorus(Name.s, Diameter, Thickness, Tesselation = 32)
   Declare   CreateTerrain(Name.s, HeightmapPath.s, Width.f, Depth.f, Subdivs.i, MinHeight.f, MaxHeight.f)
-
+  
+  ;Physics
   Declare   CreateBody(Mesh, Type, Mass.f = 1.0, Restitution.f = 1.0, Friction = 0.1)
   Declare   ApplyMeshImpulse(Mesh, x.f, y.f, z.f)
+  
   Declare.s GetMeshName(Mesh)
   Declare   FreeMesh(Mesh)
-  Declare   MoveMesh(Mesh, x.f, y.f, z.f, Mode = #PB_Absolute)
+    
   Declare   RotateMesh(Mesh, x.f, y.f, z.f, Mode = #PB_Absolute)
   Declare   ScaleMesh(Mesh, x.f, y.f, z.f, Mode = #PB_Absolute)
+  
+  ;Move, Position
+  Declare   MoveMesh(Mesh, x.f, y.f, z.f, Mode = #PB_Absolute)
   Declare.f MeshX(Mesh)
   Declare.f MeshY(Mesh)
   Declare.f MeshZ(Mesh)
@@ -137,7 +141,11 @@ DeclareModule BJS
   ;-music.sbi
   Declare   MusicLoad(Name.s, FileName.s, Loop = #False, Autoplay = #False, CallBack = #False)
   Declare   MusicVolume(Music, Value.f)
+  Declare   GetMusicVolume(Music)
   Declare   MusicPlay(Music)
+  Declare   IsMusicPlay(Music)
+  Declare   MusicPause(Music)
+  Declare   IsMusicPause(Music)
   Declare   MusicStop(Music)
   Declare   MusicPosition(Music, x.f, y.f, z.f)
   Declare   MusicAttachToMesh(Music, Mesh)
@@ -174,10 +182,10 @@ Module BJS
 EndModule
   
 ; IDE Options = SpiderBasic 2.00 (Windows - x86)
-; CursorPosition = 102
-; FirstLine = 83
+; CursorPosition = 137
+; FirstLine = 120
 ; Folding = -
-; Markers = 121
+; Markers = 125
 ; iOSAppOrientation = 0
 ; AndroidAppOrientation = 0
 ; EnableXP
