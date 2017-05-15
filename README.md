@@ -68,6 +68,8 @@ Babylon.sbi for SpiderBasic
 * ScrollMaterial(Material, UOffset.f, VOffset.f)
 * SetMaterial(Mesh, Material)
 * SetMaterialColor(Material, Type, Color)
+* SetMaterialTexture(Material, Type, FileName.s)
+* SetMaterial(Mesh, Material)  
   
 **Mesh**
 * CreateSphere(Name.s, Size.f, Subdivs.i = 16)  
@@ -120,7 +122,11 @@ Babylon.sbi for SpiderBasic
 **Music**
 * MusicLoad(Name.s, FileName.s, Loop = #False, Autoplay = #False, CallBack = #False)
 * MusicVolume(Music, Value.f)
+* GetMusicVolume(Music)
 * MusicPlay(Music)
+* IsMusicPlay(Music)
+* MusicPause(Music)
+* IsMusicPause(Music)
 * MusicStop(Music)
 * MusicPosition(Music, x.f, y.f, z.f)
 * MusicAttachToMesh(Music, Mesh)
