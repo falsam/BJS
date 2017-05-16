@@ -70,10 +70,3 @@ Structure NewPick
   point.NewPoint
 EndStructure
 Global Pick.NewPick
-; IDE Options = SpiderBasic 2.00 (Windows - x86)
-; CursorPosition = 27
-; FirstLine = 10
-; iOSAppOrientation = 0
-; AndroidAppOrientation = 0
-; EnableXP
-; CompileSourceDirectory
