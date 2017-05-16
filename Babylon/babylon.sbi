@@ -181,13 +181,4 @@ Module BJS
   IncludeFile "gui2d.sbi"
   IncludeFile "keyboard.sbi"
 EndModule
-  
-; IDE Options = SpiderBasic 2.00 (Windows - x86)
-; CursorPosition = 153
-; FirstLine = 130
-; Folding = -
-; Markers = 126
-; iOSAppOrientation = 0
-; AndroidAppOrientation = 0
-; EnableXP
-; CompileSourceDirectory
+ 
