@@ -131,10 +131,10 @@ Babylon.sbi for SpiderBasic
 * MusicAttachToMesh(Music, Mesh)
 
 **GUI**
-* Text2D(x, y, w, h, Text.s, CallBack = #False, Font.s = "25pt Arial", Color = $FF000000) 	
-* Rectangle2D(Name.s, x, y, w, h, Radius = 6, BorderSize = 4, CallBack = #False, FillColor = $FFFFFFFF, BorderColor = $FF000000) 
-* Button2D(Name.s, x.f, y.f, w.f, h.f, Text.s = "", CallBack = #False, Font.s = "25pt Arial", FillColor = $FFFFFFFF, FrontColor = $FF000000, BorderColor = $FF000000)
-* Image2D(Name.s, x.f, y.f, Image.s);
+* Text2D(x, y, Text.s, CallBack = #False, Font.s = "25pt Arial", Color = $FF000000) 	
+* Rectangle2D(x, y, w, h, Radius = 6, BorderSize = 4, CallBack = #False, FillColor = $FFFFFFFF, BorderColor = $FF000000) 
+* Button2D(x.f, y.f, w.f, h.f, Radius = 6, BorderSize = 4, Text.s = "", CallBack = #False, Font.s = "25pt Arial", FillColor = $FFFFFFFF, FrontColor = $FF000000, BorderColor = $FF000000)
+* Image2D(x.f, y.f, Image.s);
 * SetText(Element, Text.s)
 
 **Keyboard**
