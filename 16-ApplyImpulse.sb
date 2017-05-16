@@ -71,11 +71,3 @@ EndProcedure
 Procedure Resize()
   ResizeGadget(#mfRender, #PB_Ignore, #PB_Ignore, WindowWidth(#mf), WindowHeight(#mf))
 EndProcedure
-
-; IDE Options = SpiderBasic 2.00 (Windows - x86)
-; CursorPosition = 54
-; Folding = -
-; iOSAppOrientation = 0
-; AndroidAppOrientation = 0
-; EnableXP
-; CompileSourceDirectory
