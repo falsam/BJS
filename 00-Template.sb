@@ -3,20 +3,21 @@
 EnableExplicit
 
 IncludeFile "babylon/babylon.sbi"
-UseModule BJS
 
 Global Scene, Camera
 
 Declare LoadGame()
 Declare RenderGame()
 
+UseModule BJS
+
 InitEngine(@LoadGame())
 
 Procedure LoadGame()    
   Scene = CreateScene()
   If Scene
-    Camera = CreateCamera("camera", 0, 10, 20, #ArcRotate)
-    ClearScene(RGB(178, 34, 34))
+    Camera = CreateCamera("camera", 0, 10, 10, #ArcRotate)
+    
     RenderLoop(@RenderGame())
   EndIf
 EndProcedure
@@ -24,3 +25,10 @@ EndProcedure
 Procedure RenderGame()
   RenderWorld() 
 EndProcedure
+; IDE Options = SpiderBasic 2.00 (Windows - x86)
+; CursorPosition = 12
+; Folding = -
+; iOSAppOrientation = 0
+; AndroidAppOrientation = 0
+; EnableXP
+; CompileSourceDirectory
