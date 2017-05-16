@@ -46,6 +46,9 @@ Procedure CreateTerrain(Name.s, HeightmapPath.s, Width.f, Depth.f, Subdivs.i, Mi
   !return mesh
 EndProcedure
 
+Procedure CreateTube(Name.s, *VectorsArray)
+EndProcedure
+
 Procedure.s GetMeshName(Mesh)
   !return v_mesh.name  
 EndProcedure
@@ -220,8 +223,7 @@ Procedure Translate(Mesh, Value.f)
   !v_mesh.translate(new BABYLON.Vector3(v_value, 0, 0), 0.1, BABYLON.Space.LOCAL);
 EndProcedure
 ; IDE Options = SpiderBasic 2.00 (Windows - x86)
-; CursorPosition = 106
-; FirstLine = 58
+; CursorPosition = 49
 ; Folding = -----
 ; iOSAppOrientation = 0
 ; AndroidAppOrientation = 0

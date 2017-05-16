@@ -8,14 +8,14 @@ Procedure UseParent(CurrentParent = #False)
   EndIf  
 EndProcedure
 
-Procedure Text2D(x, y, w, h, Text.s, CallBack = #False, Font.s = "25pt Arial", Color = $FF000000) 	
+Procedure Text2D(x, y, Text.s, CallBack = #False, Font.s = "25pt Arial", Color = $FF000000) 	
   Protected r.f = Red(color)/255
   Protected g.f = Green(Color)/255
   Protected b.f = Blue(Color)/255
   Protected a.f = Alpha(Color)/255
   
   !var selector = new BABYLON.Text2D(v_text,{parent:bjs$v_bjscurrentparent,
-  ! 	marginAlignment: "h: left, v: top", x: v_x, y: -v_y, width: v_w, height: v_h,
+  ! 	marginAlignment: "h: left, v: top", x: v_x, y: -v_y,
   ! 	fontName: v_font, defaultFontColor: new BABYLON.Color4(v_r, v_g, v_b, v_a)
   !})		
   
@@ -27,7 +27,7 @@ Procedure Text2D(x, y, w, h, Text.s, CallBack = #False, Font.s = "25pt Arial", C
   !return selector;
 EndProcedure
 
-Procedure Rectangle2D(Name.s, x, y, w, h, Radius = 6, BorderSize = 4, CallBack = #False, FillColor = $FFFFFFFF, BorderColor = $FF000000)  
+Procedure Rectangle2D(x, y, w, h, Radius = 6, BorderSize = 4, CallBack = #False, FillColor = $FFFFFFFF, BorderColor = $FF000000)  
   Protected HexFillColor.s = "#" + Mid(Hex(FillColor), 7, 2) + Mid(Hex(FillColor), 5, 2) + Mid(Hex(FillColor), 3, 2) + Mid(Hex(FillColor), 1, 2) 
   Protected HexBorderColor.s = "#" + Mid(Hex(BorderColor), 7, 2) + Mid(Hex(BorderColor), 5, 2) + Mid(Hex(BorderColor), 3, 2) + Mid(Hex(BorderColor), 1, 2) 
   
@@ -43,7 +43,7 @@ Procedure Rectangle2D(Name.s, x, y, w, h, Radius = 6, BorderSize = 4, CallBack =
   !return selector;
 EndProcedure
 
-Procedure Button2D(Name.s, x.f, y.f, w.f, h.f, Text.s = "", CallBack = #False, Font.s = "25pt Arial", FillColor = $FFFFFFFF, FrontColor = $FF000000, BorderColor = $FF000000)
+Procedure Button2D(x.f, y.f, w.f, h.f, Radius = 6, BorderSize = 4, Text.s = "", CallBack = #False, Font.s = "25pt Arial", FillColor = $FFFFFFFF, FrontColor = $FF000000, BorderColor = $FF000000)
   
   Protected HexFillColor.s    = "#" + Mid(Hex(FillColor), 7, 2) + Mid(Hex(FillColor), 5, 2) + Mid(Hex(FillColor), 3, 2) + Mid(Hex(FillColor), 1, 2) 
   Protected HexFrontColor.s   = "#" + Mid(Hex(FrontColor), 7, 2) + Mid(Hex(FrontColor), 5, 2) + Mid(Hex(FrontColor), 3, 2) + Mid(Hex(FrontColor), 1, 2) 
@@ -58,12 +58,12 @@ Procedure Button2D(Name.s, x.f, y.f, w.f, h.f, Text.s = "", CallBack = #False, F
   !	marginAlignment: "h: left, v: top",
   !	x: v_x, y: -v_y,
   !	width: v_w, height: v_h, 
-  !	fill: v_hexfillcolor, roundRadius: 8, borderThickness: 4, border: v_hexbordercolor
+  !	fill: v_hexfillcolor, roundRadius: v_radius, borderThickness: v_bordersize, border: v_hexbordercolor
   !})
   
   !var selector = new BABYLON.Text2D(v_text, {					
   !	parent: rectangle, marginAlignment: "h:center, v:center",
-  !	id: v_name, fontName: v_font,
+  !	fontName: v_font,
   !	defaultFontColor: new BABYLON.Color4(v_r, v_g, v_b, v_a),
   !})		
   
@@ -73,11 +73,11 @@ Procedure Button2D(Name.s, x.f, y.f, w.f, h.f, Text.s = "", CallBack = #False, F
   !return selector;
 EndProcedure
 
-Procedure Image2D(Name.s, x.f, y.f, Image.s)
+Procedure Image2D(x.f, y.f, Image.s)
   !var texture = new BABYLON.Texture(v_image, v_scene, true, false, BABYLON.Texture.NEAREST_SAMPLINGMODE);
   !texture.hasAlpha = true;
     
-  !var selector = new BABYLON.Sprite2D(texture, {parent: bjs$v_bjscurrentparent, id: v_name,
+  !var selector = new BABYLON.Sprite2D(texture, {parent: bjs$v_bjscurrentparent
   If BJScurrentParent = BJScreenSpace2D
   !	  marginAlignment: "h: left, v: top",
   EndIf 
@@ -91,8 +91,8 @@ Procedure SetText(Element, Text.s)
 EndProcedure    
 
 ; IDE Options = SpiderBasic 2.00 (Windows - x86)
-; CursorPosition = 89
-; FirstLine = 32
+; CursorPosition = 65
+; FirstLine = 17
 ; Folding = --
 ; iOSAppOrientation = 0
 ; AndroidAppOrientation = 0
