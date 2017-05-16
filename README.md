@@ -66,7 +66,6 @@ Babylon.sbi for SpiderBasic
 * CreateMaterial(Name.s, Image.s, BackFaceCulling = #False)
 * ScaleMaterial(Material, UScale.f, VScale.f)
 * ScrollMaterial(Material, UOffset.f, VOffset.f)
-* SetMaterial(Mesh, Material)
 * SetMaterialColor(Material, Type, Color)
 * SetMaterialTexture(Material, Type, FileName.s)
 * SetMaterial(Mesh, Material)  
