@@ -5,8 +5,7 @@ Babylon.sbi for SpiderBasic
 * InitEngine(Callback, CanvasOutput = #PB_Ignore)  
 * CreateSpace2D(Scene)  
 * RenderLoop(Callback)  
-* RenderWorld()  
-* EnablePhysics()  
+* RenderWorld() 
 * MeshCollide(Mesh1, Mesh2)
   
 **Scene**
@@ -15,8 +14,7 @@ Babylon.sbi for SpiderBasic
 * ClearScene(color)  
 * CurrentScene(Scene, Camera)  
 * ImportScene(Name.s, Path.s, FileName.s, Callback)  
-* SaveScene(Scene, Name.s)  
-* EnableOffLineSupport(Value = #True)   
+* SaveScene(Scene, Name.s)
 * SceneDebug()  
    
 **Environment**
