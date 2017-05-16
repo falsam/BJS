@@ -24,10 +24,3 @@ Procedure RunURL(Url.s, NewTab.b = #True)
   !win.focus();
 EndProcedure
 
-; IDE Options = SpiderBasic 2.00 (Windows - x86)
-; CursorPosition = 15
-; Folding = -
-; iOSAppOrientation = 0
-; AndroidAppOrientation = 0
-; EnableXP
-; CompileSourceDirectory
