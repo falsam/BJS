@@ -151,7 +151,7 @@ DeclareModule BJS
   Declare   MusicPosition(Music, x.f, y.f, z.f)
   Declare   MusicAttachToMesh(Music, Mesh)
   
-  ;-gui2d.sbi
+  ;-gui2d.sbi (Experimental)
   Declare   UseParent(CurrentParent = #False)
   Declare   Text2D(x, y, Text.s, CallBack = #False, Font.s = "25pt Arial", Color = $FF000000) 	
   Declare   Rectangle2D(x, y, w, h, Radius = 6, BorderSize = 4, CallBack = #False, FillColor = $FFFFFFFF, BorderColor = $FF000000) 
@@ -183,7 +183,7 @@ Module BJS
 EndModule
   
 ; IDE Options = SpiderBasic 2.00 (Windows - x86)
-; CursorPosition = 157
+; CursorPosition = 153
 ; FirstLine = 130
 ; Folding = -
 ; Markers = 126
