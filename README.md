@@ -128,7 +128,7 @@ Babylon.sbi for SpiderBasic
 * MusicPosition(Music, x.f, y.f, z.f)
 * MusicAttachToMesh(Music, Mesh)
 
-**GUI**
+**GUI (Experimental)**
 * Text2D(x, y, Text.s, CallBack = #False, Font.s = "25pt Arial", Color = $FF000000) 	
 * Rectangle2D(x, y, w, h, Radius = 6, BorderSize = 4, CallBack = #False, FillColor = $FFFFFFFF, BorderColor = $FF000000) 
 * Button2D(x.f, y.f, w.f, h.f, Radius = 6, BorderSize = 4, Text.s = "", CallBack = #False, Font.s = "25pt Arial", FillColor = $FFFFFFFF, FrontColor = $FF000000, BorderColor = $FF000000)
