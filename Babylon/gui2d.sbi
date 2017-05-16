@@ -90,11 +90,3 @@ Procedure SetText(Element, Text.s)
   !v_element.text = v_text;  
 EndProcedure    
 
-; IDE Options = SpiderBasic 2.00 (Windows - x86)
-; CursorPosition = 65
-; FirstLine = 17
-; Folding = --
-; iOSAppOrientation = 0
-; AndroidAppOrientation = 0
-; EnableXP
-; CompileSourceDirectory
