@@ -40,14 +40,32 @@ Procedure CreateTorus(Name.s, Diameter, Thickness, Tesselation = 32)
   !return mesh
 EndProcedure
 
+Procedure CreateTube(Name.s, Array VectorsArray.NewVector(1), Radius.f, Tessellation = 32, RadiusFunction = #PB_Ignore)
+  Protected n, x.f, y.f, z.f
+  
+  If RadiusFunction = #PB_Ignore
+    RadiusFunction = 0
+  EndIf
+    
+  !var vectors = []
+  
+  For n = 0 To ArraySize(VectorsArray())
+    x = VectorsArray(n)\x
+    y = VectorsArray(n)\y
+    z = VectorsArray(n)\z   
+    !vectors.push( new BABYLON.Vector3(v_x, v_y, v_z) );  
+  Next
+  
+  !var mesh = BABYLON.Mesh.CreateTube(v_name, vectors, v_radius, v_tessellation, v_radiusfunction, null, v_bjscurrentscene, true, BABYLON.Mesh.FRONTSIDE); 
+  !return mesh
+EndProcedure
+
 Procedure CreateTerrain(Name.s, HeightmapPath.s, Width.f, Depth.f, Subdivs.i, MinHeight.f, MaxHeight.f)
   !var mesh = BABYLON.Mesh.CreateGroundFromHeightMap(v_name, v_heightmappath, v_width, v_depth, v_subdivs, v_minheight, v_maxheight, v_bjscurrentscene, false);
   !mesh.checkCollisions = true
   !return mesh
 EndProcedure
 
-Procedure CreateTube(Name.s, *VectorsArray)
-EndProcedure
 
 Procedure.s GetMeshName(Mesh)
   !return v_mesh.name  
@@ -222,3 +240,11 @@ EndProcedure
 Procedure Translate(Mesh, Value.f)
   !v_mesh.translate(new BABYLON.Vector3(v_value, 0, 0), 0.1, BABYLON.Space.LOCAL);
 EndProcedure
+; IDE Options = SpiderBasic 2.00 (Windows - x86)
+; CursorPosition = 58
+; FirstLine = 29
+; Folding = -----
+; iOSAppOrientation = 0
+; AndroidAppOrientation = 0
+; EnableXP
+; CompileSourceDirectory

@@ -88,6 +88,7 @@ DeclareModule BJS
   Declare   CreatePlane(Name.s, Size.f)
   Declare   CreateCylinder(Name.s, Height.f, DiamTop.f, DiamBottom.f, Tessellation.i = 30, HeightSubdivs.i = 1)
   Declare   CreateTorus(Name.s, Diameter, Thickness, Tesselation = 32)
+  Declare   CreateTube(Name.s, Array VectorsArray.NewVector(1), Radius.f, Tessellation = 32, RadiusFunction = #PB_Ignore)
   Declare   CreateTerrain(Name.s, HeightmapPath.s, Width.f, Depth.f, Subdivs.i, MinHeight.f, MaxHeight.f)
   
   ;Physics
@@ -181,4 +182,13 @@ Module BJS
   IncludeFile "gui2d.sbi"
   IncludeFile "keyboard.sbi"
 EndModule
- 
+  
+; IDE Options = SpiderBasic 2.00 (Windows - x86)
+; CursorPosition = 90
+; FirstLine = 83
+; Folding = -
+; Markers = 127
+; iOSAppOrientation = 0
+; AndroidAppOrientation = 0
+; EnableXP
+; CompileSourceDirectory
