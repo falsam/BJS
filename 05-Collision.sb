@@ -15,7 +15,6 @@ InitEngine(@LoadGame())
 
 Procedure LoadGame()    
   If CreateScene()
-    EnablePhysics()
     
     CreateCamera("camera", 0, 20, 30, #ArcRotate)
     Light = CreateLight("light", 5, 10, 0, 1, #Point)
@@ -47,3 +46,11 @@ EndProcedure
 Procedure RenderGame()
   RenderWorld() 
 EndProcedure
+
+; IDE Options = SpiderBasic 2.00 (Windows - x86)
+; CursorPosition = 17
+; Folding = -
+; iOSAppOrientation = 0
+; AndroidAppOrientation = 0
+; EnableXP
+; CompileSourceDirectory
