@@ -18,6 +18,7 @@ Dim TubeVetors.NewVector(4)
 Declare LoadGame()
 Declare RenderGame()
 
+
 ;Window & Render
 OpenWindow(#mf, 0, 0, 900, 600, "CreateTube()", #PB_Window_ScreenCentered)
 CanvasGadget(#mfRender, 0, 0, 900, 600, #PB_Canvas_Transparent)
@@ -69,3 +70,15 @@ Procedure RenderGame()
   RotateMesh(Tube, 0, 0.01, 0, #PB_Relative)
   RenderWorld() 
 EndProcedure
+; IDE Options = SpiderBasic 2.00 (Windows - x86)
+; CursorPosition = 33
+; FirstLine = 12
+; Folding = -
+; WebAppName = Create Tube
+; HtmlFilename = tube.html
+; JavaScriptFilename = tube.js
+; JavaScriptPath = sb
+; iOSAppOrientation = 0
+; AndroidAppOrientation = 0
+; EnableXP
+; CompileSourceDirectory

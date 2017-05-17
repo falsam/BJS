@@ -85,3 +85,15 @@ Procedure RenderGame()
   RotateMesh(Tube, 0, 0.01, 0, #PB_Relative)
   RenderWorld() 
 EndProcedure
+; IDE Options = SpiderBasic 2.00 (Windows - x86)
+; CursorPosition = 85
+; FirstLine = 28
+; Folding = -
+; WebAppName = Tube Radius Function
+; HtmlFilename = tuberadiusfunction.html
+; JavaScriptFilename = tuberadiusfunction.js
+; JavaScriptPath = sb
+; iOSAppOrientation = 0
+; AndroidAppOrientation = 0
+; EnableXP
+; CompileSourceDirectory
