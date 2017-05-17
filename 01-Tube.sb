@@ -13,7 +13,7 @@ EndEnumeration
 Global Scene, Camera, Tube, TubeMat, Light, 
 
 ;A tube consists of an array of 3D vectors. Example with 5 vectors
-Dim TubeVetors.NewVector(4)
+Dim TubeVectors.NewVector(4)
 
 Declare LoadGame()
 Declare RenderGame()
@@ -36,27 +36,27 @@ Procedure LoadGame()
     Light = CreateLight("light", 0, 20, 0, 0.8)
     
     ;Create Tube
-    TubeVetors(0)\x = 0    
-    TubeVetors(0)\y = 0
-    TubeVetors(0)\z = 0
+    TubeVectors(0)\x = 0    
+    TubeVectors(0)\y = 0
+    TubeVectors(0)\z = 0
 
-    TubeVetors(1)\x = 0    
-    TubeVetors(1)\y = 1
-    TubeVetors(1)\z = 0
+    TubeVectors(1)\x = 0    
+    TubeVectors(1)\y = 1
+    TubeVectors(1)\z = 0
     
-    TubeVetors(2)\x = 0    
-    TubeVetors(2)\y = 2
-    TubeVetors(2)\z = 0
+    TubeVectors(2)\x = 0    
+    TubeVectors(2)\y = 2
+    TubeVectors(2)\z = 0
     
-    TubeVetors(3)\x = 0    
-    TubeVetors(3)\y = 3
-    TubeVetors(3)\z = 0
+    TubeVectors(3)\x = 0    
+    TubeVectors(3)\y = 3
+    TubeVectors(3)\z = 0
     
-    TubeVetors(4)\x = 3    
-    TubeVetors(4)\y = 4
-    TubeVetors(4)\z = 0
+    TubeVectors(4)\x = 3    
+    TubeVectors(4)\y = 4
+    TubeVectors(4)\z = 0
         
-    Tube = CreateTube("My tube", TubeVetors(), 2)
+    Tube = CreateTube("My tube", TubeVectors(), 2)
     
     ;Important : Assign a material 
     TubeMat = CreateMaterial("tube material", "data/textures/misc.jpg")
@@ -71,7 +71,7 @@ Procedure RenderGame()
   RenderWorld() 
 EndProcedure
 ; IDE Options = SpiderBasic 2.00 (Windows - x86)
-; CursorPosition = 33
+; CursorPosition = 40
 ; FirstLine = 12
 ; Folding = -
 ; WebAppName = Create Tube
