@@ -1,0 +1,80 @@
+﻿;Babylon.sbi - Tube
+
+EnableExplicit
+
+IncludeFile "babylon/babylon.sbi"
+UseModule BJS
+
+Enumeration
+  #mf
+  #mfRender
+EndEnumeration
+
+Global Scene, Camera, Tube, TubeMat, Light, 
+
+;A tube consists of an array of 3D vectors. Example with 5 vectors
+Dim TubeVetors.NewVector(4)
+
+Declare LoadGame()
+Declare RenderGame()
+
+
+;Window & Render
+OpenWindow(#mf, 0, 0, 900, 600, "CreateTube()", #PB_Window_ScreenCentered)
+CanvasGadget(#mfRender, 0, 0, 900, 600, #PB_Canvas_Transparent)
+
+;Init Babylon with a canvas and load game
+InitEngine(@LoadGame(), #mfRender)
+
+Procedure LoadGame()    
+  Scene = CreateScene()
+  
+  If Scene
+    
+    ;Camera & Light
+    Camera = CreateCamera("camera", 0, 10, 20, #ArcRotate)  
+    Light = CreateLight("light", 0, 20, 0, 0.8)
+    
+    ;Create Tube
+    TubeVetors(0)\x = 0    
+    TubeVetors(0)\y = 0
+    TubeVetors(0)\z = 0
+
+    TubeVetors(1)\x = 0    
+    TubeVetors(1)\y = 1
+    TubeVetors(1)\z = 0
+    
+    TubeVetors(2)\x = 0    
+    TubeVetors(2)\y = 2
+    TubeVetors(2)\z = 0
+    
+    TubeVetors(3)\x = 0    
+    TubeVetors(3)\y = 3
+    TubeVetors(3)\z = 0
+    
+    TubeVetors(4)\x = 3    
+    TubeVetors(4)\y = 4
+    TubeVetors(4)\z = 0
+        
+    Tube = CreateTube("My tube", TubeVetors(), 2)
+    
+    ;Important : Assign a material 
+    TubeMat = CreateMaterial("tube material", "data/textures/misc.jpg")
+    SetMaterial(Tube, TubeMat)
+    
+    RenderLoop(@RenderGame())
+  EndIf
+EndProcedure
+
+Procedure RenderGame()
+  RotateMesh(Tube, 0, 0.01, 0, #PB_Relative)
+  RenderWorld() 
+EndProcedure
+; IDE Options = SpiderBasic 2.00 (Windows - x86)
+; CursorPosition = 60
+; FirstLine = 12
+; Folding = -
+; iOSAppOrientation = 0
+; AndroidAppOrientation = 0
+; EnableXP
+; CompileSourceDirectory

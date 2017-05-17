@@ -1,0 +1,95 @@
+﻿;Babylon.sbi - Tube
+
+EnableExplicit
+
+IncludeFile "babylon/babylon.sbi"
+UseModule BJS
+
+Enumeration
+  #mf
+  #mfRender
+EndEnumeration
+
+Global Scene, Camera, Tube, TubeMat, Light, 
+
+;A tube consists of an array of 3D vectors. Example with 5 vectors
+Dim TubeVetors.NewVector(4)
+
+Declare   LoadGame()
+Declare.f Radius(Position, Distance.f)
+Declare   RenderGame()
+
+;Window & Render
+OpenWindow(#mf, 0, 0, 900, 600, "CreateTube()", #PB_Window_ScreenCentered)
+CanvasGadget(#mfRender, 0, 0, 900, 600, #PB_Canvas_Transparent)
+
+;Init Babylon with a render on a canvas and load game
+InitEngine(@LoadGame(), #mfRender)
+
+Procedure LoadGame()    
+  Scene = CreateScene()
+  
+  If Scene
+    
+    ;Camera & Light
+    Camera = CreateCamera("camera", 0, 10, 20, #ArcRotate)  
+    Light = CreateLight("light", 0, 10, 0, 1)
+    
+    ;Create Tube 
+    TubeVetors(0)\x = 0    
+    TubeVetors(0)\y = 0
+    TubeVetors(0)\z = 0
+
+    TubeVetors(1)\x = 0    
+    TubeVetors(1)\y = 1
+    TubeVetors(1)\z = 0
+    
+    TubeVetors(2)\x = 0    
+    TubeVetors(2)\y = 2
+    TubeVetors(2)\z = 0
+    
+    TubeVetors(3)\x = 0    
+    TubeVetors(3)\y = 3
+    TubeVetors(3)\z = 0
+    
+    TubeVetors(4)\x = 0    
+    TubeVetors(4)\y = 4
+    TubeVetors(4)\z = 0
+    
+    ;The creation of this tube uses a procedure to calculate the rasius of each vector 
+    Tube = CreateTube("My tube", TubeVetors(), 0, 32, @Radius())
+    
+    ;Material
+    TubeMat = CreateMaterial("tube material", "data/textures/misc.jpg")
+    SetMaterial(Tube, TubeMat)
+    
+    RenderLoop(@RenderGame())
+  EndIf
+EndProcedure
+
+;This procedure will be called at each point of the path while constructing the tube.
+;It will then be passed two arguments : 
+;   -The position of the current point (1, 2, 3, 4, etc ...)
+;   -The distance of this point from the beginnig of the tube.
+;   -Your procedure must just return a radius value.
+Procedure.f Radius(Position, Distance.f)
+  Protected Radius.f
+  Radius = 3 * Cos(Distance / 5);
+  
+  Debug "Position " + Str(Position)  + " Radius " + StrF(Radius)
+  ProcedureReturn Radius
+EndProcedure
+
+
+Procedure RenderGame()
+  RotateMesh(Tube, 0, 0.01, 0, #PB_Relative)
+  RenderWorld() 
+EndProcedure
+; IDE Options = SpiderBasic 2.00 (Windows - x86)
+; CursorPosition = 66
+; FirstLine = 24
+; Folding = -
+; iOSAppOrientation = 0
+; AndroidAppOrientation = 0
+; EnableXP
+; CompileSourceDirectory
