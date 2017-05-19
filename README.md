@@ -3,7 +3,8 @@ Babylon.sbi for SpiderBasic
 
 **Engine**
 * InitEngine(Callback, CanvasOutput = #PB_Ignore)  
-* CreateSpace2D(Scene)  
+* CreateSpace2D(Scene)
+* BeforeRender(CallBack)
 * RenderLoop(Callback)  
 * RenderWorld() 
 * MeshCollide(Mesh1, Mesh2)
