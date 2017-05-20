@@ -63,3 +63,11 @@ EndProcedure
 Procedure SceneDebug()
   !v_bjscurrentscene.debugLayer.show();
 EndProcedure
+
+; IDE Options = SpiderBasic 2.00 (Windows - x86)
+; CursorPosition = 7
+; Folding = --
+; iOSAppOrientation = 0
+; AndroidAppOrientation = 0
+; EnableXP
+; CompileSourceDirectory

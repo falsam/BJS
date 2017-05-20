@@ -77,9 +77,10 @@ DeclareModule BJS
   Declare   CreateMaterial(Name.s, Image.s = "" , BackFaceCulling = #False)
   Declare   ScaleMaterial(Material, UScale.f, VScale.f)
   Declare   ScrollMaterial(Material, UOffset.f, VOffset.f)
-  Declare   SetMaterial(Mesh, Material)
   Declare   SetMaterialColor(Material, Type, Color)
   Declare   SetMaterialTexture(Material, Type, FileName.s)
+  Declare   CloneMaterial(Material)
+  Declare   SetMaterial(Mesh, Material)
   
   ;-Mesh.sbi
   Declare   CreateSphere(Name.s, Size.f, Subdivs.i = 16)  
@@ -88,6 +89,7 @@ DeclareModule BJS
   Declare   CreatePlane(Name.s, Size.f)
   Declare   CreateCylinder(Name.s, Height.f, DiamTop.f, DiamBottom.f, Tessellation.i = 30, HeightSubdivs.i = 1)
   Declare   CreateTorus(Name.s, Diameter, Thickness, Tesselation = 32)
+  Declare   CreateIcoSphere(Name.s, Radius, RadiusY, Subdivs = 16)
   Declare   CreateTube(Name.s, Array VectorsArray.NewVector(1), Radius.f, Tessellation = 32, RadiusFunction = #PB_Ignore)
   Declare   CreateTerrain(Name.s, HeightmapPath.s, Width.f, Depth.f, Subdivs.i, MinHeight.f, MaxHeight.f)
   
@@ -184,10 +186,10 @@ Module BJS
 EndModule
   
 ; IDE Options = SpiderBasic 2.00 (Windows - x86)
-; CursorPosition = 90
-; FirstLine = 83
+; CursorPosition = 81
+; FirstLine = 75
 ; Folding = -
-; Markers = 127
+; Markers = 129
 ; iOSAppOrientation = 0
 ; AndroidAppOrientation = 0
 ; EnableXP

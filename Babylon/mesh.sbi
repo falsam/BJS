@@ -57,6 +57,13 @@ Procedure CreateTube(Name.s, Array VectorsArray.NewVector(1), Radius.f, Tessella
   Next
   
   !var mesh = BABYLON.Mesh.CreateTube(v_name, vectors, v_radius, v_tessellation, v_radiusfunction, null, v_bjscurrentscene, true, BABYLON.Mesh.FRONTSIDE); 
+  !mesh.checkCollisions = true
+  !return mesh
+EndProcedure
+
+Procedure CreateIcoSphere(Name.s, Radius, RadiusY, Subdivs = 16)
+  !var mesh = BABYLON.MeshBuilder.CreateIcoSphere(v_name, {radius: v_radius, radiusY: v_radiusy, subdivisions: v_subdivs}, v_bjscurrentscene);
+  !mesh.checkCollisions = true
   !return mesh
 EndProcedure
 
@@ -117,7 +124,7 @@ Procedure CreateBody(Mesh, Type, Mass.f = 1.0, Restitution.f = 1.0, Friction = 0
         
   EndSelect
   
-  If Mass <> 0 ;Apply Impulse
+  If Mass <> 0 ;Apply small Impulse
       !v_mesh.physicsImpostor.applyImpulse(new BABYLON.Vector3(0.01, 0.01, 0.01), v_mesh.getAbsolutePosition());
   EndIf
 EndProcedure
@@ -241,9 +248,9 @@ Procedure Translate(Mesh, Value.f)
   !v_mesh.translate(new BABYLON.Vector3(v_value, 0, 0), 0.1, BABYLON.Space.LOCAL);
 EndProcedure
 ; IDE Options = SpiderBasic 2.00 (Windows - x86)
-; CursorPosition = 58
-; FirstLine = 29
-; Folding = -----
+; CursorPosition = 186
+; FirstLine = 182
+; Folding = ------
 ; iOSAppOrientation = 0
 ; AndroidAppOrientation = 0
 ; EnableXP

@@ -60,10 +60,24 @@ Procedure SetMaterialTexture(Material, Type, FileName.s)
       
     Case #Bump
       !v_material.bumpTexture = new BABYLON.Texture(v_filename, v_bjscurrentscene);
-      
+      !v_material.bumpTexture.uScale = v_material.diffuseTexture.uScale
+      !v_material.bumpTexture.vScale = v_material.diffuseTexture.vScale
   EndSelect
+EndProcedure
+
+Procedure CloneMaterial(Material)
+  !return v_material.clone()
 EndProcedure
 
 Procedure SetMaterial(Mesh, Material)
   !v_mesh.material = v_material;
 EndProcedure
+
+; IDE Options = SpiderBasic 2.00 (Windows - x86)
+; CursorPosition = 67
+; FirstLine = 13
+; Folding = --
+; iOSAppOrientation = 0
+; AndroidAppOrientation = 0
+; EnableXP
+; CompileSourceDirectory

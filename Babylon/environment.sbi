@@ -149,3 +149,11 @@ Procedure RenderShadows(Mesh, Value.b = #True)
   !v_mesh.receiveShadows = v_value;
 EndProcedure
 
+; IDE Options = SpiderBasic 2.00 (Windows - x86)
+; CursorPosition = 112
+; FirstLine = 80
+; Folding = ---
+; iOSAppOrientation = 0
+; AndroidAppOrientation = 0
+; EnableXP
+; CompileSourceDirectory
