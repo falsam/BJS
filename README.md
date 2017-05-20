@@ -67,6 +67,7 @@ Babylon.sbi for SpiderBasic
 * ScrollMaterial(Material, UOffset.f, VOffset.f)
 * SetMaterialColor(Material, Type, Color)
 * SetMaterialTexture(Material, Type, FileName.s)
+* CloneMaterial(Material)
 * SetMaterial(Mesh, Material)  
   
 **Mesh**
