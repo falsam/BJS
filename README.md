@@ -15,7 +15,7 @@ Babylon.sbi for SpiderBasic
 * ClearScene(color)  
 * CurrentScene(Scene, Camera)  
 * ImportScene(Name.s, Path.s, FileName.s, Callback)  
-* SaveScene(Scene, Name.s)
+* ExportScene(Scene, FileName.s)
 * SceneDebug()  
    
 **Environment**
