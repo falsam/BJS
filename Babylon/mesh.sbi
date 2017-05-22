@@ -73,9 +73,18 @@ Procedure CreateTerrain(Name.s, HeightmapPath.s, Width.f, Depth.f, Subdivs.i, Mi
   !return mesh
 EndProcedure
 
-
+;-
 Procedure.s GetMeshName(Mesh)
   !return v_mesh.name  
+EndProcedure
+
+Procedure GetMesh(MeshName.s)
+  !for (var index = 0; index < v_bjscurrentscene.meshes.length; ++index) {
+  ! if (v_bjscurrentscene.meshes[index].name == v_meshname) {
+  !   return v_bjscurrentscene.meshes[index];
+  !   break;
+  ! };
+  !}
 EndProcedure
 
 Procedure FreeMesh(Mesh)
@@ -183,8 +192,15 @@ Procedure.f MeshZ(Mesh)
   !return v_mesh.position.z  
 EndProcedure
 
-Procedure CloneMesh(Mesh)
-  !return v_mesh.clone()  
+Procedure CloneMesh(Mesh, Name.s = "")
+  If Trim(Name) = ""
+    !v_name = v_mesh.name
+  EndIf
+    
+  !var mesh =  v_mesh.clone();
+  !mesh.id = v_name 
+  !mesh.name = v_name;
+  !return mesh
 EndProcedure
 
 Procedure Attach(Parent, Child, x.f, y.f, z.f)
@@ -248,8 +264,8 @@ Procedure Translate(Mesh, Value.f)
   !v_mesh.translate(new BABYLON.Vector3(v_value, 0, 0), 0.1, BABYLON.Space.LOCAL);
 EndProcedure
 ; IDE Options = SpiderBasic 2.00 (Windows - x86)
-; CursorPosition = 186
-; FirstLine = 182
+; CursorPosition = 195
+; FirstLine = 190
 ; Folding = ------
 ; iOSAppOrientation = 0
 ; AndroidAppOrientation = 0

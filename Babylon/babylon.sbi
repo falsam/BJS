@@ -25,7 +25,7 @@ DeclareModule BJS
   Declare   EnableOffLineSupport(Value = #True) 
   Declare   CurrentScene(Scene, Camera)
   Declare   ImportScene(Name.s, Path.s, FileName.s, Callback)
-  Declare   SaveScene(Scene, Name.s)
+  Declare   ExportScene(Scene, FileName.s)
   Declare   SceneDebug()
    
   ;-Environment.sbi
@@ -98,6 +98,7 @@ DeclareModule BJS
   Declare   ApplyMeshImpulse(Mesh, x.f, y.f, z.f)
   
   Declare.s GetMeshName(Mesh)
+  Declare   GetMesh(MeshName.s)
   Declare   FreeMesh(Mesh)
     
   Declare   RotateMesh(Mesh, x.f, y.f, z.f, Mode = #PB_Absolute)
@@ -109,7 +110,7 @@ DeclareModule BJS
   Declare.f MeshY(Mesh)
   Declare.f MeshZ(Mesh)
   
-  Declare   CloneMesh(Mesh)
+  Declare   CloneMesh(Mesh, Name.s = "")
   Declare   Attach(Parent, Child, x.f, y.f, z.f)
     
   ;Picking
@@ -186,10 +187,10 @@ Module BJS
 EndModule
   
 ; IDE Options = SpiderBasic 2.00 (Windows - x86)
-; CursorPosition = 81
-; FirstLine = 75
+; CursorPosition = 112
+; FirstLine = 108
 ; Folding = -
-; Markers = 129
+; Markers = 130
 ; iOSAppOrientation = 0
 ; AndroidAppOrientation = 0
 ; EnableXP

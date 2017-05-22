@@ -36,18 +36,12 @@ Procedure CurrentScene(Scene, Camera)
 EndProcedure
 
 Procedure ImportScene(Name.s, Path.s, FileName.s, Callback) 
-  !var mesh
-  !BABYLON.SceneLoader.ImportMesh("", v_path, v_filename + '?' + (new Date()).getTime(), v_bjscurrentscene, function (meshes, particleSystems, skeletons) {
-  !  mesh = meshes[0];
-  !  mesh.name = v_name
-  !  mesh.isVisible = true;
-  !  mesh.updatable = true;
-  !  mesh.checkCollisions = true
-  !  v_callback(mesh);
+  !BABYLON.SceneLoader.ImportMesh("", v_path, v_filename + '?' + (new Date()).getTime(), v_bjscurrentscene, function (BJSMeshes, BJSParticles, BJSSkeletons) {
+  !  v_callback(v_name);
   !});
 EndProcedure
 
-Procedure SaveScene(Scene, FileName.s)
+Procedure ExportScene(Scene, FileName.s)
   Protected StrScene.s
   
   !var serializedScene = BABYLON.SceneSerializer.Serialize(v_scene)
@@ -65,7 +59,8 @@ Procedure SceneDebug()
 EndProcedure
 
 ; IDE Options = SpiderBasic 2.00 (Windows - x86)
-; CursorPosition = 7
+; CursorPosition = 38
+; FirstLine = 1
 ; Folding = --
 ; iOSAppOrientation = 0
 ; AndroidAppOrientation = 0
