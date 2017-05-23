@@ -1,6 +1,6 @@
 ;Babylon.js for SpiderBasic 
 
-;Last update : 12 May 2017
+;Last update : 24 May 2017
 
 DeclareModule BJS
   ;-Constants.sbi
@@ -51,7 +51,7 @@ DeclareModule BJS
   Declare   RenderShadows(Mesh, Value.b = #True) 
  
   ;-Camera.sbi 
-  Declare   CreateCamera(id.s, x.f, y.f, z.f, Type = #Free)
+  Declare   CreateCamera(Name.s, x.f, y.f, z.f, Type = #Free)
   Declare   CameraLookAtMesh(Camera, MeshObject)
   Declare   CameraLookAt(Camera, x.f, y.f, z.f)
   Declare   ActiveCamera(Camera)
@@ -187,8 +187,8 @@ Module BJS
 EndModule
   
 ; IDE Options = SpiderBasic 2.00 (Windows - x86)
-; CursorPosition = 112
-; FirstLine = 108
+; CursorPosition = 53
+; FirstLine = 18
 ; Folding = -
 ; Markers = 130
 ; iOSAppOrientation = 0
