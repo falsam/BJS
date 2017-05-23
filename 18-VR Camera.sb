@@ -1,0 +1,66 @@
+﻿;Babylon.sbi - VR Camera (Experimental)
+
+EnableExplicit
+
+IncludeFile "babylon/babylon.sbi"
+
+Global Scene, Camera, Light, RedMat, RedBox, BlueMat, BlueBox
+
+Declare LoadGame()
+Declare RenderGame()
+
+UseModule BJS
+
+InitEngine(@LoadGame())
+
+Procedure LoadGame()    
+  Scene = CreateScene()
+  
+  If Scene
+    
+    ;This creates and positions a device orientation camera  (0, 0, 0)
+    Camera = CreateCamera("VR Cam", 0, 0, 0, #VR)
+    
+    ;This targets the camera to scene origin
+    CameraLookAt(Camera, 0, 0, 0)
+    
+    ;Light
+    Light = CreateLight("light", 0, 1, 0, 1)
+    
+    ;Red Box
+    RedMat = CreateMaterial("Red Color", "")
+    SetMaterialColor(RedMat, #Diffuse, RGB(255, 0, 0))
+    
+    RedBox = CreateBox("box", 5)
+    SetMaterial(RedBox, RedMat)
+    
+    MoveMesh(RedBox, 0, 0, 10)
+    
+    ;Create Blue Box
+    BlueMat = CreateMaterial("blue color", "")
+    SetMaterialColor(BlueMat, #Diffuse, RGB(0, 0, 255))
+    
+    BlueBox = CreateBox("blue box", 5)
+    SetMaterial(BlueBox, BlueMat)
+    
+    MoveMesh(BlueBox, 0, 0, -10)
+   
+    RenderLoop(@RenderGame())
+  EndIf
+EndProcedure
+
+Procedure RenderGame()
+  RenderWorld() 
+EndProcedure
+; IDE Options = SpiderBasic 2.00 (Windows - x86)
+; CursorPosition = 29
+; Folding = -
+; WebAppName = VR Camera
+; HtmlFilename = vrcamera.html
+; JavaScriptFilename = vrcamera.js
+; JavaScriptPath = sb
+; CopyJavaScriptLibrary
+; iOSAppOrientation = 0
+; AndroidAppOrientation = 0
+; EnableXP
+; CompileSourceDirectory
