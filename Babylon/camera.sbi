@@ -18,6 +18,12 @@ Procedure CreateCamera(Name.s, x.f, y.f, z.f, Type = #Free)
       !camera.radius = 10;
       !camera.cameraAcceleration = 0.05
       !camera.maxCameraSpeed = 20
+      
+    Case #VR
+      !var camera = new BABYLON.VRDeviceOrientationFreeCamera(v_name, new BABYLON.Vector3(v_x, v_y, v_z), v_bjscurrentscene);
+      !camera.attachControl(v_bjscanvas, true);
+      !return camera
+      
   EndSelect
   
   !camera.attachControl(v_bjscanvas, true);
@@ -153,7 +159,7 @@ Procedure SetCameraRadius(Camera, Value.f)
   !return v_camera.radius = v_value  
 EndProcedure
 ; IDE Options = SpiderBasic 2.00 (Windows - x86)
-; CursorPosition = 64
+; CursorPosition = 23
 ; Folding = ----
 ; iOSAppOrientation = 0
 ; AndroidAppOrientation = 0

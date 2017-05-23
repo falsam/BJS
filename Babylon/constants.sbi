@@ -12,6 +12,7 @@
 #Free = 0
 #ArcRotate = 1
 #Follow = 2
+#VR = 3
 
 ;Light
 #Point = 1
@@ -71,8 +72,7 @@ Structure NewPick
 EndStructure
 Global Pick.NewPick
 ; IDE Options = SpiderBasic 2.00 (Windows - x86)
-; CursorPosition = 69
-; FirstLine = 13
+; CursorPosition = 14
 ; iOSAppOrientation = 0
 ; AndroidAppOrientation = 0
 ; EnableXP
