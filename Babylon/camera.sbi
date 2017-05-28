@@ -1,11 +1,14 @@
 ﻿;Babylon.js for SpiderBasic : Camera 
 
-;Last update : 15 May 2017
+;Last update : 27 May 2017
 
 Procedure CreateCamera(Name.s, x.f, y.f, z.f, Type = #Free)
   Select Type
     Case #Free
       !var camera = new BABYLON.FreeCamera(v_name, new BABYLON.Vector3(v_x, v_y, v_z), v_bjscurrentscene);
+      
+    Case #Universal
+      !var camera = new BABYLON.UniversalCamera(v_name, new BABYLON.Vector3(v_x, v_y, v_z), v_bjscurrentscene);
       
     Case #ArcRotate
       !var camera = new BABYLON.ArcRotateCamera(v_name, 0, 0, 0, BABYLON.Vector3.Zero(), v_bjscurrentscene);
@@ -21,16 +24,27 @@ Procedure CreateCamera(Name.s, x.f, y.f, z.f, Type = #Free)
       
     Case #VR
       !var camera = new BABYLON.VRDeviceOrientationFreeCamera(v_name, new BABYLON.Vector3(v_x, v_y, v_z), v_bjscurrentscene);
-      !camera.attachControl(v_bjscanvas, true);
-      !return camera
+      ;!camera.attachControl(v_bjscanvas, true);
+      ;!return camera
       
+    Case #Camera360
+      !var camera = new BABYLON.DeviceOrientationCamera(v_name, new BABYLON.Vector3(v_x, v_y, v_z), v_bjscurrentscene);
   EndSelect
   
   !camera.attachControl(v_bjscanvas, true);
   !camera.setTarget(BABYLON.Vector3.Zero());
-  !camera.checkCollisions = true
-  !camera.applyGravity = true
+  !camera.checkCollisions = true;
+  !camera.applyGravity = true;
   !return camera
+EndProcedure
+
+Procedure CameraFov(Camera, Fov.f)
+  !v_camera.fov = v_fov;  
+EndProcedure
+
+Procedure CameraRange(Camera, Near, Far)
+  !v_camera.manZ = v_near;
+  !v_camera.maxZ = v_far;
 EndProcedure
 
 Procedure CameraLookAtMesh(Camera, MeshObject)
@@ -39,6 +53,10 @@ EndProcedure
 
 Procedure CameraLookAt(Camera, x.f, y.f, z.f)
     !v_camera.setTarget(new BABYLON.Vector3(v_x, v_y, v_z))       
+EndProcedure
+
+Procedure CameraSpeed(Camera, Speed)
+  !v_camera.speed = v_speed;
 EndProcedure
 
 Procedure RotateCamera(Camera, x.f, y.f, z.f, Mode = #PB_Absolute)
@@ -134,6 +152,10 @@ Procedure CameraZ(Camera)
    !return v_camera.position.z    
 EndProcedure
 
+Procedure CameraCollide(Camera, CallBack)
+  !v_camera.onCollide = v_callback;  
+EndProcedure
+
 ;Camera ArcRotate
 Procedure GetCameraAlpha(Camera)
   !return v_camera.alpha  
@@ -159,8 +181,8 @@ Procedure SetCameraRadius(Camera, Value.f)
   !return v_camera.radius = v_value  
 EndProcedure
 ; IDE Options = SpiderBasic 2.00 (Windows - x86)
-; CursorPosition = 23
-; Folding = ----
+; CursorPosition = 2
+; Folding = -----
 ; iOSAppOrientation = 0
 ; AndroidAppOrientation = 0
 ; EnableXP

@@ -1,6 +1,6 @@
 ﻿;Babylon.js for SpiderBasic : Material 
 
-;Last update : 08 May 2017
+;Last update : 24 May 2017
 
 Procedure CreateMaterial(Name.s, Image.s = "" , BackFaceCulling = #False)
   !var material = new BABYLON.StandardMaterial(v_name, v_bjscurrentscene);
@@ -74,8 +74,7 @@ Procedure SetMaterial(Mesh, Material)
 EndProcedure
 
 ; IDE Options = SpiderBasic 2.00 (Windows - x86)
-; CursorPosition = 67
-; FirstLine = 13
+; CursorPosition = 2
 ; Folding = --
 ; iOSAppOrientation = 0
 ; AndroidAppOrientation = 0

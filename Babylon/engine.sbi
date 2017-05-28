@@ -1,6 +1,6 @@
 ﻿;Babylon.js for SpiderBasic : Engine 
 
-;Last update : 13 May 2017
+;Last update : 28 May 2017
 
 Procedure InitEngine(Callback, CanvasGadget = #PB_Ignore)    
   !     require(["sbbjs/babylon.custom.js"], 
@@ -41,28 +41,9 @@ EndProcedure
 Procedure RenderWorld()
   !v_bjscurrentscene.render();
 EndProcedure
-
-Procedure MeshCollide(Mesh1, Mesh2)
-  !return (v_mesh1.intersectsMesh(v_mesh2, true))  
-EndProcedure
-
-;Asset Manager (not operationel)
-Procedure UseAssetManager()
-  !return new BABYLON.AssetsManager(v_bjscurrentscene); 
-EndProcedure
-
-Procedure AssetManagerAdd(AssetManager, Name.s, Path.s, Object.s, SuccessCallback, FinishCallback)
-  !var meshtask = v_assetmanager.addMeshTask(v_name, "", v_path, v_object);  
-  !meshtask.onSuccess = v_successcallback(loadedMeshes[0]);
-  !v_assetmanager.onFinish = v_finishcallback();
-EndProcedure
-
-Procedure AssetManagerLoad(AssetManager)
-  !v_assetmanager.load()  
-EndProcedure
 ; IDE Options = SpiderBasic 2.00 (Windows - x86)
-; CursorPosition = 43
-; Folding = --
+; CursorPosition = 2
+; Folding = -
 ; iOSAppOrientation = 0
 ; AndroidAppOrientation = 0
 ; EnableXP

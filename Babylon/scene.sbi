@@ -1,6 +1,6 @@
 ﻿;Babylon.js for SpiderBasic : Scene 
 
-;Last update : 08 May 2017
+;Last update : 24 May 2017
 
 Procedure CreateScene()  
   !v_bjscurrentscene  = new BABYLON.Scene(v_bjsengine);
@@ -37,7 +37,8 @@ EndProcedure
 
 Procedure ImportScene(Name.s, Path.s, FileName.s, Callback) 
   !BABYLON.SceneLoader.ImportMesh("", v_path, v_filename + '?' + (new Date()).getTime(), v_bjscurrentscene, function (BJSMeshes, BJSParticles, BJSSkeletons) {
-  !  v_callback(v_name);
+  !  console.log(BJSMeshes)
+  !  v_callback(v_name, BJSMeshes[0]);
   !});
 EndProcedure
 
@@ -59,8 +60,8 @@ Procedure SceneDebug()
 EndProcedure
 
 ; IDE Options = SpiderBasic 2.00 (Windows - x86)
-; CursorPosition = 38
-; FirstLine = 1
+; CursorPosition = 40
+; FirstLine = 6
 ; Folding = --
 ; iOSAppOrientation = 0
 ; AndroidAppOrientation = 0

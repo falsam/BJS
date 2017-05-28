@@ -1,6 +1,6 @@
 ﻿;Babylon.js for SpiderBasic : Mesh
 
-;Last update : 15 May 2017
+;Last update : 24 May 2017
 
 ;-
 ;-Basic Object
@@ -135,11 +135,19 @@ Procedure CreateBody(Mesh, Type, Mass.f = 1.0, Restitution.f = 1.0, Friction = 0
   
   If Mass <> 0 ;Apply small Impulse
       !v_mesh.physicsImpostor.applyImpulse(new BABYLON.Vector3(0.01, 0.01, 0.01), v_mesh.getAbsolutePosition());
-  EndIf
+  EndIf  
 EndProcedure
 
 Procedure ApplyMeshImpulse(Mesh, x.f, y.f, z.f)
   !v_mesh.physicsImpostor.applyImpulse(new BABYLON.Vector3(v_x, v_y, v_z), v_mesh.getAbsolutePosition());
+EndProcedure
+
+Procedure MeshCollide(Mesh1, Mesh2, CallBack)
+  !v_mesh1.physicsImpostor.registerOnPhysicsCollide(v_mesh2.physicsImpostor, v_callback)
+EndProcedure
+
+Procedure GetCollideMesh(Mesh)
+  !return v_mesh.object  
 EndProcedure
 
 ;-
@@ -210,6 +218,10 @@ Procedure Attach(Parent, Child, x.f, y.f, z.f)
   !v_child.position.z = v_z;
 EndProcedure
 
+Procedure SetMeshPivot(Mesh, x.f, y.f, z.f)
+  !v_mesh.setPivotMatrix(BABYLON.Matrix.Translation(v_x, v_y, v_z));
+EndProcedure
+
 ;-
 ;-Picking
 Procedure PickEnable()  
@@ -264,8 +276,8 @@ Procedure Translate(Mesh, Value.f)
   !v_mesh.translate(new BABYLON.Vector3(v_value, 0, 0), 0.1, BABYLON.Space.LOCAL);
 EndProcedure
 ; IDE Options = SpiderBasic 2.00 (Windows - x86)
-; CursorPosition = 195
-; FirstLine = 190
+; CursorPosition = 151
+; FirstLine = 122
 ; Folding = ------
 ; iOSAppOrientation = 0
 ; AndroidAppOrientation = 0

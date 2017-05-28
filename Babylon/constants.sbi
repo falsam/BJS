@@ -10,9 +10,11 @@
 
 ;Camera
 #Free = 0
-#ArcRotate = 1
-#Follow = 2
-#VR = 3
+#Universal = 1
+#ArcRotate = 2
+#Follow = 3
+#VR = 4
+#Camera360 = 5
 
 ;Light
 #Point = 1
@@ -32,6 +34,14 @@
 #Ambient = 2
 #Emissive = 3
 #Bump = 4
+
+;Joint
+#DistanceJoint = 0        ;A fixed distance between two impostors
+;#HingeJoint = 1           ;A joint allowing rotation on a single axis (much like your knee)
+;#BallAndSocketJoint = 2   ;A joint allowing one of the objects to rotate around a specific socket (like your hip)
+;#WheelJoint = 3
+;#SliderJoint = 4          ;A joint allowing changing the position along a single axis
+;#SpringJoint = 5
 
 ;Parent : Engine.sbi
 ;Chile  : Camera.sbi
@@ -72,7 +82,8 @@ Structure NewPick
 EndStructure
 Global Pick.NewPick
 ; IDE Options = SpiderBasic 2.00 (Windows - x86)
-; CursorPosition = 14
+; CursorPosition = 74
+; FirstLine = 20
 ; iOSAppOrientation = 0
 ; AndroidAppOrientation = 0
 ; EnableXP
