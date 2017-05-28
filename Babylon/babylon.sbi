@@ -1,6 +1,8 @@
 ;Babylon.js for SpiderBasic 
 
-;Last update : 24 May 2017
+;Version     : 0.92
+
+;Last update : 28 May 2017
 
 DeclareModule BJS
   ;-Constants.sbi
@@ -11,12 +13,7 @@ DeclareModule BJS
   Declare   CreateSpace2D(Scene)
   Declare   RenderLoop(Callback)
   Declare   RenderWorld()  
-  Declare   MeshCollide(Mesh1, Mesh2)
-  
-  Declare   UseAssetManager()
-  Declare   AssetManagerAdd(AssetManager, Name.s, Path.s, Object.s, SuccessCallback, FinishCallback)
-  Declare   AssetManagerLoad(AssetManager)
-    
+      
   ;-Scene.sbi
   Declare   CreateScene()
   Declare   SceneGravity(x.f = 0, y.f = -0.9, z.f = 0)
@@ -38,7 +35,7 @@ DeclareModule BJS
   Declare   AmbientColor(Color.i)
   
   ;Light
-  Declare   CreateLight(id.s, x.f, y.f, z.f, intensity.f = 1, mode.i = #Hemispheric)
+  Declare   CreateLight(Name.s, x.f, y.f, z.f, intensity.f = 1, mode.i = #Hemispheric)
   Declare   SpotLightRange(Light, InnerAngle.f, OuterAngle.f)
   Declare   LightDirection(Light, x.f, y.f, z.f)
   Declare   MoveLight(Light.i, x.f, y.f, z.f, Mode = #PB_Relative)
@@ -52,7 +49,10 @@ DeclareModule BJS
  
   ;-Camera.sbi 
   Declare   CreateCamera(Name.s, x.f, y.f, z.f, Type = #Free)
+  Declare   CameraFov(Camera, Fov.f) 
+  Declare   CameraRange(Camera, Near, Far)
   Declare   CameraLookAtMesh(Camera, MeshObject)
+  Declare   CameraSpeed(Camera, Speed)
   Declare   CameraLookAt(Camera, x.f, y.f, z.f)
   Declare   ActiveCamera(Camera)
   Declare   MoveCamera(Camera, x.f, y.f, z.f, Mode = #PB_Absolute)
@@ -65,6 +65,7 @@ DeclareModule BJS
   Declare   CameraCollision(Camera, Value = #True)
   Declare   CameraGravity(Camera, Value = #True)
   Declare   CameraBodySize(Camera, x.f = 1, y.f = 1, z.f = 1)
+  Declare   CameraCollide(Camera, CallBack)
   
   Declare   GetCameraBeta(Camera)
   Declare   GetCameraAlpha(Camera)
@@ -96,7 +97,9 @@ DeclareModule BJS
   ;Physics
   Declare   CreateBody(Mesh, Type, Mass.f = 1.0, Restitution.f = 1.0, Friction = 0.1)
   Declare   ApplyMeshImpulse(Mesh, x.f, y.f, z.f)
-  
+  Declare   MeshCollide(Mesh1, Mesh2, CallBack)
+  Declare   GetCollideMesh(Mesh)
+
   Declare.s GetMeshName(Mesh)
   Declare   GetMesh(MeshName.s)
   Declare   FreeMesh(Mesh)
@@ -112,6 +115,7 @@ DeclareModule BJS
   
   Declare   CloneMesh(Mesh, Name.s = "")
   Declare   Attach(Parent, Child, x.f, y.f, z.f)
+  Declare   SetMeshPivot(Mesh, x.f, y.f, z.f)
     
   ;Picking
   Declare   PickEnable()
@@ -187,10 +191,9 @@ Module BJS
 EndModule
   
 ; IDE Options = SpiderBasic 2.00 (Windows - x86)
-; CursorPosition = 53
-; FirstLine = 18
+; CursorPosition = 4
 ; Folding = -
-; Markers = 130
+; Markers = 134
 ; iOSAppOrientation = 0
 ; AndroidAppOrientation = 0
 ; EnableXP
