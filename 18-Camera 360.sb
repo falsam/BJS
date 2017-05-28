@@ -1,10 +1,12 @@
-﻿;Babylon.sbi - VR Camera (Experimental)
+﻿;Babylon.sbi - Orientation Camera (Experimental)
 
 EnableExplicit
 
 IncludeFile "babylon/babylon.sbi"
 
-Global Scene, Camera, Light, RedMat, RedBox, BlueMat, BlueBox
+Global Scene, Camera, Light 
+Global RedMat, RedBox, BlueMat, BlueBox
+Global MatGround, Ground
 
 Declare LoadGame()
 Declare RenderGame()
@@ -18,32 +20,36 @@ Procedure LoadGame()
   
   If Scene
     
-    ;This creates and positions a device orientation camera  (0, 0, 0)
-    Camera = CreateCamera("VR Cam", 0, 0, 0, #VR)
-    
-    ;This targets the camera to scene origin
-    CameraLookAt(Camera, 0, 0, 0)
+    ;This creates and positions a camera360
+    Camera = CreateCamera("camera 360", 0, 5, 0, #Camera360)   
+    CameraLookAt(Camera, 0, 3, 0)
+    !console.log(v_camera)
+    !v_camera.angularSensibility = 4000
     
     ;Light
     Light = CreateLight("light", 0, 1, 0, 1)
+        
+    ;Ground
+    MatGround = CreateMaterial("grass", "data/textures/misc.jpg")
+    Ground = CreateGround("ground", 20, 20)
+    SetMaterial(Ground, MatGround)
     
     ;Red Box
     RedMat = CreateMaterial("Red Color", "")
     SetMaterialColor(RedMat, #Diffuse, RGB(255, 0, 0))
     
-    RedBox = CreateBox("box", 5)
+    RedBox = CreateBox("box", 2)
     SetMaterial(RedBox, RedMat)
-    
-    MoveMesh(RedBox, 0, 0, 10)
+    MoveMesh(RedBox, 0, 1, 8)
     
     ;Create Blue Box
     BlueMat = CreateMaterial("blue color", "")
     SetMaterialColor(BlueMat, #Diffuse, RGB(0, 0, 255))
     
-    BlueBox = CreateBox("blue box", 5)
+    BlueBox = CreateBox("blue box", 2)
     SetMaterial(BlueBox, BlueMat)
     
-    MoveMesh(BlueBox, 0, 0, -10)
+    MoveMesh(BlueBox, 0, 1, -8)
    
     RenderLoop(@RenderGame())
   EndIf
@@ -53,13 +59,14 @@ Procedure RenderGame()
   RenderWorld() 
 EndProcedure
 ; IDE Options = SpiderBasic 2.00 (Windows - x86)
-; CursorPosition = 21
+; CursorPosition = 26
+; FirstLine = 3
 ; Folding = -
-; WebAppName = VR Camera
-; HtmlFilename = vrcamera.html
-; JavaScriptFilename = vrcamera.js
+; WebAppName = Camera 360
+; HtmlFilename = camera360b.html
+; JavaScriptFilename = camera360b..js
 ; JavaScriptPath = sb
-; CopyJavaScriptLibrary
+; ResourceDirectory = data\
 ; iOSAppOrientation = 0
 ; AndroidAppOrientation = 0
 ; EnableXP

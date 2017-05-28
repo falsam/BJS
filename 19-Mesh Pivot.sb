@@ -1,0 +1,58 @@
+﻿;Babylon.sbi - Mesh Pivot
+
+EnableExplicit
+
+IncludeFile "babylon/babylon.sbi"
+
+Enumeration
+  #mf
+  #mfRender  
+EndEnumeration
+
+Global Scene, Box, BoxMat
+
+Declare LoadGame()
+Declare RenderGame()
+
+UseModule BJS
+
+OpenWindow(#mf, 0, 0, 800, 600, "Mesh Pivot", #PB_Window_ScreenCentered)
+CanvasGadget(#mfRender, 0, 0, 800, 600, #PB_Canvas_Transparent)
+InitEngine(@LoadGame(), #mfRender)
+
+Procedure LoadGame()    
+  Scene = CreateScene()
+  If Scene
+    
+    ;Camera & Light
+    CreateCamera("camera", 0, 7, 25, #ArcRotate)
+    CreateLight("my light", 0, 50, 0, 0.8)
+    
+    ;Ground
+    CreateGround("ground", 20, 20)
+    
+    ;Red Box
+    Box = CreateBox("box", 2)
+    BoxMat = CreateMaterial("box color")
+    SetMaterialColor(BoxMat, #Diffuse, RGB(255, 0, 0))
+    SetMaterial(Box, BoxMat)
+    MoveMesh(Box, 0, 1, 0)
+    
+    ;Change the coordinates of the rotation point
+    SetMeshPivot(Box, 1, 0, 1)
+   
+    RenderLoop(@RenderGame())
+  EndIf
+EndProcedure
+
+Procedure RenderGame()
+  RotateMesh(Box, 0, 0.05, 0, #PB_Relative)
+  RenderWorld() 
+EndProcedure
+; IDE Options = SpiderBasic 2.00 (Windows - x86)
+; CursorPosition = 10
+; Folding = -
+; iOSAppOrientation = 0
+; AndroidAppOrientation = 0
+; EnableXP
+; CompileSourceDirectory

@@ -40,3 +40,16 @@ EndProcedure
 Procedure RenderGame()   
   RenderWorld() 
 EndProcedure
+
+
+; IDE Options = SpiderBasic 2.00 (Windows - x86)
+; CursorPosition = 5
+; Folding = -
+; WebAppName = Light
+; HtmlFilename = light.html
+; JavaScriptFilename = light.js
+; JavaScriptPath = sb
+; iOSAppOrientation = 0
+; AndroidAppOrientation = 0
+; EnableXP
+; CompileSourceDirectory

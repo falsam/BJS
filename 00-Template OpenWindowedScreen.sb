@@ -1,0 +1,42 @@
+﻿;Babylon.sbi - Template minimum Full Screen
+
+EnableExplicit
+
+IncludeFile "babylon/babylon.sbi"
+
+Enumeration
+  #mf
+  #mfRender
+EndEnumeration
+
+Global Scene
+
+Declare LoadGame()
+Declare RenderGame()
+
+UseModule BJS
+OpenWindow(#mf, 0, 0, 800, 600, "Open Windowed Screen", #PB_Window_ScreenCentered)
+CanvasGadget(#mfRender, 0, 0, 800, 600, #PB_Canvas_Transparent)
+
+InitEngine(@LoadGame(), #mfRender)
+
+Procedure LoadGame()    
+  Scene = CreateScene()
+  If Scene
+    CreateCamera("camera", 0, 10, 10, #ArcRotate)
+    CreateLight("light", 0, 10, 0)
+    
+    RenderLoop(@RenderGame())
+  EndIf
+EndProcedure
+
+Procedure RenderGame()
+  RenderWorld() 
+EndProcedure
+; IDE Options = SpiderBasic 2.00 (Windows - x86)
+; CursorPosition = 21
+; Folding = -
+; iOSAppOrientation = 0
+; AndroidAppOrientation = 0
+; EnableXP
+; CompileSourceDirectory

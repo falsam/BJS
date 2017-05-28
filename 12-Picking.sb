@@ -40,7 +40,7 @@ Procedure RenderGame()
   Protected Mesh = IsPick() 
   
   If Mesh
-    Debug "Name " + GetMeshName(Pick\mesh)
+    Debug "Name " + GetMeshName(PickMesh())
     Debug "Distance from camera " + PickDistance()  
     Debug "x/y/z " + StrD(PickX(), 3) + " / " + StrD(PickY(), 3) + " / " + StrD(PickZ(), 3) + #CRLF$
     
@@ -48,3 +48,17 @@ Procedure RenderGame()
   
   RenderWorld() 
 EndProcedure
+
+
+; IDE Options = SpiderBasic 2.00 (Windows - x86)
+; CursorPosition = 42
+; Folding = -
+; WebAppName = Picking
+; HtmlFilename = picking.html
+; JavaScriptFilename = picking.js
+; JavaScriptPath = sb
+; WebAppEnableDebugger
+; iOSAppOrientation = 0
+; AndroidAppOrientation = 0
+; EnableXP
+; CompileSourceDirectory

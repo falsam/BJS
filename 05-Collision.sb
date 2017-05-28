@@ -38,18 +38,23 @@ Procedure LoadGame()
     CreateBody(Sphere2, #SphereBody, 1, 0.5, 0.7)    
     CreateBody(Sphere3, #SphereBody, 1, 0.5, 0.8)    
     CreateBody(Ground,  #BoxBody, 0, 1, 1)
-           
+    
     RenderLoop(@RenderGame())
   EndIf
 EndProcedure
 
-Procedure RenderGame()
+Procedure RenderGame()  
   RenderWorld() 
 EndProcedure
 
+
 ; IDE Options = SpiderBasic 2.00 (Windows - x86)
-; CursorPosition = 17
+; CursorPosition = 45
 ; Folding = -
+; WebAppName = Collision
+; HtmlFilename = collision.html
+; JavaScriptFilename = collision.js
+; JavaScriptPath = sb
 ; iOSAppOrientation = 0
 ; AndroidAppOrientation = 0
 ; EnableXP

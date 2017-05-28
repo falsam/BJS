@@ -1,0 +1,68 @@
+﻿;Babylon.sbi - Mesh Collide
+
+EnableExplicit
+
+IncludeFile "babylon/babylon.sbi"
+
+Enumeration
+  #mf
+  #mfRender  
+EndEnumeration
+
+Global Scene, Ground, Sphere0, Sphere1, Material
+
+Declare LoadGame()
+Declare OnMeshCollide(Main, Collided)
+Declare RenderGame()
+
+UseModule BJS
+
+OpenWindow(#mf, 0, 0, 800, 600, "Mesh Collide", #PB_Window_ScreenCentered)
+CanvasGadget(#mfRender, 0, 0, 800, 600, #PB_Canvas_Transparent)
+InitEngine(@LoadGame(), #mfRender)
+
+Procedure LoadGame()    
+  Scene = CreateScene()
+  If Scene
+    
+    ;Camera & Light
+    CreateCamera("camera", 0, 10, 20, #ArcRotate)
+    CreateLight("light", 0, 10, 0, 0.8)   
+    
+    ;Ground & Spheres
+    Ground = CreateGround("ground", 20, 20)
+    CreateBody(Ground, #BoxBody, 0, 0.9, 0)
+    
+    Sphere0 = CreateSphere("sphere", 2)
+    MoveMesh(Sphere0, 0, 5, 0)
+    CreateBody(Sphere0, #SphereBody, 1, 0.9, 0)    
+    
+    Sphere1 = CreateSphere("sphere1", 2)
+    MoveMesh(Sphere1, 3, 7, 3)
+    CreateBody(Sphere1, #SphereBody, 1, 0.9, 0)    
+    
+    ;Collision    
+    MeshCollide(Sphere0, Ground, @OnMeshCollide())
+    MeshCollide(Sphere1, Ground, @OnMeshCollide())
+   
+    RenderLoop(@RenderGame())
+  EndIf
+EndProcedure
+
+Procedure OnMeshCollide(Main, Collided) 
+  Material = CreateMaterial("color")
+  SetMaterialColor(Material, #Diffuse, RGB(Random(255), Random(255), Random(255))) 
+  SetMaterial(GetCollideMesh(Main), Material)
+EndProcedure
+
+Procedure RenderGame() 
+  RenderWorld() 
+EndProcedure
+; IDE Options = SpiderBasic 2.00 (Windows - x86)
+; CursorPosition = 45
+; FirstLine = 5
+; Folding = -
+; iOSAppOrientation = 0
+; AndroidAppOrientation = 0
+; EnableXP
+; CompileSourceDirectory

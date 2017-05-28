@@ -37,3 +37,10 @@ Procedure RenderGame()
   RotateMesh(Ground, 0, 0.01, 0, #PB_Relative)
   RenderWorld() 
 EndProcedure
+; IDE Options = SpiderBasic 2.00 (Windows - x86)
+; CursorPosition = 36
+; Folding = -
+; iOSAppOrientation = 0
+; AndroidAppOrientation = 0
+; EnableXP
+; CompileSourceDirectory

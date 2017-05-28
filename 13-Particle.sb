@@ -67,3 +67,17 @@ Procedure RenderGame()
   RotateMesh(Box, 0.01, 0.01, 0, #PB_Relative)
   RenderWorld() 
 EndProcedure
+
+
+; IDE Options = SpiderBasic 2.00 (Windows - x86)
+; CursorPosition = 44
+; FirstLine = 12
+; Folding = -
+; WebAppName = particle
+; HtmlFilename = particle.html
+; JavaScriptFilename = particle.js
+; JavaScriptPath = sb
+; iOSAppOrientation = 0
+; AndroidAppOrientation = 0
+; EnableXP
+; CompileSourceDirectory

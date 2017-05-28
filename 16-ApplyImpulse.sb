@@ -28,7 +28,8 @@ Procedure LoadGame()
   Protected n, Help
   
   Scene = CreateScene()
-  If Scene   
+  If Scene
+    
     ClearScene(RGB(178, 34, 34))
     Camera = CreateCamera("camera", 0, 10, 30, #ArcRotate)
     CreateLight("light", 0, 20, 0, 0.8)  
@@ -45,7 +46,7 @@ Procedure LoadGame()
     
     For n = 0 To 9
       Boxs(n) = CreateBox("box", 3)
-      MoveMesh(Boxs(n), (n * 4) - 18, 1.5, -30)
+      MoveMesh(Boxs(n), (n * 4) - 18, 1.4, -30)
       SetMaterial(Boxs(n), MatBox)
       CreateBody(Boxs(n), #BoxBody, 1, 1, 1)
     Next
@@ -59,10 +60,10 @@ EndProcedure
 
 Procedure RenderGame()
   Protected n
-  
+   
   If KeyReleased(#PB_Key_Space)
     For n = 0 To 9
-      ApplyMeshImpulse(Boxs(n), 0, Random(20, 10), Random(5, 2))
+        ApplyMeshImpulse(Boxs(n), 0, Random(20, 10), Random(5, 2))
     Next
   EndIf
   RenderWorld() 
@@ -71,3 +72,16 @@ EndProcedure
 Procedure Resize()
   ResizeGadget(#mfRender, #PB_Ignore, #PB_Ignore, WindowWidth(#mf), WindowHeight(#mf))
 EndProcedure
+
+; IDE Options = SpiderBasic 2.00 (Windows - x86)
+; CursorPosition = 67
+; FirstLine = 20
+; Folding = -
+; WebAppName = Apply Impulse
+; HtmlFilename = applyimpulse.html
+; JavaScriptFilename = applyimpulse.js
+; JavaScriptPath = sb
+; iOSAppOrientation = 0
+; AndroidAppOrientation = 0
+; EnableXP
+; CompileSourceDirectory

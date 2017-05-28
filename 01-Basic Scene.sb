@@ -1,4 +1,5 @@
 ﻿;Babylon.sbi - Basic Scene
+
 EnableExplicit
 
 IncludeFile "babylon/babylon.sbi"
@@ -40,3 +41,16 @@ EndProcedure
 Procedure RenderGame()
   RenderWorld() 
 EndProcedure
+; IDE Options = SpiderBasic 2.00 (Windows - x86)
+; CursorPosition = 11
+; Folding = -
+; WebAppName = Basic Scene
+; HtmlFilename = basicscene.html
+; JavaScriptFilename = basicscene.js
+; JavaScriptPath = sb
+; CopyJavaScriptLibrary
+; iOSAppOrientation = 0
+; AndroidAppOrientation = 0
+; EnableXP
+; DisableDebugger
+; CompileSourceDirectory

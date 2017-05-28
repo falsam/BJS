@@ -19,7 +19,7 @@ Procedure LoadGame()
     InitKey()
     
     ;Camera & Light
-    Camera = CreateCamera("camera", 0, 65, 100, #Free)
+    Camera = CreateCamera("camera", 0, 65, 100, #Universal)
     CameraBodySize(Camera, 1, 15, 1)
     CameraLookAt(Camera, 0, 30, 0)
     
@@ -68,8 +68,6 @@ Procedure LoadGame()
 EndProcedure
 
 Procedure RenderGame()   
- ; Debug Str(PositionX(Camera)) + " - " + Str(PositionY(Camera)) + " - " +  Str(PositionZ(Camera)) 
-  
   If KeyPushed(#PB_Key_Left)
     RotateCamera(Camera, 0, -0.05, 0, #PB_Relative)
   EndIf
@@ -80,3 +78,17 @@ Procedure RenderGame()
     
   RenderWorld() 
 EndProcedure
+
+
+; IDE Options = SpiderBasic 2.00 (Windows - x86)
+; CursorPosition = 23
+; FirstLine = 20
+; Folding = -
+; WebAppName = Terrain
+; HtmlFilename = terrain.html
+; JavaScriptFilename = terrain.js
+; JavaScriptPath = sb
+; iOSAppOrientation = 0
+; AndroidAppOrientation = 0
+; EnableXP
+; CompileSourceDirectory

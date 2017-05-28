@@ -1,0 +1,75 @@
+﻿;Babylon.sbi - Camera Collide
+EnableExplicit
+
+IncludeFile "babylon/babylon.sbi"
+
+Enumeration
+  #mf
+  #mfRender  
+EndEnumeration
+
+Global Scene, Camera, Ground, Dim Cubes(100), Material
+
+Declare LoadGame()
+Declare OnCameraCollide(Mesh)
+Declare RenderGame()
+
+UseModule BJS
+
+OpenWindow(#mf, 0, 0, 800, 600, "Camera Collide", #PB_Window_ScreenCentered)
+CanvasGadget(#mfRender, 0, 0, 800, 600, #PB_Canvas_Transparent)
+InitEngine(@LoadGame(), #mfRender)
+
+Procedure LoadGame()
+  Protected n
+  
+  Scene = CreateScene()
+  If Scene
+    
+    ;Camera & Light
+    Camera = CreateCamera("camera", 10, 10, 990)
+    CameraBodySize(Camera, 2, 5, 10)
+    CameraLookAt(Camera, 0, 5, 0)
+    CreateLight("light", 0, 10, 0, 0.8)   
+           
+    ;Ground
+    Ground = CreateGround("ground", 100, 2000)
+    Material = CreateMaterial("Color")
+    SetMaterialColor(Material, #Diffuse, RGB(154, 205, 50))
+    SetMaterial(Ground, Material)
+    CreateBody(Ground, #BoxBody, 0, 0.9, 0)
+    
+    ;Cubes
+    For n = 0 To 98
+      Material = CreateMaterial("Color") 
+      SetMaterialColor(Material, #Diffuse, RGB(Random(255), Random(255), Random(255)))
+      Cubes(n) = CreateBox("box", 3)
+      SetMaterial(Cubes(n), Material)
+      MoveMesh(Cubes(n), 0, 1.5, (n * 20)  - 1000)
+      CreateBody(Cubes(n), #BoxBody, 1, 1, 0)
+    Next
+    
+    ;Camera Collision        
+    CameraCollide(Camera, @OnCameraCollide())
+        
+    RenderLoop(@RenderGame())
+  EndIf
+EndProcedure
+
+Procedure OnCameraCollide(Mesh)
+  If Mesh <> Ground 
+    ApplyMeshImpulse(Mesh, 0, 2, -5)
+  EndIf
+EndProcedure
+
+Procedure RenderGame() 
+  RenderWorld() 
+EndProcedure
+; IDE Options = SpiderBasic 2.00 (Windows - x86)
+; CursorPosition = 59
+; FirstLine = 12
+; Folding = -
+; iOSAppOrientation = 0
+; AndroidAppOrientation = 0
+; EnableXP
+; CompileSourceDirectory
