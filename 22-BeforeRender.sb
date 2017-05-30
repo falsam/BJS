@@ -1,4 +1,4 @@
-﻿;Babylon.sbi - Template minimum Full Screen
+﻿;Babylon.sbi - BeforeRender()
 
 EnableExplicit
 
@@ -17,7 +17,7 @@ Declare RenderGame()
 
 UseModule BJS
 
-OpenWindow(#mf, 0, 0, 800, 600, "Open Windowed Screen", #PB_Window_ScreenCentered)
+OpenWindow(#mf, 0, 0, 800, 600, "BeforeRender() process", #PB_Window_ScreenCentered)
 CanvasGadget(#mfRender, 0, 0, 900, 600, #PB_Canvas_Transparent)
 
 InitEngine(@LoadGame(), #mfRender)
@@ -83,9 +83,11 @@ Procedure RenderGame()
   RenderWorld() 
 EndProcedure
 ; IDE Options = SpiderBasic 2.00 (Windows - x86)
-; CursorPosition = 32
-; FirstLine = 15
 ; Folding = -
+; WebAppName = Before Render
+; HtmlFilename = beforerender.html
+; JavaScriptFilename = beforerender.js
+; JavaScriptPath = sb
 ; iOSAppOrientation = 0
 ; AndroidAppOrientation = 0
 ; EnableXP
