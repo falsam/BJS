@@ -1,0 +1,92 @@
+﻿;Babylon.sbi - Template minimum Full Screen
+
+EnableExplicit
+
+IncludeFile "babylon/babylon.sbi"
+
+Enumeration
+  #mf
+  #mfRender
+EndEnumeration
+
+Global Scene, Camera, Light, Ground, GroundMat, Cylinder, Bloc, BlocMat, ShadowGenerator
+
+Declare LoadGame()
+Declare BlocAnim()
+Declare RenderGame()
+
+UseModule BJS
+
+OpenWindow(#mf, 0, 0, 800, 600, "Open Windowed Screen", #PB_Window_ScreenCentered)
+CanvasGadget(#mfRender, 0, 0, 900, 600, #PB_Canvas_Transparent)
+
+InitEngine(@LoadGame(), #mfRender)
+
+Procedure LoadGame()    
+  Scene = CreateScene()
+  If Scene
+    
+    ;Camera & Light
+    Camera = CreateCamera("camera", 0, 6, 10, #ArcRotate)
+    CameraLookAt(Camera, 0, 3, 0)
+    
+    CreateLight("light", 0, 5, 10, 1)
+    Light = CreateLight("Point", 0, 10, -10, 0.8, #Point)
+    
+    ;Material
+    GroundMat = CreateMaterial("grass", "data/textures/grass1.jpg")
+    ScaleMaterial(GroundMat, 5, 5)  
+    
+    BlocMat = CreateMaterial("bloc coloe")
+    SetMaterialColor(BlocMat, #Diffuse, RGB(255, 0, 0))
+    
+    ;Mesh
+    Ground = CreateGround("ground", 40, 40) 
+    SetMaterial(Ground, GroundMat)
+    
+    Cylinder = CreateCylinder("cylinder", 5, 0.5, 0.5)
+    MoveMesh(Cylinder, 0, 2.5, -10)
+    
+    Bloc = CreateBox("bloc", 2)
+    SetMaterial(Bloc, BlocMat)
+    MoveMesh(Bloc, 0, 4, -10)
+    
+    ;Shadow
+    InitShadow(Light)
+    ShadowEmitter(Bloc)
+    RenderShadows(Ground)
+    
+    ;BeforeRender() function can be used to automate a task.
+    BeforeRender(@BlocAnim())
+    
+    RenderLoop(@RenderGame())
+  EndIf
+EndProcedure
+
+Procedure BlocAnim()
+  Static y.f, i.f
+  
+  If MeshY(Bloc) <= 1 
+    i = -0.05
+  EndIf 
+  If MeshY(Bloc) >= 4 
+    i = 0.05
+  EndIf 
+  
+  y - i
+  
+  MoveMesh(Bloc, 0, y, -10)
+  RotateMesh(Bloc, 0, i, 0, #PB_Relative)
+EndProcedure
+
+Procedure RenderGame()
+  RenderWorld() 
+EndProcedure
+; IDE Options = SpiderBasic 2.00 (Windows - x86)
+; CursorPosition = 32
+; FirstLine = 15
+; Folding = -
+; iOSAppOrientation = 0
+; AndroidAppOrientation = 0
+; EnableXP
+; CompileSourceDirectory
