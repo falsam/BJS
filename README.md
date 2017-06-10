@@ -2,6 +2,7 @@
 Babylon.sbi for SpiderBasic
 
 **Engine**
+* SetEnginePath(EnginePath.s = "sbbjs")
 * InitEngine(Callback, CanvasOutput = #PB_Ignore)  
 * CreateSpace2D(Scene)
 * BeforeRender(CallBack)
