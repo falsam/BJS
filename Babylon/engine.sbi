@@ -1,9 +1,13 @@
 ﻿;Babylon.js for SpiderBasic : Engine 
 
-;Last update : 28 May 2017
+;Last update : 11 Jun 2017
+
+Procedure SetEnginePath(EnginePath.s = "sbbjs")
+  BJSEnginePath = EnginePath  
+EndProcedure
 
 Procedure InitEngine(Callback, CanvasGadget = #PB_Ignore)    
-  !     require(["sbbjs/babylon.custom.js"], 
+  !     require([bjs$v_bjsenginepath + "/babylon.custom.js"], 
   !       function(t) {
   
             If CanvasGadget = #PB_Ignore    

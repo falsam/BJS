@@ -1,6 +1,6 @@
 ﻿;Babylon.js for SpiderBasic : constant.sbi 
 
-;Last update : 08 May 2017
+;Last update : 11 Jun 2017
 
 #All = 0
 #KeyBoard = 1
@@ -44,7 +44,11 @@
 ;#SpringJoint = 5
 
 ;Parent : Engine.sbi
-;Chile  : Camera.sbi
+;Child  : Camera.sbi
+Global BJSEnginePath.s = "sbbjs"
+
+;Parent : Engine.sbi
+;Child  : Camera.sbi
 Global BJSCanvas    
 
 ;Parent : Engine.sbi
@@ -82,8 +86,7 @@ Structure NewPick
 EndStructure
 Global Pick.NewPick
 ; IDE Options = SpiderBasic 2.00 (Windows - x86)
-; CursorPosition = 74
-; FirstLine = 20
+; CursorPosition = 2
 ; iOSAppOrientation = 0
 ; AndroidAppOrientation = 0
 ; EnableXP
