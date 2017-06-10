@@ -1,14 +1,15 @@
 ;Babylon.js for SpiderBasic 
 
-;Version     : 0.92
+;Version     : 0.93
 
-;Last update : 28 May 2017
+;Last update : 11 Jun 2017
 
 DeclareModule BJS
   ;-Constants.sbi
   IncludeFile "constants.sbi"  
   
   ;-Engine.sbi
+  Declare   SetEnginePath(EnginePath.s = "sbbjs")
   Declare   InitEngine(Callback, CanvasOutput = #PB_Ignore) 
   Declare   CreateSpace2D(Scene)
   Declare   RenderLoop(Callback)
@@ -191,9 +192,9 @@ Module BJS
 EndModule
   
 ; IDE Options = SpiderBasic 2.00 (Windows - x86)
-; CursorPosition = 4
+; CursorPosition = 2
 ; Folding = -
-; Markers = 134
+; Markers = 135
 ; iOSAppOrientation = 0
 ; AndroidAppOrientation = 0
 ; EnableXP
