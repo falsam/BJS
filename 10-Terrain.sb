@@ -30,7 +30,7 @@ Procedure LoadGame()
     Light = CreateLight("Light", 0, 200, -100, 0.8, #BJS_Point)
         
     ;SkyBox
-    Sky = SkyBox("Clouds", "data/textures/sky/", "cloud", 2000)
+    Sky = SkyBox("Clouds", "data/textures/sky/cloud", 2000)
     
     ;Terrain
     Ground = CreateTerrain("island", "data/textures/heightMap.png", 1000, 1000, 210, 0, 70)
@@ -86,7 +86,7 @@ EndProcedure
 
 
 ; IDE Options = SpiderBasic 2.20 (Windows - x86)
-; CursorPosition = 59
+; CursorPosition = 35
 ; FirstLine = 24
 ; Folding = -
 ; WebAppName = Terrain
