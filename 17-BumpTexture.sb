@@ -4,7 +4,7 @@ EnableExplicit
 IncludeFile "babylon/babylon.sbi"
 UseModule BJS
 
-Global Scene, Camera, Sphere, MatSphere, MatBump
+Global Scene, Camera, Sphere, Material, Texture
 
 Declare LoadGame()
 Declare RenderGame()
@@ -14,26 +14,29 @@ InitEngine(@LoadGame())
 Procedure LoadGame()    
   Scene = CreateScene()
   If Scene
-    Camera = CreateCamera("camera", 0, 10, 20, #ArcRotate)
+    Camera = CreateCamera("camera", 0, 10, 20, #BJS_ArcRotate)
     ClearScene(RGB(128, 128, 128))
     CreateLight("light", 0, 20, 0, 0.8)
     
     Sphere = CreateSphere("sphere", 8)
-    MatSphere = CreateMaterial("empty", "data\textures\floor.png")
-    SetMaterialColor(MatSphere, #Diffuse, RGB(218, 165, 32))
-    SetMaterialTexture(MatSphere, #Bump, "data/textures/floor_bump.PNG")
-    SetMaterial(Sphere, MatSphere)
+    Material = CreateMaterial("empty")
+    Texture = LoadTexture("floor", "data/textures/floor.png")
+    SetMaterialColor(Material, #BJS_Diffuse, RGB(218, 165, 32))
+    SetMaterialTexture(Material, #BJS_Diffuse, Texture)
+    Texture = LoadTexture("floor", "data/textures/floor_bump.PNG")
+    SetMaterialTexture(Material, #BJS_Bump, Texture)
+    SetMeshMaterial(Sphere, Material)
     
     RenderLoop(@RenderGame())
   EndIf
 EndProcedure
 
 Procedure RenderGame()
-  RotateMesh(Sphere, 0.01, 0.01, 0.01, #PB_Relative)
+  RotateMesh(Sphere, 0.5, 0.5, 0.5, #PB_Relative)
   RenderWorld() 
 EndProcedure
-; IDE Options = SpiderBasic 2.00 (Windows - x86)
-; CursorPosition = 22
+; IDE Options = SpiderBasic 2.20 (Windows - x86)
+; CursorPosition = 25
 ; Folding = -
 ; WebAppName = Bump texture
 ; HtmlFilename = bumptexture.html

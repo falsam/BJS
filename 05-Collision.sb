@@ -16,8 +16,8 @@ InitEngine(@LoadGame())
 Procedure LoadGame()    
   If CreateScene()
     
-    CreateCamera("camera", 0, 20, 30, #ArcRotate)
-    Light = CreateLight("light", 5, 10, 0, 1, #Point)
+    CreateCamera("camera", 0, 20, 30, #BJS_ArcRotate)
+    Light = CreateLight("light", 5, 10, 0, 1, #BJS_Point)
     
     Sphere0 = CreateSphere("Sphere", 1)
     MoveMesh(Sphere0, 0, 30, 0)
@@ -33,11 +33,11 @@ Procedure LoadGame()
     
     Ground = CreateGround("Ground", 30, 30) 
      
-    CreateBody(Sphere0, #SphereBody, 1, 0.5, 0.5)
-    CreateBody(Sphere1, #SphereBody, 1, 0.5, 0.6)
-    CreateBody(Sphere2, #SphereBody, 1, 0.5, 0.7)    
-    CreateBody(Sphere3, #SphereBody, 1, 0.5, 0.8)    
-    CreateBody(Ground,  #BoxBody, 0, 1, 1)
+    CreateMeshBody(Sphere0, #BJS_SphereBody, 1, 0.5, 0.5)
+    CreateMeshBody(Sphere1, #BJS_SphereBody, 1, 0.5, 0.6)
+    CreateMeshBody(Sphere2, #BJS_SphereBody, 1, 0.5, 0.7)    
+    CreateMeshBody(Sphere3, #BJS_SphereBody, 1, 0.5, 0.8)    
+    CreateMeshBody(Ground,  #BJS_BoxBody, 0, 1, 1)
     
     RenderLoop(@RenderGame())
   EndIf
@@ -48,8 +48,8 @@ Procedure RenderGame()
 EndProcedure
 
 
-; IDE Options = SpiderBasic 2.00 (Windows - x86)
-; CursorPosition = 45
+; IDE Options = SpiderBasic 2.20 (Windows - x86)
+; CursorPosition = 39
 ; Folding = -
 ; WebAppName = Collision
 ; HtmlFilename = collision.html

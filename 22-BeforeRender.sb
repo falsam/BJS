@@ -9,7 +9,7 @@ Enumeration
   #mfRender
 EndEnumeration
 
-Global Scene, Camera, Light, Ground, GroundMat, Cylinder, Bloc, BlocMat, ShadowGenerator
+Global Scene, Camera, Light, Ground, GroundTex, GroundMat, Cylinder, Bloc, BlocMat, ShadowGenerator
 
 Declare LoadGame()
 Declare BlocAnim()
@@ -20,6 +20,7 @@ UseModule BJS
 OpenWindow(#mf, 0, 0, 800, 600, "BeforeRender() process", #PB_Window_ScreenCentered)
 CanvasGadget(#mfRender, 0, 0, 900, 600, #PB_Canvas_Transparent)
 
+SetEnginePath("sbbjs")
 InitEngine(@LoadGame(), #mfRender)
 
 Procedure LoadGame()    
@@ -27,28 +28,30 @@ Procedure LoadGame()
   If Scene
     
     ;Camera & Light
-    Camera = CreateCamera("camera", 0, 6, 10, #ArcRotate)
+    Camera = CreateCamera("camera", 0, 6, 10, #BJS_ArcRotate)
     CameraLookAt(Camera, 0, 3, 0)
     
     CreateLight("light", 0, 5, 10, 1)
-    Light = CreateLight("Point", 0, 10, -10, 0.8, #Point)
+    Light = CreateLight("Point", 0, 10, -10, 0.8, #BJS_Point)
     
     ;Material
-    GroundMat = CreateMaterial("grass", "data/textures/grass1.jpg")
+    GroundTex = LoadTexture("grass", "data/textures/grass1.jpg")
+    GroundMat = CreateMaterial("grass")
+    SetMaterialTexture(GroundMat, #BJS_Diffuse, GroundTex)
     ScaleMaterial(GroundMat, 5, 5)  
     
     BlocMat = CreateMaterial("bloc coloe")
-    SetMaterialColor(BlocMat, #Diffuse, RGB(255, 0, 0))
+    SetMaterialColor(BlocMat, #BJS_Diffuse, RGB(255, 0, 0))
     
     ;Mesh
     Ground = CreateGround("ground", 40, 40) 
-    SetMaterial(Ground, GroundMat)
+    SetMeshMaterial(Ground, GroundMat)
     
     Cylinder = CreateCylinder("cylinder", 5, 0.5, 0.5)
     MoveMesh(Cylinder, 0, 2.5, -10)
     
-    Bloc = CreateBox("bloc", 2)
-    SetMaterial(Bloc, BlocMat)
+    Bloc = CreateBox("bloc", 2, 2, 2)
+    SetMeshMaterial(Bloc, BlocMat)
     MoveMesh(Bloc, 0, 4, -10)
     
     ;Shadow
@@ -67,13 +70,13 @@ Procedure BlocAnim()
   Static y.f, i.f
   
   If MeshY(Bloc) <= 1 
-    i = -0.05
+    i = -0.5
   EndIf 
   If MeshY(Bloc) >= 4 
-    i = 0.05
+    i = 0.5
   EndIf 
   
-  y - i
+  y - i/10
   
   MoveMesh(Bloc, 0, y, -10)
   RotateMesh(Bloc, 0, i, 0, #PB_Relative)
@@ -82,7 +85,9 @@ EndProcedure
 Procedure RenderGame()
   RenderWorld() 
 EndProcedure
-; IDE Options = SpiderBasic 2.00 (Windows - x86)
+; IDE Options = SpiderBasic 2.20 (Windows - x86)
+; CursorPosition = 37
+; FirstLine = 24
 ; Folding = -
 ; WebAppName = Before Render
 ; HtmlFilename = beforerender.html

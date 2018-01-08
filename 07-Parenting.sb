@@ -7,7 +7,7 @@ EnableExplicit
 
 IncludeFile "babylon/babylon.sbi"
 
-Global Camera, Light, Cube, Sphere, Ground
+Global Light, Ground, Torus1, Torus2
 
 Declare LoadGame()
 Declare RenderGame()
@@ -18,27 +18,37 @@ InitEngine(@LoadGame())
 
 Procedure LoadGame()    
   If CreateScene()
-    Camera = CreateCamera("camera", 0, 20, 30, #ArcRotate)
-    Light  = CreateLight("Light", 20, 20, 100)
+    ;Camera & Light
+    CreateCamera("camera", 0, 20, 30, #BJS_ArcRotate)
+    CreateLight("ambiance", 0, 40, 0, 0.5)
+    Light = CreateLight("Light", 10, 40, 20, 0.6, #BJS_Point)
     
-    Cube = CreateBox("cube", 2)
-        
-    Ground = CreateGround("Ground", 20, 20)
-    Attach(Ground, Cube, 0, 2, 0)   
+    Torus1 = CreateTorus("Torus1", 5, 1)    
+    RotateMesh(Torus1, 45, 0, 0)
     
-    Sphere = CreateSphere("Sphere", 3)
-    Attach(Ground, Sphere, 10, 1.5, 10)   
+    Torus2 = CreateTorus("Torus2", 5, 1)    
+    RotateMesh(Torus2, -45, 0, 0)
         
+    Ground = CreateGround("Ground", 30, 30)
+    AttachMesh(Ground, Torus1, 0, 3, 0)   
+    AttachMesh(Ground, Torus2, 0, 7, 0)
+    
+    ;Shadows (Create Shadow Generator)
+    InitShadow(Light, 2048)
+    ShadowEmitter(Torus1)
+    ShadowEmitter(Torus2)
+    RenderShadows(Ground)
+    
     RenderLoop(@RenderGame())
   EndIf
 EndProcedure
 
 Procedure RenderGame()
-  RotateMesh(Ground, 0, 0.01, 0, #PB_Relative)
+  RotateMesh(Ground, 0, 0.3, 0, #PB_Relative)
   RenderWorld() 
 EndProcedure
-; IDE Options = SpiderBasic 2.00 (Windows - x86)
-; CursorPosition = 36
+; IDE Options = SpiderBasic 2.20 (Windows - x86)
+; CursorPosition = 39
 ; Folding = -
 ; iOSAppOrientation = 0
 ; AndroidAppOrientation = 0

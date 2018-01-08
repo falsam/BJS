@@ -26,20 +26,20 @@ Procedure LoadGame()
   If Scene
     
     ;Camera & Light
-    CreateCamera("camera", 0, 10, 20, #ArcRotate)
+    CreateCamera("camera", 0, 10, 20, #BJS_ArcRotate)
     CreateLight("light", 0, 10, 0, 0.8)   
     
     ;Ground & Spheres
     Ground = CreateGround("ground", 20, 20)
-    CreateBody(Ground, #BoxBody, 0, 0.9, 0)
+    CreateMeshBody(Ground, #BJS_BoxBody, 0, 0.9, 0)
     
     Sphere0 = CreateSphere("sphere", 2)
     MoveMesh(Sphere0, 0, 5, 0)
-    CreateBody(Sphere0, #SphereBody, 1, 0.9, 0)    
+    CreateMeshBody(Sphere0, #BJS_SphereBody, 1, 0.9, 0)    
     
     Sphere1 = CreateSphere("sphere1", 2)
     MoveMesh(Sphere1, 3, 7, 3)
-    CreateBody(Sphere1, #SphereBody, 1, 0.9, 0)    
+    CreatemeshBody(Sphere1, #BJS_SphereBody, 1, 0.9, 0)    
     
     ;Collision    
     MeshCollide(Sphere0, Ground, @OnMeshCollide())
@@ -51,17 +51,20 @@ EndProcedure
 
 Procedure OnMeshCollide(Main, Collided) 
   Material = CreateMaterial("color")
-  SetMaterialColor(Material, #Diffuse, RGB(Random(255), Random(255), Random(255))) 
-  SetMaterial(GetCollideMesh(Main), Material)
+  SetMaterialColor(Material, #BJS_Diffuse, RGB(Random(255), Random(255), Random(255))) 
+  SetMeshMaterial(GetCollideMesh(Main), Material)
 EndProcedure
 
 Procedure RenderGame() 
   RenderWorld() 
 EndProcedure
-; IDE Options = SpiderBasic 2.00 (Windows - x86)
-; CursorPosition = 45
-; FirstLine = 5
+; IDE Options = SpiderBasic 2.20 (Windows - x86)
+; CursorPosition = 53
 ; Folding = -
+; WebAppName = Mesh Collide
+; HtmlFilename = meshcollide.html
+; JavaScriptFilename = meshcollide.js
+; JavaScriptPath = sb
 ; iOSAppOrientation = 0
 ; AndroidAppOrientation = 0
 ; EnableXP

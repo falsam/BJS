@@ -19,7 +19,7 @@ Procedure LoadGame()
   If Scene
     
     ;This creates and positions a device orientation camera  (0, 0, 0)
-    Camera = CreateCamera("VR Cam", 0, 0, 0, #VR)
+    Camera = CreateCamera("VR Cam", 0, 0, 0, #BJS_VR)
     
     ;This targets the camera to scene origin
     CameraLookAt(Camera, 0, 0, 0)
@@ -28,20 +28,20 @@ Procedure LoadGame()
     Light = CreateLight("light", 0, 1, 0, 1)
     
     ;Red Box
-    RedMat = CreateMaterial("Red Color", "")
-    SetMaterialColor(RedMat, #Diffuse, RGB(255, 0, 0))
+    RedMat = CreateMaterial("Red Color")
+    SetMaterialColor(RedMat, #BJS_Diffuse, RGB(255, 0, 0))
     
-    RedBox = CreateBox("box", 5)
-    SetMaterial(RedBox, RedMat)
+    RedBox = CreateBox("box", 5, 5, 5)
+    SetMeshMaterial(RedBox, RedMat)
     
     MoveMesh(RedBox, 0, 0, 10)
     
     ;Create Blue Box
-    BlueMat = CreateMaterial("blue color", "")
-    SetMaterialColor(BlueMat, #Diffuse, RGB(0, 0, 255))
+    BlueMat = CreateMaterial("blue color")
+    SetMaterialColor(BlueMat, #BJS_Diffuse, RGB(0, 0, 255))
     
-    BlueBox = CreateBox("blue box", 5)
-    SetMaterial(BlueBox, BlueMat)
+    BlueBox = CreateBox("blue box", 5, 5, 5)
+    SetMeshMaterial(BlueBox, BlueMat)
     
     MoveMesh(BlueBox, 0, 0, -10)
    
@@ -52,8 +52,8 @@ EndProcedure
 Procedure RenderGame()
   RenderWorld() 
 EndProcedure
-; IDE Options = SpiderBasic 2.00 (Windows - x86)
-; CursorPosition = 21
+; IDE Options = SpiderBasic 2.20 (Windows - x86)
+; CursorPosition = 39
 ; Folding = -
 ; WebAppName = VR Camera
 ; HtmlFilename = vrcamera.html

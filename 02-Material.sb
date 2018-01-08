@@ -4,7 +4,7 @@ EnableExplicit
 
 IncludeFile "babylon/babylon.sbi"
 
-Global Camera, Light, Plane, Sphere, MatPlane, MatSphere
+Global Camera, Light, Plane, Sphere, MatPlane, TexPlane, MatSphere, TexSphere
 
 Declare LoadGame()
 Declare RenderGame()
@@ -17,8 +17,8 @@ Procedure LoadGame()
   If CreateScene()
     
     ;Camera & Light
-    Camera  = CreateCamera("camera", 0, 5, 7, #ArcRotate)
-    Light   = CreateLight("light", 0, 10, 0, 1, #Hemispheric)
+    Camera  = CreateCamera("camera", 0, 5, 7, #BJS_ArcRotate)
+    Light   = CreateLight("light", 0, 10, 0, 1, #BJS_Hemispheric)
         
     ;Object
     Plane   = CreateGround("plane", 10, 10)
@@ -26,26 +26,32 @@ Procedure LoadGame()
     Sphere  = CreateSphere("sphere", 2)
     MoveMesh(Sphere, 0, 2, 0) 
     
+    ;Texture
+    TexPlane = LoadTexture("grass", "Data/textures/grass.jpg")
+    TexSphere = LoadTexture("tree", "Data/textures/tree.png")
+    
     ;Material
-    MatPlane = CreateMaterial("MatPlane", "data/textures/grass.jpg")
+    MatPlane = CreateMaterial("MatPlane")
+    SetMaterialTexture(MatPlane, #BJS_Diffuse, TexPlane)
     ScaleMaterial(MatPlane, 5, 5)
     
-    MatSphere = CreateMaterial("MatPlane", "data/textures/tree.png")
+    MatSphere = CreateMaterial("MatPlane")
+    SetMaterialTexture(MatSphere, #BJS_Diffuse, TexSphere, #True)
     
     ;Apply material
-    SetMaterial(Plane, MatPlane)
-    SetMaterial(Sphere, MatSphere)
+    SetMeshMaterial(Plane, MatPlane)
+    SetMeshMaterial(Sphere, MatSphere)
    
     RenderLoop(@RenderGame())
   EndIf
 EndProcedure
 
 Procedure RenderGame()
-  RotateMesh(Sphere, 0, 0.01, 0, #PB_Relative)
+  RotateMesh(Sphere, 0, 0.5, 0, #PB_Relative)
   RenderWorld() 
 EndProcedure
-; IDE Options = SpiderBasic 2.00 (Windows - x86)
-; CursorPosition = 43
+; IDE Options = SpiderBasic 2.20 (Windows - x86)
+; CursorPosition = 30
 ; Folding = -
 ; WebAppName = Material
 ; HtmlFilename = material.html

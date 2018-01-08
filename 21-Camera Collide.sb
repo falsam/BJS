@@ -18,6 +18,8 @@ UseModule BJS
 
 OpenWindow(#mf, 0, 0, 800, 600, "Camera Collide", #PB_Window_ScreenCentered)
 CanvasGadget(#mfRender, 0, 0, 800, 600, #PB_Canvas_Transparent)
+TextGadget(#PB_Any, 0, 550, 800, 24, "Place the camera in front of a cube and use the arrow keys to move forward", #PB_Text_Center)
+
 InitEngine(@LoadGame(), #mfRender)
 
 Procedure LoadGame()
@@ -35,18 +37,18 @@ Procedure LoadGame()
     ;Ground
     Ground = CreateGround("ground", 100, 2000)
     Material = CreateMaterial("Color")
-    SetMaterialColor(Material, #Diffuse, RGB(154, 205, 50))
-    SetMaterial(Ground, Material)
-    CreateBody(Ground, #BoxBody, 0, 0.9, 0)
+    SetMaterialColor(Material, #BJS_Diffuse, RGB(154, 205, 50))
+    SetMeshMaterial(Ground, Material)
+    CreateMeshBody(Ground, #BJS_BoxBody, 0, 0.9, 0)
     
     ;Cubes
     For n = 0 To 98
       Material = CreateMaterial("Color") 
-      SetMaterialColor(Material, #Diffuse, RGB(Random(255), Random(255), Random(255)))
-      Cubes(n) = CreateBox("box", 3)
-      SetMaterial(Cubes(n), Material)
+      SetMaterialColor(Material, #BJS_Diffuse, RGB(Random(255), Random(255), Random(255)))
+      Cubes(n) = CreateBox("box", 3, 3, 3)
+      SetMeshMaterial(Cubes(n), Material)
       MoveMesh(Cubes(n), 0, 1.5, (n * 20)  - 1000)
-      CreateBody(Cubes(n), #BoxBody, 1, 1, 0)
+      CreateMeshBody(Cubes(n), #BJS_BoxBody, 1, 1, 0)
     Next
     
     ;Camera Collision        
@@ -65,10 +67,14 @@ EndProcedure
 Procedure RenderGame() 
   RenderWorld() 
 EndProcedure
-; IDE Options = SpiderBasic 2.00 (Windows - x86)
-; CursorPosition = 59
-; FirstLine = 12
+; IDE Options = SpiderBasic 2.20 (Windows - x86)
+; CursorPosition = 67
+; FirstLine = 6
 ; Folding = -
+; WebAppName = Camera Collide
+; HtmlFilename = cameracollide.html
+; JavaScriptFilename = cameracollide.js
+; JavaScriptPath = sb
 ; iOSAppOrientation = 0
 ; AndroidAppOrientation = 0
 ; EnableXP

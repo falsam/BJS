@@ -25,17 +25,17 @@ Procedure LoadGame()
   If Scene
     
     ;Camera & Light
-    CreateCamera("camera", 0, 7, 25, #ArcRotate)
+    CreateCamera("camera", 0, 7, 25, #BJS_ArcRotate)
     CreateLight("my light", 0, 50, 0, 0.8)
     
     ;Ground
     CreateGround("ground", 20, 20)
     
     ;Red Box
-    Box = CreateBox("box", 2)
+    Box = CreateBox("box", 2, 2, 2)
     BoxMat = CreateMaterial("box color")
-    SetMaterialColor(BoxMat, #Diffuse, RGB(255, 0, 0))
-    SetMaterial(Box, BoxMat)
+    SetMaterialColor(BoxMat, #BJS_Diffuse, RGB(255, 0, 0))
+    SetMeshMaterial(Box, BoxMat)
     MoveMesh(Box, 0, 1, 0)
     
     ;Change the coordinates of the rotation point
@@ -46,12 +46,16 @@ Procedure LoadGame()
 EndProcedure
 
 Procedure RenderGame()
-  RotateMesh(Box, 0, 0.05, 0, #PB_Relative)
+  RotateMesh(Box, 0, 0.5, 0, #PB_Relative)
   RenderWorld() 
 EndProcedure
-; IDE Options = SpiderBasic 2.00 (Windows - x86)
-; CursorPosition = 10
+; IDE Options = SpiderBasic 2.20 (Windows - x86)
+; CursorPosition = 34
 ; Folding = -
+; WebAppName = Mesh Pivot
+; HtmlFilename = meshpivot.html
+; JavaScriptFilename = meshpivot.js
+; JavaScriptPath = sb
 ; iOSAppOrientation = 0
 ; AndroidAppOrientation = 0
 ; EnableXP

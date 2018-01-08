@@ -10,7 +10,7 @@ Enumeration
   #mfRender
 EndEnumeration
 
-Global Scene, Camera, Tube, TubeMat, Light, 
+Global Scene, Camera, Tube, TubeMat, TubeTex, Light, 
 
 ;A tube consists of an array of 3D vectors. Example with 5 vectors
 Dim TubeVectors.NewVector(4)
@@ -32,7 +32,7 @@ Procedure LoadGame()
   If Scene
     
     ;Camera & Light
-    Camera = CreateCamera("camera", 0, 10, 20, #ArcRotate)  
+    Camera = CreateCamera("camera", 0, 10, 20, #BJS_ArcRotate)  
     Light = CreateLight("light", 0, 10, 0, 1)
     
     ;Create Tube 
@@ -60,8 +60,10 @@ Procedure LoadGame()
     Tube = CreateTube("My tube", TubeVectors(), 0, 32, @Radius())
     
     ;Material
-    TubeMat = CreateMaterial("tube material", "data/textures/misc.jpg")
-    SetMaterial(Tube, TubeMat)
+    TubeTex = LoadTexture("tube texture", "data/textures/misc.jpg")
+    TubeMat = CreateMaterial("tube material")
+    SetMaterialTexture(TubeMat, #BJS_Diffuse, TubeTex)
+    SetMeshMaterial(Tube, TubeMat)
     
     RenderLoop(@RenderGame())
   EndIf
@@ -85,9 +87,9 @@ Procedure RenderGame()
   RotateMesh(Tube, 0, 0.01, 0, #PB_Relative)
   RenderWorld() 
 EndProcedure
-; IDE Options = SpiderBasic 2.00 (Windows - x86)
-; CursorPosition = 59
-; FirstLine = 1
+; IDE Options = SpiderBasic 2.20 (Windows - x86)
+; CursorPosition = 62
+; FirstLine = 26
 ; Folding = -
 ; WebAppName = Tube Radius Function
 ; HtmlFilename = tuberadiusfunction.html

@@ -5,7 +5,7 @@ EnableExplicit
 IncludeFile "babylon/babylon.sbi"
 UseModule BJS
 
-Global Scene, Camera, Light, Pop, Ground, GroundMat, Mesh
+Global Scene, Camera, Light, Pop, Ground, GroundTex, GroundMat, Mesh
  
 Declare LoadGame()
 Declare RenderGame()
@@ -21,24 +21,28 @@ Procedure LoadGame()
     Pop = MusicLoad("pop", "data/sounds/pop.wav")
     
     ;Camera
-    Camera = CreateCamera("camera", 0, 40, 20, #Free)
+    Camera = CreateCamera("camera", 0, 40, 20, #BJS_Free)
     CameraBodySize(Camera, 2, 20, 2)
     CameraLookAt(Camera, 500, 10, 1000)
     ClearScene(RGB(0, 0, 0))
-    Light = CreateLight("Light", 0, 100, 0, 1, #Point)
+    CreateLight("ambience", 0, 200, 0, 0.4)
+    Light = CreateLight("Point", 0, 200, 0, 1, #BJS_Point)
     
     ;Ground
     Ground = CreateGround("Ground", 5000, 5000, 4)
-    GroundMat = CreateMaterial("Ground", "data/textures/Beton1.png")
-    SetMaterialColor(GroundMat, #Specular, RGBA(0, 0, 0, 255))
+    GroundTex = LoadTexture("Ground", "data/textures/Beton1.png")
+    GroundMat = CreateMaterial("Ground")
+    SetMaterialTexture(GroundMat, #BJS_Diffuse, GroundTex)
+    SetMaterialColor(GroundMat, #BJS_Specular, RGBA(0, 0, 0, 255))
     ScaleMaterial(GroundMat, 40, 40)
-    SetMaterial(Ground, GroundMat)    
-    CreateBody(Ground, #PlaneBody, 0, 0, 0)
+    SetMeshMaterial(Ground, GroundMat)    
+    CreateMeshBody(Ground, #BJS_PlaneBody, 0, 0, 0)
     
     ;Shadow
     InitShadow(Light, 2048)
     RenderShadows(Ground)
     
+    ;!v_bjsengine.hideLoadingUI()
     RenderLoop(@RenderGame())
   EndIf
 EndProcedure
@@ -48,19 +52,17 @@ Procedure RenderGame()
     Case 5, 25, 35
       
       Mesh = CreateSphere("sphere", Random(40, 20))
-      CreateBody(Mesh, #SphereBody, 1, 0.5, 0.5)
       MoveMesh(Mesh, Random(500, 200), Random(500, 200), Random(500, 200))
-      CreateBody(Mesh, #SphereBody, 10, 0.5, 10)
+      CreateMeshBody(Mesh, #BJS_SphereBody, 10, 0.5, 0.5)
       ShadowEmitter(Mesh)
       MusicPlay(Pop)
       
     Case 10, 20, 30
-      Mesh = CreateBox("Box", 1)
+      Mesh = CreateBox("Box", 1, 1, 1)
       ScaleMesh(Mesh, Random(40, 20), Random(20, 10), Random(40, 20))  
-      CreateBody(Mesh, #BoxBody, 1, 0.5, 0.5)
       MoveMesh(Mesh, Random(500, 200), Random(500, 200), Random(500, 200))
+      CreatemeshBody(Mesh, #BJS_BoxBody, 10, 0.5, 0.5)
       RotateMesh(Mesh, 0, Random(360), 0)
-      CreateBody(Mesh, #BoxBody, 2, 1, 1)
       ShadowEmitter(Mesh)
       MusicPlay(Pop)
       
@@ -68,7 +70,9 @@ Procedure RenderGame()
      
   RenderWorld() 
 EndProcedure
-; IDE Options = SpiderBasic 2.00 (Windows - x86)
+; IDE Options = SpiderBasic 2.20 (Windows - x86)
+; CursorPosition = 20
+; FirstLine = 9
 ; Folding = -
 ; WebAppName = Music
 ; HtmlFilename = music.html

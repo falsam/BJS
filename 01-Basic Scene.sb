@@ -9,15 +9,14 @@ Global Camera, Light, Plane, Sphere, Cylinder, Cube, Torus
 Declare LoadGame()
 Declare RenderGame()
 
-UseModule BJS
+UseModule BJS 
 
 InitEngine(@LoadGame())
 
 Procedure LoadGame()    
   If CreateScene()
-    
     ;Camera & Light
-    Camera  = CreateCamera("camera", 0, 5, 7, #ArcRotate)
+    Camera  = CreateCamera("camera", 0, 5, 7, #BJS_ArcRotate)
     Light   = CreateLight("light", 0, 10, 0)
     
     ;Objects (Plane, Sphere, ....)
@@ -28,29 +27,23 @@ Procedure LoadGame()
     Cylinder= CreateCylinder("cylinder", 2, 2, 2)
     MoveMesh(Cylinder, 3, 1, -2)
     
-    Cube = CreateBox("cube", 2)
+    Cube = CreateBox("cube", 2 , 2, 4)
     MoveMesh(Cube, -3, 1, -2)
     
     Torus = CreateTorus("torus", 2, 1)
     MoveMesh(Torus, -2, 0.5, 2)
-    
+        
     RenderLoop(@RenderGame())
   EndIf
 EndProcedure
 
-Procedure RenderGame()
-  RenderWorld() 
+Procedure RenderGame()  
+  RenderWorld()  
 EndProcedure
-; IDE Options = SpiderBasic 2.00 (Windows - x86)
-; CursorPosition = 11
+; IDE Options = SpiderBasic 2.20 (Windows - x86)
+; CursorPosition = 39
 ; Folding = -
-; WebAppName = Basic Scene
-; HtmlFilename = basicscene.html
-; JavaScriptFilename = basicscene.js
-; JavaScriptPath = sb
-; CopyJavaScriptLibrary
 ; iOSAppOrientation = 0
 ; AndroidAppOrientation = 0
 ; EnableXP
-; DisableDebugger
 ; CompileSourceDirectory

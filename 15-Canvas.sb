@@ -16,7 +16,7 @@ EndEnumeration
 Global Scene0, Scene1, Camera
 
 ;Ground
-Global Ground, GroundMat
+Global Ground, GroundTex, GroundMat
 
 Declare LoadGame()
 Declare OnChange()
@@ -56,15 +56,17 @@ Procedure LoadGame()
     AddGadgetItem(#mfListCars, -1, "Ferrari")
     
     ;Skybox & Camera
-    CreateLight("ambience", 0, 10, 0, 0.8, #Hemispheric)
-    Camera = CreateCamera("camera", 0, 8, 20, #ArcRotate)
+    CreateLight("ambience", 0, 10, 0, 0.8, #BJS_Hemispheric)
+    Camera = CreateCamera("camera", 0, 8, 20, #BJS_ArcRotate)
     
     ;Ground
     Ground = CreateGround("ground", 50, 50)
-    GroundMat = CreateMaterial("ground", "data/textures/Beton1.png")
-    SetMaterialColor(GroundMat, #Specular, RGB(0, 0, 0))
+    GroundTex = LoadTexture("ground", "data/textures/", "Beton1.png")
+    GroundMat = CreateMaterial("ground")
+    SetMaterialTexture(GroundMat, #BJS_Diffuse, GroundTex)
+    SetMaterialColor(GroundMat, #BJS_Specular, RGB(0, 0, 0))
     ScaleMaterial(GroundMat, 5, 5)
-    SetMaterial(Ground, GroundMat)
+    SetMeshMaterial(Ground, GroundMat)
     ImportScene("car", "data/Ferrari/", "ferrari.obj", @OnLoad())
   EndIf
   
@@ -74,19 +76,21 @@ Procedure LoadGame()
     AddGadgetItem(#mfListCars, -1, "Ford Mustang")
     
     ;Skybox & Camera
-    CreateLight("ambience", 0, 10, 0, 0.8, #Hemispheric)
-    Camera = CreateCamera("camera", 0, 8, 20, #ArcRotate)
+    CreateLight("ambience", 0, 10, 0, 0.8, #BJS_Hemispheric)
+    Camera = CreateCamera("camera", 0, 8, 20, #BJS_ArcRotate)
     
     ;Ground
-    Ground = CreateGround("ground", 50, 50)
-    GroundMat = CreateMaterial("ground", "data/textures/Beton1.png")
-    SetMaterialColor(GroundMat, #Specular, RGB(0, 0, 0))
+    Ground = CreateGround("ground", 50, 50)   
+    GroundTex = LoadTexture("ground", "data/textures/", "Beton1.png")
+    GroundMat = CreateMaterial("ground")
+    SetMaterialTexture(GroundMat, #BJS_Diffuse, GroundTex)
+    SetMaterialColor(GroundMat, #BJS_Specular, RGB(0, 0, 0))
     ScaleMaterial(GroundMat, 5, 5)
-    SetMaterial(Ground, GroundMat)
+    SetMeshMaterial(Ground, GroundMat)
     ImportScene("fordmustang", "data/FordMustang/", "1967-shelby-ford-mustang.babylon", @OnLoad())
   EndIf
   
-  CurrentScene(Scene0, Camera)
+  SetCurrentScene(Scene0, Camera)
   
   RenderLoop(@RenderGame())
 EndProcedure
@@ -94,10 +98,10 @@ EndProcedure
 Procedure OnChange()
   Select GetGadgetState(#mfListCars)
     Case 0 
-      CurrentScene(Scene0, Camera)
+      SetCurrentScene(Scene0, Camera)
       
     Case 1 
-      CurrentScene(Scene1, Camera)
+      SetCurrentScene(Scene1, Camera)
   EndSelect
 EndProcedure
 
@@ -122,9 +126,9 @@ Procedure RenderGame()
 EndProcedure
 
 
-; IDE Options = SpiderBasic 2.00 (Windows - x86)
-; CursorPosition = 22
-; FirstLine = 4
+; IDE Options = SpiderBasic 2.20 (Windows - x86)
+; CursorPosition = 103
+; FirstLine = 65
 ; Folding = -
 ; WebAppName = Canvas
 ; HtmlFilename = canvas.html

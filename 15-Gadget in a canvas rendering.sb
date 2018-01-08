@@ -32,7 +32,7 @@ EndEnumeration
 Global Scene0, Camera, Sky, LightPoint, Dim Meshs(0)
 
 ;Ground
-Global Ground, GroundMat
+Global Ground, GroundTex, GroundMat
 
 ;Gadget
 Global Gadget
@@ -125,19 +125,21 @@ Procedure LoadGame()
     ClearScene(RGB(0, 0, 0))
     
     ;Light & Camera
-    CreateLight("ambience", 0, 100, 0, 0.6, #HemiSpheric)
-    LightPoint = CreateLight("ambience", 0, 100, 0, 0.8, #Point)
+    CreateLight("ambience", 0, 100, 0, 0.6, #BJS_HemiSpheric)
+    LightPoint = CreateLight("ambience", 0, 100, 0, 0.8, #BJS_Point)
     
-    Camera = CreateCamera("camera", 0, 20, 20, #Free)
+    Camera = CreateCamera("camera", 0, 20, 20, #BJS_Free)
     CameraBodySize(Camera, 2, 10, 2)
     CameraLookAt(Camera, 0, 20, 0)
     
     ;Ground
     Ground = CreateGround("ground", 1000, 1000, 100)
-    GroundMat = CreateMaterial("ground", "data/textures/Beton1.png")
-    SetMaterialColor(GroundMat, #Specular, RGB(0, 0, 0))
+    GroundTex = LoadTexture("ground", "data/textures/Beton1.png")
+    GroundMat = CreateMaterial("ground")
+    SetMaterialTexture(GroundMat, #BJS_Diffuse, GroundTex)    
+    SetMaterialColor(GroundMat, #BJS_Specular, RGB(0, 0, 0))
     ScaleMaterial(GroundMat, 20, 20)
-    SetMaterial(Ground, GroundMat)
+    SetMeshMaterial(Ground, GroundMat)
     
     ;Picking enable
     PickEnable()   
@@ -154,7 +156,7 @@ Procedure SelectSky()
   EndIf
   
   If Position <> 0
-    Sky = SkyBox(NewSky, "data/textures/sky/" + NewSky, 1000)
+    Sky = SkyBox(NewSky, "data/textures/", "sky/" + NewSky, 1000)
   Else
     ClearScene(RGB(0, 0, 0))
   EndIf 
@@ -173,7 +175,7 @@ Procedure CreateMesh()
   Select Item
     Case 1 
       Name = "Box_" + Str(CountMesh)
-      NewMesh = CreateBox(Name, 6)
+      NewMesh = CreateBox(Name, 6, 6, 6)
       
     Case 2 
       Name = "Sphere_" + Str(CountMesh)
@@ -226,9 +228,9 @@ Procedure ResizeGame()
   ResizeGadget(#mfSideBar, #PB_Ignore, #PB_Ignore, #PB_Ignore, Height)
   ResizeGadget(#mfNewScene, #PB_Ignore, Height - 50, #PB_Ignore, #PB_Ignore)
 EndProcedure
-; IDE Options = SpiderBasic 2.00 (Windows - x86)
-; CursorPosition = 181
-; FirstLine = 169
+; IDE Options = SpiderBasic 2.20 (Windows - x86)
+; CursorPosition = 136
+; FirstLine = 132
 ; Folding = --
 ; WebAppName = Gadget in a canvas rendering
 ; HtmlFilename = canvasgui.html

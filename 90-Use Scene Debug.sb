@@ -1,0 +1,86 @@
+﻿EnableExplicit
+
+IncludeFile "babylon/babylon.sbi"
+
+Global Assets.s = "data/textures/"
+Global Scene, Camera, Light0, Light1
+Global Ground, GroundTex, GroundBump, GroundMat
+Global Box0, Box1, BoxTex, BoxMat
+
+Declare LoadGame()
+Declare RenderGame()
+
+UseModule BJS
+InitEngine(@LoadGame())
+
+Procedure LoadGame()
+  Scene = CreateScene()
+  If Scene
+    
+    ClearScene(RGB(0,0,0))
+    
+    ;Camera physic (Player)
+    Camera = CreateCamera("camera", 0, 16, 40, #BJS_Free)
+    CameraBodySize(Camera, 2, 8, 2)
+        
+    ;Light
+    Light0 = CreateLight("General", 0, 200, 0, 0.7, #BJS_Point)
+    SetLightColor(Light0, #BJS_Diffuse, RGB(12, 12, 12))
+    
+    Light1 = CreateLight("spot", 0, 15, 0, 1, #BJS_Spot)
+    SpotLightRange(Light1, 3, 8)
+    SetLightColor(Light1, #BJS_Diffuse, RGB(255, 255, 255))
+    
+    ;Ground
+    Ground = CreatePlane("ground", 200, 200)
+    GroundTex = LoadTexture("ground", Assets + "floor.png")
+    GroundBump = LoadTexture("ground bump", Assets + "floor_bump.PNG")
+    GroundMat = CreateMaterial("ground")
+    SetMaterialTexture(GroundMat, #BJS_Diffuse, GroundTex)
+    ScaleMaterial(GroundMat, 16, 16)
+    SetMaterialTexture(GroundMat, #BJS_Bump, GroundBump)
+    SetMeshMaterial(Ground, GroundMat)
+    RotateMesh(Ground, 90, 0, 0)   
+    
+    ;Box
+    Box0 = CreateBox("box0", 5, 5, 5)
+    MoveMesh(Box0, 0, 2.5, 0)
+    BoxTex = LoadTexture("crate", Assets + "crate.png") 
+    BoxMat = CreateMaterial("crate")
+    SetMaterialTexture(BoxMat, #BJS_Diffuse, BoxTex)
+    SetMaterialColor(BoxMat, #BJS_Emissive, RGB(50, 50, 50))
+    SetMeshMaterial(Box0, BoxMat)
+    
+    ;Copy Box0 -> Box1
+    Box1 = CloneMesh(Box0, "box1")
+    MoveMesh(Box1, 1, 7.5, 0)
+    RotateMesh(Box1, 0, 45, 0)
+        
+    ;Shadows
+    InitShadow(Light0)
+    ShadowEmitter(Box0)
+    ShadowEmitter(Box1)
+    RenderShadows(Ground)
+    
+    ;Debug
+    SceneDebug()
+    
+    RenderLoop(@RenderGame())
+  EndIf
+EndProcedure
+
+Procedure RenderGame()
+  RenderWorld() 
+EndProcedure
+; IDE Options = SpiderBasic 2.20 (Windows - x86)
+; CursorPosition = 47
+; FirstLine = 11
+; Folding = -
+; WebAppName = Debug Scene
+; HtmlFilename = scenedebug.html
+; JavaScriptFilename = scenedebug.js
+; JavaScriptPath = sb
+; iOSAppOrientation = 0
+; AndroidAppOrientation = 0
+; EnableXP
+; CompileSourceDirectory

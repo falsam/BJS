@@ -1,31 +1,31 @@
-﻿;Babylon.sbi - Template minimum Full Screen
+﻿;Babylon.sbi - Set Material Alpha (0.0 -> 1.0 
 
 EnableExplicit
 
 IncludeFile "babylon/babylon.sbi"
 
-Enumeration
-  #mf
-  #mfRender
-EndEnumeration
-
-Global Scene
+Global Scene, Box, BoxTex, BoxMat
 
 Declare LoadGame()
 Declare RenderGame()
 
 UseModule BJS
 
-OpenWindow(#mf, 0, 0, 800, 600, "Open Windowed Screen", #PB_Window_ScreenCentered)
-CanvasGadget(#mfRender, 0, 0, 800, 600, #PB_Canvas_Transparent)
-
-InitEngine(@LoadGame(), #mfRender)
+InitEngine(@LoadGame())
 
 Procedure LoadGame()    
   Scene = CreateScene()
+  
   If Scene
     CreateCamera("camera", 0, 10, 10, #BJS_ArcRotate)
     CreateLight("light", 0, 10, 0)
+    
+    Box = CreateBox("box", 4, 4, 4)
+    BoxTex = LoadTexture("crate", "data/textures/crate.png")
+    BoxMat = CreateMaterial("crate")
+    SetMaterialTexture(BoxMat, #BJS_Diffuse, BoxTex)
+    SetMaterialAlpha(boxMat, 0.5)
+    SetMeshMaterial(Box, BoxMat)
     
     RenderLoop(@RenderGame())
   EndIf
@@ -35,7 +35,7 @@ Procedure RenderGame()
   RenderWorld() 
 EndProcedure
 ; IDE Options = SpiderBasic 2.20 (Windows - x86)
-; CursorPosition = 26
+; CursorPosition = 23
 ; Folding = -
 ; iOSAppOrientation = 0
 ; AndroidAppOrientation = 0

@@ -15,12 +15,12 @@ Procedure LoadGame()
   Protected Mesh
   
   If CreateScene()
-    CreateCamera("camera", 5, 5, 10, #ArcRotate)
+    CreateCamera("camera", 5, 5, 10, #BJS_ArcRotate)
     
-    CreateLight("Light", 0, 10, 0, 0.8, #Hemispheric)
+    CreateLight("Light", 0, 10, 0, 0.8, #BJS_Hemispheric)
     
     CreateGround("Sweet Ground", 10, 10)
-    Mesh = CreateBox("My Box", 1)
+    Mesh = CreateBox("My Box", 1, 1, 1)
     MoveMesh(Mesh, 0, 1, 0)
     
     Mesh = CreateSphere("Sphere", 0.5)    
@@ -50,8 +50,8 @@ Procedure RenderGame()
 EndProcedure
 
 
-; IDE Options = SpiderBasic 2.00 (Windows - x86)
-; CursorPosition = 42
+; IDE Options = SpiderBasic 2.20 (Windows - x86)
+; CursorPosition = 22
 ; Folding = -
 ; WebAppName = Picking
 ; HtmlFilename = picking.html

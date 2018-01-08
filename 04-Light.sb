@@ -5,7 +5,7 @@ EnableExplicit
 IncludeFile "babylon/babylon.sbi"
 UseModule BJS
 
-Global Scene, Camera, Light0, Light1, Light2, Ligh3, Mesh, Material
+Global Scene, Camera, Light0, Light1, Light2, Ligh3, Mesh, Texture, Material
 
 Declare LoadGame()
 Declare RenderGame()
@@ -15,35 +15,40 @@ InitEngine(@LoadGame())
 Procedure LoadGame()    
   Scene = CreateScene()
   If Scene
-    Camera = CreateCamera("camera", 0, 10, 20, #ArcRotate)
+    Camera = CreateCamera("camera", 0, 10, 20, #BJS_ArcRotate)
     
     ;Lights
-    CreateLight("General", 0, 20, 0, 0.2, #Hemispheric)
+    CreateLight("General", 0, 20, 0, 0.2, #BJS_Hemispheric)
         
-    Light0 = CreateLight("Red Light", -1, 10, -1, 1, #Spot)
+    Light0 = CreateLight("Red Light", -1, 10, -1, 1, #BJS_Spot)
     SpotLightRange(Light0, 2, 10)
-    SetLightColor(Light0, #Diffuse, RGB(255, 0, 0))
-    SetLightColor(Light0, #Specular, RGB(0, 255, 0))
+    SetLightColor(Light0, #BJS_Diffuse, RGB(255, 0, 0))
+    SetLightColor(Light0, #BJS_Specular, RGB(0, 255, 0))
     
-    Light1 = CreateLight("Green Light", 5, 10, 1, 0.8, #Spot)
+    Light1 = CreateLight("Green Light", 5, 10, 1, 0.8, #BJS_Spot)
     SpotLightRange(Light1, 2, 5)
-    SetLightColor(Light1, #Diffuse, RGB(0, 255, 0))
-    SetLightColor(Light1, #Specular, RGB(0, 255, 0))
+    SetLightColor(Light1, #BJS_Diffuse, RGB(0, 255, 0))
+    SetLightColor(Light1, #BJS_Specular, RGB(0, 255, 0))
         
-    Light2 = CreateLight("Blue Light", -9, 10, -9, 1, #Spot)
+    Light2 = CreateLight("Blue Light", -9, 10, -9, 1, #BJS_Spot)
     SpotLightRange(Light2, 2, 6)
-    SetLightColor(Light2, #Diffuse, RGB(0, 0, 255))
-    SetLightColor(Light2, #Specular, RGB(0, 255, 0))
+    SetLightColor(Light2, #BJS_Diffuse, RGB(0, 0, 255))
+    SetLightColor(Light2, #BJS_Specular, RGB(0, 255, 0))
         
     ;Ground & Box
-    Material = CreateMaterial("ground", "data/textures/floor.png")
+    Texture = LoadTexture("ground", "data/textures/floor.png")
+    Material = CreateMaterial("ground")
+    SetMaterialTexture(Material, #BJS_Diffuse, Texture)
     Mesh = CreateGround("ground", 30, 30)
-    SetMaterial(Mesh, Material)
+    SetMeshMaterial(Mesh, Material)
     ScaleMaterial(Material, 5, 5)
     
-    Material = CreateMaterial("Box", "data/textures/crate.png")
-    Mesh = CreateBox("Box", 5)
-    SetMaterial(Mesh, Material)
+    Texture = LoadTexture("Box", "data/textures/crate.png")
+    Material = CreateMaterial("Box")
+    SetMaterialTexture(Material, #BJS_Diffuse, Texture)
+    SetMaterialColor(Material, #BJS_Emissive, RGB(80, 80, 80))
+    Mesh = CreateBox("Box", 5, 5, 5)
+    SetMeshMaterial(Mesh, Material)
     MoveMesh(Mesh, 0, 2.5, 0)
         
     RenderLoop(@RenderGame())
@@ -51,14 +56,12 @@ Procedure LoadGame()
 EndProcedure
 
 Procedure RenderGame()
-  Static z.f
-   
   RenderWorld() 
 EndProcedure
 
 
-; IDE Options = SpiderBasic 2.00 (Windows - x86)
-; CursorPosition = 39
+; IDE Options = SpiderBasic 2.20 (Windows - x86)
+; CursorPosition = 57
 ; Folding = -
 ; WebAppName = Light
 ; HtmlFilename = light.html

@@ -3,31 +3,40 @@
 EnableExplicit
 
 IncludeFile "babylon/babylon.sbi"
-
-Global Camera, Light0, Light1, Sky, Ground, MatGround, Torus0, Torus1, ShadowGenerator
+Enumeration
+  #mf
+  #mfRender
+EndEnumeration
+Global Camera, Light0, Light1, Sky, Ground, TexGround, MatGround, Torus0, Torus1, ShadowGenerator
 
 Declare LoadGame()
 Declare RenderGame()
 
 UseModule BJS
+OpenWindow(#mf, 0, 0, 0, 0 ,"", #PB_Window_Background)
+CanvasGadget(#mfRender, 0, 0, WindowWidth(#mf), WindowHeight(#mf), #PB_Canvas_Transparent)
 
-InitEngine(@LoadGame())
+InitEngine(@LoadGame(), #mfRender)
 
 Procedure LoadGame()   
+  Protected n
   If CreateScene()
-    Camera = CreateCamera("camera", 0, 20, -80, #ArcRotate)
+        
+    Camera = CreateCamera("camera", 0, 20, -80, #BJS_ArcRotate)
     
-    Light0 = CreateLight("light0", 0, 30, 0, 0.6, #Point)
-    Light1 = CreateLight("light1", 0, 30, 0, 0.2, #Hemispheric)
+    Light0 = CreateLight("light0", 0, 30, 0, 0.6, #BJS_Point)
+    Light1 = CreateLight("light1", 0, 30, 0, 0.2, #BJS_Hemispheric)
     
     ;SkyBox
     Sky = SkyBox("Night", "data/textures/sky/night", 1000)
     
     ;Ground
     Ground = CreateGround("Ground", 1000, 1000)
-    MatGround = CreateMaterial("Grass", "data/textures/grass1.jpg")
+    TexGround = LoadTexture("Grass", "data/textures/grass1.jpg")
+    MatGround = CreateMaterial("Grass")
+    SetMaterialTexture(MatGround, #BJS_Diffuse, TexGround)
     ScaleMaterial(MatGround, 40, 40)
-    SetMaterial(Ground, MatGround)
+    SetMeshMaterial(Ground, MatGround)
     
     ;Torus
     Torus0 = CreateTorus("torus0", 8, 2, 32)
@@ -41,14 +50,14 @@ Procedure LoadGame()
     ShadowEmitter(Torus0)
     ShadowEmitter(Torus1)
     RenderShadows(Ground, #True)
-       
+   
     RenderLoop(@RenderGame())
   EndIf
 EndProcedure
 
 Procedure RenderGame()
-  RotateMesh(Torus0, 0.01, 0.00, 0.02, #PB_Relative)
-  RotateMesh(Torus1, 0.02, 0.01, 0.00, #PB_Relative)
+  RotateMesh(Torus0, 0.5, 0.00, 0.5, #PB_Relative)
+  RotateMesh(Torus1, 1, 1, 0.00, #PB_Relative)
   
   If GetCameraBeta(Camera) > 1.50
     SetCameraBeta(Camera, 1.50)
@@ -62,9 +71,9 @@ Procedure RenderGame()
 EndProcedure
 
 
-; IDE Options = SpiderBasic 2.00 (Windows - x86)
-; CursorPosition = 40
-; FirstLine = 5
+; IDE Options = SpiderBasic 2.20 (Windows - x86)
+; CursorPosition = 30
+; FirstLine = 10
 ; Folding = -
 ; WebAppName = Skybox
 ; HtmlFilename = skybox.html

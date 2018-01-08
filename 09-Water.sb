@@ -4,7 +4,7 @@ EnableExplicit
 
 IncludeFile "babylon/babylon.sbi"
 
-Global Camera, Light, Sky, Ground, GroundMat, Water
+Global Camera, Light, Sky, Ground, GroundTex, GroundMat, Water
 
 Declare LoadGame()
 Declare RenderGame()
@@ -17,23 +17,25 @@ Procedure LoadGame()
   If CreateScene()
     
     ;Camera & Light
-    Camera = CreateCamera("camera", 0, 20, 80, #Free)
+    Camera = CreateCamera("camera", 0, 20, 80, #BJS_Free)
     CameraBodySize(Camera, 1, 10, 1)
     
-    Light = CreateLight("Light", 0, 100, 100, 0.8, #Hemispheric)
+    Light = CreateLight("Light", 0, 100, 100, 0.8, #BJS_Hemispheric)
         
     ;SkyBox
-    Sky = SkyBox("Santa", "data/textures/sky/cloud", 1000)
+    Sky = SkyBox("Santa", "data/textures/sky/", "cloud", 1000)
     
     ;Ground
     Ground = CreateGround("grass", 1000, 1000)
-    GroundMat = CreateMaterial("grass", "data/textures/grass.jpg")
+    GroundTex = LoadTexture("grass", "data/textures/grass.jpg")
+    GroundMat = CreateMaterial("grass")
+    SetMaterialTexture(GroundMat, #BJS_Diffuse, GroundTex)
     ScaleMaterial(GroundMat, 64, 64)
-    SetMaterial(Ground, GroundMat)
+    SetMeshMaterial(Ground, GroundMat)
     MoveMesh(Ground, 0, -2, 0)
     
     ;Water
-    Water = CreateWater("water", "data/textures/waterbump.png", 1000, 1000, 64)
+    Water = CreateWater("water", "data/textures/", "waterbump.png", 1000, 1000, 64)
         
     WaterRenderList(Water, Ground)
     WaterRenderList(Water, Sky)
@@ -47,8 +49,8 @@ Procedure RenderGame()
 EndProcedure
 
 
-; IDE Options = SpiderBasic 2.00 (Windows - x86)
-; CursorPosition = 32
+; IDE Options = SpiderBasic 2.20 (Windows - x86)
+; CursorPosition = 29
 ; Folding = -
 ; WebAppName = water
 ; HtmlFilename = water.html

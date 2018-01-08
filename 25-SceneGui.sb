@@ -1,0 +1,105 @@
+﻿;Babylon.sbi - GUI (Graphical User Interface)
+EnableExplicit
+
+IncludeFile "babylon/babylon.sbi"
+
+;Scene
+Global Scene, Camera, Light, Mesh, Texture, Material
+
+;GUI
+Global SceneGUI, Text, Slider, Button, PickerColor
+
+Declare LoadGame()
+Declare GUIEvent(Control, Name.s, Value)
+Declare RenderGame()
+
+UseModule BJS
+
+InitEngine(@LoadGame())
+
+Procedure LoadGame()    
+  Scene = CreateScene()
+  If Scene
+    
+    ;Camera
+    Camera = CreateCamera("camera", 0, 10, -20, #BJS_ArcRotate)
+    CameraLookAt(Camera, 0, 0, 0)
+    
+    ;Light
+    ClearScene(RGB(63, 60, 60))
+    Light = CreateLight("light", 0, 20, 0)
+    
+    ;Material
+    Texture = LoadTexture("ground", "data/textures/beton1.png")
+    Material = CreateMaterial("ground")
+    SetMaterialTexture(Material, #BJS_Diffuse, Texture)
+    ScaleMaterial(Material, 5, 5)    
+    
+    ;Ground
+    Mesh = CreateBox("ground", 20, 0.5, 20)
+    SetMeshMaterial(Mesh, Material)
+    
+    ;Scene GUI
+    SceneGUI = SceneDynamicTexture()
+    
+    Text = Text3D("text", 20, 20, 150, 24, "Light Intensity", #BJS_Left)
+    AddControl3D(SceneGUI, Text)
+        
+    Slider = Slider3D("light intensity", 200, 22, 150, 20, 0, 1, @GUIEvent(), 9)
+    SetState3D(Slider, 1)
+    SetColor3D(Slider, #BJS_BackColor, RGB(220, 220, 220))
+    SetColor3D(Slider, #BJS_FrontColor, RGB(128, 128, 128))
+    AddControl3D(SceneGUI, Slider)
+    
+    Button = Button3D("On Off", 360, 20, 60, 24, "Off", @GUIEvent())
+    AddControl3D(SceneGUI, Button)  
+    
+    Text = Text3D("text", 20, 60, 150, 24, "Scene Color", #BJS_Left)
+    AddControl3D(SceneGUI, Text)
+        
+    PickerColor = PickerColor3D("SceneColor", 200, 60, 150, 150, @GUIEvent())
+    AddControl3D(SceneGUI, PickerColor)  
+    
+    RenderLoop(@RenderGame())
+  EndIf
+EndProcedure
+
+Procedure GUIEvent(Control, Name.s, Value)
+  Select Control
+    Case Slider
+      If Value > 0
+        SetText3D(Button, "Off")
+      Else
+        SetText3D(Button, "On")        
+      EndIf     
+      
+      SetLightIntensity(Light, Value)
+      
+    Case Button
+      Debug GetText3D(Button)
+      If GetText3D(Button) = "Off"
+        SetState3D(Slider, 0)
+        SetLightIntensity(Light, 0)
+        SetText3D(Button, "On")
+      Else
+        SetState3D(Slider, 1)
+        SetLightIntensity(Light, 1)
+        SetText3D(Button, "Off")
+      EndIf  
+      
+    Case PickerColor
+      ClearScene(Value)  
+  EndSelect
+EndProcedure
+
+Procedure RenderGame()
+  RenderWorld() 
+EndProcedure
+; IDE Options = SpiderBasic 2.20 (Windows - x86)
+; CursorPosition = 32
+; FirstLine = 10
+; Folding = -
+; iOSAppOrientation = 0
+; AndroidAppOrientation = 0
+; EnableXP
+; CompileSourceDirectory
