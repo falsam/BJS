@@ -1,25 +1,33 @@
 ﻿;Babylon.js for SpiderBasic : Material 
 
-;Last update : 24 May 2017
+;Last update : 18 Aout 2017
 
-Procedure CreateMaterial(Name.s, Image.s = "" , BackFaceCulling = #False)
+;Private
+Procedure MaterialDefine(Material)
+  !if (typeof(v_material) == "undefined") {
+  !   BABYLON.Tools.Log("Material is not initialized (UseAssetsManager()")
+  !   return false
+  !} else {
+  !   return true
+  !}
+EndProcedure
+
+Procedure CreateMaterial(Name.s, BackFaceCulling = #False)
   !var material = new BABYLON.StandardMaterial(v_name, v_bjscurrentscene);
-  
-  If Image.s <> ""
-    !material.diffuseTexture = new BABYLON.Texture(v_image, v_bjscurrentscene);
-  EndIf
   
   !material.backFaceCulling = v_backfaceculling;  //Show (or not) the front and the back of an element
   
-  If LCase(GetExtensionPart(image)) = "png"
-    !material.diffuseTexture.hasAlpha = true
-  EndIf
+  ;If LCase(GetExtensionPart(Image)) = "png"
+  ;  !material.diffuseTexture.hasAlpha = true
+  ;EndIf
   !return material  
 EndProcedure
 
 Procedure ScaleMaterial(Material, UScale.f, VScale.f)
-  !v_material.diffuseTexture.uScale = v_uscale;     //Repeat x times on the Vertical Axes
-  !v_material.diffuseTexture.vScale = v_vscale;     //Repeat x times on the Horizontal Axes    
+  If MaterialDefine(Material)
+    !v_material.diffuseTexture.uScale = v_uscale;     //Repeat x times on the Vertical Axes
+    !v_material.diffuseTexture.vScale = v_vscale;     //Repeat x times on the Horizontal Axes
+  EndIf
 EndProcedure
 
 Procedure ScrollMaterial(Material, UOffset.f, VOffset.f)
@@ -31,50 +39,70 @@ Procedure SetMaterialColor(Material, Type, Color)
   Protected r.f = Red(Color)/255
   Protected g.f = Green(Color)/255
   Protected b.f = Blue(Color)/255
-  
-  Select Type
-    Case #Specular
-      !v_material.specularColor = new BABYLON.Color3(v_r, v_g, v_b);
-      
-    Case #Diffuse
-      !v_material.diffuseColor = new BABYLON.Color3(v_r, v_g, v_b);
-      
-    Case #Ambient
-      !v_material.ambientColor = new BABYLON.Color3(v_r, v_g, v_b);
-  EndSelect  
+  If MaterialDefine(Material)
+    
+    Select Type
+      Case #BJS_Specular
+        !v_material.specularColor = new BABYLON.Color3(v_r, v_g, v_b);
+        
+      Case #BJS_Diffuse
+        !v_material.diffuseColor = new BABYLON.Color3(v_r, v_g, v_b);
+        
+      Case #BJS_Ambient
+        !v_material.ambientColor = new BABYLON.Color3(v_r, v_g, v_b);
+        
+      Case #BJS_Emissive
+        !v_material.emissiveColor = new BABYLON.Color3(v_r, v_g, v_b);
+    EndSelect
+  EndIf
 EndProcedure
 
-Procedure SetMaterialTexture(Material, Type, FileName.s)
+Procedure SetMaterialTexture(Material, Type, Texture, HasAlpha = #False)
   Select Type
-    Case #Specular
-      !v_material.specular.Texture = new BABYLON.Texture(v_filename, v_bjscurrentscene);
+    Case #BJS_Specular
+      !v_material.specularTexture = v_texture;
+      !v_material.specularTexture.hasAlpha = v_hasalpha;
       
-    Case #Diffuse
-      !v_material.diffuse.Texture = new BABYLON.Texture(v_filename, v_bjscurrentscene);
+    Case #BJS_Diffuse
+      !v_material.diffuseTexture = v_texture;
+      !v_material.diffuseTexture.hasAlpha = v_hasalpha;
       
-    Case #Ambient
-      !v_material.ambient.Texture = new BABYLON.Texture(v_filename, v_bjscurrentscene);
+    Case #BJS_Ambient
+      !v_material.ambientTexture = v_texture;
+      !v_material.ambientTexture.hasAlpha = v_hasalpha;
       
-    Case #Emissive
-      !v_material.emissive.Texture = new BABYLON.Texture(v_filename, v_bjscurrentscene);
+    Case #BJS_Emissive
+      !v_material.emissiveTexture = v_texture;
+      !v_material.emissiveTexture.hasAlpha = v_hasalpha;
       
-    Case #Bump
-      !v_material.bumpTexture = new BABYLON.Texture(v_filename, v_bjscurrentscene);
+    Case #BJS_Bump
+      !v_material.bumpTexture = v_texture;
+      !v_material.bumpTexture.hasAlpha = v_hasalpha;
       !v_material.bumpTexture.uScale = v_material.diffuseTexture.uScale
       !v_material.bumpTexture.vScale = v_material.diffuseTexture.vScale
   EndSelect
 EndProcedure
 
+Procedure SetMaterialAlpha(Material, Alpha.f)
+  If MaterialDefine(Material)  
+    !v_material.alpha = v_alpha;   
+  EndIf  
+EndProcedure
+
+Procedure SetMeshMaterial(Mesh, Material)
+  If MaterialDefine(Material)
+    !v_mesh.material = v_material;
+  EndIf  
+EndProcedure
+
 Procedure CloneMaterial(Material)
-  !return v_material.clone()
+  If MaterialDefine(Material)
+    !return v_material.clone()
+  EndIf  
 EndProcedure
-
-Procedure SetMaterial(Mesh, Material)
-  !v_mesh.material = v_material;
-EndProcedure
-
-; IDE Options = SpiderBasic 2.00 (Windows - x86)
-; CursorPosition = 2
+; IDE Options = SpiderBasic 2.20 (Windows - x86)
+; CursorPosition = 101
+; FirstLine = 39
 ; Folding = --
 ; iOSAppOrientation = 0
 ; AndroidAppOrientation = 0

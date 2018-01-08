@@ -1,6 +1,8 @@
 ﻿;Babylon.js for SpiderBasic : Mesh
 
-;Last update : 24 May 2017
+;Last update : 18 August 2017
+
+;CreateMeshBody instead CreateBody
 
 ;-
 ;-Basic Object
@@ -16,14 +18,14 @@ Procedure CreateGround(Name.s, Width.f, Depth.f, Subdivs=2)
   !return mesh
 EndProcedure
 
-Procedure CreatePlane(Name.s, Size.f)
-  !var mesh = BABYLON.Mesh.CreatePlane(v_name, v_size, v_bjscurrentscene);
+Procedure CreatePlane(Name.s, Width.f, Height.f)
+  !var mesh = BABYLON.MeshBuilder.CreatePlane(v_name, {width:v_width, height:v_height}, v_bjscurrentscene);
   !mesh.checkCollisions = true
   !return mesh
 EndProcedure
 
-Procedure CreateBox(Name.s, Size.f)
-  !var mesh = BABYLON.Mesh.CreateBox(v_name, v_size, v_bjscurrentscene);
+Procedure CreateBox(Name.s, Width.f, Height.f, Depth.f)  
+  !var mesh = BABYLON.MeshBuilder.CreateBox(v_name, {width:v_width, height:v_height, depth:v_depth}, v_bjscurrentscene);
   !mesh.checkCollisions = true
   !return mesh
 EndProcedure
@@ -67,8 +69,8 @@ Procedure CreateIcoSphere(Name.s, Radius, RadiusY, Subdivs = 16)
   !return mesh
 EndProcedure
 
-Procedure CreateTerrain(Name.s, HeightmapPath.s, Width.f, Depth.f, Subdivs.i, MinHeight.f, MaxHeight.f)
-  !var mesh = BABYLON.Mesh.CreateGroundFromHeightMap(v_name, v_heightmappath, v_width, v_depth, v_subdivs, v_minheight, v_maxheight, v_bjscurrentscene, false);
+Procedure CreateTerrain(Name.s, FileName.s, Width.f, Depth.f, Subdivs.i, MinHeight.f, MaxHeight.f)
+  !var mesh = BABYLON.Mesh.CreateGroundFromHeightMap(v_name, v_filename, v_width, v_depth, v_subdivs, v_minheight, v_maxheight, v_bjscurrentscene, false);
   !mesh.checkCollisions = true
   !return mesh
 EndProcedure
@@ -78,7 +80,7 @@ Procedure.s GetMeshName(Mesh)
   !return v_mesh.name  
 EndProcedure
 
-Procedure GetMesh(MeshName.s)
+Procedure GetMeshByName(MeshName.s)
   !for (var index = 0; index < v_bjscurrentscene.meshes.length; ++index) {
   ! if (v_bjscurrentscene.meshes[index].name == v_meshname) {
   !   return v_bjscurrentscene.meshes[index];
@@ -93,9 +95,9 @@ EndProcedure
 
 
 ;Physics
-Procedure CreateBody(Mesh, Type, Mass.f = 1.0, Restitution.f = 1.0, Friction = 0.1)
+Procedure CreateMeshBody(Mesh, Type, Mass.f = 1.0, Restitution.f = 1.0, Friction = 0.1)
   Select type 
-    Case #PlaneBody ;unlimited surface. 
+    Case #BJS_PlaneBody ;unlimited surface. 
       !v_mesh.physicsImpostor = new BABYLON.PhysicsImpostor(v_mesh, 
       !  BABYLON.PhysicsImpostor.PlaneImpostor, {
       !     mass        : v_mass, 
@@ -104,7 +106,7 @@ Procedure CreateBody(Mesh, Type, Mass.f = 1.0, Restitution.f = 1.0, Friction = 0
       !  }, 
       !v_bjscurrentscene); 
       
-    Case #SphereBody 
+    Case #BJS_SphereBody 
       !v_mesh.physicsImpostor = new BABYLON.PhysicsImpostor(v_mesh, 
       !  BABYLON.PhysicsImpostor.SphereImpostor, {
       !     mass        : v_mass, 
@@ -113,7 +115,7 @@ Procedure CreateBody(Mesh, Type, Mass.f = 1.0, Restitution.f = 1.0, Friction = 0
       !  }, 
       !v_bjscurrentscene); 
       
-    Case #BoxBody
+    Case #BJS_BoxBody
       !v_mesh.physicsImpostor = new BABYLON.PhysicsImpostor(v_mesh, 
       !  BABYLON.PhysicsImpostor.BoxImpostor, {
       !     mass        : v_mass, 
@@ -122,7 +124,7 @@ Procedure CreateBody(Mesh, Type, Mass.f = 1.0, Restitution.f = 1.0, Friction = 0
       !  }, 
       !v_bjscurrentscene); 
       
-    Case #CylinderBody
+    Case #BJS_CylinderBody
       !v_mesh.physicsImpostor = new BABYLON.PhysicsImpostor(v_mesh, 
       !  BABYLON.PhysicsImpostor.CylinderImpostor, {
       !     mass        : v_mass, 
@@ -150,6 +152,14 @@ Procedure GetCollideMesh(Mesh)
   !return v_mesh.object  
 EndProcedure
 
+Procedure GhostMesh(Mesh, Value = #True)
+  !v_mesh.checkCollisions = !v_value  
+EndProcedure
+
+Procedure HideMesh(Mesh, Value = #True)
+  !v_mesh.visibility = !v_value
+EndProcedure
+
 ;-
 ;- Move, Rotate, Scale, Position
 Procedure MoveMesh(Mesh, x.f, y.f, z.f, Mode = #PB_Absolute)
@@ -166,13 +176,13 @@ EndProcedure
 
 Procedure RotateMesh(Mesh, x.f, y.f, z.f, Mode = #PB_Absolute)
   If mode = #PB_Absolute
-    !v_mesh.rotation.x = v_x;
-    !v_mesh.rotation.y = v_y;
-    !v_mesh.rotation.z = v_z;
+    !v_mesh.rotation.x = v_x * (Math.PI/180);
+    !v_mesh.rotation.y = v_y * (Math.PI/180);
+    !v_mesh.rotation.z = v_z * (Math.PI/180);
   Else
-    !v_mesh.rotation.x += v_x;
-    !v_mesh.rotation.y += v_y;
-    !v_mesh.rotation.z += v_z;
+    !v_mesh.rotation.x += v_x * (Math.PI/180);
+    !v_mesh.rotation.y += v_y * (Math.PI/180);
+    !v_mesh.rotation.z += v_z * (Math.PI/180);
   EndIf
 EndProcedure
 
@@ -186,6 +196,10 @@ Procedure ScaleMesh(Mesh, x.f, y.f, z.f, Mode = #PB_Absolute)
     !v_mesh.scaling.y += v_y;
     !v_mesh.scaling.z += v_z;
   EndIf
+EndProcedure
+
+Procedure MeshLookAt(Mesh, Target)
+  !v_mesh.lookAt(v_target.position);  
 EndProcedure
 
 Procedure.f MeshX(Mesh)
@@ -211,7 +225,7 @@ Procedure CloneMesh(Mesh, Name.s = "")
   !return mesh
 EndProcedure
 
-Procedure Attach(Parent, Child, x.f, y.f, z.f)
+Procedure AttachMesh(Parent, Child, x.f, y.f, z.f)
   !v_child.parent = v_parent,
   !v_child.position.x = v_x;
   !v_child.position.y = v_y;
@@ -275,10 +289,10 @@ EndProcedure
 Procedure Translate(Mesh, Value.f)
   !v_mesh.translate(new BABYLON.Vector3(v_value, 0, 0), 0.1, BABYLON.Space.LOCAL);
 EndProcedure
-; IDE Options = SpiderBasic 2.00 (Windows - x86)
-; CursorPosition = 151
-; FirstLine = 122
-; Folding = ------
+; IDE Options = SpiderBasic 2.20 (Windows - x86)
+; CursorPosition = 72
+; FirstLine = 70
+; Folding = -------
 ; iOSAppOrientation = 0
 ; AndroidAppOrientation = 0
 ; EnableXP

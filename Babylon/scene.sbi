@@ -1,6 +1,6 @@
 ﻿;Babylon.js for SpiderBasic : Scene 
 
-;Last update : 24 May 2017
+;Last update : 14, November 2017
 
 Procedure CreateScene()  
   !v_bjscurrentscene  = new BABYLON.Scene(v_bjsengine);
@@ -8,6 +8,14 @@ Procedure CreateScene()
   !v_bjscurrentscene.enablePhysics(); 
   !v_bjscurrentscene.gravity = new BABYLON.Vector3(0, -0.9, 0)
   !return v_bjscurrentscene;
+EndProcedure
+
+Procedure SceneWidth()
+  !return v_bjsengine._gl.drawingBufferWidth
+EndProcedure
+
+Procedure SceneHeight()
+  !return v_bjsengine._gl.drawingBufferHeight
 EndProcedure
 
 Procedure SceneGravity(x.f = 0, y.f = -0.9, z.f = 0)
@@ -22,22 +30,31 @@ Procedure ClearScene(color)
   !v_bjscurrentscene.clearColor = new BABYLON.Color3(v_r, v_g, v_b);
 EndProcedure
 
+Procedure onMouseMove(CallBack)
+  !v_bjscurrentscene.onPointerMove = function (evt) {
+  ! v_callback()
+  !}
+EndProcedure
+
+Procedure SceneMouseX(Scene)
+  !return v_scene.pointerX
+EndProcedure
+
+Procedure SceneMouseY(Scene)
+  !return v_scene.pointerY
+EndProcedure
+
 Procedure BeforeRender(CallBack)
   !v_bjscurrentscene.registerBeforeRender(v_callback);
 EndProcedure
 
-Procedure EnableOffLineSupport(Value = #True) 
-  !v_bjsengine.enableOfflineSupport = v_value;
-EndProcedure
-
-Procedure CurrentScene(Scene, Camera)
+Procedure SetCurrentScene(Scene, Camera)
   !v_bjscurrentscene = v_scene;
   !v_bjscurrentscene.activeCamera = v_camera;
 EndProcedure
 
 Procedure ImportScene(Name.s, Path.s, FileName.s, Callback) 
   !BABYLON.SceneLoader.ImportMesh("", v_path, v_filename + '?' + (new Date()).getTime(), v_bjscurrentscene, function (BJSMeshes, BJSParticles, BJSSkeletons) {
-  !  console.log(BJSMeshes)
   !  v_callback(v_name, BJSMeshes[0]);
   !});
 EndProcedure
@@ -58,11 +75,10 @@ EndProcedure
 Procedure SceneDebug()
   !v_bjscurrentscene.debugLayer.show();
 EndProcedure
-
-; IDE Options = SpiderBasic 2.00 (Windows - x86)
-; CursorPosition = 40
-; FirstLine = 6
-; Folding = --
+; IDE Options = SpiderBasic 2.20 (Windows - x86)
+; CursorPosition = 76
+; FirstLine = 25
+; Folding = ---
 ; iOSAppOrientation = 0
 ; AndroidAppOrientation = 0
 ; EnableXP

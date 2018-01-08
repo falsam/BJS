@@ -1,0 +1,16 @@
+﻿;Babylon.js for SpiderBasic : Textures
+
+Procedure LoadTexture(Name.s, FileName.s)
+  !return new BABYLON.Texture(v_filename, v_bjscurrentscene);
+EndProcedure
+
+Procedure LoadVideoTexture(Names.s, FileName.s)
+  !return new BABYLON.VideoTexture("video", [v_filename], v_bjscurrentscene, true, true); 
+EndProcedure
+; IDE Options = SpiderBasic 2.20 (Windows - x86)
+; CursorPosition = 6
+; Folding = -
+; iOSAppOrientation = 0
+; AndroidAppOrientation = 0
+; EnableXP
+; CompileSourceDirectory

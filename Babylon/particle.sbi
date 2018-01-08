@@ -85,11 +85,9 @@ EndProcedure
 Procedure StopParticle(Emitter)
   !v_emitter.stop()
 EndProcedure
-
-
-; IDE Options = SpiderBasic 2.00 (Windows - x86)
-; CursorPosition = 53
-; FirstLine = 25
+; IDE Options = SpiderBasic 2.20 (Windows - x86)
+; CursorPosition = 14
+; FirstLine = 11
 ; Folding = ---
 ; iOSAppOrientation = 0
 ; AndroidAppOrientation = 0

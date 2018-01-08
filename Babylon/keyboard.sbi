@@ -12,7 +12,6 @@ Procedure InitKey()
   !	isReleased: function(keyCode) { return this._released[keyCode]; },
   
   !	onKeydown: function(event) {
-  ;!   console.log("Key " + event.keyCode)
   !		this._pressed[event.keyCode] = true;
   !		delete this._released[event.keyCode];
   !	},
@@ -39,7 +38,7 @@ Procedure KeyReleased(key)
 EndProcedure
 
 
-; IDE Options = SpiderBasic 2.00 (Windows - x86)
+; IDE Options = SpiderBasic 2.20 (Windows - x86)
 ; CursorPosition = 14
 ; Folding = -
 ; iOSAppOrientation = 0

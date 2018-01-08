@@ -1,0 +1,250 @@
+﻿;Babylon.js for SpiderBasic : GUI
+Procedure SceneDynamicTexture(Layer = 1)
+  !var dynamicTexture = BABYLON.GUI.AdvancedDynamicTexture.CreateFullscreenUI("UI");
+  !dynamicTexture.layer.layerMask = v_layer
+  !return dynamicTexture
+EndProcedure
+
+Procedure MeshDynamicTexture(Mesh)
+  !var dynamicTexture = BABYLON.GUI.AdvancedDynamicTexture.CreateForMesh(v_mesh)
+  !return dynamicTexture
+EndProcedure
+
+Procedure AddControl3D(Parent, Child)
+  !v_parent.addControl(v_child)
+EndProcedure
+
+Procedure Rectangle3D(Name.s, x.i, y.i, Width.i = -1, Height.i = -1, Radius = 8, Thickness = 1)
+  !var object = new BABYLON.GUI.Rectangle();
+  !object.horizontalAlignment = BABYLON.GUI.Control.HORIZONTAL_ALIGNMENT_LEFT;
+  !object.verticalAlignment = BABYLON.GUI.Control.VERTICAL_ALIGNMENT_TOP;
+  
+  !object.left = v_x+"px"
+  !object.top = v_y+"px"  
+  If Width = -1
+    !object.width = "100%";
+  Else
+    !object.width = v_width + "px";
+  EndIf
+  
+  If Height = -1
+    !object.height = "100%";
+  Else
+    !object.height = v_height + "px";
+  EndIf
+  
+  !object.cornerRadius = v_radius;
+  !object.radius = v_radius;
+  !object.color = "Orange";
+  !object.thickness = v_thickness;
+  !object.background = "white";
+  !return object;
+EndProcedure
+
+Procedure Text3D(Name.s, x.i, y.i, Width.i, Height.i, Text.s, Align = #BJS_Center)
+  !var object = new BABYLON.GUI.TextBlock(v_name, v_text);
+  
+  !object.horizontalAlignment = BABYLON.GUI.Control.HORIZONTAL_ALIGNMENT_LEFT;
+  !object.verticalAlignment = BABYLON.GUI.Control.VERTICAL_ALIGNMENT_TOP;
+  
+  !object.left = v_x+"px"
+  !object.top = v_y+"px"  
+  !object.width = v_width+"px";
+  !object.height = v_height+"px";
+  !object.color = "White";
+  Select Align
+    Case #BJS_Left
+      !object.textHorizontalAlignment = BABYLON.GUI.Control.HORIZONTAL_ALIGNMENT_LEFT
+    Case #BJS_Right
+      !object.textHorizontalAlignment = BABYLON.GUI.Control.HORIZONTAL_ALIGNMENT_RIGHT
+  EndSelect
+        
+  !return object;
+EndProcedure
+
+
+Procedure Button3D(Name.s, x.i, y.i, Width.i, Height.i, Text.s, OnClick, CornerRadius = 8)
+  !var object = BABYLON.GUI.Button.CreateSimpleButton(v_name, v_text);
+  
+  !object.horizontalAlignment = BABYLON.GUI.Control.HORIZONTAL_ALIGNMENT_LEFT;
+  !object.verticalAlignment = BABYLON.GUI.Control.VERTICAL_ALIGNMENT_TOP;
+  
+  !object.alpha = 1
+  !object.left = v_x+"px"
+  !object.top = v_y+"px"  
+  !object.width = v_width+"px";
+  !object.height = v_height+"px";
+  !object.cornerRadius = v_cornerradius 
+  !object.color = "black";
+  !object.background = "white";
+  !object.focusedBackground = "white"
+  
+  !object.onPointerUpObservable.add(function() {  
+  !   v_onclick(object, object.name);
+  !});
+    
+  !return object;
+EndProcedure
+
+Procedure Image3D(Name.s, x.i, y.i, Width.i, Height.i, FileName.s, OnClick = #False)
+  !var object = new BABYLON.GUI.Image(v_name, v_filename);
+  
+  !object.horizontalAlignment = BABYLON.GUI.Control.HORIZONTAL_ALIGNMENT_LEFT;
+  !object.verticalAlignment = BABYLON.GUI.Control.VERTICAL_ALIGNMENT_TOP;
+  
+  !object.alpha = 1
+  !object.left = v_x+"px"
+  !object.top = v_y+"px"  
+  !object.width = v_width+"px";
+  !object.height = v_height+"px";
+  
+  !object.onPointerUpObservable.add(function() {  
+  !   v_onclick(object, object.name);
+  !});
+  
+  !return object;
+EndProcedure
+
+Procedure Slider3D(Name.s, x.i, y.i, Width.i, Height.i, MiniMum.i, Maximum.i, OnChange, BarOffset = 8)
+  !var object = new BABYLON.GUI.Slider(v_name);
+  
+  !object.horizontalAlignment = BABYLON.GUI.Control.HORIZONTAL_ALIGNMENT_LEFT;
+  !object.verticalAlignment = BABYLON.GUI.Control.VERTICAL_ALIGNMENT_TOP;
+  
+  !object.left = v_x+"px"
+  !object.top = v_y+"px"  
+  !object.width = v_width+"px";
+  !object.height = v_height+"px";
+
+  !object.minimum = v_minimum;
+  !object.maximum = v_maximum;
+  !object.value = 0;
+  
+  !object.onValueChangedObservable.add(function() {  
+  !   v_onchange(object, object.name, parseFloat(object.value));
+  !});
+  
+  !return object;
+EndProcedure
+
+
+Procedure Input3D(Name.s, x.i, y.i, Width.i, Height.i, Text.s, OnLostFocus=#False, OnTextChange=#False, OnGetFocus=#False)
+  !var object = new BABYLON.GUI.InputText();
+  
+  !object.horizontalAlignment = BABYLON.GUI.Control.HORIZONTAL_ALIGNMENT_LEFT;
+  !object.verticalAlignment = BABYLON.GUI.Control.VERTICAL_ALIGNMENT_TOP;
+  
+  !object.text = v_text
+  !object.left = v_x+"px"
+  !object.top = v_y+"px"  
+  !object.width = v_width+"px";
+  !object.maxWidth = v_width+"px";
+  !object.autoStretchWidth = false
+  !object.height = v_height+"px";
+  !object.color = "black";
+  !object.background = "white";
+  !object.focusedBackground = "white"
+  !object.thickness = 2;
+  
+  !object.onTextChangedObservable.add(function() {  
+  !      v_ontextchange();
+  !});
+  
+  !object.onFocusObservable.add(function() {  
+  !      v_ongetfocus();
+  !});
+  
+  !object.onBlurObservable.add(function() {  
+  !      v_onlostfocus();
+  !});
+
+  
+  !return object;
+EndProcedure
+
+
+Procedure PickerColor3D(Name.s, x.i, y.i, Width.i, Height.i, CallBack)
+  Protected r, g, b, color
+  
+  !var object = new BABYLON.GUI.ColorPicker();
+  !object.horizontalAlignment = BABYLON.GUI.Control.HORIZONTAL_ALIGNMENT_LEFT;
+  !object.verticalAlignment = BABYLON.GUI.Control.VERTICAL_ALIGNMENT_TOP;
+  !object.left = v_x+"px"
+  !object.top = v_y+"px"  
+  !object.width = v_width+"px";
+  !object.height = v_height+"px";
+  
+  !object.onValueChangedObservable.add(function(value) { // value is a color3
+  ! v_r = value.r * 255
+  ! v_g = value.g * 255
+  ! v_b = value.b * 255
+  color = RGB(r,g,b)
+  ! v_callback(object, v_name, v_color);
+  !});
+  
+  !return object;
+EndProcedure
+  
+
+Procedure SetText3D(Object, Text.s)
+  !if (v_object != 0) {
+  !   v_object.children[0].text = v_text
+  !}
+EndProcedure
+
+Procedure.s GetText3D(Object)
+  !return v_object.children[0].text
+EndProcedure
+
+Procedure SetColor3D(Object, ColorType, Color)
+  Protected r.f = Red(Color)
+  Protected g.f = Green(Color)
+  Protected b.f = Blue(Color)
+  
+  Select ColorType
+    Case #BJS_BackColor
+      !v_object.background = "rgb(" + v_r + "," + v_g + "," + v_b +")";
+      
+    Case #BJS_FrontColor
+      !v_object.color = "rgb(" + v_r + "," + v_g + "," + v_b +")";
+      
+    Case #BJS_BorderColor
+      !v_object.borderColor = "rgb(" + v_r + "," + v_g + "," + v_b +")";
+      
+  EndSelect    
+EndProcedure
+
+Procedure SetTextFont3D(Object, FontFamily.s, FontSize)
+  !v_object.fontFamily = v_fontfamily
+  !v_object.fontSize = v_fontsize
+EndProcedure
+
+Procedure SetOpacity3D(Object, Alpha.f)
+  !v_object.alpha = v_alpha
+EndProcedure
+
+Procedure SetZindex3D(Object, zIndex.i)
+  !v_object.zIndex = v_zindex
+EndProcedure
+
+Procedure GetState3D(Object)
+  !return v_object.value  
+EndProcedure
+
+Procedure SetState3D(Object, Value)
+  !v_object.value = v_value  
+EndProcedure
+
+
+Procedure Text3DLinkToMesh(Mesh, ObjectText, OffSetY.f)
+  !v_objecttext.linkWithMesh(v_mesh);   
+  !v_objecttext.linkOffsetY = v_offsety;
+EndProcedure
+; IDE Options = SpiderBasic 2.20 (Windows - x86)
+; CursorPosition = 181
+; FirstLine = 165
+; Folding = ----
+; iOSAppOrientation = 0
+; AndroidAppOrientation = 0
+; EnableXP
+; CompileSourceDirectory

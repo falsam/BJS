@@ -1,42 +1,50 @@
 ﻿;Babylon.js for SpiderBasic : constant.sbi 
 
-;Last update : 11 Jun 2017
+;Last update : 12, November 2017
 
 #All = 0
 #KeyBoard = 1
 #Mouse = 2
-#Absolute = #False
-#Relative = #True
 
 ;Camera
-#Free = 0
-#Universal = 1
-#ArcRotate = 2
-#Follow = 3
-#VR = 4
-#Camera360 = 5
+#BJS_Free = 0
+#BJS_Universal = 1
+#BJS_ArcRotate = 2
+#BJS_Follow = 3
+#BJS_VR = 4
+#BJS_360 = 5
 
 ;Light
-#Point = 1
-#Directional = 2
-#Spot = 3
-#Hemispheric = 4
+#BJS_Point = 1
+#BJS_Directional = 2
+#BJS_Spot = 3
+#BJS_Hemispheric = 4
 
 ;Body
-#PlaneBody = 0
-#BoxBody = 1
-#SphereBody = 2
-#CylinderBody = 3
+#BJS_PlaneBody = 0
+#BJS_BoxBody = 1
+#BJS_SphereBody = 2
+#BJS_CylinderBody = 3
 
 ;Material Color & Texture
-#Specular = 0
-#Diffuse = 1
-#Ambient = 2
-#Emissive = 3
-#Bump = 4
+#BJS_Specular = 0
+#BJS_Diffuse = 1
+#BJS_Ambient = 2
+#BJS_Emissive = 3
+#BJS_Bump = 4
+
+;GUI Color
+#BJS_BackColor = 1    
+#BJS_FrontColor = 2   
+#BJS_BorderColor = 3
+
+;GUI align
+#BJS_Left = 1
+#BJS_Center = 2
+#BJS_Right = 3
 
 ;Joint
-#DistanceJoint = 0        ;A fixed distance between two impostors
+#DistanceJoint = 0         ;A fixed distance between two impostors
 ;#HingeJoint = 1           ;A joint allowing rotation on a single axis (much like your knee)
 ;#BallAndSocketJoint = 2   ;A joint allowing one of the objects to rotate around a specific socket (like your hip)
 ;#WheelJoint = 3
@@ -55,6 +63,7 @@ Global BJSCanvas
 ;Child  : Scene.sbi
 Global BJSEngine          
 Global BJScreenSpace2D 
+Global BJSScreenGUI
 
 ;Parent : Engine.sbi 
 ;Child  : Guid2d.sbi
@@ -66,6 +75,9 @@ Global BJSCurrentScene
 
 ;Parent : Scene.sbi
 Global BJSShadowGenerator
+
+;Parent : Assetsmanager.sbi
+Global BJSAssetsManager
 
 Structure NewVector
   x.f
@@ -85,8 +97,10 @@ Structure NewPick
   point.NewVector
 EndStructure
 Global Pick.NewPick
-; IDE Options = SpiderBasic 2.00 (Windows - x86)
-; CursorPosition = 2
+
+; IDE Options = SpiderBasic 2.20 (Windows - x86)
+; CursorPosition = 99
+; FirstLine = 48
 ; iOSAppOrientation = 0
 ; AndroidAppOrientation = 0
 ; EnableXP

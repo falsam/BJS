@@ -1,8 +1,8 @@
 ;Babylon.js for SpiderBasic 
 
-;Version     : 0.93
+;Version     : 1.00
 
-;Last update : 11 Jun 2017
+;Last update : 18 August 2017
 
 DeclareModule BJS
   ;-Constants.sbi
@@ -10,38 +10,46 @@ DeclareModule BJS
   
   ;-Engine.sbi
   Declare   SetEnginePath(EnginePath.s = "sbbjs")
+  
   Declare   InitEngine(Callback, CanvasOutput = #PB_Ignore) 
-  Declare   CreateSpace2D(Scene)
   Declare   RenderLoop(Callback)
   Declare   RenderWorld()  
-      
+  Declare   CreateSceneShoot(Camera, Width, Height, Precision.f=0.5)    
+  
   ;-Scene.sbi
   Declare   CreateScene()
+  Declare   SceneWidth()
+  Declare   SceneHeight()
   Declare   SceneGravity(x.f = 0, y.f = -0.9, z.f = 0)
   Declare   ClearScene(color)
+  Declare   onMouseMove(CallBack)
+  Declare   SceneMouseX(Scene)
+  Declare   SceneMouseY(Scene)  
   Declare   BeforeRender(CallBack)
-  Declare   EnableOffLineSupport(Value = #True) 
-  Declare   CurrentScene(Scene, Camera)
-  Declare   ImportScene(Name.s, Path.s, FileName.s, Callback)
+  Declare   SetCurrentScene(Scene, Camera)
+  Declare   ImportScene(Name.s, Path.s, FileName.s, Callback) ;Obsolete
   Declare   ExportScene(Scene, FileName.s)
   Declare   SceneDebug()
    
   ;-Environment.sbi
-  Declare   SkyBox(name.s, sky.s, size.i = 200)
-  Declare   CreateWater(Name.s, Texture.s, Width.f, Depth.f, SubDivs.i)
+  Declare   AmbientColor(Color.i)
+  Declare   SkyBox(name.s, Sky.s, size.i=200)
+  Declare   Fog(Color, Intensity.f = 0.01 , StartDistance.f = 20.0, EndDistance.f = 60.0)
+  
+  ;Water
+  Declare   CreateWater(Name.s, FileName.s, Width.f, Depth.f, SubDivs.i)
   Declare   WaterRenderList(Water, Mesh)
   Declare   SetWater(Mesh, WindForce.f = -5, WaveHeight.f = 0.05, BumpHeight.f = 0.05, Color = 0, ColorBlendFactor.f = 0.1)
-  
-  Declare   Fog(Color, Intensity.f = 0.01 , StartDistance.f = 20.0, EndDistance.f = 60.0)
-  Declare   AmbientColor(Color.i)
-  
+    
   ;Light
-  Declare   CreateLight(Name.s, x.f, y.f, z.f, intensity.f = 1, mode.i = #Hemispheric)
+  Declare   CreateLight(Name.s, x.f, y.f, z.f, intensity.f = 1, mode.i = #BJS_Hemispheric)
   Declare   SpotLightRange(Light, InnerAngle.f, OuterAngle.f)
   Declare   LightDirection(Light, x.f, y.f, z.f)
   Declare   MoveLight(Light.i, x.f, y.f, z.f, Mode = #PB_Relative)
   Declare   EnableLight(Light, Value.b)
   Declare   SetLightColor(Light, Type, Color)
+  Declare   GetLightIntensity(Light)
+  Declare   SetLightIntensity(Light, Intensity.f)
   
   ;Shadow
   Declare   InitShadow(Light, RenderSize = 1024)
@@ -49,7 +57,7 @@ DeclareModule BJS
   Declare   RenderShadows(Mesh, Value.b = #True) 
  
   ;-Camera.sbi 
-  Declare   CreateCamera(Name.s, x.f, y.f, z.f, Type = #Free)
+  Declare   CreateCamera(Name.s, x.f, y.f, z.f, Type = #BJS_Free)
   Declare   CameraFov(Camera, Fov.f) 
   Declare   CameraRange(Camera, Near, Far)
   Declare   CameraLookAtMesh(Camera, MeshObject)
@@ -75,38 +83,46 @@ DeclareModule BJS
   Declare   SetCameraAlpha(Camera, Value.f)
   Declare   SetCameraRadius(Camera, Value.f)
   
+  ;-Texture.sbi
+  Declare   LoadTexture(Name.s, FileName.s)
+  Declare   LoadVideoTexture(Names.s, FileName.s)
+  
   ;-Material.sbi
-  Declare   CreateMaterial(Name.s, Image.s = "" , BackFaceCulling = #False)
+  Declare   CreateMaterial(Name.s, BackFaceCulling = #False)
   Declare   ScaleMaterial(Material, UScale.f, VScale.f)
   Declare   ScrollMaterial(Material, UOffset.f, VOffset.f)
   Declare   SetMaterialColor(Material, Type, Color)
-  Declare   SetMaterialTexture(Material, Type, FileName.s)
-  Declare   CloneMaterial(Material)
-  Declare   SetMaterial(Mesh, Material)
+  Declare   SetMaterialTexture(Material, Type, Texture, HasAlpha = #False)
+  Declare   SetMaterialAlpha(Material, Alpha.f)
+  Declare   SetMeshMaterial(Mesh, material)
+  Declare   CloneMaterial(Material)  
   
   ;-Mesh.sbi
   Declare   CreateSphere(Name.s, Size.f, Subdivs.i = 16)  
   Declare   CreateGround(Name.s, Width.f, Depth.f, Subdivs=2)
-  Declare   CreateBox(Name.s, Size.f)
-  Declare   CreatePlane(Name.s, Size.f)
+  Declare   CreateBox(Name.s, Width.f, Height.f, Depth.f)
+  Declare   CreatePlane(Name.s, Width.f, Height.f)
   Declare   CreateCylinder(Name.s, Height.f, DiamTop.f, DiamBottom.f, Tessellation.i = 30, HeightSubdivs.i = 1)
   Declare   CreateTorus(Name.s, Diameter, Thickness, Tesselation = 32)
   Declare   CreateIcoSphere(Name.s, Radius, RadiusY, Subdivs = 16)
   Declare   CreateTube(Name.s, Array VectorsArray.NewVector(1), Radius.f, Tessellation = 32, RadiusFunction = #PB_Ignore)
-  Declare   CreateTerrain(Name.s, HeightmapPath.s, Width.f, Depth.f, Subdivs.i, MinHeight.f, MaxHeight.f)
-  
+  Declare   CreateTerrain(Name.s, FileName.s, Width.f, Depth.f, Subdivs.i, MinHeight.f, MaxHeight.f)
+   
   ;Physics
-  Declare   CreateBody(Mesh, Type, Mass.f = 1.0, Restitution.f = 1.0, Friction = 0.1)
+  Declare   CreateMeshBody(Mesh, Type, Mass.f = 1.0, Restitution.f = 1.0, Friction = 0.1)
   Declare   ApplyMeshImpulse(Mesh, x.f, y.f, z.f)
   Declare   MeshCollide(Mesh1, Mesh2, CallBack)
   Declare   GetCollideMesh(Mesh)
-
+  Declare   GhostMesh(Mesh, Value = #True)
+  Declare   HideMesh(Mesh, Value = #True)
+  
   Declare.s GetMeshName(Mesh)
-  Declare   GetMesh(MeshName.s)
+  Declare   GetMeshByName(MeshName.s)
   Declare   FreeMesh(Mesh)
     
   Declare   RotateMesh(Mesh, x.f, y.f, z.f, Mode = #PB_Absolute)
   Declare   ScaleMesh(Mesh, x.f, y.f, z.f, Mode = #PB_Absolute)
+  Declare   MeshLookAt(Mesh, Target)
   
   ;Move, Position
   Declare   MoveMesh(Mesh, x.f, y.f, z.f, Mode = #PB_Absolute)
@@ -115,7 +131,7 @@ DeclareModule BJS
   Declare.f MeshZ(Mesh)
   
   Declare   CloneMesh(Mesh, Name.s = "")
-  Declare   Attach(Parent, Child, x.f, y.f, z.f)
+  Declare   AttachMesh(Parent, Child, x.f, y.f, z.f)
   Declare   SetMeshPivot(Mesh, x.f, y.f, z.f)
     
   ;Picking
@@ -148,6 +164,12 @@ DeclareModule BJS
   Declare   StartParticle(Emitter)
   Declare   StopParticle(Emitter)
   
+  ;-assetsmanager.sbi
+  Declare   UseAssetsManager()
+  Declare   AssetsLoad(Name.s, FileName.s, CallBack, CallBackError)
+  Declare   AssetsPrompt(Text.s)
+  Declare   AssetsManagerLoad()
+  
   ;-music.sbi
   Declare   MusicLoad(Name.s, FileName.s, Loop = #False, Autoplay = #False, CallBack = #False)
   Declare   MusicVolume(Music, Value.f)
@@ -157,16 +179,33 @@ DeclareModule BJS
   Declare   MusicPause(Music)
   Declare   IsMusicPause(Music)
   Declare   MusicStop(Music)
-  Declare   MusicPosition(Music, x.f, y.f, z.f)
+  Declare   SetMusicPosition(Music, x.f, y.f, z.f)
   Declare   MusicAttachToMesh(Music, Mesh)
   
-  ;-gui2d.sbi (Experimental)
-  Declare   UseParent(CurrentParent = #False)
-  Declare   Text2D(x, y, Text.s, CallBack = #False, Font.s = "25pt Arial", Color = $FF000000) 	
-  Declare   Rectangle2D(x, y, w, h, Radius = 6, BorderSize = 4, CallBack = #False, FillColor = $FFFFFFFF, BorderColor = $FF000000) 
-  Declare   Button2D(x.f, y.f, w.f, h.f, Radius = 6, BorderSize = 4, Text.s = "", CallBack = #False, Font.s = "25pt Arial", FillColor = $FFFFFFFF, FrontColor = $FF000000, BorderColor = $FF000000)
-  Declare   Image2D(x.f, y.f, Image.s);
-  Declare   SetText(Element, Text.s)
+  ;-gui.sbi (Dynamic texture)
+  Declare   SceneDynamicTexture(Layer = 1)
+  Declare   MeshDynamicTexture(Mesh)
+  Declare   AddControl3D(Parent, Child)
+  
+  Declare   Rectangle3D(Name.s, x.i, y.i, Width.i = -1, Height.i = -1, Radius = 8, Thickness = 1)
+  Declare   Text3D(Name.s, x.i, y.i, Width.i, Height.i, Text.s, Align = #BJS_Center)
+  Declare   Button3D(Name.s, x.i, y.i, Width.i, Height.i, Text.s, Callback, CornerRadius = 8)
+  Declare   Image3D(Name.s, x.i, y.i, Width.i, Height.i, FileName.s, OnClick = #False)
+  Declare   Slider3D(Name.s, x.i, y.i, Width.i, Height.i, MiniMum.i, Maximum.i, OnChange, BarOffset = 8)
+  Declare   Input3D(Name.s, x.i, y.i, Width.i, Height.i, Text.s, OnLostFocus=#False, OnTextChange=#False, OnGetFocus=#False)
+  Declare   PickerColor3D(Name.s, x.i, y.i, Width.i, Height.i, CallBack)
+   
+  Declare.s GetText3D(Object)
+  Declare   SetText3D(Object, Text.s)
+  Declare   SetColor3D(Object, ColorType, Color)
+  Declare   SetTextFont3D(Object, FontFamily.s, FontSize)
+  Declare   SetOpacity3D(Object, Alpha.f)
+  Declare   SetZindex3D(Object, zIndex.i)
+  
+  Declare   GetState3D(Object)
+  Declare   SetState3D(Object, Value)
+  
+  Declare   Text3DLinkToMesh(Mesh, ObjectText, OffSetY.f)
   
   ;- Keyboard.sbi
   Declare   InitKey()
@@ -183,18 +222,19 @@ Module BJS
   IncludeFile "scene.sbi"
   IncludeFile "camera.sbi"
   IncludeFile "environment.sbi"
+  IncludeFile "texture.sbi"
   IncludeFile "material.sbi"
   IncludeFile "mesh.sbi"
   IncludeFile "particle.sbi"
+  IncludeFile "assetsmanager.sbi"
   IncludeFile "music.sbi"
-  IncludeFile "gui2d.sbi"
+  
+  IncludeFile "gui.sbi"
   IncludeFile "keyboard.sbi"
 EndModule
-  
-; IDE Options = SpiderBasic 2.00 (Windows - x86)
-; CursorPosition = 2
+; IDE Options = SpiderBasic 2.20 (Windows - x86)
+; CursorPosition = 188
 ; Folding = -
-; Markers = 135
 ; iOSAppOrientation = 0
 ; AndroidAppOrientation = 0
 ; EnableXP

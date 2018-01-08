@@ -1,0 +1,75 @@
+﻿;Babylon.js for SpiderBasic : Assets manager 
+
+;Last update : 14, November 2017
+
+;Private
+Procedure AssetsManagerDefine()
+  !if (typeof(v_bjsassetsmanager) == "undefined") {
+  !   BABYLON.Tools.Log("AssetsManager is not initialized (UseAssetsManager()")
+  !   return false
+  !} else {
+  !   return true
+  !}
+EndProcedure
+
+Procedure.s GetPathPart(url.s)
+  !return v_url.substr(0, v_url.lastIndexOf("/"))
+EndProcedure
+
+Procedure.s GetFilePart(url.s)
+  !return v_url.substring(v_url.lastIndexOf('/')+1);
+EndProcedure
+
+;Public
+Procedure UseAssetsManager()
+  !v_bjsassetsmanager = new BABYLON.AssetsManager(v_bjscurrentscene);
+EndProcedure
+
+Procedure AssetsManagerLoad()
+  If AssetsManagerDefine()
+    !v_bjsassetsmanager.load();
+  EndIf
+EndProcedure
+
+Procedure AssetsLoad(Name.s, FileName.s, CallBack, CallBackError)
+  ;Protected n = CountString(Object, ".") +1
+  
+  Protected PathPart.s = GetPathPart(FileName) + "\"
+  Protected FilePart.s = GetFilePart(FileName)
+    
+  If AssetsManagerDefine()
+    Select GetExtensionPart(FileName)  
+      Case "babylon", "obj", "stl"
+        !var process = v_bjsassetsmanager.addMeshTask(v_name, "", v_pathpart, v_filepart + '?' + (new Date()).getTime());
+        
+      Case "jpg", "png"
+        !var process = v_bjsassetsmanager.addTextureTask(v_name, v_pathpart + v_filepart + '?' + (new Date()).getTime());
+        
+      Default 
+        Debug "Unable to import meshes " + Path + Object
+    EndSelect
+    
+    !process.onSuccess = function (task) {
+    !   task.loadedMeshes[0].position = BABYLON.Vector3.Zero();
+    !   v_callback(v_name, task.loadedMeshes[0])
+    !} 
+    
+    !process.onError = function (task, message, exception) {
+    !  console.log(message, exception);
+    !}
+  EndIf 
+EndProcedure
+
+Procedure AssetsPrompt(Text.s)
+  If AssetsManagerDefine()
+    !v_bjsengine.loadingUIText = v_text;
+  EndIf 
+EndProcedure
+; IDE Options = SpiderBasic 2.20 (Windows - x86)
+; CursorPosition = 37
+; FirstLine = 4
+; Folding = --
+; iOSAppOrientation = 0
+; AndroidAppOrientation = 0
+; EnableXP
+; CompileSourceDirectory

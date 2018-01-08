@@ -7,36 +7,29 @@ Procedure SetEnginePath(EnginePath.s = "sbbjs")
 EndProcedure
 
 Procedure InitEngine(Callback, CanvasGadget = #PB_Ignore)    
-  !     require([bjs$v_bjsenginepath + "/babylon.custom.js"], 
-  !       function(t) {
+  !require([bjs$v_bjsenginepath + "/babylon.custom.js"], 
+  ! function(t) {
+  !   if (BABYLON.Engine.isSupported()) {
   
-            If CanvasGadget = #PB_Ignore    
-              !$('<canvas>').attr('id', 'renderCanvas')
-              ! .css({ width : '100%', height : '100%' })
-              ! .appendTo('body');
-            Else
-              !var selector = $(spider_GadgetID(v_canvasgadget))[0].gadget
-              !selector.id = "renderCanvas"
-              !selector.style.width = '100%'
-              !selector.style.height = '100%'
-            EndIf
-
-  !         v_bjscanvas = document.getElementById('renderCanvas');
-  !         v_bjsengine = new BABYLON.Engine(v_bjscanvas, true);  
-  !         window.addEventListener('resize', function(){v_bjsengine.resize(); });  
-  !         v_callback()
-    
-  !       }
-  !     );    
+        If CanvasGadget = #PB_Ignore    
+          !$('<canvas>').attr('id', 'renderCanvas')
+          ! .css({ width : '100%', height : '100%' })
+          ! .appendTo('body');
+        Else
+          !var selector = $(spider_GadgetID(v_canvasgadget))[0].gadget
+          !selector.id = "renderCanvas"
+          !selector.style.width = '100%'
+          !selector.style.height = '100%'
+        EndIf
+  
+  !     v_bjscanvas = document.getElementById('renderCanvas');
+  !     v_bjsengine = new BABYLON.Engine(v_bjscanvas, true, { preserveDrawingBuffer: true, stencil: true });  
+  !     window.addEventListener('resize', function(){v_bjsengine.resize(); });  
+  !     v_callback()
+  !   } else {return false} 
+  ! }
+  !);    
 EndProcedure  
-
-Procedure CreateSpace2D(scene)
-  !bjs$v_bjscreenspace2d = new BABYLON.ScreenSpaceCanvas2D(v_scene, {
-  !  id: "ScreenCanvas", cachingStrategy: BABYLON.Canvas2D.CACHESTRATEGY_DONTCACHE,
-  !});		  
-  BJScurrentParent = BJScreenSpace2D
-  !return bjs$v_bjscreenspace2d
-EndProcedure
 
 Procedure RenderLoop(Callback)
   !v_bjsengine.runRenderLoop(v_callback)
@@ -45,9 +38,15 @@ EndProcedure
 Procedure RenderWorld()
   !v_bjscurrentscene.render();
 EndProcedure
-; IDE Options = SpiderBasic 2.00 (Windows - x86)
-; CursorPosition = 2
-; Folding = -
+
+Procedure CreateSceneShoot(Camera, Width, Height, Precision.f=0.5)
+  !var size = { width: v_width, height: v_height}
+  !BABYLON.Tools.CreateScreenshot(v_bjsengine, v_camera, size);
+EndProcedure
+
+; IDE Options = SpiderBasic 2.20 (Windows - x86)
+; CursorPosition = 45
+; Folding = --
 ; iOSAppOrientation = 0
 ; AndroidAppOrientation = 0
 ; EnableXP
