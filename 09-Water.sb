@@ -23,7 +23,7 @@ Procedure LoadGame()
     Light = CreateLight("Light", 0, 100, 100, 0.8, #BJS_Hemispheric)
         
     ;SkyBox
-    Sky = SkyBox("Santa", "data/textures/sky/", "cloud", 1000)
+    Sky = SkyBox("Santa", "data/textures/sky/cloud", 1000)
     
     ;Ground
     Ground = CreateGround("grass", 1000, 1000)
@@ -35,7 +35,7 @@ Procedure LoadGame()
     MoveMesh(Ground, 0, -2, 0)
     
     ;Water
-    Water = CreateWater("water", "data/textures/", "waterbump.png", 1000, 1000, 64)
+    Water = CreateWater("water", "data/textures/waterbump.png", 1000, 1000, 64)
         
     WaterRenderList(Water, Ground)
     WaterRenderList(Water, Sky)
@@ -50,7 +50,7 @@ EndProcedure
 
 
 ; IDE Options = SpiderBasic 2.20 (Windows - x86)
-; CursorPosition = 29
+; CursorPosition = 37
 ; Folding = -
 ; WebAppName = water
 ; HtmlFilename = water.html
