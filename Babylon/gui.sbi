@@ -1,17 +1,22 @@
 ﻿;Babylon.js for SpiderBasic : GUI
-Procedure SceneDynamicTexture(Layer = 1)
-  !var dynamicTexture = BABYLON.GUI.AdvancedDynamicTexture.CreateFullscreenUI("UI");
-  !dynamicTexture.layer.layerMask = v_layer
-  !return dynamicTexture
-EndProcedure
-
-Procedure MeshDynamicTexture(Mesh)
-  !var dynamicTexture = BABYLON.GUI.AdvancedDynamicTexture.CreateForMesh(v_mesh)
-  !return dynamicTexture
+Procedure CreateDynamicTexture(Mesh = #False)
+  Protected DynamicTexture
+  
+  If Mesh 
+    !v_dynamictexture = BABYLON.GUI.AdvancedDynamicTexture.CreateForMesh(v_mesh)
+  Else
+    !v_dynamictexture =  BABYLON.GUI.AdvancedDynamicTexture.CreateFullscreenUI("UI");
+    !v_dynamictexture.layer.layerMask = 1
+  EndIf
+  ProcedureReturn DynamicTexture
 EndProcedure
 
 Procedure AddControl3D(Parent, Child)
   !v_parent.addControl(v_child)
+EndProcedure
+
+Procedure HideControl3D(Object, Value = #True)
+  !v_object.isVisible = !v_value
 EndProcedure
 
 Procedure Rectangle3D(Name.s, x.i, y.i, Width.i = -1, Height.i = -1, Radius = 8, Thickness = 1)
@@ -235,14 +240,13 @@ Procedure SetState3D(Object, Value)
   !v_object.value = v_value  
 EndProcedure
 
-
 Procedure Text3DLinkToMesh(Mesh, ObjectText, OffSetY.f)
   !v_objecttext.linkWithMesh(v_mesh);   
   !v_objecttext.linkOffsetY = v_offsety;
 EndProcedure
 ; IDE Options = SpiderBasic 2.20 (Windows - x86)
-; CursorPosition = 181
-; FirstLine = 165
+; CursorPosition = 18
+; FirstLine = 13
 ; Folding = ----
 ; iOSAppOrientation = 0
 ; AndroidAppOrientation = 0
