@@ -27,12 +27,13 @@ Procedure LoadGame()
     
     ;Light
     ClearScene(RGB(63, 60, 60))
-    Light = CreateLight("light", 0, 20, 0)
+    Light = CreateLight("light", 0, 200, 0)
     
     ;Material
     Texture = LoadTexture("ground", "data/textures/beton1.png")
     Material = CreateMaterial("ground")
     SetMaterialTexture(Material, #BJS_Diffuse, Texture)
+    SetMaterialColor(Material, #BJS_Specular, RGB(60,60,60))
     ScaleMaterial(Material, 5, 5)    
     
     ;Ground
@@ -40,7 +41,7 @@ Procedure LoadGame()
     SetMeshMaterial(Mesh, Material)
     
     ;Scene GUI
-    SceneGUI = SceneDynamicTexture()
+    SceneGUI = CreateDynamicTexture()
     
     Text = Text3D("text", 20, 20, 150, 24, "Light Intensity", #BJS_Left)
     AddControl3D(SceneGUI, Text)
@@ -96,9 +97,12 @@ Procedure RenderGame()
   RenderWorld() 
 EndProcedure
 ; IDE Options = SpiderBasic 2.20 (Windows - x86)
-; CursorPosition = 32
-; FirstLine = 10
+; CursorPosition = 35
 ; Folding = -
+; WebAppName = GUI Demo
+; HtmlFilename = gui.html
+; JavaScriptFilename = gui.js
+; JavaScriptPath = sb
 ; iOSAppOrientation = 0
 ; AndroidAppOrientation = 0
 ; EnableXP
