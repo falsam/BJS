@@ -1,0 +1,77 @@
+﻿;Babylon.sbi - SceneShoot
+EnableExplicit
+
+IncludeFile "babylon/babylon.sbi"
+
+Global Scene, Camera, Light, Box1, Box2, Plane, Background
+Global GUI, Shoot, ShootToken
+
+Declare LoadGame()
+Declare ScreenShoot()
+Declare RenderGame()
+
+UseModule BJS
+
+InitEngine(@LoadGame())
+
+Procedure LoadGame()    
+  Scene = CreateScene()
+  If Scene
+    
+    ;Camera & lighting environment
+    ClearScene(RGB(128, 128, 128))
+    
+    CreateLight("global", 0, 200, 0, 0.4)
+    Light = CreateLight("global", 0, 200, 0, 0.4, #BJS_Point)
+    Camera = CreateCamera("camera", 0, 10, 30, #BJS_ArcRotate)
+    
+    ;Ground & Box
+    Plane = CreatePlane("ground", 20, 20)
+    RotateMesh(Plane, 90, 0, 0) 
+    
+    Box1 = CreateBox("box1", 3, 3, 3)
+    MoveMesh(Box1, 0, 3, 0)
+    
+    Box2 = CreateBox("box2", 3, 3, 3)
+    MoveMesh(Box2, 1, 6, -1)
+    
+    ;Shadows
+    InitShadow(Light, 1024)
+    ShadowEmitter(Box1)
+    ShadowEmitter(Box2)
+    RenderShadows(Plane)
+       
+    ;GUI : Scene ScreenShoot 
+    GUI = CreateDynamicTexture()
+    Shoot = Button3D("shoot", 20, 20, 150, 24, "ScreenShoot", @ScreenShoot())
+    AddControl3D(GUI, Shoot)
+                           
+    RenderLoop(@RenderGame())
+  EndIf
+EndProcedure
+
+Procedure ScreenShoot()
+  HideControl3D(Shoot)
+  ShootToken = #True
+EndProcedure
+  
+Procedure RenderGame()
+  RenderWorld() 
+  
+  If ShootToken
+    ShootToken = #False  
+    CreateSceneShoot(Camera, SceneWidth(), SceneHeight(), 1)
+    HideControl3D(Shoot, #False)
+  EndIf
+EndProcedure
+; IDE Options = SpiderBasic 2.20 (Windows - x86)
+; CursorPosition = 62
+; Folding = -
+; WebAppName = ScreenShoot
+; HtmlFilename = screenshoot.html
+; JavaScriptFilename = screenshoot.js
+; JavaScriptPath = sb
+; iOSAppOrientation = 0
+; AndroidAppOrientation = 0
+; EnableXP
+; CompileSourceDirectory
