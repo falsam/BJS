@@ -39,14 +39,14 @@ Procedure RenderWorld()
   !v_bjscurrentscene.render();
 EndProcedure
 
-Procedure CreateSceneShoot(Camera, Width, Height, Precision.f=0.5)
-  !var size = { width: v_width, height: v_height}
+Procedure CreateSceneShoot(Camera, Width, Height, Precision.f=1)
+  !var size = { width: v_width, height: v_height, precision: v_precision}
   !BABYLON.Tools.CreateScreenshot(v_bjsengine, v_camera, size);
 EndProcedure
 
 ; IDE Options = SpiderBasic 2.20 (Windows - x86)
-; CursorPosition = 45
-; Folding = --
+; CursorPosition = 41
+; Folding = -
 ; iOSAppOrientation = 0
 ; AndroidAppOrientation = 0
 ; EnableXP
