@@ -14,7 +14,7 @@ DeclareModule BJS
   Declare   InitEngine(Callback, CanvasOutput = #PB_Ignore) 
   Declare   RenderLoop(Callback)
   Declare   RenderWorld()  
-  Declare   CreateSceneShoot(Camera, Width, Height, Precision.f=0.5)    
+  Declare   CreateSceneShoot(Camera, Width, Height, Precision.f=1)    
   
   ;-Scene.sbi
   Declare   CreateScene()
@@ -183,9 +183,9 @@ DeclareModule BJS
   Declare   MusicAttachToMesh(Music, Mesh)
   
   ;-gui.sbi (Dynamic texture)
-  Declare   SceneDynamicTexture(Layer = 1)
-  Declare   MeshDynamicTexture(Mesh)
+  Declare   CreateDynamicTexture(Mesh = #False)
   Declare   AddControl3D(Parent, Child)
+  Declare   HideControl3D(Object, Value = #True)
   
   Declare   Rectangle3D(Name.s, x.i, y.i, Width.i = -1, Height.i = -1, Radius = 8, Thickness = 1)
   Declare   Text3D(Name.s, x.i, y.i, Width.i, Height.i, Text.s, Align = #BJS_Center)
@@ -233,7 +233,7 @@ Module BJS
   IncludeFile "keyboard.sbi"
 EndModule
 ; IDE Options = SpiderBasic 2.20 (Windows - x86)
-; CursorPosition = 188
+; CursorPosition = 16
 ; Folding = -
 ; iOSAppOrientation = 0
 ; AndroidAppOrientation = 0
