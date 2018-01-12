@@ -18,7 +18,10 @@ Procedure GetMusicVolume(Music)
   !return v_music.getVolume()
 EndProcedure
 
-Procedure MusicPlay(Music)
+Procedure MusicPlay(Music, Loop = #False)
+  If Loop = #True
+    !v_music.loop = true
+  EndIf
   !v_music.play()
 EndProcedure
 
@@ -47,7 +50,7 @@ Procedure MusicAttachToMesh(Mesh, Music)
 EndProcedure
 
 ; IDE Options = SpiderBasic 2.20 (Windows - x86)
-; CursorPosition = 9
+; CursorPosition = 20
 ; Folding = --
 ; iOSAppOrientation = 0
 ; AndroidAppOrientation = 0
