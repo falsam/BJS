@@ -1,8 +1,10 @@
 ;Babylon.js for SpiderBasic 
 
-;Version     : 1.00
+;Version     : 1.0.1
 
-;Last update : 18 August 2017
+;Last update : 12, January 2018
+; MusicPlay(Music) => MusicPlay(Music, Loop = #False) 
+
 
 DeclareModule BJS
   ;-Constants.sbi
@@ -15,7 +17,7 @@ DeclareModule BJS
   Declare   RenderLoop(Callback)
   Declare   RenderWorld()  
   Declare   CreateSceneShoot(Camera, Width, Height, Precision.f=1)    
-  
+  Declare   showAxis(size) 
   ;-Scene.sbi
   Declare   CreateScene()
   Declare   SceneWidth()
@@ -84,7 +86,8 @@ DeclareModule BJS
   Declare   SetCameraRadius(Camera, Value.f)
   
   ;-Texture.sbi
-  Declare   LoadTexture(Name.s, FileName.s)
+  Declare   LoadTexture(FileName.s)
+  Declare   LoadCubeTexture(FileName.s)
   Declare   LoadVideoTexture(Names.s, FileName.s)
   
   ;-Material.sbi
@@ -93,6 +96,7 @@ DeclareModule BJS
   Declare   ScrollMaterial(Material, UOffset.f, VOffset.f)
   Declare   SetMaterialColor(Material, Type, Color)
   Declare   SetMaterialTexture(Material, Type, Texture, HasAlpha = #False)
+  Declare   SetMaterialAttribute(Material, Attribut, Value.f)
   Declare   SetMaterialAlpha(Material, Alpha.f)
   Declare   SetMeshMaterial(Mesh, material)
   Declare   CloneMaterial(Material)  
@@ -164,12 +168,6 @@ DeclareModule BJS
   Declare   StartParticle(Emitter)
   Declare   StopParticle(Emitter)
   
-  ;-assetsmanager.sbi
-  Declare   UseAssetsManager()
-  Declare   AssetsLoad(Name.s, FileName.s, CallBackSucces, CallBackError)
-  Declare   AssetsPrompt(Text.s)
-  Declare   AssetsManagerLoad()
-  
   ;-music.sbi
   Declare   MusicLoad(Name.s, FileName.s, Loop = #False, Autoplay = #False, CallBack = #False)
   Declare   MusicVolume(Music, Value.f)
@@ -212,6 +210,13 @@ DeclareModule BJS
   Declare   KeyPushed(Key)
   Declare   KeyReleased(Key)
   
+  ;-assetsmanager.sbi
+  Declare   UseAssetsManager(ProgressCallback = #False)
+  Declare   AssetsManagerColor(Color)
+  Declare   AssetsManagerAdd(Name.s, FileName.s, CallBackSucces, CallBackError)
+  Declare   AssetsManagerPrompt(Text.s)
+  Declare   AssetsManagerLoad()
+  
   ;Tools.sbi
   Declare   RunURL(Url.s, NewTab.b = #True)
 EndDeclareModule
@@ -233,8 +238,7 @@ Module BJS
   IncludeFile "keyboard.sbi"
 EndModule
 ; IDE Options = SpiderBasic 2.20 (Windows - x86)
-; CursorPosition = 176
-; FirstLine = 172
+; CursorPosition = 19
 ; Folding = -
 ; iOSAppOrientation = 0
 ; AndroidAppOrientation = 0

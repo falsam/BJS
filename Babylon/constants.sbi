@@ -1,7 +1,5 @@
 ﻿;Babylon.js for SpiderBasic : constant.sbi 
 
-;Last update : 12, November 2017
-
 #All = 0
 #KeyBoard = 1
 #Mouse = 2
@@ -32,6 +30,11 @@
 #BJS_Ambient = 2
 #BJS_Emissive = 3
 #BJS_Bump = 4
+#BJS_Opacity = 5
+#BJS_Reflection = 6
+#BJS_Refraction = 7
+#BJS_SpecularPower = 9
+#BJS_Alpha = 10
 
 ;GUI Color
 #BJS_BackColor = 1    
@@ -99,8 +102,6 @@ EndStructure
 Global Pick.NewPick
 
 ; IDE Options = SpiderBasic 2.20 (Windows - x86)
-; CursorPosition = 99
-; FirstLine = 48
 ; iOSAppOrientation = 0
 ; AndroidAppOrientation = 0
 ; EnableXP

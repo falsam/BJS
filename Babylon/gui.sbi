@@ -1,4 +1,5 @@
 ﻿;Babylon.js for SpiderBasic : GUI
+
 Procedure CreateDynamicTexture(Mesh = #False)
   Protected DynamicTexture
   
@@ -245,8 +246,7 @@ Procedure Text3DLinkToMesh(Mesh, ObjectText, OffSetY.f)
   !v_objecttext.linkOffsetY = v_offsety;
 EndProcedure
 ; IDE Options = SpiderBasic 2.20 (Windows - x86)
-; CursorPosition = 18
-; FirstLine = 13
+; CursorPosition = 2
 ; Folding = ----
 ; iOSAppOrientation = 0
 ; AndroidAppOrientation = 0

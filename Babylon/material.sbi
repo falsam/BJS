@@ -1,7 +1,5 @@
 ﻿;Babylon.js for SpiderBasic : Material 
 
-;Last update : 18 Aout 2017
-
 ;Private
 Procedure MaterialDefine(Material)
   !if (typeof(v_material) == "undefined") {
@@ -14,9 +12,8 @@ EndProcedure
 
 Procedure CreateMaterial(Name.s, BackFaceCulling = #False)
   !var material = new BABYLON.StandardMaterial(v_name, v_bjscurrentscene);
-  
   !material.backFaceCulling = v_backfaceculling;  //Show (or not) the front and the back of an element
-  
+    
   ;If LCase(GetExtensionPart(Image)) = "png"
   ;  !material.diffuseTexture.hasAlpha = true
   ;EndIf
@@ -39,6 +36,7 @@ Procedure SetMaterialColor(Material, Type, Color)
   Protected r.f = Red(Color)/255
   Protected g.f = Green(Color)/255
   Protected b.f = Blue(Color)/255
+  
   If MaterialDefine(Material)
     
     Select Type
@@ -53,6 +51,12 @@ Procedure SetMaterialColor(Material, Type, Color)
         
       Case #BJS_Emissive
         !v_material.emissiveColor = new BABYLON.Color3(v_r, v_g, v_b);
+        
+      Case #BJS_Reflection
+        !v_material.reflectivityColor = new BABYLON.Color3(v_r, v_g, v_b);
+        
+      Case #BJS_Refraction
+        
     EndSelect
   EndIf
 EndProcedure
@@ -80,10 +84,28 @@ Procedure SetMaterialTexture(Material, Type, Texture, HasAlpha = #False)
       !v_material.bumpTexture.hasAlpha = v_hasalpha;
       !v_material.bumpTexture.uScale = v_material.diffuseTexture.uScale
       !v_material.bumpTexture.vScale = v_material.diffuseTexture.vScale
+      
+    Case #BJS_Reflection
+      !v_material.reflectionTexture = v_texture
+      
+    Case #BJS_Refraction
+      !v_material.refractionTexture = v_texture
+      
   EndSelect
 EndProcedure
 
-Procedure SetMaterialAlpha(Material, Alpha.f)
+Procedure SetMaterialAttribute(Material, Attribut, Value.f)
+  Select Attribut
+    Case #BJS_Alpha
+      !v_material.alpha = v_value; 
+      
+    Case #BJS_SpecularPower
+      !v_material.specularPower = v_value;
+   
+  EndSelect  
+EndProcedure
+
+Procedure SetMaterialAlpha(Material, Alpha.f) ;Obsolet
   If MaterialDefine(Material)  
     !v_material.alpha = v_alpha;   
   EndIf  
@@ -101,8 +123,6 @@ Procedure CloneMaterial(Material)
   EndIf  
 EndProcedure
 ; IDE Options = SpiderBasic 2.20 (Windows - x86)
-; CursorPosition = 101
-; FirstLine = 39
 ; Folding = --
 ; iOSAppOrientation = 0
 ; AndroidAppOrientation = 0

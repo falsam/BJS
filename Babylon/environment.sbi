@@ -1,8 +1,5 @@
 ﻿;Babylon.js for SpiderBasic 
 
-;Last update : 08 May 2017
-
-
 Procedure AmbientColor(Color.i)
   Protected r.f = Red(color)/255
   Protected g.f = Green(Color)/255
@@ -85,7 +82,6 @@ Procedure SetWater(Mesh, WindForce.f = -5, WaveHeight.f = 0.05, BumpHeight.f = 0
 EndProcedure
 
 
-
 ;-
 ;- Light
 Procedure CreateLight(Name.s, x.f, y.f, z.f, intensity.f=1, mode.i = #BJS_Hemispheric)
@@ -164,8 +160,6 @@ Procedure RenderShadows(Mesh, Value.b = #True)
   !v_mesh.receiveShadows = v_value;
 EndProcedure
 ; IDE Options = SpiderBasic 2.20 (Windows - x86)
-; CursorPosition = 27
-; FirstLine = 15
 ; Folding = ----
 ; iOSAppOrientation = 0
 ; AndroidAppOrientation = 0

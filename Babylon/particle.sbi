@@ -1,8 +1,5 @@
 ﻿;Babylon.js for SpiderBasic : Particle 
 
-;Last update : 11 May 2017
-
-
 Procedure CreateParticleEmitter(Name.s, Mesh, MaxNumberParticles = 2000) 
   !var particleSystem =  new BABYLON.ParticleSystem(v_name, v_maxnumberparticles, v_scene);
   !particleSystem.emitter = v_mesh; // the starting object, the emitter
@@ -86,8 +83,6 @@ Procedure StopParticle(Emitter)
   !v_emitter.stop()
 EndProcedure
 ; IDE Options = SpiderBasic 2.20 (Windows - x86)
-; CursorPosition = 14
-; FirstLine = 11
 ; Folding = ---
 ; iOSAppOrientation = 0
 ; AndroidAppOrientation = 0

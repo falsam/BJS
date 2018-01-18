@@ -1,9 +1,5 @@
 ﻿;Babylon.js for SpiderBasic : Mesh
 
-;Last update : 18 August 2017
-
-;CreateMeshBody instead CreateBody
-
 ;-
 ;-Basic Object
 Procedure CreateSphere(Name.s, Size.f, Subdivs = 16)
@@ -290,8 +286,6 @@ Procedure Translate(Mesh, Value.f)
   !v_mesh.translate(new BABYLON.Vector3(v_value, 0, 0), 0.1, BABYLON.Space.LOCAL);
 EndProcedure
 ; IDE Options = SpiderBasic 2.20 (Windows - x86)
-; CursorPosition = 72
-; FirstLine = 70
 ; Folding = -------
 ; iOSAppOrientation = 0
 ; AndroidAppOrientation = 0

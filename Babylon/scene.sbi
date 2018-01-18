@@ -1,7 +1,5 @@
 ﻿;Babylon.js for SpiderBasic : Scene 
 
-;Last update : 14, November 2017
-
 Procedure CreateScene()  
   !v_bjscurrentscene  = new BABYLON.Scene(v_bjsengine);
   !v_bjscurrentscene.collisionsEnabled = true;
@@ -76,8 +74,6 @@ Procedure SceneDebug()
   !v_bjscurrentscene.debugLayer.show();
 EndProcedure
 ; IDE Options = SpiderBasic 2.20 (Windows - x86)
-; CursorPosition = 76
-; FirstLine = 25
 ; Folding = ---
 ; iOSAppOrientation = 0
 ; AndroidAppOrientation = 0
