@@ -4,28 +4,34 @@ Babylon.sbi for SpiderBasic
 **Engine**
 * SetEnginePath(EnginePath.s = "sbbjs")
 * InitEngine(Callback, CanvasOutput = #PB_Ignore)  
-* CreateSpace2D(Scene)
-* BeforeRender(CallBack)
 * RenderLoop(Callback)  
 * RenderWorld() 
-* MeshCollide(Mesh1, Mesh2)
+* CreateSceneShoot(Camera, Width, Height, Precision.f=1) 
+* ShowAxis(size)
   
 **Scene**
 * CreateScene()  
+* SceneWidth()
+* SceneHeight()
 * SceneGravity(x.f = 0, y.f = -0.9, z.f = 0)   
 * ClearScene(color)  
-* CurrentScene(Scene, Camera)  
+* onMouseMove(CallBack)
+* SceneMouseX(Scene)
+* SceneMouseY(Scene) 
+* BeforeRender(CallBack)
+* SetCurrentScene(Scene, Camera)  
 * ImportScene(Name.s, Path.s, FileName.s, Callback)  
 * ExportScene(Scene, FileName.s)
 * SceneDebug()  
    
 **Environment**
+* AmbientColor(Color.i)
 * SkyBox(name.s, sky.s, size.i = 200)  
+* Fog(Color, Intensity.f = 0.01 , StartDistance.f = 20.0, EndDistance.f = 60.0)
 * CreateWater(Name.s, Texture.s, Width.f, Depth.f, SubDivs.i)  
 * WaterRenderList(Water, Mesh)  
 * SetWater(Mesh, WindForce.f = -5, WaveHeight.f = 0.05, BumpHeight.f = 0.05, Color = 0, ColorBlendFactor.f = 0.1)
-* Fog(Color, Intensity.f = 0.01 , StartDistance.f = 20.0, EndDistance.f = 60.0)
-* AmbientColor(Color.i)
+
   
 **Light**
 * CreateLight(id.s, x.f, y.f, z.f, intensity.f = 1, mode.i = #Hemispheric)
@@ -34,6 +40,8 @@ Babylon.sbi for SpiderBasic
 * MoveLight(Light.i, x.f, y.f, z.f, Mode = #PB_Relative)
 * EnableLight(Light, Value.b)
 * SetLightColor(Light, Type, Color)
+* GetLightIntensity(Light)
+* SetLightIntensity(Light, Intensity.f)
   
 **Shadow**
 * InitShadow(Light, RenderSize = 1024)
@@ -61,6 +69,11 @@ Babylon.sbi for SpiderBasic
 * SetCameraBeta(Camera, Value.f)
 * SetCameraAlpha(Camera, Value.f)
 * SetCameraRadius(Camera, Value.f)
+
+**Texture**
+* LoadTexture(FileName.s)
+* LoadCubeTexture(FileName.s)
+* LoadVideoTexture(Names.s, FileName.s)
   
 **Material**
 * CreateMaterial(Name.s, Image.s, BackFaceCulling = #False)
@@ -68,8 +81,9 @@ Babylon.sbi for SpiderBasic
 * ScrollMaterial(Material, UOffset.f, VOffset.f)
 * SetMaterialColor(Material, Type, Color)
 * SetMaterialTexture(Material, Type, FileName.s)
+* SetMaterialAttribute(Material, Attribut, Value.f)
 * CloneMaterial(Material)
-* SetMaterial(Mesh, Material)  
+* SetMeshMaterial(Mesh, Material)  
   
 **Mesh**
 * CreateSphere(Name.s, Size.f, Subdivs.i = 16)  
@@ -78,8 +92,10 @@ Babylon.sbi for SpiderBasic
 * CreatePlane(Name.s, Size.f)
 * CreateCylinder(Name.s, Height.f, DiamTop.f, DiamBottom.f, Tessellation.i = 30, HeightSubdivs.i = 1)
 * CreateTorus(Name.s, Diameter, Thickness, Tesselation = 32)
+* CreateIcoSphere(Name.s, Radius, RadiusY, Subdivs = 16)
+* CreateTube(Name.s, Array VectorsArray.NewVector(1), Radius.f, Tessellation = 32, RadiusFunction = #PB_Ignore)
 * CreateTerrain(Name.s, HeightmapPath.s, Width.f, Depth.f, Subdivs.i, MinHeight.f, MaxHeight.f)
-* CreateBody(Mesh, Type, Mass.f = 1.0, Restitution.f = 1.0, Friction = 0.1)
+* CreateMeshBody(Mesh, Type, Mass.f = 1.0, Restitution.f = 1.0, Friction = 0.1)
 * ApplyMeshImpulse(Mesh, x.f, y.f, z.f)
 * GetMeshName(Mesh)
 * FreeMesh(Mesh)
@@ -131,12 +147,26 @@ Babylon.sbi for SpiderBasic
 * MusicPosition(Music, x.f, y.f, z.f)
 * MusicAttachToMesh(Music, Mesh)
 
-**GUI (Experimental)**
-* Text2D(x, y, Text.s, CallBack = #False, Font.s = "25pt Arial", Color = $FF000000) 	
-* Rectangle2D(x, y, w, h, Radius = 6, BorderSize = 4, CallBack = #False, FillColor = $FFFFFFFF, BorderColor = $FF000000) 
-* Button2D(x.f, y.f, w.f, h.f, Radius = 6, BorderSize = 4, Text.s = "", CallBack = #False, Font.s = "25pt Arial", FillColor = $FFFFFFFF, FrontColor = $FF000000, BorderColor = $FF000000)
-* Image2D(x.f, y.f, Image.s);
-* SetText(Element, Text.s)
+**GUI**
+* CreateDynamicTexture(Mesh = #False) 	
+* AddControl3D(Parent, Child)
+* HideControl3D(Object, Value = #True)
+* Rectangle3D(Name.s, x.i, y.i, Width.i = -1, Height.i = -1, Radius = 8, Thickness = 1)
+* Text3D(Name.s, x.i, y.i, Width.i, Height.i, Text.s, Align = #BJS_Center)
+* Button3D(Name.s, x.i, y.i, Width.i, Height.i, Text.s, Callback, CornerRadius = 8)
+* Image3D(Name.s, x.i, y.i, Width.i, Height.i, FileName.s, OnClick = #False)
+* Slider3D(Name.s, x.i, y.i, Width.i, Height.i, MiniMum.i, Maximum.i, OnChange, BarOffset = 8)
+* Input3D(Name.s, x.i, y.i, Width.i, Height.i, Text.s, OnLostFocus=#False, OnTextChange=#False, OnGetFocus=#False)
+* PickerColor3D(Name.s, x.i, y.i, Width.i, Height.i, CallBack)
+* GetText3D(Object)
+* SetText3D(Object, Text.s)
+* SetColor3D(Object, ColorType, Color)
+* SetTextFont3D(Object, FontFamily.s, FontSize)
+* SetOpacity3D(Object, Alpha.f)
+* SetZindex3D(Object, zIndex.i)
+* GetState3D(Object)
+* SetState3D(Object, Value)
+* Text3DLinkToMesh(Mesh, ObjectText, OffSetY.f)
 
 **Keyboard**
 * InitKey()
