@@ -34,6 +34,7 @@ Babylon.sbi for SpiderBasic
 * WaterRenderList(Water, Mesh)  
 * SetWater(Mesh, WindForce.f = -5, WaveHeight.f = 0.05, BumpHeight.f = 0.05, Color = 0, ColorBlendFactor.f = 0.1)
 
+■ Example : http://falsam.com/sbbjs/terrain.html
   
 **Light**
 * CreateLight(id.s, x.f, y.f, z.f, intensity.f = 1, mode.i = #Hemispheric)
@@ -44,12 +45,16 @@ Babylon.sbi for SpiderBasic
 * SetLightColor(Light, Type, Color)
 * GetLightIntensity(Light)
 * SetLightIntensity(Light, Intensity.f)
-  
+
+■ Exeample : http://falsam.com/sbbjs/light.html
+
 **Shadow**
 * InitShadow(Light, RenderSize = 1024)
 * ShadowEmitter(Mesh)
 * RenderShadows(Mesh, Value.b = #True) 
- 
+
+■ Example : http://falsam.com/sbbjs/shadow.html
+
 **Camera** 
 * CreateCamera(id.s, x.f, y.f, z.f, Type = #Free)  
 * CameraLookAtMesh(Camera, MeshObject)  
@@ -137,6 +142,11 @@ Babylon.sbi for SpiderBasic
 * StartParticle(Emitter)
 * StopParticle(Emitter)
 
+■ Example 
+http://falsam.com/sbbjs/particle.html
+http://falsam.com/sbbjs/garden.html
+
+
 **Music**
 * MusicLoad(Name.s, FileName.s, Loop = #False, Autoplay = #False, CallBack = #False)
 * MusicVolume(Music, Value.f)
@@ -148,6 +158,8 @@ Babylon.sbi for SpiderBasic
 * MusicStop(Music)
 * MusicPosition(Music, x.f, y.f, z.f)
 * MusicAttachToMesh(Music, Mesh)
+
+■ Example : http://falsam.com/sbbjs/music.html
 
 **GUI**
 * CreateDynamicTexture(Mesh = #False) 	
@@ -169,6 +181,10 @@ Babylon.sbi for SpiderBasic
 * GetState3D(Object)
 * SetState3D(Object, Value)
 * Text3DLinkToMesh(Mesh, ObjectText, OffSetY.f)
+
+■ Example 
+http://falsam.com/sbbjs/gui.html
+http://falsam.com/sbbjs/sceneshoot.html
 
 **Keyboard**
 * InitKey()
