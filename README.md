@@ -1,8 +1,5 @@
 ![](http://falsam.com/sbbjs/wiki/lib/exe/fetch.php?media=logo.png)
 
-# BJS
-Babylon.sbi for SpiderBasic
-
 **Engine**
 * SetEnginePath(EnginePath.s = "sbbjs")
 * InitEngine(Callback, CanvasOutput = #PB_Ignore)  
