@@ -90,8 +90,8 @@ Babylon.sbi for SpiderBasic
 **Mesh**
 * CreateSphere(Name.s, Size.f, Subdivs.i = 16)  
 * CreateGround(Name.s, Width.f, Depth.f, Subdivs=2)
-* CreateBox(Name.s, Size.f)
-* CreatePlane(Name.s, Size.f)
+* CreateBox(Name.s, Width.f, Height.f, Depth.f)
+* CreatePlane(Name.s, Width.f, Height.f)
 * CreateCylinder(Name.s, Height.f, DiamTop.f, DiamBottom.f, Tessellation.i = 30, HeightSubdivs.i = 1)
 * CreateTorus(Name.s, Diameter, Thickness, Tesselation = 32)
 * CreateIcoSphere(Name.s, Radius, RadiusY, Subdivs = 16)
