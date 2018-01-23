@@ -28,8 +28,8 @@ Procedure LoadGame()
     MoveMesh(Sphere, 0, 2, 0)  
     
     ;Texture
-    TexPlane = LoadTexture("grass", "Data/textures/grass.jpg")
-    TexSphere = LoadTexture("tree", "Data/textures/tree.png")
+    TexPlane = LoadTexture("Data/textures/grass.jpg")
+    TexSphere = LoadTexture("Data/textures/tree.png")
     
     ;Material
     MatPlane = CreateMaterial("MatPlane")
