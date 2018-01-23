@@ -42,11 +42,11 @@ You can define four types of light.
 
 **#BJS_Spot** A spot light is defined by a position, a direction, an angle, and an exponent. These values define a cone of light starting from the position, emitting toward the direction.
 
-The angle, in radians, defines the size (field of illumination) of the spotlight's conical beam , and the exponent defines the speed of the decay of the light with distance (reach).
+The angle, in degrees, defines the size (field of illumination) of the spotlight's conical beam , and the exponent defines the speed of the decay of the light with distance (reach).
 
 **#BJS_Hemispheric** A hemispheric light is an easy way to simulate an ambient environment light. A hemispheric light is defined by a direction, usually 'up' towards the sky. However it is by setting the color properties that the full effect is achieved.(Default)
 
-
+There are three properties of lights that affect color. Two of these diffuse (#BJS_Diffuse gives the basic color to an object) and specular (#BJS_Specular produces a highlight color on an object) apply to all four types of light, the third, groundColor (#BJS_GroundColor), only applies to an Hemispheric.
 
 * Light = CreateLight(id.s, x.f, y.f, z.f, intensity.f = 1, mode.i = #BJS_Hemispheric)
 * SpotLightRange(Light, InnerAngle.f, Exponent.f)
