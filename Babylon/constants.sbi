@@ -30,9 +30,10 @@
 #BJS_Ambient = 2
 #BJS_Emissive = 3
 #BJS_Bump = 4
-#BJS_Opacity = 5
-#BJS_Reflection = 6
-#BJS_Refraction = 7
+#BJS_GroundColor = 5
+#BJS_Opacity = 6
+#BJS_Reflection = 7
+#BJS_Refraction = 8
 #BJS_SpecularPower = 9
 #BJS_Alpha = 10
 
@@ -102,6 +103,7 @@ EndStructure
 Global Pick.NewPick
 
 ; IDE Options = SpiderBasic 2.20 (Windows - x86)
+; CursorPosition = 32
 ; iOSAppOrientation = 0
 ; AndroidAppOrientation = 0
 ; EnableXP
