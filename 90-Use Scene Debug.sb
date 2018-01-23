@@ -33,8 +33,8 @@ Procedure LoadGame()
     
     ;Ground
     Ground = CreatePlane("ground", 200, 200)
-    GroundTex = LoadTexture("ground", Assets + "floor.png")
-    GroundBump = LoadTexture("ground bump", Assets + "floor_bump.PNG")
+    GroundTex = LoadTexture(Assets + "floor.png")
+    GroundBump = LoadTexture(Assets + "floor_bump.PNG")
     GroundMat = CreateMaterial("ground")
     SetMaterialTexture(GroundMat, #BJS_Diffuse, GroundTex)
     ScaleMaterial(GroundMat, 16, 16)
@@ -45,7 +45,7 @@ Procedure LoadGame()
     ;Box
     Box0 = CreateBox("box0", 5, 5, 5)
     MoveMesh(Box0, 0, 2.5, 0)
-    BoxTex = LoadTexture("crate", Assets + "crate.png") 
+    BoxTex = LoadTexture(Assets + "crate.png") 
     BoxMat = CreateMaterial("crate")
     SetMaterialTexture(BoxMat, #BJS_Diffuse, BoxTex)
     SetMaterialColor(BoxMat, #BJS_Emissive, RGB(50, 50, 50))
@@ -73,8 +73,6 @@ Procedure RenderGame()
   RenderWorld() 
 EndProcedure
 ; IDE Options = SpiderBasic 2.20 (Windows - x86)
-; CursorPosition = 47
-; FirstLine = 11
 ; Folding = -
 ; WebAppName = Debug Scene
 ; HtmlFilename = scenedebug.html
