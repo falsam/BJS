@@ -37,14 +37,14 @@ Procedure LoadGame()
     ;Create static ground (Mass = 0) 
     Ground = CreateGround("ground", 100, 100)
     CreateMeshBody(Ground, #BJS_BoxBody, 0, 0.5, 0.5)
-    GroundTex = LoadTexture("ground", "data/textures/Beton1.png")
+    GroundTex = LoadTexture("Data/textures/Beton1.png")
     GroundMat = CreateMaterial("ground")
     SetMaterialTexture(GroundMat, #BJS_Diffuse, GroundTex)
     ScaleMaterial(GroundMat, 5, 5)
     SetMeshMaterial(Ground, GroundMat)
     
     ;Create 10 Box (Physic)
-    BoxTex = LoadTexture("crate", "data/textures/crate.png")
+    BoxTex = LoadTexture("data/textures/crate.png")
     BoxMat = CreateMaterial("crate")
     SetMaterialTexture(BoxMat, #BJS_Diffuse, BoxTex)
     
@@ -78,8 +78,6 @@ Procedure Resize()
 EndProcedure
 
 ; IDE Options = SpiderBasic 2.20 (Windows - x86)
-; CursorPosition = 46
-; FirstLine = 16
 ; Folding = -
 ; WebAppName = Apply Impulse
 ; HtmlFilename = applyimpulse.html
