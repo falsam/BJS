@@ -1,6 +1,9 @@
 ![](http://falsam.com/sbbjs/wiki/lib/exe/fetch.php?media=logo.png)
 
-**Engine**
+Writing in progress ....
+
+
+**■ Engine**
 * SetEnginePath(EnginePath.s = "sbbjs")
 * InitEngine(Callback, CanvasOutput = #PB_Ignore)  
 * RenderLoop(Callback)  
@@ -8,7 +11,7 @@
 * CreateSceneShoot(Camera, Width, Height, Precision.f=1) 
 * ShowAxis(size)
   
-**Scene**
+**■ Scene**
 * Value = CreateScene()  
 * Value = SceneWidth()
 * Value = SceneHeight()
@@ -23,7 +26,7 @@
 * ExportScene(Scene, FileName.s)
 * SceneDebug()  
    
-**Environment**
+**■ Environment**
 * AmbientColor(Color.i)
 * SkyBox(name.s, sky.s, size.i = 200)  
 * Fog(Color, Intensity.f = 0.01 , StartDistance.f = 20.0, EndDistance.f = 60.0)
@@ -31,9 +34,9 @@
 * WaterRenderList(Water, Mesh)  
 * SetWater(Mesh, WindForce.f = -5, WaveHeight.f = 0.05, BumpHeight.f = 0.05, Color = 0, ColorBlendFactor.f = 0.1)
 
-■ Example : http://falsam.com/sbbjs/terrain.html
+Example : http://falsam.com/sbbjs/terrain.html
   
-**Light**
+**■ Light**
 You can define four types of light.
 
 **#BJS_Point** A point light is a light defined by an unique point in world space. The light is emitted in every direction from this point.
@@ -57,16 +60,16 @@ There are three properties of lights that affect color. Two of these diffuse (#B
 * Intensity.f = GetLightIntensity(Light)
 * SetLightIntensity(Light, Intensity.f)
 
-■ Example : http://falsam.com/sbbjs/light.html
+Example : http://falsam.com/sbbjs/light.html
 
-**Shadow**
+**■ Shadow**
 * InitShadow(Light, RenderSize = 1024)
 * ShadowEmitter(Mesh)
 * RenderShadows(Mesh, Value.b = #True) 
 
-■ Example : http://falsam.com/sbbjs/shadow.html
+Example : http://falsam.com/sbbjs/shadow.html
 
-**Camera** 
+**■ Camera** 
 * Value = CreateCamera(id.s, x.f, y.f, z.f, Type = #BJS_Free)  
 * CameraLookAtMesh(Camera, MeshObject)  
 * CameraLookAt(Camera, x.f, y.f, z.f)
@@ -88,12 +91,12 @@ There are three properties of lights that affect color. Two of these diffuse (#B
 * SetCameraAlpha(Camera, Value.f)
 * SetCameraRadius(Camera, Value.f)
 
-**Texture**
+**■ Texture**
 * Value = LoadTexture(FileName.s)
 * Value = LoadCubeTexture(FileName.s)
 * Value = LoadVideoTexture(Names.s, FileName.s)
   
-**Material**
+**■ Material**
 * Material = CreateMaterial(Name.s, Image.s, BackFaceCulling = #False)
 * ScaleMaterial(Material, UScale.f, VScale.f)
 * ScrollMaterial(Material, UOffset.f, VOffset.f)
@@ -103,7 +106,7 @@ There are three properties of lights that affect color. Two of these diffuse (#B
 * Value = CloneMaterial(Material)
 * SetMeshMaterial(Mesh, Material)  
   
-**Mesh**
+**■ Mesh**
 * Mesh = CreateSphere(Name.s, Size.f, Subdivs.i = 16)  
 * Mesh = CreateGround(Name.s, Width.f, Depth.f, Subdivs=2)
 * Mesh = CreateBox(Name.s, Width.f, Height.f, Depth.f)
@@ -128,7 +131,7 @@ There are three properties of lights that affect color. Two of these diffuse (#B
 * Attach(Parent, Child, x.f, y.f, z.f)
 * SetMeshPivot(Mesh, x.f, y.f, z.f)
     
-**Picking**
+**■ Picking**
 * PickEnable() 
 * IsPick()
 * PickMesh()
@@ -139,7 +142,7 @@ There are three properties of lights that affect color. Two of these diffuse (#B
 * MeshId(Mesh)
 * Translate(Mesh, Value.f) Move mesh local
   
-**Particle**
+**■ Particle**
 * Emitter = CreateParticleEmitter(Name.s, Mesh, MaxNumberParticles = 2000) 
 * ParticleTexture(Emitter, FileName.s)
 * ParticleEmitBox(Emitter, x0.f, y0.f, z0.f, x1.f, y1.f, z1.f)
@@ -155,12 +158,12 @@ There are three properties of lights that affect color. Two of these diffuse (#B
 * StartParticle(Emitter)
 * StopParticle(Emitter)
 
-■ Example 
+Example 
 http://falsam.com/sbbjs/particle.html
 http://falsam.com/sbbjs/garden.html
 
 
-**Music**
+**■ Music**
 * Music = MusicLoad(Name.s, FileName.s, Loop = #False, Autoplay = #False, CallBack = #False)
 * MusicVolume(Music, Value.f)
 * GetMusicVolume(Music)
@@ -172,9 +175,9 @@ http://falsam.com/sbbjs/garden.html
 * MusicPosition(Music, x.f, y.f, z.f)
 * MusicAttachToMesh(Music, Mesh)
 
-■ Example : http://falsam.com/sbbjs/music.html
+Example : http://falsam.com/sbbjs/music.html
 
-**GUI**
+**■ GUI**
 * CreateDynamicTexture(Mesh = #False) 	
 * AddControl3D(Parent, Child)
 * HideControl3D(Object, Value = #True)
@@ -195,15 +198,15 @@ http://falsam.com/sbbjs/garden.html
 * SetState3D(Object, Value)
 * Text3DLinkToMesh(Mesh, ObjectText, OffSetY.f)
 
-■ Example 
+Example 
 http://falsam.com/sbbjs/gui.html
 http://falsam.com/sbbjs/sceneshoot.html
 
-**Keyboard**
+**■ Keyboard**
 * InitKey()
 * KeyPushed(Key)
 * KeyReleased(Key)
   
-**Tools**
+**■ Tools**
 * RunURL(Url.s, NewTab.b = #True)
 
