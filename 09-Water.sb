@@ -27,16 +27,16 @@ Procedure LoadGame()
     
     ;Ground
     Ground = CreateGround("grass", 1000, 1000)
-    GroundTex = LoadTexture("grass", "data/textures/grass.jpg")
+    GroundTex = LoadTexture("data/textures/grass.jpg")
     GroundMat = CreateMaterial("grass")
     SetMaterialTexture(GroundMat, #BJS_Diffuse, GroundTex)
-    ScaleMaterial(GroundMat, 64, 64)
+    ScaleMaterial(GroundMat, 32, 32)
     SetMeshMaterial(Ground, GroundMat)
     MoveMesh(Ground, 0, -2, 0)
     
     ;Water
-    Water = CreateWater("water", "data/textures/waterbump.png", 1000, 1000, 64)
-        
+    Water = CreateWater("water", "data/textures/waterbump.png", 1000, 1000, 32)
+    SetWater(Water, 5, 0.005, 0.05, RGB(0, 0, 255), 0.001)
     WaterRenderList(Water, Ground)
     WaterRenderList(Water, Sky)
     
@@ -50,7 +50,7 @@ EndProcedure
 
 
 ; IDE Options = SpiderBasic 2.20 (Windows - x86)
-; CursorPosition = 37
+; CursorPosition = 29
 ; Folding = -
 ; WebAppName = water
 ; HtmlFilename = water.html
