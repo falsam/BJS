@@ -1,0 +1,123 @@
+﻿;Babylon.sbi - Assets Manager
+
+EnableExplicit
+
+IncludeFile "babylon/babylon.sbi"
+
+Declare LoadGame()
+Declare onProgress(RemainingCount, TotalCount, Name)
+Declare onLoad(Name.s, Element)
+Declare onError(Name.s, Message.s)
+Declare RenderGame()
+
+UseModule BJS
+
+InitEngine(@LoadGame())
+
+Procedure LoadGame()
+  Protected Scene, Camera, Light, ShadowGenerator
+  
+  Scene = CreateScene()
+  If Scene
+    
+    ;Camera
+    Camera = CreateCamera("camera", 0, 7, -20, #BJS_ArcRotate)
+    CameraLookAt(Camera, 0, 3, 0)
+    
+    ;Fog
+    ClearScene(RGB(0, 0, 0))
+    Fog(RGB(0, 0, 0), 1, 20, 50)
+    
+    ;Light & Shadow generator
+    CreateLight("light", 0, 200, 0, 0.1, #BJS_Hemispheric)    
+    Light = CreateLight("point", 100, 150, 0, 1, #BJS_Spot)   
+    ShadowGenerator = InitShadow(Light)
+    
+    ;Assets Manager : Init
+    UseAssetsManager(@onProgress())    
+    AssetsManagerColor(RGB(111, 103, 114))
+    
+    ;Assets Manager : Add scene elements 
+    AssetsManagerAdd("tvled", "data/tvled/tvled.babylon", @onLoad(), @onError())    
+    AssetsManagerAdd("skull", "data/skull/bad-skull.babylon", @onLoad(), @onError())    
+    AssetsManagerAdd("boletus", "data/boletus/boletus.babylon", @onLoad(), @onError())
+    AssetsManagerAdd("beton", "data/textures/Beton1.png", @OnLoad(), @OnError())    
+    
+    ;Assets Manager : Load
+    AssetsManagerLoad()
+       
+    RenderLoop(@RenderGame())
+  EndIf
+EndProcedure
+
+Procedure onProgress(RemainingCount, TotalCount, Name)
+  AssetsManagerPrompt("Loading " + RemainingCount + " / " + TotalCount + " - " + Name)
+EndProcedure
+
+Procedure onLoad(Name.s, Element)
+  Protected Ground, GroundMat, Screen, ScreenMat, ScreenTex, Mesh
+  
+  Select Name             
+    Case "tvled"
+      MoveMesh(Element, 6, 5.50, 0)
+      RotateMesh(Element, 0, 90, 0)
+      ShadowEmitter(Element)
+      
+      ;Video Screen
+      Screen = CreatePlane("screen", 16, 8.7)
+      MoveMesh(Screen, 5, 6.3, 0)
+      RotateMesh(Screen, 0, -90, 180)
+      ScreenMat = CreateMaterial("screen")
+      ScreenTex = LoadVideoTexture("video", "data/video/video3.mp4")
+      SetMaterialColor(ScreenMat, #BJS_Emissive, RGB(1, 1, 1))
+      SetMaterialTexture(ScreenMat, #BJS_Diffuse, ScreenTex)
+      SetMeshMaterial(Screen, ScreenMat)      
+      
+    Case "skull"
+      ScaleMesh(Element, 0.03, 0.03, 0.03)
+      RotateMesh(Element, 0, 0, 90)
+      MoveMesh(Element, -10, 2, 0)
+      ShadowEmitter(Element)
+                                    
+    Case "boletus"
+      MoveMesh(Element, 0, 0, 15)
+      RotateMesh(Element, 90, 0, 90)
+      ScaleMesh(Element, 0.05, 0.05, 0.05)
+      ShadowEmitter(Element)
+      
+      Mesh = CloneMesh(Element, "Boletus 1")
+      MoveMesh(Mesh, -1, 0, 12)
+      RotateMesh(Mesh, 90, 45, 90)
+      ScaleMesh(mesh, 0.03, 0.03, 0.03)
+      ShadowEmitter(Mesh)
+      
+    Case "beton"
+      Ground = CreateGround("ground", 100, 100)
+      GroundMat = CreateMaterial("ground material")
+      SetMaterialTexture(GroundMat, #BJS_Diffuse, Element)
+      ScaleMaterial(GroundMat, 8, 8)
+      SetMeshMaterial(Ground, GroundMat)
+      RenderShadows(Ground)
+                  
+  EndSelect
+EndProcedure
+
+Procedure onError(Name.s, Message.s)
+  Debug "Error during downloading" + Name + " : " + Message
+EndProcedure
+
+Procedure RenderGame()    
+  RenderWorld() 
+EndProcedure 
+; IDE Options = SpiderBasic 2.20 (Windows - x86)
+; CursorPosition = 76
+; FirstLine = 15
+; Folding = -
+; WebAppName = Assets Manager
+; HtmlFilename = assetsmanager.html
+; JavaScriptFilename = assetsmanager.js
+; JavaScriptPath = sb
+; iOSAppOrientation = 0
+; AndroidAppOrientation = 0
+; EnableXP
+; CompileSourceDirectory
