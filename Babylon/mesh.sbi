@@ -221,6 +221,18 @@ Procedure CloneMesh(Mesh, Name.s = "")
   !return mesh
 EndProcedure
 
+Procedure MergeMeshes(Array Meshes(1))
+  Protected i, Mesh
+  !var meshes = []
+  
+  For i = 0 To ArraySize(Meshes())
+    Mesh = Meshes(i)
+    !meshes.push(v_mesh) 
+  Next
+  
+  !return BABYLON.Mesh.MergeMeshes(meshes, true)   
+EndProcedure
+
 Procedure AttachMesh(Parent, Child, x.f, y.f, z.f)
   !v_child.parent = v_parent,
   !v_child.position.x = v_x;
@@ -286,6 +298,8 @@ Procedure Translate(Mesh, Value.f)
   !v_mesh.translate(new BABYLON.Vector3(v_value, 0, 0), 0.1, BABYLON.Space.LOCAL);
 EndProcedure
 ; IDE Options = SpiderBasic 2.20 (Windows - x86)
+; CursorPosition = 223
+; FirstLine = 209
 ; Folding = -------
 ; iOSAppOrientation = 0
 ; AndroidAppOrientation = 0

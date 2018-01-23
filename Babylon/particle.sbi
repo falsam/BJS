@@ -6,8 +6,11 @@ Procedure CreateParticleEmitter(Name.s, Mesh, MaxNumberParticles = 2000)
   !return particleSystem
 EndProcedure
 
-Procedure ParticleTexture(Emitter, FileName.s)
+Procedure ParticleTexture(Emitter, FileName.s, BlendMode = #False)
   !v_emitter.particleTexture = new BABYLON.Texture(v_filename, v_scene);
+  If BlendMode = #True
+    !v_emitter.blendMode = true
+  EndIf
 EndProcedure
 
 Procedure ParticleEmitBox(Emitter, x0.f, y0.f, z0.f, x1.f, y1.f, z1.f)
@@ -63,8 +66,8 @@ Procedure ParticleDirection(Emitter, x1.f, y1.f, z1.f, x2.f, y2.f, z2.f)
 EndProcedure
 
 Procedure ParticleAngularSpeed(Emitter, Min.f, Max.f)
-  Min = Radian(Min)
-  Max = Radian(Max)
+  Min = Degree(Min)
+  Max = Degree(Max)
   !v_emitter.minAngularSpeed = v_min;
   !v_emitter.maxAngularSpeed = v_max;
 EndProcedure
@@ -83,6 +86,8 @@ Procedure StopParticle(Emitter)
   !v_emitter.stop()
 EndProcedure
 ; IDE Options = SpiderBasic 2.20 (Windows - x86)
+; CursorPosition = 11
+; FirstLine = 8
 ; Folding = ---
 ; iOSAppOrientation = 0
 ; AndroidAppOrientation = 0

@@ -103,9 +103,9 @@ Procedure CreateLight(Name.s, x.f, y.f, z.f, intensity.f=1, mode.i = #BJS_Hemisp
   !return light
 EndProcedure
 
-Procedure SpotLightRange(Light, InnerAngle.f, OuterAngle.f)
-  !v_light.angle = v_innerangle;
-  !v_light.exponent = v_outerangle;
+Procedure SpotLightRange(Light, InnerAngle.f, Exponent.f)
+  !v_light.angle = v_innerangle * (Math.PI/180); 
+  !v_light.exponent = v_exponent;
 EndProcedure
 
 Procedure LightDirection(Light, x.f, y.f, z.f)
@@ -131,6 +131,9 @@ Procedure SetLightColor(Light, Type, Color)
       
     Case #BJS_Specular
       !v_light.specular = new BABYLON.Color3(v_r, v_g, v_b);
+      
+    Case #BJS_GroundColor
+      !v_light.groundColor = new BABYLON.Color3(v_r, v_g, v_b);
   EndSelect
 EndProcedure
 
@@ -160,6 +163,8 @@ Procedure RenderShadows(Mesh, Value.b = #True)
   !v_mesh.receiveShadows = v_value;
 EndProcedure
 ; IDE Options = SpiderBasic 2.20 (Windows - x86)
+; CursorPosition = 143
+; FirstLine = 98
 ; Folding = ----
 ; iOSAppOrientation = 0
 ; AndroidAppOrientation = 0

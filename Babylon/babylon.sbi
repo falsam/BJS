@@ -2,9 +2,9 @@
 
 ;Version     : 1.0.1
 
-;Last update : 12, January 2018
+;Last update : 23, January 2018
 ; MusicPlay(Music) => MusicPlay(Music, Loop = #False) 
-
+; MergeMeshes(Array Meshes(1))
 
 DeclareModule BJS
   ;-Constants.sbi
@@ -17,7 +17,8 @@ DeclareModule BJS
   Declare   RenderLoop(Callback)
   Declare   RenderWorld()  
   Declare   CreateSceneShoot(Camera, Width, Height, Precision.f=1)    
-  Declare   showAxis(size) 
+  Declare   ShowAxis(size) 
+  
   ;-Scene.sbi
   Declare   CreateScene()
   Declare   SceneWidth()
@@ -45,7 +46,7 @@ DeclareModule BJS
     
   ;Light
   Declare   CreateLight(Name.s, x.f, y.f, z.f, intensity.f = 1, mode.i = #BJS_Hemispheric)
-  Declare   SpotLightRange(Light, InnerAngle.f, OuterAngle.f)
+  Declare   SpotLightRange(Light, InnerAngle.f, Exponent.f)
   Declare   LightDirection(Light, x.f, y.f, z.f)
   Declare   MoveLight(Light.i, x.f, y.f, z.f, Mode = #PB_Relative)
   Declare   EnableLight(Light, Value.b)
@@ -135,6 +136,7 @@ DeclareModule BJS
   Declare.f MeshZ(Mesh)
   
   Declare   CloneMesh(Mesh, Name.s = "")
+  Declare   MergeMeshes(Array Meshes(1))
   Declare   AttachMesh(Parent, Child, x.f, y.f, z.f)
   Declare   SetMeshPivot(Mesh, x.f, y.f, z.f)
     
@@ -153,7 +155,7 @@ DeclareModule BJS
   
   ;-particle.sbi
   Declare   CreateParticleEmitter(Name.s, Mesh, MaxNumberParticles = 2000) 
-  Declare   ParticleTexture(Emitter, FileName.s)
+  Declare   ParticleTexture(Emitter, FileName.s, BlendMode = #False)
   Declare   ParticleEmitBox(Emitter, x0.f, y0.f, z0.f, x1.f, y1.f, z1.f)
   Declare   ParticleColor(Emitter, Color1, Color2)
   Declare   ParticleColorDead(Emitter, Color)
@@ -238,7 +240,8 @@ Module BJS
   IncludeFile "keyboard.sbi"
 EndModule
 ; IDE Options = SpiderBasic 2.20 (Windows - x86)
-; CursorPosition = 19
+; CursorPosition = 13
+; FirstLine = 48
 ; Folding = -
 ; iOSAppOrientation = 0
 ; AndroidAppOrientation = 0
