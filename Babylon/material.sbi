@@ -49,14 +49,15 @@ Procedure SetMaterialColor(Material, Type, Color)
       Case #BJS_Ambient
         !v_material.ambientColor = new BABYLON.Color3(v_r, v_g, v_b);
         
+      Case #BJS_GroundColor
+        !v_material.groundColor = new BABYLON.Color3(v_r, v_g, v_b);
+        
       Case #BJS_Emissive
         !v_material.emissiveColor = new BABYLON.Color3(v_r, v_g, v_b);
         
       Case #BJS_Reflection
         !v_material.reflectivityColor = new BABYLON.Color3(v_r, v_g, v_b);
-        
-      Case #BJS_Refraction
-        
+                
     EndSelect
   EndIf
 EndProcedure
@@ -123,6 +124,7 @@ Procedure CloneMaterial(Material)
   EndIf  
 EndProcedure
 ; IDE Options = SpiderBasic 2.20 (Windows - x86)
+; CursorPosition = 5
 ; Folding = --
 ; iOSAppOrientation = 0
 ; AndroidAppOrientation = 0
