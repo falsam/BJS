@@ -1,6 +1,6 @@
 ;Babylon.js for SpiderBasic 
 
-;Version     : 1.0.1
+;Version     : 1.0.2
 
 ;Last update : 23, January 2018
 ; MusicPlay(Music) => MusicPlay(Music, Loop = #False) 
@@ -240,8 +240,6 @@ Module BJS
   IncludeFile "keyboard.sbi"
 EndModule
 ; IDE Options = SpiderBasic 2.20 (Windows - x86)
-; CursorPosition = 13
-; FirstLine = 48
 ; Folding = -
 ; iOSAppOrientation = 0
 ; AndroidAppOrientation = 0
