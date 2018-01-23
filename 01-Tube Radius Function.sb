@@ -60,7 +60,7 @@ Procedure LoadGame()
     Tube = CreateTube("My tube", TubeVectors(), 0, 32, @Radius())
     
     ;Material
-    TubeTex = LoadTexture("tube texture", "data/textures/misc.jpg")
+    TubeTex = LoadTexture("Data/textures/misc.jpg")
     TubeMat = CreateMaterial("tube material")
     SetMaterialTexture(TubeMat, #BJS_Diffuse, TubeTex)
     SetMeshMaterial(Tube, TubeMat)
