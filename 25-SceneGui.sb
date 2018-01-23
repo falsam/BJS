@@ -30,10 +30,10 @@ Procedure LoadGame()
     Light = CreateLight("light", 0, 200, 0)
     
     ;Material
-    Texture = LoadTexture("ground", "data/textures/beton1.png")
+    Texture = LoadTexture("Data/textures/beton1.png")
     Material = CreateMaterial("ground")
     SetMaterialTexture(Material, #BJS_Diffuse, Texture)
-    SetMaterialColor(Material, #BJS_Specular, RGB(60,60,60))
+    SetMaterialColor(Material, #BJS_Specular, RGB(60, 60, 60))
     ScaleMaterial(Material, 5, 5)    
     
     ;Ground
@@ -97,7 +97,6 @@ Procedure RenderGame()
   RenderWorld() 
 EndProcedure
 ; IDE Options = SpiderBasic 2.20 (Windows - x86)
-; CursorPosition = 35
 ; Folding = -
 ; WebAppName = GUI Demo
 ; HtmlFilename = gui.html
