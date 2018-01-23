@@ -20,10 +20,10 @@ Procedure LoadGame()
     
     Sphere = CreateSphere("sphere", 8)
     Material = CreateMaterial("empty")
-    Texture = LoadTexture("floor", "data/textures/floor.png")
+    Texture = LoadTexture("Data/textures/floor.png")
     SetMaterialColor(Material, #BJS_Diffuse, RGB(218, 165, 32))
     SetMaterialTexture(Material, #BJS_Diffuse, Texture)
-    Texture = LoadTexture("floor", "data/textures/floor_bump.PNG")
+    Texture = LoadTexture("Data/textures/floor_bump.PNG")
     SetMaterialTexture(Material, #BJS_Bump, Texture)
     SetMeshMaterial(Sphere, Material)
     
