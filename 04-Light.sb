@@ -21,29 +21,29 @@ Procedure LoadGame()
     CreateLight("General", 0, 20, 0, 0.2, #BJS_Hemispheric)
         
     Light0 = CreateLight("Red Light", -1, 10, -1, 1, #BJS_Spot)
-    SpotLightRange(Light0, 2, 10)
+    SpotLightRange(Light0, 120, 40)
     SetLightColor(Light0, #BJS_Diffuse, RGB(255, 0, 0))
     SetLightColor(Light0, #BJS_Specular, RGB(0, 255, 0))
     
     Light1 = CreateLight("Green Light", 5, 10, 1, 0.8, #BJS_Spot)
-    SpotLightRange(Light1, 2, 5)
+    SpotLightRange(Light1, 130, 40)
     SetLightColor(Light1, #BJS_Diffuse, RGB(0, 255, 0))
     SetLightColor(Light1, #BJS_Specular, RGB(0, 255, 0))
         
     Light2 = CreateLight("Blue Light", -9, 10, -9, 1, #BJS_Spot)
-    SpotLightRange(Light2, 2, 6)
+    SpotLightRange(Light2, 140, 40)
     SetLightColor(Light2, #BJS_Diffuse, RGB(0, 0, 255))
     SetLightColor(Light2, #BJS_Specular, RGB(0, 255, 0))
         
     ;Ground & Box
-    Texture = LoadTexture("ground", "data/textures/floor.png")
+    Texture = LoadTexture("Data/textures/floor.png")
     Material = CreateMaterial("ground")
     SetMaterialTexture(Material, #BJS_Diffuse, Texture)
     Mesh = CreateGround("ground", 30, 30)
     SetMeshMaterial(Mesh, Material)
     ScaleMaterial(Material, 5, 5)
     
-    Texture = LoadTexture("Box", "data/textures/crate.png")
+    Texture = LoadTexture("Data/textures/crate.png")
     Material = CreateMaterial("Box")
     SetMaterialTexture(Material, #BJS_Diffuse, Texture)
     SetMaterialColor(Material, #BJS_Emissive, RGB(80, 80, 80))
@@ -61,7 +61,6 @@ EndProcedure
 
 
 ; IDE Options = SpiderBasic 2.20 (Windows - x86)
-; CursorPosition = 57
 ; Folding = -
 ; WebAppName = Light
 ; HtmlFilename = light.html
