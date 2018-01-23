@@ -35,7 +35,7 @@ Procedure LoadGame()
     Light = CreateLight("Point", 0, 10, -10, 0.8, #BJS_Point)
     
     ;Material
-    GroundTex = LoadTexture("grass", "data/textures/grass1.jpg")
+    GroundTex = LoadTexture("data/textures/grass1.jpg")
     GroundMat = CreateMaterial("grass")
     SetMaterialTexture(GroundMat, #BJS_Diffuse, GroundTex)
     ScaleMaterial(GroundMat, 5, 5)  
