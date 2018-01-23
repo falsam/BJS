@@ -34,7 +34,7 @@ Procedure LoadGame()
     
     ;Terrain
     Ground = CreateTerrain("island", "data/textures/heightMap.png", 1000, 1000, 210, 0, 70)
-    GroundTex = LoadTexture("sand", "data/textures/Ground.jpg")
+    GroundTex = LoadTexture("Data/textures/Ground.jpg")
     GroundMat = CreateMaterial("sand")
     SetMaterialTexture(GroundMat, #BJS_Diffuse, GroundTex)
     ScaleMaterial(GroundMat, 16, 16)
@@ -44,7 +44,7 @@ Procedure LoadGame()
     
     ;Box
     Box0 = CreateBox("box", 10, 10, 10)
-    Texture = LoadTexture("box", "data/textures/crate.png")
+    Texture = LoadTexture("data/textures/crate.png")
     Material = CreateMaterial("box")
     SetMaterialTexture(Material, #BJS_Diffuse, Texture)
     SetMaterialColor(Material, #BJS_Emissive, RGB(80, 80, 80))
@@ -86,7 +86,7 @@ EndProcedure
 
 
 ; IDE Options = SpiderBasic 2.20 (Windows - x86)
-; CursorPosition = 35
+; CursorPosition = 46
 ; FirstLine = 24
 ; Folding = -
 ; WebAppName = Terrain
