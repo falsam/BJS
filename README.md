@@ -34,16 +34,30 @@
 ■ Example : http://falsam.com/sbbjs/terrain.html
   
 **Light**
-* CreateLight(id.s, x.f, y.f, z.f, intensity.f = 1, mode.i = #Hemispheric)
-* SpotLightRange(Light, InnerAngle.f, OuterAngle.f)
+You can define four types of light.
+
+**#BJS_Point** A point light is a light defined by an unique point in world space. The light is emitted in every direction from this point.
+
+**#BJS_Directional** A directional light is defined by a direction (what a surprise!). The light is emitted from everywhere in the specified direction, and has an infinite range. 
+
+**#BJS_Spot** A spot light is defined by a position, a direction, an angle, and an exponent. These values define a cone of light starting from the position, emitting toward the direction.
+
+The angle, in radians, defines the size (field of illumination) of the spotlight's conical beam , and the exponent defines the speed of the decay of the light with distance (reach).
+
+**#BJS_Hemispheric** A hemispheric light is an easy way to simulate an ambient environment light. A hemispheric light is defined by a direction, usually 'up' towards the sky. However it is by setting the color properties that the full effect is achieved.(Default)
+
+
+
+* Light = CreateLight(id.s, x.f, y.f, z.f, intensity.f = 1, mode.i = #BJS_Hemispheric)
+* SpotLightRange(Light, InnerAngle.f, Exponent.f)
 * LightDirection(Light, x.f, y.f, z.f)
 * MoveLight(Light.i, x.f, y.f, z.f, Mode = #PB_Relative)
 * EnableLight(Light, Value.b)
-* SetLightColor(Light, Type, Color)
-* Value.f = GetLightIntensity(Light)
+* SetLightColor(Light, Type, Color) 
+* Intensity.f = GetLightIntensity(Light)
 * SetLightIntensity(Light, Intensity.f)
 
-■ Exeample : http://falsam.com/sbbjs/light.html
+■ Example : http://falsam.com/sbbjs/light.html
 
 **Shadow**
 * InitShadow(Light, RenderSize = 1024)
@@ -53,7 +67,7 @@
 ■ Example : http://falsam.com/sbbjs/shadow.html
 
 **Camera** 
-* Value = CreateCamera(id.s, x.f, y.f, z.f, Type = #Free)  
+* Value = CreateCamera(id.s, x.f, y.f, z.f, Type = #BJS_Free)  
 * CameraLookAtMesh(Camera, MeshObject)  
 * CameraLookAt(Camera, x.f, y.f, z.f)
 * ActiveCamera(Camera)
@@ -80,7 +94,7 @@
 * Value = LoadVideoTexture(Names.s, FileName.s)
   
 **Material**
-* Value = CreateMaterial(Name.s, Image.s, BackFaceCulling = #False)
+* Material = CreateMaterial(Name.s, Image.s, BackFaceCulling = #False)
 * ScaleMaterial(Material, UScale.f, VScale.f)
 * ScrollMaterial(Material, UOffset.f, VOffset.f)
 * SetMaterialColor(Material, Type, Color)
@@ -90,15 +104,15 @@
 * SetMeshMaterial(Mesh, Material)  
   
 **Mesh**
-* Value = CreateSphere(Name.s, Size.f, Subdivs.i = 16)  
-* Value = CreateGround(Name.s, Width.f, Depth.f, Subdivs=2)
-* Value = CreateBox(Name.s, Width.f, Height.f, Depth.f)
-* Value = CreatePlane(Name.s, Width.f, Height.f)
-* Value = CreateCylinder(Name.s, Height.f, DiamTop.f, DiamBottom.f, Tessellation.i = 30, HeightSubdivs.i = 1)
-* Value = CreateTorus(Name.s, Diameter, Thickness, Tesselation = 32)
-* Value = CreateIcoSphere(Name.s, Radius, RadiusY, Subdivs = 16)
-* Value = CreateTube(Name.s, Array VectorsArray.NewVector(1), Radius.f, Tessellation = 32, RadiusFunction = #PB_Ignore)
-* Value = CreateTerrain(Name.s, HeightmapPath.s, Width.f, Depth.f, Subdivs.i, MinHeight.f, MaxHeight.f)
+* Mesh = CreateSphere(Name.s, Size.f, Subdivs.i = 16)  
+* Mesh = CreateGround(Name.s, Width.f, Depth.f, Subdivs=2)
+* Mesh = CreateBox(Name.s, Width.f, Height.f, Depth.f)
+* Mesh = CreatePlane(Name.s, Width.f, Height.f)
+* Mesh = CreateCylinder(Name.s, Height.f, DiamTop.f, DiamBottom.f, Tessellation.i = 30, HeightSubdivs.i = 1)
+* Mesh = CreateTorus(Name.s, Diameter, Thickness, Tesselation = 32)
+* Mesh = CreateIcoSphere(Name.s, Radius, RadiusY, Subdivs = 16)
+* Mesh = CreateTube(Name.s, Array VectorsArray.NewVector(1), Radius.f, Tessellation = 32, RadiusFunction = #PB_Ignore)
+* Mesh = CreateTerrain(Name.s, HeightmapPath.s, Width.f, Depth.f, Subdivs.i, MinHeight.f, MaxHeight.f)
 * CreateMeshBody(Mesh, Type, Mass.f = 1.0, Restitution.f = 1.0, Friction = 0.1)
 * ApplyMeshImpulse(Mesh, x.f, y.f, z.f)
 * Value = GetMeshName(Mesh)
