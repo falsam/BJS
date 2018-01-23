@@ -1,4 +1,4 @@
-﻿ ;Babylon.sbi - Music
+﻿;Babylon.sbi - Music
 
 EnableExplicit
 
@@ -30,7 +30,7 @@ Procedure LoadGame()
     
     ;Ground
     Ground = CreateGround("Ground", 5000, 5000, 4)
-    GroundTex = LoadTexture("Ground", "data/textures/Beton1.png")
+    GroundTex = LoadTexture("Data/textures/Beton1.png")
     GroundMat = CreateMaterial("Ground")
     SetMaterialTexture(GroundMat, #BJS_Diffuse, GroundTex)
     SetMaterialColor(GroundMat, #BJS_Specular, RGBA(0, 0, 0, 255))
@@ -71,8 +71,6 @@ Procedure RenderGame()
   RenderWorld() 
 EndProcedure
 ; IDE Options = SpiderBasic 2.20 (Windows - x86)
-; CursorPosition = 20
-; FirstLine = 9
 ; Folding = -
 ; WebAppName = Music
 ; HtmlFilename = music.html
