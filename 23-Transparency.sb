@@ -21,7 +21,7 @@ Procedure LoadGame()
     CreateLight("light", 0, 10, 0)
     
     Box = CreateBox("box", 4, 4, 4)
-    BoxTex = LoadTexture("crate", "data/textures/crate.png")
+    BoxTex = LoadTexture("Data/textures/crate.png")
     BoxMat = CreateMaterial("crate")
     SetMaterialTexture(BoxMat, #BJS_Diffuse, BoxTex)
     SetMaterialAlpha(boxMat, 0.5)
