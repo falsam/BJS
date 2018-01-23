@@ -32,7 +32,7 @@ Procedure LoadGame()
     
     ;Ground
     Ground = CreateGround("Ground", 1000, 1000)
-    TexGround = LoadTexture("Grass", "data/textures/grass1.jpg")
+    TexGround = LoadTexture("Data/textures/grass1.jpg")
     MatGround = CreateMaterial("Grass")
     SetMaterialTexture(MatGround, #BJS_Diffuse, TexGround)
     ScaleMaterial(MatGround, 40, 40)
@@ -72,7 +72,7 @@ EndProcedure
 
 
 ; IDE Options = SpiderBasic 2.20 (Windows - x86)
-; CursorPosition = 30
+; CursorPosition = 34
 ; FirstLine = 10
 ; Folding = -
 ; WebAppName = Skybox
