@@ -197,6 +197,7 @@ Example : http://falsam.com/sbbjs/music.html
 * GetState3D(Object)
 * SetState3D(Object, Value)
 * Text3DLinkToMesh(Mesh, ObjectText, OffSetY.f)
+* MoveObject3D(Object, x.i, y.i)
 
 Example 
 http://falsam.com/sbbjs/gui.html
