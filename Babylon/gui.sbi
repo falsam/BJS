@@ -194,7 +194,7 @@ EndProcedure
 
 Procedure SetText3D(Object, Text.s)
   !if (v_object != 0) {
-  !   v_object.children[0].text = v_text
+  !   v_object.text = v_text
   !}
 EndProcedure
 
@@ -245,8 +245,15 @@ Procedure Text3DLinkToMesh(Mesh, ObjectText, OffSetY.f)
   !v_objecttext.linkWithMesh(v_mesh);   
   !v_objecttext.linkOffsetY = v_offsety;
 EndProcedure
+
+Procedure MoveObject3D(Object, x.i, y.i)
+  !v_object.left = v_x
+  !v_object.top = v_y
+EndProcedure
+
 ; IDE Options = SpiderBasic 2.20 (Windows - x86)
-; CursorPosition = 2
+; CursorPosition = 246
+; FirstLine = 190
 ; Folding = ----
 ; iOSAppOrientation = 0
 ; AndroidAppOrientation = 0
