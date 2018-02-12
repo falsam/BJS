@@ -28,6 +28,12 @@ Procedure ClearScene(color)
   !v_bjscurrentscene.clearColor = new BABYLON.Color3(v_r, v_g, v_b);
 EndProcedure
 
+Procedure onMouseDown(CallBack)
+  !v_bjscurrentscene.onPointerDown = function (evt) {
+  ! v_callback(evt)
+  !}
+EndProcedure
+
 Procedure onMouseMove(CallBack)
   !v_bjscurrentscene.onPointerMove = function (evt) {
   ! v_callback()
@@ -74,6 +80,8 @@ Procedure SceneDebug()
   !v_bjscurrentscene.debugLayer.show();
 EndProcedure
 ; IDE Options = SpiderBasic 2.20 (Windows - x86)
+; CursorPosition = 35
+; FirstLine = 22
 ; Folding = ---
 ; iOSAppOrientation = 0
 ; AndroidAppOrientation = 0
