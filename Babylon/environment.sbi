@@ -146,6 +146,10 @@ Procedure SetLightIntensity(Light, Intensity.f)
   !v_light.intensity = v_intensity;
 EndProcedure  
 
+
+Procedure VolumetricLight(Name.s, Camera, Ratio.f = 1.0, PostProcessQuality = 100)
+  !return new BABYLON.VolumetricLightScatteringPostProcess(v_name, v_ratio, v_camera, null, v_postprocessquality, BABYLON.Texture.BILINEAR_SAMPLINGMODE, v_bjsengine, false);
+EndProcedure
 ;-
 ;- Shadow
 Procedure InitShadow(Light, RenderSize = 1024)
@@ -163,8 +167,8 @@ Procedure RenderShadows(Mesh, Value.b = #True)
   !v_mesh.receiveShadows = v_value;
 EndProcedure
 ; IDE Options = SpiderBasic 2.20 (Windows - x86)
-; CursorPosition = 143
-; FirstLine = 98
+; CursorPosition = 149
+; FirstLine = 105
 ; Folding = ----
 ; iOSAppOrientation = 0
 ; AndroidAppOrientation = 0
