@@ -7,7 +7,7 @@ EnableExplicit
 
 IncludeFile "babylon/babylon.sbi"
 
-Global Light, Ground, Torus1, Torus2
+Global Light, Ground, Torus1, Torus2, ShadowGenerator
 
 Declare LoadGame()
 Declare RenderGame()
@@ -34,9 +34,9 @@ Procedure LoadGame()
     AttachMesh(Ground, Torus2, 0, 7, 0)
     
     ;Shadows (Create Shadow Generator)
-    InitShadow(Light, 2048)
-    ShadowEmitter(Torus1)
-    ShadowEmitter(Torus2)
+    ShadowGenerator = InitShadow(Light, 2048)
+    ShadowEmitter(ShadowGenerator, Torus1)
+    ShadowEmitter(ShadowGenerator, Torus2)
     RenderShadows(Ground)
     
     RenderLoop(@RenderGame())
@@ -48,7 +48,7 @@ Procedure RenderGame()
   RenderWorld() 
 EndProcedure
 ; IDE Options = SpiderBasic 2.20 (Windows - x86)
-; CursorPosition = 39
+; CursorPosition = 38
 ; Folding = -
 ; iOSAppOrientation = 0
 ; AndroidAppOrientation = 0

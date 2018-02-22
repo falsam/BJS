@@ -5,7 +5,7 @@ EnableExplicit
 IncludeFile "babylon/babylon.sbi"
 UseModule BJS
 
-Global Scene, Camera, Light, Pop, Ground, GroundTex, GroundMat, Mesh
+Global Scene, Camera, Light, Pop, Ground, GroundTex, GroundMat, Mesh, ShadowGenerator
  
 Declare LoadGame()
 Declare RenderGame()
@@ -39,7 +39,7 @@ Procedure LoadGame()
     CreateMeshBody(Ground, #BJS_PlaneBody, 0, 0, 0)
     
     ;Shadow
-    InitShadow(Light, 2048)
+    ShadowGenerator = InitShadow(Light, 2048)
     RenderShadows(Ground)
     
     ;!v_bjsengine.hideLoadingUI()
@@ -54,7 +54,7 @@ Procedure RenderGame()
       Mesh = CreateSphere("sphere", Random(40, 20))
       MoveMesh(Mesh, Random(500, 200), Random(500, 200), Random(500, 200))
       CreateMeshBody(Mesh, #BJS_SphereBody, 10, 0.5, 0.5)
-      ShadowEmitter(Mesh)
+      ShadowEmitter(ShadowGenerator, Mesh)
       MusicPlay(Pop)
       
     Case 10, 20, 30
@@ -63,7 +63,7 @@ Procedure RenderGame()
       MoveMesh(Mesh, Random(500, 200), Random(500, 200), Random(500, 200))
       CreatemeshBody(Mesh, #BJS_BoxBody, 10, 0.5, 0.5)
       RotateMesh(Mesh, 0, Random(360), 0)
-      ShadowEmitter(Mesh)
+      ShadowEmitter(ShadowGenerator, Mesh)
       MusicPlay(Pop)
       
   EndSelect
@@ -71,6 +71,8 @@ Procedure RenderGame()
   RenderWorld() 
 EndProcedure
 ; IDE Options = SpiderBasic 2.20 (Windows - x86)
+; CursorPosition = 65
+; FirstLine = 9
 ; Folding = -
 ; WebAppName = Music
 ; HtmlFilename = music.html

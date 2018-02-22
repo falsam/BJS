@@ -5,6 +5,7 @@ IncludeFile "babylon/babylon.sbi"
 
 Global Scene, Camera, Light, Box1, Box2, Plane, Background
 Global GUI, Shoot, ShootToken
+Global ShadowGenerator
 
 Declare LoadGame()
 Declare ScreenShoot()
@@ -36,9 +37,9 @@ Procedure LoadGame()
     MoveMesh(Box2, 1, 6, -1)
     
     ;Shadows
-    InitShadow(Light, 1024)
-    ShadowEmitter(Box1)
-    ShadowEmitter(Box2)
+    ShadowGenerator = InitShadow(Light, 1024)
+    ShadowEmitter(ShadowGenerator, Box1)
+    ShadowEmitter(ShadowGenerator, Box2)
     RenderShadows(Plane)
        
     ;GUI : Scene ScreenShoot 
@@ -65,7 +66,8 @@ Procedure RenderGame()
   EndIf
 EndProcedure
 ; IDE Options = SpiderBasic 2.20 (Windows - x86)
-; CursorPosition = 62
+; CursorPosition = 42
+; FirstLine = 3
 ; Folding = -
 ; WebAppName = ScreenShoot
 ; HtmlFilename = screenshoot.html

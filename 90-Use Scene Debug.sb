@@ -6,6 +6,7 @@ Global Assets.s = "data/textures/"
 Global Scene, Camera, Light0, Light1
 Global Ground, GroundTex, GroundBump, GroundMat
 Global Box0, Box1, BoxTex, BoxMat
+Global ShadowGenerator
 
 Declare LoadGame()
 Declare RenderGame()
@@ -28,7 +29,7 @@ Procedure LoadGame()
     SetLightColor(Light0, #BJS_Diffuse, RGB(12, 12, 12))
     
     Light1 = CreateLight("spot", 0, 15, 0, 1, #BJS_Spot)
-    SpotLightRange(Light1, 3, 8)
+    SpotLightRange(Light1, 120, 40)
     SetLightColor(Light1, #BJS_Diffuse, RGB(255, 255, 255))
     
     ;Ground
@@ -57,10 +58,10 @@ Procedure LoadGame()
     RotateMesh(Box1, 0, 45, 0)
         
     ;Shadows
-    InitShadow(Light0)
-    ShadowEmitter(Box0)
-    ShadowEmitter(Box1)
-    RenderShadows(Ground)
+    ShadowGenerator = InitShadow(Light0)
+    ShadowEmitter(ShadowGenerator, Box0)
+    ShadowEmitter(ShadowGenerator, Box1)
+    RenderShadows(ShadowGenerator, Ground)
     
     ;Debug
     SceneDebug()
@@ -73,6 +74,8 @@ Procedure RenderGame()
   RenderWorld() 
 EndProcedure
 ; IDE Options = SpiderBasic 2.20 (Windows - x86)
+; CursorPosition = 31
+; FirstLine = 12
 ; Folding = -
 ; WebAppName = Debug Scene
 ; HtmlFilename = scenedebug.html
