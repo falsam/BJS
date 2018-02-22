@@ -1,0 +1,37 @@
+﻿;Babylon.js for SpiderBasic : csg.sbi
+;Constructive Solid Geometry (CSG) is a modeling technique that uses Boolean operations like subtract, intersection and union to combine 3D solids.
+
+Procedure CSGMeshCreate(FromMesh, SubMesh, Operator.i = #BJS_Subtract, Material = 0)
+  !var csgmesh0 = BABYLON.CSG.FromMesh(v_frommesh);
+  !var csgmesh1  = BABYLON.CSG.FromMesh(v_submesh)
+  
+  If Material = 0
+    !v_material = new BABYLON.StandardMaterial("mat0", v_bjscurrentscene);   
+  EndIf
+
+  Select Operator
+    Case #BJS_Subtract
+      !var csgresult = csgmesh0.subtract(csgmesh1);
+      
+    Case #BJS_Intersect
+      !var csgresult = csgmesh0.intersect(csgmesh1);
+      
+    Case #BJS_Union
+      !var csgresult = csgmesh0.union(csgmesh1);
+      
+  EndSelect
+  
+  !return csgresult.toMesh("csg", v_material, v_bjscurrentscene);
+EndProcedure
+
+  
+
+
+
+; IDE Options = SpiderBasic 2.20 (Windows - x86)
+; CursorPosition = 1
+; Folding = -
+; iOSAppOrientation = 0
+; AndroidAppOrientation = 0
+; EnableXP
+; CompileSourceDirectory
