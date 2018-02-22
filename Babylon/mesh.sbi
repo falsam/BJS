@@ -156,6 +156,20 @@ Procedure HideMesh(Mesh, Value = #True)
   !v_mesh.visibility = !v_value
 EndProcedure
 
+Procedure MeshAppearance(Mesh, Attribut)
+  Select Attribut
+      Case #BJS_Solid
+        !v_mesh.material.wireframe = false
+        !v_mesh.showBoundingBox = false;
+        
+      Case #BJS_WireFrame
+        !v_mesh.material.wireframe = true
+        
+      Case #BJS_BoundingBox
+        !v_mesh.showBoundingBox = true;
+  EndSelect
+EndProcedure
+
 ;-
 ;- Move, Rotate, Scale, Position
 Procedure MoveMesh(Mesh, x.f, y.f, z.f, Mode = #PB_Absolute)
@@ -298,8 +312,8 @@ Procedure Translate(Mesh, Value.f)
   !v_mesh.translate(new BABYLON.Vector3(v_value, 0, 0), 0.1, BABYLON.Space.LOCAL);
 EndProcedure
 ; IDE Options = SpiderBasic 2.20 (Windows - x86)
-; CursorPosition = 223
-; FirstLine = 209
+; CursorPosition = 162
+; FirstLine = 154
 ; Folding = -------
 ; iOSAppOrientation = 0
 ; AndroidAppOrientation = 0
