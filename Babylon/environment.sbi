@@ -150,25 +150,30 @@ EndProcedure
 Procedure VolumetricLight(Name.s, Camera, Ratio.f = 1.0, PostProcessQuality = 100)
   !return new BABYLON.VolumetricLightScatteringPostProcess(v_name, v_ratio, v_camera, null, v_postprocessquality, BABYLON.Texture.BILINEAR_SAMPLINGMODE, v_bjsengine, false);
 EndProcedure
+
 ;-
 ;- Shadow
 Procedure InitShadow(Light, RenderSize = 1024)
-  !v_bjsshadowgenerator = new BABYLON.ShadowGenerator(v_rendersize, v_light);
-  !v_bjsshadowgenerator.usePoissonSampling = true;
-  !v_bjsshadowgenerator.useBlurExponentialShadowMap = true;
-  !return v_bjsshadowgenerator
+  Protected ShadowGenerator
+  
+  !v_shadowgenerator = new BABYLON.ShadowGenerator(v_rendersize, v_light);
+  !v_shadowgenerator.usePoissonSampling = true;
+  !v_shadowgenerator.useBlurExponentialShadowMap = true;
+  !v_shadowgenerator.useKernelBlur = true;
+  !v_shadowgenerator.blurKernel = 64;
+  !return v_shadowgenerator
 EndProcedure
 
-Procedure ShadowEmitter(Mesh) 
-  !v_bjsshadowgenerator.getShadowMap().renderList.push(v_mesh);
+Procedure ShadowEmitter(ShadowGenerator, Mesh) 
+  !v_shadowgenerator.getShadowMap().renderList.push(v_mesh);
 EndProcedure    
 
 Procedure RenderShadows(Mesh, Value.b = #True) 
   !v_mesh.receiveShadows = v_value;
 EndProcedure
 ; IDE Options = SpiderBasic 2.20 (Windows - x86)
-; CursorPosition = 149
-; FirstLine = 105
+; CursorPosition = 159
+; FirstLine = 110
 ; Folding = ----
 ; iOSAppOrientation = 0
 ; AndroidAppOrientation = 0
