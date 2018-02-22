@@ -63,9 +63,11 @@ There are three properties of lights that affect color. Two of these diffuse (#B
 Example : http://falsam.com/sbbjs/light.html
 
 **■ Shadow**
-* InitShadow(Light, RenderSize = 1024)
-* ShadowEmitter(Mesh)
-* RenderShadows(Mesh, Value.b = #True) 
+* ShadowGenerator = InitShadow(Light, RenderSize = 1024)
+* ShadowEmitter(ShadowGenerator, Mesh)
+* RenderShadows(Mesh, Value.b = #True)
+
+Keep in mind that this shadow generator can only be used with one light. If you want to generate shadows from another light, then you will need to create another shadow generator.
 
 Example : http://falsam.com/sbbjs/shadow.html
 
