@@ -47,6 +47,17 @@
 #BJS_Center = 2
 #BJS_Right = 3
 
+;CSG
+#BJS_Subtract = 0
+#BJS_Intersect = 1
+#BJS_Union = 2
+
+;Appearance 
+#BJS_Solid = 0
+#BJS_WireFrame = 1
+#BJS_BoundingBox = 2
+
+
 ;Joint
 #DistanceJoint = 0         ;A fixed distance between two impostors
 ;#HingeJoint = 1           ;A joint allowing rotation on a single axis (much like your knee)
@@ -77,9 +88,6 @@ Global BJScurrentParent
 ;Child  : Engine.sbi, Environment.sbi, Camera.sbi, Mesh.sbi, Material.sbi
 Global BJSCurrentScene       
 
-;Parent : Scene.sbi
-Global BJSShadowGenerator
-
 ;Parent : Assetsmanager.sbi
 Global BJSAssetsManager
 
@@ -103,7 +111,8 @@ EndStructure
 Global Pick.NewPick
 
 ; IDE Options = SpiderBasic 2.20 (Windows - x86)
-; CursorPosition = 32
+; CursorPosition = 89
+; FirstLine = 49
 ; iOSAppOrientation = 0
 ; AndroidAppOrientation = 0
 ; EnableXP
