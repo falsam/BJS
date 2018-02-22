@@ -1,0 +1,35 @@
+﻿;Babylon.js for SpiderBasic : Animation
+
+
+Procedure CreateAnimation(Skeleton, KeyStart, KeyEnd, Loop, Speed.f)
+  !return v_bjscurrentscene.beginAnimation(v_skeleton[0], 0, 100, v_loop, v_speed);
+EndProcedure
+
+Procedure PauseAnimation(Animation)
+  !v_animation.pause()
+EndProcedure
+
+Procedure RestartAnimation(Animation)
+  !v_animation.restart()
+EndProcedure
+
+Procedure StopAnimation(Animation)
+  !v_animation.stop()
+EndProcedure
+  
+Procedure ResetAnimation(Animation)
+  !v_animation.reset()
+EndProcedure
+  
+  
+  
+
+
+
+; IDE Options = SpiderBasic 2.20 (Windows - x86)
+; CursorPosition = 20
+; Folding = -
+; iOSAppOrientation = 0
+; AndroidAppOrientation = 0
+; EnableXP
+; CompileSourceDirectory
