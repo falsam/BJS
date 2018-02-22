@@ -58,7 +58,7 @@ DeclareModule BJS
   
   ;Shadow
   Declare   InitShadow(Light, RenderSize = 1024)
-  Declare   ShadowEmitter(Mesh)
+  Declare   ShadowEmitter(ShadowGenerator, Mesh)
   Declare   RenderShadows(Mesh, Value.b = #True) 
  
   ;-Camera.sbi 
@@ -122,6 +122,7 @@ DeclareModule BJS
   Declare   GetCollideMesh(Mesh)
   Declare   GhostMesh(Mesh, Value = #True)
   Declare   HideMesh(Mesh, Value = #True)
+  Declare   MeshAppearance(Mesh, Attribut)
   
   Declare.s GetMeshName(Mesh)
   Declare   GetMeshByName(MeshName.s)
@@ -222,6 +223,16 @@ DeclareModule BJS
   Declare   AssetsManagerAdd(Name.s, FileName.s, CallBackSucces, CallBackError)
   Declare   AssetsManagerPrompt(Text.s)
   Declare   AssetsManagerLoad()
+  ;-Animation
+  Declare   CreateAnimation(Skeleton, KeyStart, KeyEnd, Loop, Speed.f)
+  Declare   PauseAnimation(Animation)
+  Declare   RestartAnimation(Animation)
+  Declare   StopAnimation(Animation)
+  Declare   ResetAnimation(Animation)
+  
+  ;-CSG
+  Declare   CSGMeshCreate(FromMesh, SubMesh, Operation.i = #BJS_Subtract, Material = 0)
+  
   
   ;Tools.sbi
   Declare   RunURL(Url.s, NewTab.b = #True)
@@ -237,15 +248,17 @@ Module BJS
   IncludeFile "material.sbi"
   IncludeFile "mesh.sbi"
   IncludeFile "particle.sbi"
-  IncludeFile "assetsmanager.sbi"
   IncludeFile "music.sbi"
+  IncludeFile "assetsmanager.sbi"
+  IncludeFile "animation.sbi"
+  IncludeFile "csg.sbi"
   
   IncludeFile "gui.sbi"
   IncludeFile "keyboard.sbi"
 EndModule
 ; IDE Options = SpiderBasic 2.20 (Windows - x86)
-; CursorPosition = 211
-; FirstLine = 180
+; CursorPosition = 60
+; FirstLine = 37
 ; Folding = -
 ; iOSAppOrientation = 0
 ; AndroidAppOrientation = 0
