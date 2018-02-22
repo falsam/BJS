@@ -159,8 +159,8 @@ Procedure InitShadow(Light, RenderSize = 1024)
   !v_shadowgenerator = new BABYLON.ShadowGenerator(v_rendersize, v_light);
   !v_shadowgenerator.usePoissonSampling = true;
   !v_shadowgenerator.useBlurExponentialShadowMap = true;
-  !v_shadowgenerator.useKernelBlur = true;
-  !v_shadowgenerator.blurKernel = 64;
+  ;!v_shadowgenerator.useKernelBlur = true;
+  ;!v_shadowgenerator.blurKernel = 64;
   !return v_shadowgenerator
 EndProcedure
 
@@ -172,7 +172,7 @@ Procedure RenderShadows(Mesh, Value.b = #True)
   !v_mesh.receiveShadows = v_value;
 EndProcedure
 ; IDE Options = SpiderBasic 2.20 (Windows - x86)
-; CursorPosition = 159
+; CursorPosition = 162
 ; FirstLine = 110
 ; Folding = ----
 ; iOSAppOrientation = 0
