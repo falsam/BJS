@@ -204,7 +204,7 @@ Procedure SetText3D(Object, Text.s)
 EndProcedure
 
 Procedure.s GetText3D(Object)
-  !return v_object.children[0].text
+  !return v_object.text
 EndProcedure
 
 Procedure SetColor3D(Object, ColorType, Color)
@@ -257,7 +257,8 @@ Procedure MoveObject3D(Object, x.f, y.f)
 EndProcedure
 
 ; IDE Options = SpiderBasic 2.20 (Windows - x86)
-; FirstLine = 200
+; CursorPosition = 206
+; FirstLine = 205
 ; Folding = ----
 ; iOSAppOrientation = 0
 ; AndroidAppOrientation = 0
