@@ -152,18 +152,23 @@ Procedure Input3D(Name.s, x.i, y.i, Width.i, Height.i, Text.s, OnLostFocus=#Fals
   !object.focusedBackground = "white"
   !object.thickness = 2;
   
-  !object.onTextChangedObservable.add(function() {  
-  !      v_ontextchange();
-  !});
+  If OnLostFocus
+    !object.onTextChangedObservable.add(function() {  
+    !      v_ontextchange();
+    !});
+  EndIf
   
-  !object.onFocusObservable.add(function() {  
-  !      v_ongetfocus();
-  !});
+  If OnGetFocus
+    !object.onFocusObservable.add(function() {  
+    !      v_ongetfocus();
+    !});
+  EndIf
   
-  !object.onBlurObservable.add(function() {  
-  !      v_onlostfocus();
-  !});
-
+  If OnLostFocus
+    !object.onBlurObservable.add(function() {  
+    !      v_onlostfocus();
+    !});
+  EndIf
   
   !return object;
 EndProcedure
@@ -246,14 +251,13 @@ Procedure Text3DLinkToMesh(Mesh, ObjectText, OffSetY.f)
   !v_objecttext.linkOffsetY = v_offsety;
 EndProcedure
 
-Procedure MoveObject3D(Object, x.i, y.i)
+Procedure MoveObject3D(Object, x.f, y.f)
   !v_object.left = v_x
   !v_object.top = v_y
 EndProcedure
 
 ; IDE Options = SpiderBasic 2.20 (Windows - x86)
-; CursorPosition = 246
-; FirstLine = 190
+; FirstLine = 200
 ; Folding = ----
 ; iOSAppOrientation = 0
 ; AndroidAppOrientation = 0
