@@ -251,14 +251,14 @@ Procedure Text3DLinkToMesh(Mesh, ObjectText, OffSetY.f)
   !v_objecttext.linkOffsetY = v_offsety;
 EndProcedure
 
-Procedure MoveObject3D(Object, x.f, y.f)
+Procedure MoveObject3D(Object, x.i, y.i)
   !v_object.left = v_x
   !v_object.top = v_y
 EndProcedure
 
 ; IDE Options = SpiderBasic 2.20 (Windows - x86)
-; CursorPosition = 206
-; FirstLine = 205
+; CursorPosition = 253
+; FirstLine = 202
 ; Folding = ----
 ; iOSAppOrientation = 0
 ; AndroidAppOrientation = 0
