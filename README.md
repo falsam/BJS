@@ -3,6 +3,9 @@
 **■ Engine**
 * SetEnginePath(EnginePath.s = "sbbjs")
 * InitEngine(Callback, CanvasOutput = #PB_Ignore)  
+* PointerLock(Value = #True) 
+* IsPointerLock()
+* MouseLock(LockCallback, UnLockCallback)
 * RenderLoop(Callback)  
 * RenderWorld() 
 * CreateSceneShoot(Camera, Width, Height, Precision.f=1) 
@@ -19,7 +22,7 @@
 * Value = SceneMouseY(Scene) 
 * BeforeRender(CallBack)
 * SetCurrentScene(Scene, Camera)  
-* ImportScene(Name.s, Path.s, FileName.s, Callback)  
+* ImportScene(Name.s, FileName.s, Callback)  
 * ExportScene(Scene, FileName.s)
 * SceneDebug()  
    
@@ -197,6 +200,7 @@ Example : http://falsam.com/sbbjs/music.html
 * SetState3D(Object, Value)
 * Text3DLinkToMesh(Mesh, ObjectText, OffSetY.f)
 * MoveObject3D(Object, x.i, y.i)
+* FreeObject3D(Object)
 
 Example 
 http://falsam.com/sbbjs/gui.html
