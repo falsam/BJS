@@ -4,7 +4,10 @@ EnableExplicit
 
 IncludeFile "babylon/babylon.sbi"
 
+Global Scene
+
 Declare LoadGame()
+Declare OnMouseClick()
 Declare RenderGame()
 
 UseModule BJS
@@ -14,7 +17,9 @@ InitEngine(@LoadGame())
 Procedure LoadGame()
   Protected Mesh
   
-  If CreateScene()
+  Scene = CreateScene()
+  If Scene
+    
     CreateCamera("camera", 5, 5, 10, #BJS_ArcRotate)
     
     CreateLight("Light", 0, 10, 0, 0.8, #BJS_Hemispheric)
@@ -29,15 +34,18 @@ Procedure LoadGame()
     Mesh = CreateCylinder("My Cylinder", 2, 1, 2)  
     MoveMesh(Mesh, 2, 1, -1)
     
-    ;Active le systeme de picking
-    PickEnable()
+    onMouseDown(@OnMouseClick())
     
     RenderLoop(@RenderGame())
   EndIf
 EndProcedure
 
+Procedure OnMouseClick()
+  MousePick(SceneMouseX(Scene), SceneMouseY(Scene))
+EndProcedure
+
 Procedure RenderGame()
-  Protected Mesh = IsPick() 
+  Protected Mesh = IsPick()
   
   If Mesh
     Debug "Name " + GetMeshName(PickMesh())
@@ -51,7 +59,7 @@ EndProcedure
 
 
 ; IDE Options = SpiderBasic 2.20 (Windows - x86)
-; CursorPosition = 22
+; CursorPosition = 43
 ; Folding = -
 ; WebAppName = Picking
 ; HtmlFilename = picking.html
