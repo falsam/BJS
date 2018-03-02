@@ -1,0 +1,50 @@
+﻿EnableExplicit
+ 
+IncludeFile "babylon/babylon.sbi"
+ 
+Global Scene, Camera
+ 
+Declare LoadGame()
+Declare RenderGame()
+
+UseModule BJS
+InitEngine(@LoadGame())
+
+
+Procedure LoadGame()    
+  Protected  Dim Meshes(1), Material, Object, NewObject
+    
+  Scene = CreateScene()
+  If Scene
+    Camera = CreateCamera("camera", 0, 0, 10, #BJS_ArcRotate)
+    CameraLookAt(Camera, 0, 0, 0)
+    CreateLight("Ambience", 0, 200, 0)
+    
+    ;Material
+    Material = CreateMaterial("red color")
+    SetMaterialColor(Material, #BJS_Diffuse, RGB(255, 0, 0))
+                
+    Meshes(0) = CreateBox("box", 0.5, 1, 0.5)   
+    Meshes(1) = CreateSphere("sphere", 0.7)
+    MoveMesh(Meshes(1), 0, 0.8, 0)
+    
+    Object = MergeMeshes(Meshes())
+    SetMeshMaterial(Object, Material)
+    
+    NewObject = CloneMesh(Object)
+    MoveMesh(NewObject, 2, 0, 0)
+        
+    RenderLoop(@RenderGame())
+  EndIf
+EndProcedure
+ 
+Procedure RenderGame()
+  RenderWorld() 
+EndProcedure
+; IDE Options = SpiderBasic 2.20 (Windows - x86)
+; CursorPosition = 20
+; Folding = -
+; iOSAppOrientation = 0
+; AndroidAppOrientation = 0
+; EnableXP
+; CompileSourceDirectory
