@@ -10,13 +10,6 @@ Procedure AssetsManagerDefine()
   !}
 EndProcedure
 
-Procedure.s GetPathPart(url.s)
-  !return v_url.substr(0, v_url.lastIndexOf("/"))
-EndProcedure
-
-Procedure.s GetFilePart(url.s)
-  !return v_url.substring(v_url.lastIndexOf('/')+1);
-EndProcedure
 
 ;-
 ;-Public
@@ -50,7 +43,7 @@ Procedure AssetsManagerAdd(Name.s, FileName.s, CallBack, CallBackError)
         !var meshprocess = v_bjsassetsmanager.addMeshTask(v_name, "", v_pathpart, v_filepart + '?' + (new Date()).getTime());
         !meshprocess.onSuccess = function (task) {
         !   task.loadedMeshes[0].position = BABYLON.Vector3.Zero();
-        !   v_callback(v_name, task.loadedMeshes[0])
+        !   v_callback(v_name, task.loadedMeshes[0], task.loadedSkeletons, task.loadedParticleSystems)
         !} 
     
         !meshprocess.onError = function (task, message, exception) {
@@ -109,6 +102,8 @@ Procedure AssetsManagerLoad()
 EndProcedure
 
 ; IDE Options = SpiderBasic 2.20 (Windows - x86)
+; CursorPosition = 92
+; FirstLine = 30
 ; Folding = --
 ; iOSAppOrientation = 0
 ; AndroidAppOrientation = 0

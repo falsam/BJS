@@ -256,9 +256,13 @@ Procedure MoveObject3D(Object, x.i, y.i)
   !v_object.top = v_y
 EndProcedure
 
+Procedure FreeObject3D(Object)
+  !v_object.dispose()
+EndProcedure
+
 ; IDE Options = SpiderBasic 2.20 (Windows - x86)
-; CursorPosition = 253
-; FirstLine = 202
+; CursorPosition = 258
+; FirstLine = 199
 ; Folding = ----
 ; iOSAppOrientation = 0
 ; AndroidAppOrientation = 0

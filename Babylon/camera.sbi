@@ -48,10 +48,10 @@ Procedure CameraLookAtMesh(Camera, MeshObject)
 EndProcedure
 
 Procedure CameraLookAt(Camera, x.f, y.f, z.f)
-    !v_camera.setTarget(new BABYLON.Vector3(v_x, v_y, v_z))       
+  !v_camera.setTarget(new BABYLON.Vector3(v_x, v_y, v_z))       
 EndProcedure
 
-Procedure CameraSpeed(Camera, Speed)
+Procedure CameraSpeed(Camera, Speed.f)
   !v_camera.speed = v_speed;
 EndProcedure
 
@@ -178,6 +178,8 @@ Procedure SetCameraRadius(Camera, Value.f)
 EndProcedure
 
 ; IDE Options = SpiderBasic 2.20 (Windows - x86)
+; CursorPosition = 54
+; FirstLine = 53
 ; Folding = -----
 ; iOSAppOrientation = 0
 ; AndroidAppOrientation = 0

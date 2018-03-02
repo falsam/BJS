@@ -35,7 +35,7 @@ Procedure onMouseDown(CallBack)
 EndProcedure
 
 Procedure onMouseMove(CallBack)
-  !v_bjscurrentscene.onPointerMove = function (evt) {
+  !v_bjscurrentscene.onPointerMove = function (evt, pickResult) {
   ! v_callback()
   !}
 EndProcedure
@@ -57,8 +57,12 @@ Procedure SetCurrentScene(Scene, Camera)
   !v_bjscurrentscene.activeCamera = v_camera;
 EndProcedure
 
-Procedure ImportScene(Name.s, Path.s, FileName.s, Callback) 
-  !BABYLON.SceneLoader.ImportMesh("", v_path, v_filename + '?' + (new Date()).getTime(), v_bjscurrentscene, function (BJSMeshes, BJSParticles, BJSSkeletons) {
+;-
+Procedure ImportScene(Name.s, FileName.s, Callback) 
+  Protected PathPart.s = GetPathPart(FileName)+"/"
+  Protected FilePart.s = GetFilePart(FileName)
+  
+  !BABYLON.SceneLoader.ImportMesh("", v_pathpart, v_filepart + '?' + (new Date()).getTime(), v_bjscurrentscene, function (BJSMeshes, BJSParticles, BJSSkeletons) {
   !  v_callback(v_name, BJSMeshes[0]);
   !});
 EndProcedure
@@ -76,12 +80,13 @@ Procedure ExportScene(Scene, FileName.s)
   EndIf
 EndProcedure
 
+;-
 Procedure SceneDebug()
   !v_bjscurrentscene.debugLayer.show();
 EndProcedure
 ; IDE Options = SpiderBasic 2.20 (Windows - x86)
-; CursorPosition = 35
-; FirstLine = 22
+; CursorPosition = 61
+; FirstLine = 23
 ; Folding = ---
 ; iOSAppOrientation = 0
 ; AndroidAppOrientation = 0

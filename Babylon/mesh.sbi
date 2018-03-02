@@ -260,10 +260,11 @@ EndProcedure
 
 ;-
 ;-Picking
-Procedure PickEnable()  
-  !BABYLON.Tools.Log("Picking is active")
-  !v_bjscurrentscene.onPointerDown = function (evt, pickResult) {
+Procedure MousePick(x.f, y.f)
+  !var pickResult = v_bjscurrentscene.pick(v_x, v_y);
+  
   ! if (pickResult.hit) {
+  !  console.log(pickResult)
   !  bjs$v_pick._hit      = pickResult.hit
   !  bjs$v_pick._point._x = pickResult.pickedPoint.x;  
   !  bjs$v_pick._point._y = pickResult.pickedPoint.y;
@@ -272,7 +273,6 @@ Procedure PickEnable()
   !  bjs$v_pick._mesh     = pickResult.pickedMesh;
   !  bjs$v_pick._uniqueid = pickResult.pickedMesh.uniqueId;  
   ! }
-  !};  
 EndProcedure
 
 Procedure IsPick()
@@ -312,8 +312,8 @@ Procedure Translate(Mesh, Value.f)
   !v_mesh.translate(new BABYLON.Vector3(v_value, 0, 0), 0.1, BABYLON.Space.LOCAL);
 EndProcedure
 ; IDE Options = SpiderBasic 2.20 (Windows - x86)
-; CursorPosition = 162
-; FirstLine = 154
+; CursorPosition = 262
+; FirstLine = 250
 ; Folding = -------
 ; iOSAppOrientation = 0
 ; AndroidAppOrientation = 0

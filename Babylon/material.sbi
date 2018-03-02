@@ -12,11 +12,7 @@ EndProcedure
 
 Procedure CreateMaterial(Name.s, BackFaceCulling = #False)
   !var material = new BABYLON.StandardMaterial(v_name, v_bjscurrentscene);
-  !material.backFaceCulling = v_backfaceculling;  //Show (or not) the front and the back of an element
-    
-  ;If LCase(GetExtensionPart(Image)) = "png"
-  ;  !material.diffuseTexture.hasAlpha = true
-  ;EndIf
+  !material.backFaceCulling = v_backfaceculling;  //Show (or not) the front and the back of an element    
   !return material  
 EndProcedure
 
@@ -28,8 +24,10 @@ Procedure ScaleMaterial(Material, UScale.f, VScale.f)
 EndProcedure
 
 Procedure ScrollMaterial(Material, UOffset.f, VOffset.f)
-  !v_material.diffuseTexture.uOffset = v_uoffset;
-  !v_material.diffuseTexture.vOffset = v_voffset;
+  If MaterialDefine(Material)
+    !v_material.diffuseTexture.uOffset = v_uoffset;
+    !v_material.diffuseTexture.vOffset = v_voffset;
+  EndIf
 EndProcedure
 
 Procedure SetMaterialColor(Material, Type, Color)
@@ -102,7 +100,7 @@ Procedure SetMaterialAttribute(Material, Attribut, Value.f)
       
     Case #BJS_SpecularPower
       !v_material.specularPower = v_value;
-   
+      
   EndSelect  
 EndProcedure
 
@@ -124,7 +122,8 @@ Procedure CloneMaterial(Material)
   EndIf  
 EndProcedure
 ; IDE Options = SpiderBasic 2.20 (Windows - x86)
-; CursorPosition = 5
+; CursorPosition = 106
+; FirstLine = 60
 ; Folding = --
 ; iOSAppOrientation = 0
 ; AndroidAppOrientation = 0

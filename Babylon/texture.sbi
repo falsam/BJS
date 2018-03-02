@@ -12,7 +12,13 @@ EndProcedure
 Procedure LoadVideoTexture(Name.s, FileName.s)
   !return new BABYLON.VideoTexture(v_name, [v_filename], v_bjscurrentscene, true, true); 
 EndProcedure
+
+Procedure CreateMirrorTexture(Name.s = "mirror", Size.i = 1024)
+  !return new BABYLON.MirrorTexture(v_name, v_size, v_bjscurrentscene, true); 
+EndProcedure
+
 ; IDE Options = SpiderBasic 2.20 (Windows - x86)
+; CursorPosition = 16
 ; Folding = -
 ; iOSAppOrientation = 0
 ; AndroidAppOrientation = 0

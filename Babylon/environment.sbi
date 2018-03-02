@@ -7,7 +7,7 @@ Procedure AmbientColor(Color.i)
   
   !v_bjscurrentscene.ambientColor = new BABYLON.Color3(v_r, v_g, v_b);    
 EndProcedure
-
+;-
 ;In the skybox directory, we must find 6 sky textures, one for each face of our box.
 ;Each image must be named per the corresponding face: “skybox_nx.png”, “skybox_ny.png”, “skybox_nz.png”, “skybox_px.png”, “skybox_py.png”, “skybox_pz.png”.
 Procedure SkyBox(Name.s, Sky.s, Size.i=200)
@@ -49,7 +49,7 @@ EndProcedure
 ;-Water
 Procedure CreateWater(Name.s, FileName.s, Width.f, Depth.f, SubDivs.i)
   !var watermesh = BABYLON.Mesh.CreateGround(v_name, v_width, v_depth, v_subdivs, v_bjscurrentscene, false);
-  !var watermat  = new BABYLON.WaterMaterial(v_name, v_bjscurrentscene, new BABYLON.Vector2(512, 512));
+  !var watermat  = new BABYLON.WaterMaterial(v_name, v_bjscurrentscene);
   
   !watermesh.material = watermat;
   !watermat.backFaceCulling = true;
@@ -64,10 +64,6 @@ Procedure CreateWater(Name.s, FileName.s, Width.f, Depth.f, SubDivs.i)
   !return watermat;
 EndProcedure
 
-Procedure WaterRenderList(Water, Mesh)
-  !v_water.addToRenderList(v_mesh)
-EndProcedure
-
 Procedure SetWater(Mesh, WindForce.f = -5, WaveHeight.f = 0.05, BumpHeight.f = 0.05, Color = 0, ColorBlendFactor.f = 0.1)
   Protected r.f = Red(color)/255
   Protected g.f = Green(Color)/255
@@ -79,6 +75,10 @@ Procedure SetWater(Mesh, WindForce.f = -5, WaveHeight.f = 0.05, BumpHeight.f = 0
   !v_mesh.bumpHeight = v_bumpheight;
   !v_mesh.waterColor = new BABYLON.Color4(v_r, v_g, v_b, v_a);
   !v_mesh.colorBlendFactor = v_colorblendfactor;
+EndProcedure
+
+Procedure WaterRenderList(Water, Mesh)
+  !v_water.addToRenderList(v_mesh)
 EndProcedure
 
 
@@ -159,8 +159,8 @@ Procedure InitShadow(Light, RenderSize = 1024)
   !v_shadowgenerator = new BABYLON.ShadowGenerator(v_rendersize, v_light);
   !v_shadowgenerator.usePoissonSampling = true;
   !v_shadowgenerator.useBlurExponentialShadowMap = true;
-  ;!v_shadowgenerator.useKernelBlur = true;
-  ;!v_shadowgenerator.blurKernel = 64;
+  !v_shadowgenerator.useKernelBlur = true;
+  !v_shadowgenerator.blurKernel = 64;
   !return v_shadowgenerator
 EndProcedure
 
@@ -172,8 +172,8 @@ Procedure RenderShadows(Mesh, Value.b = #True)
   !v_mesh.receiveShadows = v_value;
 EndProcedure
 ; IDE Options = SpiderBasic 2.20 (Windows - x86)
-; CursorPosition = 162
-; FirstLine = 110
+; CursorPosition = 83
+; FirstLine = 26
 ; Folding = ----
 ; iOSAppOrientation = 0
 ; AndroidAppOrientation = 0

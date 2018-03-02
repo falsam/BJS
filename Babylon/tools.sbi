@@ -1,5 +1,15 @@
 ﻿;Babylon.js for SpiderBasic : Tools
 
+;Private
+Procedure.s GetPathPart(url.s)
+  !return v_url.substr(0, v_url.lastIndexOf("/"))
+EndProcedure
+
+Procedure.s GetFilePart(url.s)
+  !return v_url.substring(v_url.lastIndexOf('/')+1);
+EndProcedure
+
+;Public
 Procedure RunURL(Url.s, NewTab.b = #True)
   If NewTab = #True
     !var win = window.open(v_url, '_blank');
@@ -10,6 +20,7 @@ Procedure RunURL(Url.s, NewTab.b = #True)
 EndProcedure
 
 ; IDE Options = SpiderBasic 2.20 (Windows - x86)
+; CursorPosition = 18
 ; Folding = -
 ; iOSAppOrientation = 0
 ; AndroidAppOrientation = 0

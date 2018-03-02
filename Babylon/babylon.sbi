@@ -1,10 +1,18 @@
 ;Babylon.js for SpiderBasic 
 
-;Version     : 1.0.2
+;Version     : 1.1.0
 
-;Last update : 23, January 2018
-; MusicPlay(Music) => MusicPlay(Music, Loop = #False) 
-; MergeMeshes(Array Meshes(1))
+;Last update : 28, 02 2018
+; Add 
+;   PointerLock(Value = #True)
+;   IsPointerLock()
+;   MouseLock(LockCallback, UnLockCallback)
+;
+;   GUI : FreeObject3D(Object)
+
+; Update
+;   ImportScene(Name.s, Paths.s, FileName.s, Callback) -> ImportScene(Name.s, FileName.s, Callback)
+
 
 DeclareModule BJS
   ;-Constants.sbi
@@ -14,6 +22,9 @@ DeclareModule BJS
   Declare   SetEnginePath(EnginePath.s = "sbbjs")
   
   Declare   InitEngine(Callback, CanvasOutput = #PB_Ignore) 
+  Declare   PointerLock(Value = #True)
+  Declare   IsPointerLock()
+  Declare   MouseLock(LockCallback, UnLockCallback)
   Declare   RenderLoop(Callback)
   Declare   RenderWorld()  
   Declare   CreateSceneShoot(Camera, Width, Height, Precision.f=1)    
@@ -31,7 +42,7 @@ DeclareModule BJS
   Declare   SceneMouseY(Scene)  
   Declare   BeforeRender(CallBack)
   Declare   SetCurrentScene(Scene, Camera)
-  Declare   ImportScene(Name.s, Path.s, FileName.s, Callback) ;Obsolete
+  Declare   ImportScene(Name.s, FileName.s, Callback) 
   Declare   ExportScene(Scene, FileName.s)
   Declare   SceneDebug()
    
@@ -66,8 +77,8 @@ DeclareModule BJS
   Declare   CameraFov(Camera, Fov.f) 
   Declare   CameraRange(Camera, Near, Far)
   Declare   CameraLookAtMesh(Camera, MeshObject)
-  Declare   CameraSpeed(Camera, Speed)
   Declare   CameraLookAt(Camera, x.f, y.f, z.f)
+  Declare   CameraSpeed(Camera, Speed.f)
   Declare   ActiveCamera(Camera)
   Declare   MoveCamera(Camera, x.f, y.f, z.f, Mode = #PB_Absolute)
   Declare   CameraX(Camera)
@@ -92,6 +103,7 @@ DeclareModule BJS
   Declare   LoadTexture(FileName.s)
   Declare   LoadCubeTexture(FileName.s)
   Declare   LoadVideoTexture(Names.s, FileName.s)
+  Declare   CreateMirrorTexture(Name.s = "mirror", Size.i = 1024)
   
   ;-Material.sbi
   Declare   CreateMaterial(Name.s, BackFaceCulling = #False)
@@ -144,7 +156,8 @@ DeclareModule BJS
   Declare   SetMeshPivot(Mesh, x.f, y.f, z.f)
     
   ;Picking
-  Declare   PickEnable()
+  ;  Declare   PickEnable(MouseLock = #False)
+  Declare   MousePick(x.f, y.f)
   Declare   IsPick()
   Declare   PickMesh()
   Declare.f PickX()
@@ -212,6 +225,8 @@ DeclareModule BJS
   
   Declare   MoveObject3D(Object, x.i, y.i)
   
+  Declare   FreeObject3D(Object)
+  
   ;- Keyboard.sbi
   Declare   InitKey()
   Declare   KeyPushed(Key)
@@ -223,6 +238,7 @@ DeclareModule BJS
   Declare   AssetsManagerAdd(Name.s, FileName.s, CallBackSucces, CallBackError)
   Declare   AssetsManagerPrompt(Text.s)
   Declare   AssetsManagerLoad()
+  
   ;-Animation
   Declare   CreateAnimation(Skeleton, KeyStart, KeyEnd, Loop, Speed.f)
   Declare   PauseAnimation(Animation)
@@ -257,8 +273,8 @@ Module BJS
   IncludeFile "keyboard.sbi"
 EndModule
 ; IDE Options = SpiderBasic 2.20 (Windows - x86)
-; CursorPosition = 60
-; FirstLine = 37
+; CursorPosition = 159
+; FirstLine = 118
 ; Folding = -
 ; iOSAppOrientation = 0
 ; AndroidAppOrientation = 0

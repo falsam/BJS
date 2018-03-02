@@ -21,13 +21,49 @@ Procedure InitEngine(Callback, CanvasGadget = #PB_Ignore)
         EndIf
   
   !     v_bjscanvas = document.getElementById('renderCanvas');
-  !     v_bjsengine = new BABYLON.Engine(v_bjscanvas, true, { preserveDrawingBuffer: true, stencil: true });  
+  !     v_bjsengine = new BABYLON.Engine(v_bjscanvas, true, { preserveDrawingBuffer: true, stencil: true }); 
   !     window.addEventListener('resize', function(){v_bjsengine.resize(); });  
   !     v_callback()
   !   } else {return false} 
   ! }
   !);    
 EndProcedure  
+
+Procedure PointerLock(Value = #True)
+  !v_bjsengine.isPointerLock = v_value  
+EndProcedure
+
+Procedure IsPointerLock()
+  !return v_bjsengine.isPointerLock  
+EndProcedure
+
+Procedure MouseLock(LockCallback, UnLockCallback)
+  !v_bjscanvas.addEventListener("click", function(evt) {
+  !   v_bjscanvas.requestPointerLock = v_bjscanvas.requestPointerLock || v_bjscanvas.msRequestPointerLock || v_bjscanvas.mozRequestPointerLock || v_bjscanvas.webkitRequestPointerLock;
+  !   if (v_bjscanvas.requestPointerLock) {
+  !       v_bjscanvas.requestPointerLock();
+  !       v_lockcallback()
+  !   }
+  !});
+  
+  ;Event listener when the pointerlock is updated (Or removed by pressing ESC For example).
+  !var pointerlockchange = function () {
+  !   var controlEnabled = document.pointerLockElement || document.mozPointerLockElement || document.webkitPointerLockElement || document.msPointerLockElement || false;		
+  !   if (!controlEnabled) {
+  !       v_unlockcallback()
+  !   }
+  !};
+  
+  ;Attach events To the document
+  !document.addEventListener("pointerlockchange", pointerlockchange, false);
+  !document.addEventListener("mspointerlockchange", pointerlockchange, false);
+  !document.addEventListener("mozpointerlockchange", pointerlockchange, false);
+  !document.addEventListener("webkitpointerlockchange", pointerlockchange, false);
+  
+  ;!document.pointerlockchange();
+  ;!pointerlockchange()  
+EndProcedure
+
 
 Procedure RenderLoop(Callback)
   !v_bjsengine.runRenderLoop(v_callback)
@@ -80,6 +116,8 @@ Procedure showAxis(size)
   !zChar.position = new BABYLON.Vector3(0, 0.05 * v_size, 0.9 * v_size);
 EndProcedure
 ; IDE Options = SpiderBasic 2.20 (Windows - x86)
+; CursorPosition = 64
+; FirstLine = 39
 ; Folding = --
 ; iOSAppOrientation = 0
 ; AndroidAppOrientation = 0
