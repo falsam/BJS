@@ -39,7 +39,7 @@ Procedure CameraFov(Camera, Fov.f)
 EndProcedure
 
 Procedure CameraRange(Camera, Near, Far)
-  !v_camera.manZ = v_near;
+  !v_camera.minZ = v_near;
   !v_camera.maxZ = v_far;
 EndProcedure
 
@@ -176,12 +176,3 @@ EndProcedure
 Procedure SetCameraRadius(Camera, Value.f)
   !return v_camera.radius = v_value  
 EndProcedure
-
-; IDE Options = SpiderBasic 2.20 (Windows - x86)
-; CursorPosition = 54
-; FirstLine = 53
-; Folding = -----
-; iOSAppOrientation = 0
-; AndroidAppOrientation = 0
-; EnableXP
-; CompileSourceDirectory
