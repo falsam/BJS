@@ -1,0 +1,112 @@
+﻿;Babylon.sbi - Camera Range & Fov
+
+EnableExplicit
+
+IncludeFile "babylon/babylon.sbi"
+
+Global Camera, Light, Ground, Mesh, Material
+Global Gui, Text0, CameraRange, Text1, Fov
+
+; Returns a random sign {-1, 1}
+Macro RandomSign()
+  ( Random(1)*2-1 ) 
+EndMacro
+
+Declare LoadGame()
+Declare OnChange(object, name.s, value)
+Declare RenderGame()
+
+UseModule BJS 
+
+InitEngine(@LoadGame())
+
+Procedure LoadGame()
+  Protected n, Box
+  
+  If CreateScene()    
+    ;Camera & Light
+    Camera  = CreateCamera("camera", 0, 16, 200, #BJS_Free)
+    CameraBodySize(Camera, 4, 10, 4)
+    CameraLookAt(Camera, 0, 0, 0)
+    
+    CreateLight("light", 0, 200, 0, 0.2, #BJS_Hemispheric)
+    CreateLight("light point", 100, 100, 0, 1, #BJS_Point)
+    
+    ;Ground
+    Ground = CreateGround("Ground", 1000, 1000)
+    Material = CreateMaterial("Grass")
+    SetMaterialTexture(Material, #BJS_Diffuse, LoadTexture("Data/textures/grass.jpg"))
+    SetMaterialColor(Material, #BJS_Specular, RGB(80, 80, 80))
+    ScaleMaterial(Material, 40, 40)
+    SetMeshMaterial(Ground, Material)
+    
+    ;Boxes
+    Mesh = CreateBox("Box", 10, 10, 10)
+    Material = CreateMaterial("Crate")
+    SetMaterialTexture(Material, #BJS_Diffuse, LoadTexture("Data/textures/crate.png"))
+    SetMeshMaterial(Mesh, Material)
+    MoveMesh(Mesh, 0, 5, 0)
+    
+    ;Land boundaries
+    For n = -500 To 500 Step 10
+      Box = CloneMesh(Mesh)
+      MoveMesh(Box, n, 5, 500)
+      Box = CloneMesh(Mesh)
+      MoveMesh(Box, n, 5, -500)
+      Box = CloneMesh(Mesh)
+      MoveMesh(Box, 500, 5, n)
+      Box = CloneMesh(Mesh)
+      MoveMesh(Box, -500, 5, n)
+    Next
+    
+    ;Random boxes
+    For n = 1 To 100
+      Box = CloneMesh(Mesh)
+      MoveMesh(Box, Random(450) * RandomSign(), 5, Random(450) * RandomSign()) 
+    Next  
+    
+    ;Gui
+    Gui = CreateDynamicTexture()
+    
+    Text0 = Text3D("", 10, 50, 200, 25, "Camera range", #BJS_Left)
+    AddControl3D(Gui, Text0)
+    
+    CameraRange = Slider3D("Camera Range", 200, 50, 200, 25, 1, 1000, @OnChange())
+    SetState3D(CameraRange, 1000)
+    AddControl3D(Gui, CameraRange)
+    
+    Text1 = Text3D("", 10, 80, 200, 25, "FOV", #BJS_Left)
+    AddControl3D(Gui, Text1)
+    
+    Fov = Slider3D("FOV", 200, 80, 200, 25, 1, 100, @OnChange())
+    SetState3D(Fov, 50)
+    AddControl3D(Gui, fov)
+    
+    RenderLoop(@RenderGame())
+  EndIf
+EndProcedure
+
+Procedure OnChange(object, name.s, value)
+  Select Object
+    Case CameraRange
+      CameraRange(Camera, 1, value)
+      
+    Case fov
+      CameraFov(Camera, value/100)
+  EndSelect
+EndProcedure
+
+Procedure RenderGame()  
+  RenderWorld()  
+EndProcedure
+; IDE Options = SpiderBasic 2.20 (Windows - x86)
+; CursorPosition = 26
+; Folding = -
+; WebAppName = Camera Range & FOV
+; HtmlFilename = camerarangefov.html
+; JavaScriptFilename = camerarangefov.js
+; JavaScriptPath = sb
+; iOSAppOrientation = 0
+; AndroidAppOrientation = 0
+; EnableXP
+; CompileSourceDirectory
