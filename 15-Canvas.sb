@@ -67,7 +67,7 @@ Procedure LoadGame()
     SetMaterialColor(GroundMat, #BJS_Specular, RGB(0, 0, 0))
     ScaleMaterial(GroundMat, 5, 5)
     SetMeshMaterial(Ground, GroundMat)
-    ImportScene("car", "data/Ferrari/", "ferrari.obj", @OnLoad())
+    ImportScene("car", "data/Ferrari/ferrari.obj", @OnLoad())
   EndIf
   
   ;-Scene Ford Mustang
@@ -87,7 +87,7 @@ Procedure LoadGame()
     SetMaterialColor(GroundMat, #BJS_Specular, RGB(0, 0, 0))
     ScaleMaterial(GroundMat, 5, 5)
     SetMeshMaterial(Ground, GroundMat)
-    ImportScene("fordmustang", "data/FordMustang/", "1967-shelby-ford-mustang.babylon", @OnLoad())
+    ImportScene("fordmustang", "data/FordMustang/1967-shelby-ford-mustang.babylon", @OnLoad())
   EndIf
   
   SetCurrentScene(Scene0, Camera)
@@ -127,6 +127,8 @@ EndProcedure
 
 
 ; IDE Options = SpiderBasic 2.20 (Windows - x86)
+; CursorPosition = 89
+; FirstLine = 65
 ; Folding = -
 ; WebAppName = Canvas
 ; HtmlFilename = canvas.html
